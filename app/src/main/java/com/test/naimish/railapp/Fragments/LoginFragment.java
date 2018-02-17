@@ -5,20 +5,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.test.naimish.railapp.Activities.EnquiryActivity;
 import com.test.naimish.railapp.R;
-import com.test.naimish.railapp.Utils.MyProgress;
 import com.test.naimish.railapp.Utils.Validations;
-import com.test.naimish.railapp.Views.BoldTextView;
-import com.test.naimish.railapp.Views.LightTextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -28,7 +21,7 @@ import butterknife.OnClick;
  * Created by naimish on 2/10/2018.
  */
 
-public class LoginFragment extends Fragment {
+public class LoginFragment extends RailAppFragment {
     private String mEmail;
     private String mPassword;
     private ProgressDialog mProgress;
@@ -41,15 +34,33 @@ public class LoginFragment extends Fragment {
     Button mLoginButtton;
 
     @OnClick(R.id.login_button)
-    public void loginClicked(){
-
+    public void loginClicked() {
+        mEmail = mEmailField.getText().toString();
+        mPassword = mPasswordField.getText().toString();
+        mEmailField.setError(null);
+        mPasswordField.setError(null);
+        View focusView = null;
+        Boolean killSwitch = false;
+        if (!Validations.checkEmail(mEmail) || Validations.isEmpty(mEmail)) {
+            mEmailField.setError(getString(R.string.email_error));
+            focusView = mEmailField;
+            killSwitch = true;
+        }
+        if (Validations.isEmpty(mPassword)) {
+            mPasswordField.setError(getResources().getString(R.string.password_error));
+            focusView = mPasswordField;
+            killSwitch = true;
+        }
+        if (killSwitch) {
+            focusView.requestFocus();
+        } else {
+            startActivity(new Intent(getActivity(), EnquiryActivity.class));
+        }
     }
 
-
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.login_fragment, container, false);
+    protected int getResourceId() {
+        return R.layout.login_fragment;
     }
 
     public static Fragment newInstance() {

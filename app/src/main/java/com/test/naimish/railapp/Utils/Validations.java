@@ -9,11 +9,11 @@ public class Validations {
         return email.contains("@");
     }
 
-    public static boolean emptyEmail(String email) {
-        if (email.length() == 0)
-            return false;
-        else
+    public static boolean isEmpty(String string) {
+        if (string.length() == 0)
             return true;
+        else
+            return false;
     }
 
     public static boolean checkPassword(String password, String confirm_password) {

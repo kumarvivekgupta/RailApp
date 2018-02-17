@@ -17,8 +17,6 @@ import butterknife.ButterKnife;
  */
 
 public abstract class SingleFragmentActivity extends AppCompatActivity {
-    //    private BoldTextView toolbarTitle;
-//    private Toolbar toolbar;
     @BindView(R.id.tool_bar_title)
     BoldTextView mToolbarTitle;
     @BindView(R.id.toolbar)

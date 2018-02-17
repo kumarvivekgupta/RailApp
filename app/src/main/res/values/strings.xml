@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">RailApp</string>
-    <string name="email_error">Email is Incorrect or Empty</string>
-    <string name="password_error">Password should be not less than 5 words....should match with confirm password</string>
+    <string name="email_error">Invalid Email</string>
+    <string name="password_error">Invalid Password</string>
     <string name="email_text">E-MAIL</string>
     <string name="password_text">PASSWORD</string>
     <string name="login_text">LOGIN</string>

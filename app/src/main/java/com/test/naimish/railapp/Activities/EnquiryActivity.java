@@ -1,7 +1,6 @@
 package com.test.naimish.railapp.Activities;
 
 import android.support.v4.app.Fragment;
-import android.widget.Toolbar;
 
 import com.test.naimish.railapp.Fragments.EnquiryFragment;
 
@@ -10,7 +9,8 @@ import com.test.naimish.railapp.Fragments.EnquiryFragment;
  */
 
 public class EnquiryActivity extends SingleFragmentActivity {
-    private static final String TOOLBAR_TITLE="Enquiry Page";
+    private static final String TOOLBAR_TITLE = "ENQUIRY";
+
     @Override
     protected boolean showToolbar() {
         return true;
@@ -18,11 +18,11 @@ public class EnquiryActivity extends SingleFragmentActivity {
 
     @Override
     protected String getToolbarTitle() {
-        return TOOLBAR_TITLE ;
+        return TOOLBAR_TITLE;
     }
 
     @Override
     protected Fragment getFragmentInstance() {
-        return EnquiryFragment.getInstance();
+        return EnquiryFragment.newInstance();
     }
 }
