@@ -10,7 +10,7 @@ import com.test.naimish.railapp.Fragments.EnquiryFragment;
  */
 
 public class EnquiryActivity extends SingleFragmentActivity {
-    private static final String toolbar_title="Enquiry Page";
+    private static final String TOOLBAR_TITLE="Enquiry Page";
     @Override
     protected boolean showToolbar() {
         return true;
@@ -18,7 +18,7 @@ public class EnquiryActivity extends SingleFragmentActivity {
 
     @Override
     protected String getToolbarTitle() {
-        return toolbar_title ;
+        return TOOLBAR_TITLE ;
     }
 
     @Override

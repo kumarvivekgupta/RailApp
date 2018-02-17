@@ -9,13 +9,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.test.naimish.railapp.Activities.EnquiryActivity;
 import com.test.naimish.railapp.R;
-import com.test.naimish.railapp.info.MyProgress;
-import com.test.naimish.railapp.info.Validations;
+import com.test.naimish.railapp.Utils.MyProgress;
+import com.test.naimish.railapp.Utils.Validations;
+import com.test.naimish.railapp.Views.BoldTextView;
+import com.test.naimish.railapp.Views.LightTextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -26,19 +29,22 @@ import butterknife.OnClick;
  */
 
 public class LoginFragment extends Fragment {
-    private String email;
-    private String password;
-    private String confirmpassword;
-    private ProgressDialog progress;
+    private String mEmail;
+    private String mPassword;
+    private ProgressDialog mProgress;
 
     @BindView(R.id.login_email)
-    TextView login_email;
+    EditText mEmailField;
     @BindView(R.id.login_password)
-    TextView login_password;
+    EditText mPasswordField;
     @BindView(R.id.login_button)
-    Button login_button;
-    @BindView(R.id.confirm_password)
-    TextView confirm_password;
+    Button mLoginButtton;
+
+    @OnClick(R.id.login_button)
+    public void loginClicked(){
+
+    }
+
 
     @Nullable
     @Override
@@ -55,68 +61,5 @@ public class LoginFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
     }
-    @OnClick(R.id.login_button)
-    public void login_clicked()
-    {        boolean killSwitch=false;
-    View focusView=null;
-    login_password.setError(null);
-    login_email.setError(null);
 
-        email=login_email.getText().toString();
-        password=login_password.getText().toString();
-        if(!Validations.checkEmail(email)||Validations.emptyEmail(email))
-        {
-            Toast.makeText(getContext(),"Error",Toast.LENGTH_LONG).show();
-           login_email.setError(getActivity().getString(R.string.email_error));
-           killSwitch=true;
-           focusView=login_email;
-
-
-        }
-        if(Validations.checkEmail(password))
-        {
-            Toast.makeText(getContext(),"Password_Error",Toast.LENGTH_LONG).show();
-            login_password.setError("Password Cannot be Empty");
-            focusView=login_password;
-            killSwitch=true;
-        }
-        if(Validations.checkPassword(password,confirmpassword)){
-            Toast.makeText(getContext(),"Error",Toast.LENGTH_LONG).show();
-            login_password.setError(getActivity().getString(R.string.password_error));
-            killSwitch=true;
-            focusView=login_password;
-
-        }
-        if(killSwitch)
-            focusView.requestFocus();
-        else
-        {
-            progress= MyProgress.showProgress(getContext(),"Logging In...");
-            login();
-        }
-
-    }
-    private  void  login(){
-        if(true)
-        {
-
-            startActivity(new Intent(getActivity(), EnquiryActivity.class));
-            getActivity().finish();
-            progress.dismiss();
-
-        }
-        else
-        {
-            MyProgress.showProgress(getContext(),"Something is wrong here");
-            progress.dismiss();
-        }
-
-
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
-    }
 }

@@ -3,43 +3,41 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#d3d3"
     android:orientation="vertical">
 
-    <TextView
+    <com.test.naimish.railapp.Views.LightTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:padding="5dp"
+        android:text="@string/email_text"/>
+
+    <EditText
         android:id="@+id/login_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <com.test.naimish.railapp.Views.LightTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:padding="5dp"
+        android:text="@string/password_text"/>
 
-        android:layout_above="@+id/login_password"
-        android:layout_alignStart="@+id/login_password"
-        android:layout_marginBottom="19dp"
-        android:text="TextView" />
-
-    <TextView
+    <EditText
         android:id="@+id/login_password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/login_button"
-        android:layout_alignStart="@+id/login_button"
-        android:layout_marginBottom="62dp"
-        android:text="TextView" />
-
-    <TextView
-        android:id="@+id/confirm_password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/login_button"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="17dp"
-        android:text="TextView" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
     <Button
         android:id="@+id/login_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="134dp"
-        android:text="Button" />
-</>
+        android:background="@color/colorAccent"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:typeface="serif"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:text="@string/login_text"/>
+</LinearLayout>

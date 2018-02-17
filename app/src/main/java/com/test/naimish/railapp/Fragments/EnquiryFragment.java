@@ -19,10 +19,11 @@ import butterknife.ButterKnife;
 
 public class EnquiryFragment extends Fragment {
     @BindView(R.id.pnr_enquiry)
-    Button pnr;
+    Button mPnr;
     @BindView(R.id.live_train_status)
-    Button live_status;
-    public static  Fragment getInstance(){
+    Button mLiveStatus;
+
+    public static Fragment getInstance() {
         return new EnquiryFragment();
 
     }
@@ -35,13 +36,13 @@ public class EnquiryFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.activity_single_fragment,container,false);
+        return inflater.inflate(R.layout.activity_single_fragment, container, false);
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ButterKnife.bind(this,view);
+        ButterKnife.bind(this, view);
     }
 
 }

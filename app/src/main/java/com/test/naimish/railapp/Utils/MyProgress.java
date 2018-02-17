@@ -1,4 +1,4 @@
-package com.test.naimish.railapp.info;
+package com.test.naimish.railapp.Utils;
 
 import android.app.ProgressDialog;
 import android.content.Context;

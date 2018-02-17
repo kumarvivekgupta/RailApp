@@ -9,9 +9,20 @@ import com.test.naimish.railapp.R;
 import com.test.naimish.railapp.Utils.AddFragment;
 import com.test.naimish.railapp.Views.BoldTextView;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
+/**
+ * Created by naimish on 2/10/2018.
+ */
+
 public abstract class SingleFragmentActivity extends AppCompatActivity {
-    private BoldTextView toolbarTitle;
-    private Toolbar toolbar;
+    //    private BoldTextView toolbarTitle;
+//    private Toolbar toolbar;
+    @BindView(R.id.tool_bar_title)
+    BoldTextView mToolbarTitle;
+    @BindView(R.id.toolbar)
+    Toolbar mToolbar;
 
     protected abstract boolean showToolbar();
 
@@ -19,15 +30,18 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
 
     protected abstract Fragment getFragmentInstance();
 
+    protected int getLayoutResourseId() {
+        return R.layout.activity_single_fragment;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_single_fragment);
-        toolbar = findViewById(R.id.toolbar);
-        toolbarTitle = findViewById(R.id.tool_bar_title);
+        setContentView(getLayoutResourseId());
+        ButterKnife.bind(this);
         if (showToolbar()) {
-            setSupportActionBar(toolbar);
-            toolbarTitle.setText(getToolbarTitle());
+            setSupportActionBar(mToolbar);
+            mToolbarTitle.setText(getToolbarTitle());
         }
         AddFragment.addFragment(getFragmentInstance(), this, R.id.container);
 
