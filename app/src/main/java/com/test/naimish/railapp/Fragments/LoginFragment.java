@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.test.naimish.railapp.Activities.EnquiryActivity;
+import com.test.naimish.railapp.Activities.RegisterActivity;
 import com.test.naimish.railapp.R;
 import com.test.naimish.railapp.Utils.Validations;
 
@@ -32,6 +33,11 @@ public class LoginFragment extends RailAppFragment {
     EditText mPasswordField;
     @BindView(R.id.login_button)
     Button mLoginButtton;
+
+    @OnClick(R.id.sign_up)
+    public void signUp() {
+        startActivity(new Intent(getActivity(), RegisterActivity.class));
+    }
 
     @OnClick(R.id.login_button)
     public void loginClicked() {

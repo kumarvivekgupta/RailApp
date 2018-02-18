@@ -5,4 +5,5 @@
     <string name="email_text">E-MAIL</string>
     <string name="password_text">PASSWORD</string>
     <string name="login_text">LOGIN</string>
+    <string name="confirm_password">CONFIRM PASSWORD</string>
 </resources>

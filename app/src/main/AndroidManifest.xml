@@ -18,6 +18,7 @@
         </activity>
         <activity android:name=".Activities.EnquiryActivity">
         </activity>
+        <activity android:name=".Activities.RegisterActivity"></activity>
 
     </application>
 
