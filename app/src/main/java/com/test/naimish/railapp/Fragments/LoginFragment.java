@@ -17,6 +17,7 @@ import com.test.naimish.railapp.Utils.Validations;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import info.hoang8f.widget.FButton;
 
 /**
  * Created by naimish on 2/10/2018.

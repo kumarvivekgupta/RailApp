@@ -8,13 +8,26 @@
         android:layout_height="wrap_content"
         android:textSize="20sp"
         android:padding="5dp"
+        android:text="@string/name_text"/>
+
+    <EditText
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+    <com.test.naimish.railapp.Views.LightTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:padding="5dp"
         android:text="@string/email_text"/>
 
     <EditText
+        android:id="@+id/email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="email"
-        android:id="@+id/email"/>
+        android:inputType="textEmailAddress"
+        />
     <com.test.naimish.railapp.Views.LightTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -22,10 +35,11 @@
         android:padding="5dp"
         android:text="@string/password_text"/>
     <EditText
+        android:id="@+id/password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="password"
-        android:id="@+id/password"/>
+        android:inputType="textPassword"
+        />
     <com.test.naimish.railapp.Views.LightTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -33,23 +47,24 @@
         android:padding="5dp"
         android:text="@string/confirm_password"/>
     <EditText
+        android:id="@+id/confirm_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="confirm password"
-        android:textStyle="bold"
-        android:id="@+id/confirmpassword"/>
+        android:inputType="textPassword"
+        />
 
     <Button
         android:id="@+id/register"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Register"
-        android:background="@color/colorAccent"
+        android:text="@string/submit_text"
         android:textColor="@color/white"
+        android:layout_marginTop="15dp"
         android:textSize="20sp"
         android:typeface="serif"
-        android:gravity="center"
         android:layout_gravity="center"
+        android:background="@color/fbutton_color_wet_asphalt"
+
         />
 
 

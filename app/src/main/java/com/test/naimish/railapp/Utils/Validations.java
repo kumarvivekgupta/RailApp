@@ -17,7 +17,7 @@ public class Validations {
     }
 
     public static boolean checkPassword(String password, String confirm_password) {
-        if (password.length() > 5 && confirm_password.equals(confirm_password))
+        if (password.length() > 5 && password.equals(confirm_password))
             return true;
         else
             return false;

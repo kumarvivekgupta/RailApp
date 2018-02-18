@@ -1,9 +1,14 @@
 <resources>
     <string name="app_name">RailApp</string>
     <string name="email_error">Invalid Email</string>
+    <string name="name_error">Invalid Name</string>
     <string name="password_error">Invalid Password</string>
     <string name="email_text">E-MAIL</string>
     <string name="password_text">PASSWORD</string>
     <string name="login_text">LOGIN</string>
+    <string name="submit_text">SUBMIT</string>
+    <string name="name_text">NAME</string>
+    <string name="or_text">or</string>
+    <string name="register_text"><u>Register here</u></string>
     <string name="confirm_password">CONFIRM PASSWORD</string>
 </resources>
