@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingTop="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="34dp"
+
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/enterpnr_no"
+                android:layout_width="0dp"
+                android:layout_height="34dp"
+                android:layout_weight="1"
+                android:background="@color/fbutton_color_amethyst"
+                android:hint="enter pnr no.."
+
+                />
+
+            <ImageButton
+                android:id="@+id/searchpnr"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/fbutton_color_amethyst"
+                android:src="@drawable/searchicon" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="From" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Date" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Time" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="To.." />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+
+            android:orientation="horizontal"
+            android:padding="15dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="8"
+                android:paddingLeft="10dp"
+                android:text="Text"
+                android:visibility="visible" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="--" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="20"
+                android:text="Train Name" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+
+            android:orientation="horizontal">
+
+
+            <com.test.naimish.railapp.Views.BoldTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingLeft="20dp"
+                android:text="PNR" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="9"
+                android:hint="pnr no" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.test.naimish.railapp.Views.LightTextView
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_weight="7"
+                android:paddingLeft="8dp"
+                android:paddingTop="2dp"
+                android:text="Booking Status" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="25"
+                android:hint="booked Status" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.test.naimish.railapp.Views.LightTextView
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="7"
+                android:paddingTop="2dp"
+
+                android:text="Current Status" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_weight="23"
+                android:hint="current Status" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.test.naimish.railapp.Views.LightTextView
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="14dp"
+                android:paddingTop="2dp"
+                android:text="Chart "
+
+                />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:hint="chart prepared or not" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="coach" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</RelativeLayout>
