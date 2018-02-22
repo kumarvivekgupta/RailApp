@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.test.naimish.railapp">
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -19,6 +20,8 @@
         <activity android:name=".Activities.EnquiryActivity">
         </activity>
         <activity android:name=".Activities.RegisterActivity"></activity>
+
+    <activity android:name=".Activities.PnrEnquiryActivity"></activity>
 
     </application>
 

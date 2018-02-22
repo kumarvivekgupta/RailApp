@@ -2,6 +2,9 @@ package com.test.naimish.railapp.Activities;
 
 import android.support.v4.app.Fragment;
 
+import com.test.naimish.railapp.Fragments.EnquiryFragment;
+import com.test.naimish.railapp.Fragments.PnrEnquiryFragment;
+
 /**
  * Created by Vivek on 2/19/2018.
  */
@@ -20,6 +23,6 @@ public class PnrEnquiryActivity extends SingleFragmentActivity {
 
     @Override
     protected Fragment getFragmentInstance() {
-        return getFragmentInstance();
+        return PnrEnquiryFragment.newInstance();
     }
 }

@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.View;
-import android.widget.ImageButton;
+import android.widget.Button;
 
 import com.test.naimish.railapp.Activities.LiveTrainStatusActivity;
 import com.test.naimish.railapp.Activities.PnrEnquiryActivity;
@@ -21,9 +21,9 @@ import butterknife.OnClick;
 
 public class EnquiryFragment extends RailAppFragment {
     @BindView(R.id.pnr_enquiry)
-    ImageButton mPnr;
+    Button mPnr;
     @BindView(R.id.live_train_status)
-    ImageButton mLiveStatus;
+    Button mLiveStatus;
 
     public static Fragment newInstance() {
         return new EnquiryFragment();

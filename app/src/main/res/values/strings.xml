@@ -8,6 +8,7 @@
     <string name="login_text">LOGIN</string>
     <string name="submit_text">SUBMIT</string>
     <string name="name_text">NAME</string>
+    <string name="get_text">GET STATUS</string>
     <string name="or_text">or</string>
     <string name="register_text"><u>Register here</u></string>
     <string name="confirm_password">CONFIRM PASSWORD</string>

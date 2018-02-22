@@ -8,21 +8,21 @@
     android:layout_rowWeight="2">
 
 
-    <ImageButton
+    <Button
         android:id="@+id/pnr_enquiry"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:src="@drawable/pnrenquiry"/>
+        android:background="@drawable/pnrenquiry"/>
 
 
 
-    <ImageButton
+    <Button
         android:id="@+id/live_train_status"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:src="@drawable/trainlivestatus"
+        android:background="@drawable/trainlivestatus"
 
         />
 </LinearLayout>
