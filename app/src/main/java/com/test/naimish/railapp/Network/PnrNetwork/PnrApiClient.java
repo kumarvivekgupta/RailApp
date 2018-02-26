@@ -20,8 +20,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class PnrApiClient {
     private static final String BASE_URL = "https://api.railwayapi.com/";
-    private static final String API_KEY = "";
-
 
     public static void getPnrStatus(String pnrNo) {
         OkHttpClient.Builder okhttpbuilder = new OkHttpClient.Builder();

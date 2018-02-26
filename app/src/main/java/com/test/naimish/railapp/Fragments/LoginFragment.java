@@ -35,11 +35,6 @@ public class LoginFragment extends RailAppFragment {
     @BindView(R.id.login_button)
     Button mLoginButtton;
 
-    @OnClick(R.id.sign_up)
-    public void signUp() {
-        startActivity(new Intent(getActivity(), RegisterActivity.class));
-    }
-
     @OnClick(R.id.login_button)
     public void loginClicked() {
         mEmail = mEmailField.getText().toString();
@@ -54,7 +49,7 @@ public class LoginFragment extends RailAppFragment {
             focusViewEmail = mEmailField;
             killSwitch = true;
         }
-        if (Validations.isEmpty(mPassword) && Validations.checkPassword(mPassword)) {
+        if (Validations.isEmpty(mPassword) && !Validations.checkPassword(mPassword)) {
             mPasswordField.setError(getResources().getString(R.string.password_error));
             focusViewPassword = mPasswordField;
             killSwitch = true;

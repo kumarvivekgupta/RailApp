@@ -47,22 +47,4 @@
 
         />
 
-    <com.test.naimish.railapp.Views.LightTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="@string/or_text"
-        android:textColor="@color/fbutton_color_midnight_blue"
-        android:textSize="20sp"/>
-
-    <com.test.naimish.railapp.Views.LightTextView
-        android:id="@+id/sign_up"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="@string/register_text"
-        android:textColor="@color/fbutton_color_midnight_blue"
-        android:textSize="20sp"/>
-
-
 </LinearLayout>

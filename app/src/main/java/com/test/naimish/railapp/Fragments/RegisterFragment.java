@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.test.naimish.railapp.Activities.EnquiryActivity;
+import com.test.naimish.railapp.Activities.LandingActivity;
 import com.test.naimish.railapp.Activities.LoginActivity;
 import com.test.naimish.railapp.R;
 import com.test.naimish.railapp.Utils.Validations;
@@ -91,7 +92,7 @@ public class RegisterFragment extends RailAppFragment {
 
     private void signUpUser() {
         if (true) {
-            startActivity(new Intent(getActivity(), LoginActivity.class));
+            startActivity(new Intent(getActivity(), LandingActivity.class));
         } else {
             Toast.makeText(getContext(), "Something Went Wrong", Toast.LENGTH_LONG).show();
         }
