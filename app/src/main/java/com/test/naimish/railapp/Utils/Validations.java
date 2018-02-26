@@ -6,7 +6,14 @@ package com.test.naimish.railapp.Utils;
 
 public class Validations {
     public static boolean checkEmail(String email) {
-        return email.contains("@");
+
+        if (email.contains("@"))
+            if (email.contains(".")) {
+                if (email.charAt((email.indexOf("@")) + 1) != email.charAt((email.indexOf("."))))
+                    return true;
+            }
+
+        return false;
     }
 
     public static boolean isEmpty(String string) {
@@ -16,10 +23,16 @@ public class Validations {
             return false;
     }
 
-    public static boolean checkPassword(String password, String confirm_password) {
-        if (password.length() > 5 && password.equals(confirm_password))
+    public static boolean checkPassword(String password) {
+        if (password.length() > 5 )
             return true;
         else
             return false;
     }
+    public static boolean checkPassword(String password,String confirmPassword){
+        if(password.length()>5 && password.equals(confirmPassword))
+            return true;
+        else return false;
+    }
+
 }

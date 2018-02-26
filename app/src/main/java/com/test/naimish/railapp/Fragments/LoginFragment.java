@@ -46,24 +46,44 @@ public class LoginFragment extends RailAppFragment {
         mPassword = mPasswordField.getText().toString();
         mEmailField.setError(null);
         mPasswordField.setError(null);
-        View focusView = null;
+        View focusViewEmail = null;
+        View focusView=null;
+
+        Boolean killSwitchEmail = false;
+        Boolean killSwitchPassword = false;
         Boolean killSwitch = false;
         if (!Validations.checkEmail(mEmail) || Validations.isEmpty(mEmail)) {
             mEmailField.setError(getString(R.string.email_error));
-            focusView = mEmailField;
-            killSwitch = true;
-        }
-        if (Validations.isEmpty(mPassword)) {
-            mPasswordField.setError(getResources().getString(R.string.password_error));
-            focusView = mPasswordField;
+            focusViewEmail = mEmailField;
+            killSwitchEmail = true;
             killSwitch = true;
         }
         if (killSwitch) {
-            focusView.requestFocus();
-        } else {
-            startActivity(new Intent(getActivity(), EnquiryActivity.class));
+
+            if (killSwitchEmail) {
+                focusViewEmail.requestFocus();
+            }
         }
+        if (Validations.isEmpty(mPassword) && Validations.checkPassword(mPassword)) {
+            mPasswordField.setError(getResources().getString(R.string.password_error));
+            focusView = mPasswordField;
+            killSwitchPassword = true;
+            killSwitch = true;
+        }
+        if (killSwitch) {
+
+            if (killSwitchPassword) {
+                focusView.requestFocus();
+
+            }
+        }
+
+
+
+        if ((killSwitchEmail == false) && (killSwitchPassword == false))
+            startActivity(new Intent(getActivity(), EnquiryActivity.class));
     }
+
 
     @Override
     protected int getResourceId() {
