@@ -47,41 +47,24 @@ public class LoginFragment extends RailAppFragment {
         mEmailField.setError(null);
         mPasswordField.setError(null);
         View focusViewEmail = null;
-        View focusView=null;
-
-        Boolean killSwitchEmail = false;
-        Boolean killSwitchPassword = false;
+        View focusViewPassword = null;
         Boolean killSwitch = false;
         if (!Validations.checkEmail(mEmail) || Validations.isEmpty(mEmail)) {
             mEmailField.setError(getString(R.string.email_error));
             focusViewEmail = mEmailField;
-            killSwitchEmail = true;
             killSwitch = true;
-        }
-        if (killSwitch) {
-
-            if (killSwitchEmail) {
-                focusViewEmail.requestFocus();
-            }
         }
         if (Validations.isEmpty(mPassword) && Validations.checkPassword(mPassword)) {
             mPasswordField.setError(getResources().getString(R.string.password_error));
-            focusView = mPasswordField;
-            killSwitchPassword = true;
+            focusViewPassword = mPasswordField;
             killSwitch = true;
         }
         if (killSwitch) {
-
-            if (killSwitchPassword) {
-                focusView.requestFocus();
-
-            }
+            if (focusViewEmail != null)
+                focusViewEmail.requestFocus();
+            if (focusViewPassword != null)
+                focusViewPassword.requestFocus();
         }
-
-
-
-        if ((killSwitchEmail == false) && (killSwitchPassword == false))
-            startActivity(new Intent(getActivity(), EnquiryActivity.class));
     }
 
 

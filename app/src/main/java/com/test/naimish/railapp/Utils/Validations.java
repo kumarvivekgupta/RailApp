@@ -7,11 +7,11 @@ package com.test.naimish.railapp.Utils;
 public class Validations {
     public static boolean checkEmail(String email) {
 
-        if (email.contains("@"))
-            if (email.contains(".")) {
-                if (email.charAt((email.indexOf("@")) + 1) != email.charAt((email.indexOf("."))))
-                    return true;
-            }
+        if (email.contains("@")
+                && email.contains(".")
+                && email.indexOf('.') > email.indexOf('@') + 1)
+            return true;
+
 
         return false;
     }
@@ -24,13 +24,14 @@ public class Validations {
     }
 
     public static boolean checkPassword(String password) {
-        if (password.length() > 5 )
+        if (password.length() > 5)
             return true;
         else
             return false;
     }
-    public static boolean checkPassword(String password,String confirmPassword){
-        if(password.length()>5 && password.equals(confirmPassword))
+
+    public static boolean checkPassword(String password, String confirmPassword) {
+        if (password.length() > 5 && password.equals(confirmPassword))
             return true;
         else return false;
     }
