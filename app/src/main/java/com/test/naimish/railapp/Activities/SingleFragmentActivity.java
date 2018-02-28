@@ -4,6 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 
 import com.test.naimish.railapp.R;
 import com.test.naimish.railapp.Utils.AddFragment;
@@ -40,6 +41,9 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
         if (showToolbar()) {
             setSupportActionBar(mToolbar);
             mToolbarTitle.setText(getToolbarTitle());
+        }
+        else{
+            mToolbar.setVisibility(View.INVISIBLE);
         }
         AddFragment.addFragment(getFragmentInstance(), this, R.id.container);
 

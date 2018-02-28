@@ -12,4 +12,5 @@
     <string name="or_text">or</string>
     <string name="register_text"><u>SIGNUP</u></string>
     <string name="confirm_password">CONFIRM PASSWORD</string>
+    <string name="welcome_text">Welcome to Railway Enquiry!</string>
 </resources>
