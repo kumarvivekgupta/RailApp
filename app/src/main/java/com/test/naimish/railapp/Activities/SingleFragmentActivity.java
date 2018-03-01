@@ -1,10 +1,12 @@
 package com.test.naimish.railapp.Activities;
 
+import android.content.pm.ActivityInfo;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.WindowManager;
 
 import com.test.naimish.railapp.R;
 import com.test.naimish.railapp.Utils.AddFragment;
@@ -27,6 +29,8 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
 
     protected abstract String getToolbarTitle();
 
+    protected abstract int getToolbarColor();
+
     protected abstract Fragment getFragmentInstance();
 
     protected int getLayoutResourseId() {
@@ -37,12 +41,19 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutResourseId());
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN
+                | WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE
+                | WindowManager.LayoutParams.SOFT_INPUT_STATE_UNCHANGED);
+
         ButterKnife.bind(this);
         if (showToolbar()) {
             setSupportActionBar(mToolbar);
             mToolbarTitle.setText(getToolbarTitle());
-        }
-        else{
+            if (getToolbarColor() != 0) {
+                mToolbar.setBackgroundColor(getResources().getColor(getToolbarColor()));
+            }
+        } else {
             mToolbar.setVisibility(View.INVISIBLE);
         }
         AddFragment.addFragment(getFragmentInstance(), this, R.id.container);

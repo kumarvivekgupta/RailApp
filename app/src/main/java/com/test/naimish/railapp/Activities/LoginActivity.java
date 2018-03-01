@@ -3,6 +3,7 @@ package com.test.naimish.railapp.Activities;
 import android.support.v4.app.Fragment;
 
 import com.test.naimish.railapp.Fragments.LoginFragment;
+import com.test.naimish.railapp.R;
 
 /**
  * Created by naimish on 2/10/2018.
@@ -19,6 +20,11 @@ public class LoginActivity extends SingleFragmentActivity {
     @Override
     protected String getToolbarTitle() {
         return TOOLBAR_TITLE;
+    }
+
+    @Override
+    protected int getToolbarColor() {
+        return R.color.colorPrimary;
     }
 
     @Override
