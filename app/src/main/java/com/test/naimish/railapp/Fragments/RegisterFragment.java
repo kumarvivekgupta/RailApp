@@ -8,9 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.test.naimish.railapp.Activities.EnquiryActivity;
 import com.test.naimish.railapp.Activities.LandingActivity;
-import com.test.naimish.railapp.Activities.LoginActivity;
 import com.test.naimish.railapp.R;
 import com.test.naimish.railapp.Utils.Validations;
 
@@ -48,7 +46,7 @@ public class RegisterFragment extends RailAppFragment {
 
     @Override
     protected int getResourceId() {
-        return R.layout.register;
+        return R.layout.fragment_register;
     }
 
 

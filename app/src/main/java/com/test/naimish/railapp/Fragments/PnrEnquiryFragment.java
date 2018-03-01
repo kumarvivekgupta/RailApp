@@ -21,7 +21,7 @@ import butterknife.OnClick;
 public class PnrEnquiryFragment extends RailAppFragment {
     @Override
     protected int getResourceId() {
-        return R.layout.pnrenquiry_fragment;
+        return R.layout.fragment_pnr;
     }
 
     @BindView(R.id.pnr_text)

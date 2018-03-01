@@ -20,10 +20,7 @@ import butterknife.OnClick;
  */
 
 public class LandingFragment extends RailAppFragment {
-    @BindView(R.id.landing_login)
-    Button mLogin;
-    @BindView(R.id.landing_register)
-    Button mSignup;
+
     @OnClick(R.id.landing_login)
     public void loginClicked() {
         startActivity(new Intent(getActivity(), LoginActivity.class));
@@ -37,12 +34,12 @@ public class LandingFragment extends RailAppFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ButterKnife.bind(this,view);
+        ButterKnife.bind(this, view);
     }
 
     @Override
     protected int getResourceId() {
-        return R.layout.landing_fragment;
+        return R.layout.fragment_landing;
     }
 
     public static Fragment newInstance() {

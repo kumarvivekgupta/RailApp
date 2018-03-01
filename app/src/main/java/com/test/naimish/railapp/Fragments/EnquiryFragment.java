@@ -20,10 +20,6 @@ import butterknife.OnClick;
  */
 
 public class EnquiryFragment extends RailAppFragment {
-    @BindView(R.id.pnr_enquiry)
-    Button mPnr;
-    @BindView(R.id.live_train_status)
-    Button mLiveStatus;
 
     public static Fragment newInstance() {
         return new EnquiryFragment();
@@ -38,14 +34,16 @@ public class EnquiryFragment extends RailAppFragment {
 
     @Override
     protected int getResourceId() {
-        return R.layout.enquiry_page;
+        return R.layout.fragment_enquiry;
     }
+
     @OnClick(R.id.pnr_enquiry)
-    public void pnrEnquiry(){
-        startActivity(new Intent(getActivity(),PnrEnquiryActivity.class));
+    public void pnrEnquiry() {
+        startActivity(new Intent(getActivity(), PnrEnquiryActivity.class));
     }
+
     @OnClick(R.id.live_train_status)
-    public void lineTrainStatus(){
-        startActivity(new Intent(getActivity(),LiveTrainStatusActivity.class));
+    public void lineTrainStatus() {
+        startActivity(new Intent(getActivity(), LiveTrainStatusActivity.class));
     }
 }

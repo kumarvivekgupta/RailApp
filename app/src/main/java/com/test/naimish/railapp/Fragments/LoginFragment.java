@@ -10,14 +10,12 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.test.naimish.railapp.Activities.EnquiryActivity;
-import com.test.naimish.railapp.Activities.RegisterActivity;
 import com.test.naimish.railapp.R;
 import com.test.naimish.railapp.Utils.Validations;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import info.hoang8f.widget.FButton;
 
 /**
  * Created by naimish on 2/10/2018.
@@ -32,8 +30,6 @@ public class LoginFragment extends RailAppFragment {
     EditText mEmailField;
     @BindView(R.id.login_password)
     EditText mPasswordField;
-    @BindView(R.id.login_button)
-    Button mLoginButtton;
 
     @OnClick(R.id.login_button)
     public void loginClicked() {
@@ -60,12 +56,15 @@ public class LoginFragment extends RailAppFragment {
             if (focusViewPassword != null)
                 focusViewPassword.requestFocus();
         }
+        else{
+            startActivity(new Intent(getActivity(), EnquiryActivity.class));
+        }
     }
 
 
     @Override
     protected int getResourceId() {
-        return R.layout.login_fragment;
+        return R.layout.fragment_login;
     }
 
     public static Fragment newInstance() {
