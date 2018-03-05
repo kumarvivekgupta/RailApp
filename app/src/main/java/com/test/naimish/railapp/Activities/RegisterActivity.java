@@ -10,7 +10,7 @@ import com.test.naimish.railapp.R;
  */
 
 public class RegisterActivity extends SingleFragmentActivity {
-    private static final String TOOL_BAR_TITLE = "REGISTER PAGE";
+    private static final String TOOL_BAR_TITLE = "REGISTER";
 
     @Override
     protected boolean showToolbar() {
@@ -24,7 +24,7 @@ public class RegisterActivity extends SingleFragmentActivity {
 
     @Override
     protected int getToolbarColor() {
-        return R.color.colorPrimary;
+        return R.color.transparent;
     }
 
     @Override

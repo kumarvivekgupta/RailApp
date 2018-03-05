@@ -9,7 +9,6 @@
     <string name="submit_text">SUBMIT</string>
     <string name="name_text">NAME</string>
     <string name="get_text">GET STATUS</string>
-
     <string name="register_text"><u>SIGNUP</u></string>
     <string name="confirm_password">CONFIRM PASSWORD</string>
     <string name="welcome_text">Welcome to Railway Enquiry!</string>
@@ -17,4 +16,5 @@
     <string name="login_with_facebook">Login with Facebook</string>
     <string name="signup_with_facebook">Sign Up with Facebook</string>
     <string name="or_text">OR</string>
+
 </resources>

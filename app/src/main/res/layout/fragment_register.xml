@@ -1,71 +1,65 @@
-<?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginTop="?attr/actionBarSize"
-android:background="@drawable/rail"
-    android:alpha="0.7"
-    android:padding="60dp"
-    android:scrollIndicators="left">
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/rail"
+            android:paddingTop="70sp">
 
     <android.support.v7.widget.CardView
-
-        android:layout_width="280dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="25sp"
-        android:layout_marginLeft="6dp"
-        android:layout_marginRight="6dp"
-        app:cardCornerRadius="5dp">
+        android:layout_marginLeft="22sp"
+        android:layout_marginRight="22sp"
+        app:cardCornerRadius="5sp">
 
 
         <LinearLayout
-            android:layout_width="240dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingBottom="10dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="20dp">
+            android:paddingLeft="25sp"
+            android:paddingRight="25sp">
+
 
             <LinearLayout
                 android:id="@+id/ll_facebook_signup"
-                android:layout_width="162dp"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginTop="20sp"
+                android:padding="2dp"
                 android:background="@drawable/facebook_button_background"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/facebook_icon" />
-
-                <TextView
-                    android:id="@+id/tv_facebook_icon"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:layout_marginEnd="15dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="15dp"
                     android:layout_marginStart="20dp"
                     android:gravity="center_vertical"
                     android:paddingTop="2dp"
-                    android:text="Sign Up with Facebook"
-
+                    android:src="@drawable/facebook_icon"
                     android:textColor="@color/white"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:maxLines="1"
                     android:text="@string/signup_with_facebook"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    android:textSize="15sp"/>
 
             </LinearLayout>
+
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -79,13 +73,13 @@ android:background="@drawable/rail"
                     android:layout_marginLeft="5dp"
                     android:layout_marginStart="5dp"
                     android:layout_weight="1"
-                    android:background="@color/colorLightGrey" />
+                    android:background="@color/colorLightGrey"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10sp"
-                    android:text="@string/or_text" />
+                    android:text="@string/or_text"/>
 
                 <ImageView
                     android:layout_width="0dp"
@@ -93,74 +87,92 @@ android:background="@drawable/rail"
                     android:layout_marginLeft="5dp"
                     android:layout_marginStart="5dp"
                     android:layout_weight="1"
-                    android:background="@color/colorLightGrey" />
+                    android:background="@color/colorLightGrey"/>
 
             </LinearLayout>
 
-            <com.test.naimish.railapp.Views.LightTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:text="@string/name_text"
-                android:textSize="20sp" />
-
-            <EditText
-                android:id="@+id/name"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-            <com.test.naimish.railapp.Views.LightTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:text="@string/email_text"
-                android:textSize="20sp" />
+                <com.test.naimish.railapp.Views.LightTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/email_text"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"/>
 
-            <EditText
-                android:id="@+id/email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textEmailAddress" />
+                <EditText
+                    android:id="@+id/email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress"
+                    android:maxLines="2"
+                    android:textSize="20sp"/>
 
-            <com.test.naimish.railapp.Views.LightTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:text="@string/password_text"
-                android:textSize="20sp" />
+                <com.test.naimish.railapp.Views.LightTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/name_text"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"/>
 
-            <EditText
-                android:id="@+id/password"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPassword" />
 
-            <com.test.naimish.railapp.Views.LightTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:text="@string/confirm_password"
-                android:textSize="20sp" />
+                <EditText
+                    android:id="@+id/name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:textSize="20sp"/>
 
-            <EditText
-                android:id="@+id/confirm_password"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPassword" />
+                <com.test.naimish.railapp.Views.LightTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/password_text"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"/>
 
-            <Button
-                android:id="@+id/register"
-                android:layout_width="230dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="15dp"
-                android:background="@color/fbutton_color_wet_asphalt"
-                android:text="@string/create_account"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:typeface="serif" />
+                <EditText
+                    android:id="@+id/password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    android:textSize="20sp"/>
+
+                <com.test.naimish.railapp.Views.LightTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/confirm_password"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"/>
+
+                <EditText
+                    android:id="@+id/confirm_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    android:textSize="20sp"/>
+
+                <Button
+                    android:id="@+id/register"
+                    android:layout_width="match_parent"
+                    android:layout_height="35sp"
+                    android:layout_marginBottom="20sp"
+                    android:layout_marginLeft="25sp"
+                    android:layout_marginRight="25sp"
+                    android:layout_marginTop="15sp"
+                    android:background="@drawable/signup_buttons_background"
+                    android:text="@string/submit_text"
+                    android:textColor="@color/fbutton_color_peter_river"/>
+
+            </LinearLayout>
+
         </LinearLayout>
 
-
     </android.support.v7.widget.CardView>
+
 </ScrollView>

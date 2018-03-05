@@ -24,7 +24,7 @@ public class LoginActivity extends SingleFragmentActivity {
 
     @Override
     protected int getToolbarColor() {
-        return R.color.colorPrimary;
+        return R.color.transparent;
     }
 
     @Override
