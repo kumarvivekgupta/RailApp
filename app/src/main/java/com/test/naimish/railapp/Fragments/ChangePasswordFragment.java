@@ -45,7 +45,7 @@ public class ChangePasswordFragment extends RailAppFragment {
     }
 
     @OnClick(R.id.comfirm_new_password_button)
-    private void changePassword() {
+    public void changePassword() {
         mNewPassword = newPassword.getText().toString();
         mConfirmPassword = confirmNewPassword.getText().toString();
         mOldPassword=oldPassword.getText().toString();
