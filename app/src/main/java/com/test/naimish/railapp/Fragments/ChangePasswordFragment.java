@@ -48,38 +48,37 @@ public class ChangePasswordFragment extends RailAppFragment {
     public void changePassword() {
         mNewPassword = newPassword.getText().toString();
         mConfirmPassword = confirmNewPassword.getText().toString();
-        mOldPassword=oldPassword.getText().toString();
+        mOldPassword = oldPassword.getText().toString();
         newPassword.setError(null);
         oldPassword.setError(null);
-        boolean killSwtich=false;
-        View focusView=null;
-        if(Validations.isEmpty(mOldPassword)){
-            oldPassword.setError("Empty Old Password");
-            killSwtich=true;
-            focusView=oldPassword;
+        boolean killSwtich = false;
+        View focusView = null;
+        if (Validations.isEmpty(mOldPassword)) {
+            oldPassword.setError(getResources().getString(R.string.password_error));
+            killSwtich = true;
+            focusView = oldPassword;
         }
-        if(Validations.checkPassword(mOldPassword)){
-            oldPassword.setError("Invalid Old Password");
-            killSwtich=true;
-            focusView=oldPassword;
+        if (Validations.checkPassword(mOldPassword)) {
+            oldPassword.setError(getResources().getString(R.string.password_error));
+            killSwtich = true;
+            focusView = oldPassword;
 
         }
-        if(Validations.checkPassword(mNewPassword)|| Validations.checkPassword(mNewPassword,mConfirmPassword)){
-            newPassword.setError("Inavalid New Password");
-            killSwtich=true;
-            focusView=newPassword;
+        if (Validations.checkPassword(mNewPassword) || Validations.checkPassword(mNewPassword, mConfirmPassword)) {
+            newPassword.setError(getResources().getString(R.string.password_error));
+            killSwtich = true;
+            focusView = newPassword;
 
         }
-        if(killSwtich)
+        if (killSwtich)
             focusView.requestFocus();
         else
             setNewPassword();
 
 
-
-
     }
-    private static void setNewPassword(){
+
+    private static void setNewPassword() {
 
 
     }
