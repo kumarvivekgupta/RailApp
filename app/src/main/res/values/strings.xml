@@ -16,5 +16,6 @@
     <string name="login_with_facebook">Login with Facebook</string>
     <string name="signup_with_facebook">Sign Up with Facebook</string>
     <string name="or_text">OR</string>
+    <string name="change_password">CHANGE PASSWORD</string>
 
 </resources>

@@ -51,12 +51,12 @@ public class LoginFragment extends RailAppFragment {
             killSwitch = true;
         }
         if (killSwitch) {
-            if (focusViewEmail != null)
-                focusViewEmail.requestFocus();
             if (focusViewPassword != null)
                 focusViewPassword.requestFocus();
-        }
-        else{
+            if (focusViewEmail != null)
+                focusViewEmail.requestFocus();
+
+        } else {
             startActivity(new Intent(getActivity(), EnquiryActivity.class));
         }
     }
