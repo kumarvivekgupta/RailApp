@@ -71,14 +71,15 @@ public class RegisterFragment extends RailAppFragment {
             focusView = mNameField;
             killSwitch = true;
         }
-        if (!Validations.checkEmail(mEmail) || Validations.isEmpty(mEmail)) {
-            mEmailField.setError(getString(R.string.email_error));
-            focusView = mEmailField;
-            killSwitch = true;
-        }
+
         if (Validations.isEmpty(mPassword) || (!Validations.checkPassword(mPassword, mConfirmPassword))) {
             mPasswordField.setError(getResources().getString(R.string.password_error));
             focusView = mPasswordField;
+            killSwitch = true;
+        }
+        if (!Validations.checkEmail(mEmail) || Validations.isEmpty(mEmail)) {
+            mEmailField.setError(getString(R.string.email_error));
+            focusView = mEmailField;
             killSwitch = true;
         }
         if (killSwitch) {
