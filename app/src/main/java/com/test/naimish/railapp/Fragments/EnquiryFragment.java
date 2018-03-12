@@ -37,12 +37,12 @@ public class EnquiryFragment extends RailAppFragment {
         return R.layout.fragment_enquiry;
     }
 
-    @OnClick(R.id.pnr_enquiry)
+  //  @OnClick(R.id.pnr_enquiry)
     public void pnrEnquiry() {
         startActivity(new Intent(getActivity(), PnrEnquiryActivity.class));
     }
 
-    @OnClick(R.id.live_train_status)
+  //  @OnClick(R.id.live_train_status)
     public void lineTrainStatus() {
         startActivity(new Intent(getActivity(), LiveTrainStatusActivity.class));
     }
