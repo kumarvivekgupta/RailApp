@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/RailApp.iml" filepath="$PROJECT_DIR$/RailApp.iml" />
-      <module fileurl="file://C:\Users\dell\Desktop\rail-app\RailApp.iml" filepath="C:\Users\dell\Desktop\rail-app\RailApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://C:\Users\dell\Desktop\rail-app\app\app.iml" filepath="C:\Users\dell\Desktop\rail-app\app\app.iml" />
-      <module fileurl="file://C:\Users\itakg\Desktop\RailApp\rail-app.iml" filepath="C:\Users\itakg\Desktop\RailApp\rail-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rail-app.iml" filepath="$PROJECT_DIR$/rail-app.iml" />
     </modules>
   </component>
 </project>
