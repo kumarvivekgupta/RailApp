@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.test.naimish.railapp.Activities.LandingActivity;
+import com.test.naimish.railapp.Network.RegisterNetwork.RegisterApiClient;
 import com.test.naimish.railapp.R;
 import com.test.naimish.railapp.Utils.Validations;
 
@@ -57,6 +58,7 @@ public class RegisterFragment extends RailAppFragment {
 
     @OnClick(R.id.register)
     public void registerUser() {
+        RegisterApiClient.createNewUser();
         mName = mNameField.getText().toString();
         mEmail = mEmailField.getText().toString();
         mPassword = mPasswordField.getText().toString();
