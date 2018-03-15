@@ -1,10 +1,13 @@
 package com.test.naimish.railapp.Network.RegisterNetwork;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.test.naimish.railapp.BuildConfig;
 import com.test.naimish.railapp.Models.RegisterUser;
+
+import java.lang.ref.SoftReference;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -20,10 +23,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RegisterApiClient {
     private static final String BASE_URL="https://fierce-forest-53940.herokuapp.com/";
+    public static boolean user;
+    public static String current;
 
-    public static void createNewUser() {
+    public static void createNewUser(final String mName, final String mPassword, final String mEmail) {
         OkHttpClient.Builder okhttpbuilder = new OkHttpClient.Builder();
-        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        final HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         if (BuildConfig.DEBUG) {
             okhttpbuilder.addInterceptor(interceptor);
@@ -35,11 +40,14 @@ public class RegisterApiClient {
                 .build();
         final Gson gson=new Gson();
         RegisterApiInterface registerApiInterface=retrofit.create(RegisterApiInterface.class);
-        Call<RegisterUser> call = registerApiInterface.createUser(new RegisterUser("Akhil","verma","akhilverma@gmail.com"));
+        Call<RegisterUser> call = registerApiInterface.createUser(new RegisterUser(mName,mPassword,mEmail));
         call.enqueue(new Callback<RegisterUser>() {
             @Override
             public void onResponse(Call<RegisterUser> call, Response<RegisterUser> response) {
                 Log.i("Response",gson.toJson(response.body()));
+               current=response.body().getmessage();
+               user=response.body().getResponse();
+
             }
 
             @Override
