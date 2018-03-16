@@ -20,7 +20,7 @@ public class RegisterUser {
     private Boolean mIsSuccess;
 
     @SerializedName("msg")
-    private String mMsg;
+    private String mMessagge;
 
     public RegisterUser(String mName, String mPassword, String mEmail) {
         this.mEmail = mEmail;
@@ -32,8 +32,8 @@ public class RegisterUser {
     public Boolean getResponse() {
         return this.mIsSuccess;
     }
-    public String getmessage(){
-        return this.mMsg;
+    public String getMessage(){
+        return this.mMessagge;
     }
 
 }

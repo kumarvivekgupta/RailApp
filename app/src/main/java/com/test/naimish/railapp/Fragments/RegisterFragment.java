@@ -19,8 +19,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-import static com.test.naimish.railapp.Network.RegisterNetwork.RegisterApiClient.current;
-import static com.test.naimish.railapp.Network.RegisterNetwork.RegisterApiClient.user;
+
 
 /**
  * Created by Vivek on 2/18/2018.
@@ -97,7 +96,7 @@ public class RegisterFragment extends RailAppFragment {
     }
 
     private void signUpUser(String mName,String mPassword,String mEmail) {
-       RegisterApiClient.createNewUser(mName,mPassword,mEmail);
+       RegisterApiClient.createNewUser(getActivity(),mName,mPassword,mEmail);
 
     }
 }

@@ -29,8 +29,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RegisterApiClient {
     private static final String BASE_URL = "https://fierce-forest-53940.herokuapp.com/";
-    public static boolean user;
-    public static String current;
+
 
     public static void createNewUser(final Context context, final String mName, final String mPassword, final String mEmail) {
         OkHttpClient.Builder okhttpbuilder = new OkHttpClient.Builder();
