@@ -98,16 +98,6 @@ public class RegisterFragment extends RailAppFragment {
 
     private void signUpUser(String mName,String mPassword,String mEmail) {
        RegisterApiClient.createNewUser(mName,mPassword,mEmail);
-      // RegisterUser r=new RegisterUser(mName,mPassword,mEmail);
-        if (user) {
-            startActivity(new Intent(getActivity(), LandingActivity.class));
 
-        } else {
-
-
-            Snackbar .make(getView(),R.string.user_already_registered,Snackbar.LENGTH_LONG).show();
-
-
-        }
     }
 }
