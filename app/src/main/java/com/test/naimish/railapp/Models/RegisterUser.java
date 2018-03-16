@@ -19,6 +19,9 @@ public class RegisterUser {
     @SerializedName("success")
     private Boolean mIsSuccess;
 
+    @SerializedName("msg")
+    private String mMsg;
+
     public RegisterUser(String mName, String mPassword, String mEmail) {
         this.mEmail = mEmail;
         this.mName = mName;
@@ -28,6 +31,9 @@ public class RegisterUser {
 
     public Boolean getResponse() {
         return this.mIsSuccess;
+    }
+    public String getmessage(){
+        return this.mMsg;
     }
 
 }

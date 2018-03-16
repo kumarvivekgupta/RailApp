@@ -3,12 +3,14 @@ package com.test.naimish.railapp.Fragments;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.test.naimish.railapp.Activities.LandingActivity;
+import com.test.naimish.railapp.Models.RegisterUser;
 import com.test.naimish.railapp.Network.RegisterNetwork.RegisterApiClient;
 import com.test.naimish.railapp.R;
 import com.test.naimish.railapp.Utils.Validations;
@@ -16,6 +18,9 @@ import com.test.naimish.railapp.Utils.Validations;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
+import static com.test.naimish.railapp.Network.RegisterNetwork.RegisterApiClient.current;
+import static com.test.naimish.railapp.Network.RegisterNetwork.RegisterApiClient.user;
 
 /**
  * Created by Vivek on 2/18/2018.
@@ -57,8 +62,8 @@ public class RegisterFragment extends RailAppFragment {
     }
 
     @OnClick(R.id.register)
-    public void registerUser() {
-        RegisterApiClient.createNewUser();
+    public void userInfoAccount() {
+
         mName = mNameField.getText().toString();
         mEmail = mEmailField.getText().toString();
         mPassword = mPasswordField.getText().toString();
@@ -87,15 +92,22 @@ public class RegisterFragment extends RailAppFragment {
         if (killSwitch) {
             focusView.requestFocus();
         } else {
-            signUpUser();
+            signUpUser(mName,mPassword,mEmail);
         }
     }
 
-    private void signUpUser() {
-        if (true) {
+    private void signUpUser(String mName,String mPassword,String mEmail) {
+       RegisterApiClient.createNewUser(mName,mPassword,mEmail);
+      // RegisterUser r=new RegisterUser(mName,mPassword,mEmail);
+        if (user) {
             startActivity(new Intent(getActivity(), LandingActivity.class));
+
         } else {
-            Toast.makeText(getContext(), "Something Went Wrong", Toast.LENGTH_LONG).show();
+
+
+            Snackbar .make(getView(),R.string.user_already_registered,Snackbar.LENGTH_LONG).show();
+
+
         }
     }
 }
