@@ -11,7 +11,7 @@ import java.util.Set;
  * Created by Vivek on 3/14/2018.
  */
 
-public class LoginSharedPreference {
+public class SharedPreference {
     private static final String DEFAULT="N/A";
     public static boolean setPreference(Context context,String key, String value) {
         SharedPreferences setting = context.getSharedPreferences(key,context.MODE_PRIVATE);
