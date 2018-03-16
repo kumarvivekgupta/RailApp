@@ -3,6 +3,7 @@ package com.test.naimish.railapp.Fragments;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.EditText;
@@ -103,7 +104,9 @@ public class RegisterFragment extends RailAppFragment {
 
         } else {
 
-            Toast.makeText(getContext(), "User Already Registered", Toast.LENGTH_LONG).show();
+
+            Snackbar .make(getView(),R.string.user_already_registered,Snackbar.LENGTH_LONG).show();
+
 
         }
     }
