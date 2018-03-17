@@ -1,5 +1,6 @@
 package com.test.naimish.railapp.Models.LiveTrainStatusModel;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 /**
@@ -8,14 +9,18 @@ import com.google.gson.annotations.SerializedName;
 
 public class StationModel {
     @SerializedName("code")
+    @Expose
     private String stationCode;
+
     @SerializedName("name")
+    @Expose
     private String stationName;
 
-    public String getCode(){
+    public String getCode() {
         return stationCode;
     }
-    public String getStationName(){
+
+    public String getStationName() {
         return stationName;
     }
 }

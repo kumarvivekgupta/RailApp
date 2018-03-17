@@ -1,7 +1,8 @@
-package com.test.naimish.railapp.Models.LiveTrainStatusModel.TrainInfoModel;
+package com.test.naimish.railapp.Models.LiveTrainStatusModel;
 
 import android.app.ProgressDialog;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 /**
@@ -10,8 +11,11 @@ import com.google.gson.annotations.SerializedName;
 
 public class DaysModel {
     @SerializedName("runs")
+    @Expose
     private char trainRuns;
+
     @SerializedName("code")
+    @Expose
     private String trainCode;
 
     public char getTrainRun() {

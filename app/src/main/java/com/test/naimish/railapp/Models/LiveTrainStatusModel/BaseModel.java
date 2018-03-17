@@ -1,7 +1,7 @@
 package com.test.naimish.railapp.Models.LiveTrainStatusModel;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import com.test.naimish.railapp.Models.LiveTrainStatusModel.TrainInfoModel.TrainModel;
 
 /**
  * Created by Vivek on 3/17/2018.
@@ -11,28 +11,36 @@ public class BaseModel {
 
 
     @SerializedName("position")
-    private String mPosition;
+    @Expose
+    private String trainPosition;
 
     @SerializedName("current_station")
-    private CurrentStationModel mCurrentStation;
+    @Expose
+    private CurrentStationModel trainCurrentStation;
 
     @SerializedName("route")
-    private TrainRouteModel[] mRoute;
+    @Expose
+    private TrainRouteModel[] trainRoute;
+
+
     @SerializedName("train")
+    @Expose
     private TrainModel trainInfo;
+
     @SerializedName("start_date")
+    @Expose
     private String trainStartDate;
 
     public String getPosition() {
-        return mPosition;
+        return trainPosition;
     }
 
     public CurrentStationModel getCurrentStation() {
-        return mCurrentStation;
+        return trainCurrentStation;
     }
 
     public TrainRouteModel[] getRoute() {
-        return mRoute;
+        return trainRoute;
     }
 
     public TrainModel getTrainInfo() {

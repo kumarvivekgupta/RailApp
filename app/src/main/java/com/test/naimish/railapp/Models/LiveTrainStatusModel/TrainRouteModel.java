@@ -1,5 +1,6 @@
 package com.test.naimish.railapp.Models.LiveTrainStatusModel;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 /**
@@ -10,22 +11,36 @@ public class TrainRouteModel {
 
 
     @SerializedName("distance")
+    @Expose
     private String mDistance;
 
 
     @SerializedName("actarr")
-    private String mAccArr;
+    @Expose
+    private String mActualArrval;
+
     @SerializedName("schdep")
-    private String mSchdep;
+    @Expose
+    private String mSchduledeparture;
+
     @SerializedName("day")
+    @Expose
     private String mDay;
+
     @SerializedName("actdep")
-    private String mActDep;
+    @Expose
+    private String mActualDeparture;
+
     @SerializedName("has_arrived")
+    @Expose
     private boolean mHasArrived;
+
     @SerializedName("status")
+    @Expose
     private String mStatus;
+
     @SerializedName("station")
+    @Expose
     private StationModel mStation;
 
     public String getDistance() {
@@ -33,11 +48,11 @@ public class TrainRouteModel {
     }
 
     public String getAccArr() {
-        return mAccArr;
+        return mActualArrval;
     }
 
     public String getSchdep() {
-        return mSchdep;
+        return mSchduledeparture;
     }
 
     public String getDay() {
@@ -45,7 +60,7 @@ public class TrainRouteModel {
     }
 
     public String getActDep() {
-        return mActDep;
+        return mActualDeparture;
     }
 
     public boolean isHasArrived() {
