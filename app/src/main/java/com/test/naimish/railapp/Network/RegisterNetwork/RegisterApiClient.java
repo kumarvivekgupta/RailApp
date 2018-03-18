@@ -3,7 +3,6 @@ package com.test.naimish.railapp.Network.RegisterNetwork;
 import android.util.Log;
 
 import com.google.gson.Gson;
-import com.test.naimish.railapp.Activities.RailApp;
 import com.test.naimish.railapp.BuildConfig;
 import com.test.naimish.railapp.Models.RegisterUser;
 
