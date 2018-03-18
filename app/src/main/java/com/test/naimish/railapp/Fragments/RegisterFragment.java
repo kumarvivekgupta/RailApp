@@ -9,7 +9,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.test.naimish.railapp.Activities.EnquiryActivity;
 import com.test.naimish.railapp.Activities.LandingActivity;
+import com.test.naimish.railapp.Models.PnrModel.BaseModel;
 import com.test.naimish.railapp.Models.RegisterUser;
 import com.test.naimish.railapp.Network.RegisterNetwork.RegisterApiClient;
 import com.test.naimish.railapp.R;
@@ -25,7 +27,7 @@ import butterknife.OnClick;
  * Created by Vivek on 2/18/2018.
  */
 
-public class RegisterFragment extends RailAppFragment {
+public class RegisterFragment extends RailAppFragment implements RegisterApiClient.NetworkResponse {
     private String mEmail;
     private String mName;
     private String mPassword;
@@ -91,12 +93,23 @@ public class RegisterFragment extends RailAppFragment {
         if (killSwitch) {
             focusView.requestFocus();
         } else {
-            signUpUser(mName,mPassword,mEmail);
+            signUpUser();
         }
     }
 
-    private void signUpUser(String mName,String mPassword,String mEmail) {
-       RegisterApiClient.createNewUser(getActivity(),mName,mPassword,mEmail);
+    private void signUpUser() {
+       RegisterApiClient client=new RegisterApiClient(this);
+       client.createNewUser(mName,mEmail,mPassword);
+    }
+
+    @Override
+    public void onResponse(RegisterUser data) {
+        if(data.getResponse()){
+            startActivity(new Intent(getContext(), EnquiryActivity.class));
+        }
+        else{
+            Snackbar.make(getView(),getResources().getString(R.string.user_already_registered),Snackbar.LENGTH_SHORT).show();
+        }
 
     }
 }
