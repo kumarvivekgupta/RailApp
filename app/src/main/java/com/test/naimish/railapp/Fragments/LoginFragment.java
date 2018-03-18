@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.test.naimish.railapp.Activities.EnquiryActivity;
+import com.test.naimish.railapp.Models.LoginUser;
+import com.test.naimish.railapp.Network.LoginNetwork.LoginApiClient;
 import com.test.naimish.railapp.R;
 import com.test.naimish.railapp.Utils.Validations;
 
@@ -21,7 +23,7 @@ import butterknife.OnClick;
  * Created by naimish on 2/10/2018.
  */
 
-public class LoginFragment extends RailAppFragment {
+public class LoginFragment extends RailAppFragment implements LoginApiClient.LoginResponse {
     private String mEmail;
     private String mPassword;
     private ProgressDialog mProgress;
@@ -57,8 +59,12 @@ public class LoginFragment extends RailAppFragment {
                 focusViewEmail.requestFocus();
 
         } else {
-            startActivity(new Intent(getActivity(), EnquiryActivity.class));
+            loginUser();
         }
+    }
+    private void loginUser(){
+        LoginApiClient client=new LoginApiClient(this);
+        client.loginUser(mEmail,mPassword);
     }
 
 
@@ -77,4 +83,8 @@ public class LoginFragment extends RailAppFragment {
         ButterKnife.bind(this, view);
     }
 
+    @Override
+    public void onResponse(LoginUser response) {
+        
+    }
 }

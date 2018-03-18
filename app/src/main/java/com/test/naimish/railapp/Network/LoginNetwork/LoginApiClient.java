@@ -23,9 +23,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LoginApiClient {
     private static final String BASE_URL = "https://fierce-forest-53940.herokuapp.com/";
-    private String mToken;
+    private LoginResponse loginResponse;
 
-    public void doLogin(final Context context, String mEmail, String mPassword) {
+    public LoginApiClient(LoginResponse loginResponse) {
+        this.loginResponse = loginResponse;
+    }
+
+    public void loginUser(String mEmail, String mPassword) {
         OkHttpClient.Builder okHttpBuilder = new OkHttpClient.Builder();
         final HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
@@ -43,16 +47,18 @@ public class LoginApiClient {
         call.enqueue(new Callback<LoginUser>() {
             @Override
             public void onResponse(Call<LoginUser> call, Response<LoginUser> response) {
-                Log.i("Response", gson.toJson(response.body()));
-                Toast.makeText(context, "Token" + response.body().getmToken(), Toast.LENGTH_LONG).show();
+                loginResponse.onResponse(response.body());
             }
 
             @Override
             public void onFailure(Call<LoginUser> call, Throwable t) {
-                Toast.makeText(context, "Something Went Wrong", Toast.LENGTH_LONG).show();
 
             }
         });
 
+    }
+
+    public interface LoginResponse {
+        void onResponse(LoginUser response);
     }
 }

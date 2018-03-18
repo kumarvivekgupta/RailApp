@@ -6,12 +6,13 @@ import com.test.naimish.railapp.Models.RegisterUser;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 
 /**
  * Created by Vivek on 3/16/2018.
  */
 
 public interface LoginApiInterface {
-    @GET("/users/login")
+    @POST("/users/login")
     Call<LoginUser> createUser(@Body LoginUser loginUser);
 }
