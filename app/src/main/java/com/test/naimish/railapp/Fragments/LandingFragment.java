@@ -5,13 +5,11 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.View;
-import android.widget.Button;
 
 import com.test.naimish.railapp.Activities.LoginActivity;
 import com.test.naimish.railapp.Activities.RegisterActivity;
 import com.test.naimish.railapp.R;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 

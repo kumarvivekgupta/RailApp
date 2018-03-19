@@ -2,7 +2,7 @@ package com.test.naimish.railapp.Models.LiveTrainStatusModel;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import com.test.naimish.railapp.Models.LiveTrainStatusModel.DaysModel;
+
 
 /**
  * Created by Vivek on 3/17/2018.

@@ -4,8 +4,6 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 import com.test.naimish.railapp.BuildConfig;
-import com.test.naimish.railapp.Models.PnrModel.BaseModel;
-import com.test.naimish.railapp.Network.PnrNetwork.PnrApiInterface;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;

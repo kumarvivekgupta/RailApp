@@ -1,7 +1,5 @@
 package com.test.naimish.railapp.Models.LiveTrainStatusModel;
 
-import android.app.ProgressDialog;
-
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 

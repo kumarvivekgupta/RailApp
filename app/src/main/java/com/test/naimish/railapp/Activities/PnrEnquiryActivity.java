@@ -2,7 +2,6 @@ package com.test.naimish.railapp.Activities;
 
 import android.support.v4.app.Fragment;
 
-import com.test.naimish.railapp.Fragments.EnquiryFragment;
 import com.test.naimish.railapp.Fragments.PnrEnquiryFragment;
 import com.test.naimish.railapp.R;
 

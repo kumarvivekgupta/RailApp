@@ -5,7 +5,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.test.naimish.railapp.R;
 import com.test.naimish.railapp.Utils.Validations;

@@ -1,15 +1,12 @@
 package com.test.naimish.railapp.Fragments;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 
-import com.test.naimish.railapp.Activities.EnquiryActivity;
 import com.test.naimish.railapp.Models.LoginUser;
 import com.test.naimish.railapp.Network.LoginNetwork.LoginApiClient;
 import com.test.naimish.railapp.R;
@@ -62,9 +59,10 @@ public class LoginFragment extends RailAppFragment implements LoginApiClient.Log
             loginUser();
         }
     }
-    private void loginUser(){
-        LoginApiClient client=new LoginApiClient(this);
-        client.loginUser(mEmail,mPassword);
+
+    private void loginUser() {
+        LoginApiClient client = new LoginApiClient(this);
+        client.loginUser(mEmail, mPassword);
     }
 
 
@@ -85,6 +83,6 @@ public class LoginFragment extends RailAppFragment implements LoginApiClient.Log
 
     @Override
     public void onResponse(LoginUser response) {
-        
+
     }
 }

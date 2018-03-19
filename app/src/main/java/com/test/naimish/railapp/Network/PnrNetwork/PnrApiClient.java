@@ -33,19 +33,19 @@ public class PnrApiClient {
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(okhttpbuilder.build())
                 .build();
-        final Gson gson=new Gson();
+        final Gson gson = new Gson();
         PnrApiInterface pnrApiInterface = retrofit.create(PnrApiInterface.class);
         Call<BaseModel> call = pnrApiInterface.pnrInfo(pnrNo);
-        Log.i("Pnrno",pnrNo+"");
+        Log.i("Pnrno", pnrNo + "");
         call.enqueue(new Callback<BaseModel>() {
             @Override
             public void onResponse(Call<BaseModel> call, Response<BaseModel> response) {
-                Log.i("Response",gson.toJson(response.body()));
+                Log.i("Response", gson.toJson(response.body()));
             }
 
             @Override
             public void onFailure(Call<BaseModel> call, Throwable t) {
-                Log.i("Error","error");
+                Log.i("Error", "error");
             }
         });
     }

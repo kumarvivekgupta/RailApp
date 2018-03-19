@@ -7,11 +7,8 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.test.naimish.railapp.Activities.EnquiryActivity;
-import com.test.naimish.railapp.Activities.LandingActivity;
-import com.test.naimish.railapp.Models.PnrModel.BaseModel;
 import com.test.naimish.railapp.Models.RegisterUser;
 import com.test.naimish.railapp.Network.RegisterNetwork.RegisterApiClient;
 import com.test.naimish.railapp.R;
@@ -20,7 +17,6 @@ import com.test.naimish.railapp.Utils.Validations;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-
 
 
 /**
@@ -98,17 +94,16 @@ public class RegisterFragment extends RailAppFragment implements RegisterApiClie
     }
 
     private void signUpUser() {
-       RegisterApiClient client=new RegisterApiClient(this);
-       client.createNewUser(mName,mEmail,mPassword);
+        RegisterApiClient client = new RegisterApiClient(this);
+        client.createNewUser(mName, mEmail, mPassword);
     }
 
     @Override
     public void onResponse(RegisterUser data) {
-        if(data.getResponse()){
+        if (data.getResponse()) {
             startActivity(new Intent(getContext(), EnquiryActivity.class));
-        }
-        else{
-            Snackbar.make(getView(),getResources().getString(R.string.user_already_registered),Snackbar.LENGTH_SHORT).show();
+        } else {
+            Snackbar.make(getView(), getResources().getString(R.string.user_already_registered), Snackbar.LENGTH_SHORT).show();
         }
 
     }

@@ -1,10 +1,5 @@
 package com.test.naimish.railapp.Network.LoginNetwork;
 
-import android.content.Context;
-import android.os.Build;
-import android.util.Log;
-import android.widget.Toast;
-
 import com.google.gson.Gson;
 import com.test.naimish.railapp.BuildConfig;
 import com.test.naimish.railapp.Models.LoginUser;
