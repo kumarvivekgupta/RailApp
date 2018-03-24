@@ -4,12 +4,14 @@ import android.support.v4.app.Fragment;
 
 import com.test.naimish.railapp.Fragments.EnquiryFragment;
 import com.test.naimish.railapp.R;
+import com.test.naimish.railapp.Utils.VivzAdapter;
 
 /**
  * Created by Vivek on 2/17/2018.
  */
 
-public class EnquiryActivity extends SingleFragmentActivity {
+
+public class EnquiryActivity extends SingleFragmentActivity implements VivzAdapter.Clicklistener {
     private static final String TOOLBAR_TITLE = "ENQUIRY";
 
     @Override
@@ -30,5 +32,10 @@ public class EnquiryActivity extends SingleFragmentActivity {
     @Override
     protected Fragment getFragmentInstance() {
         return EnquiryFragment.newInstance();
+    }
+
+    @Override
+    public void itemclicked(int position) {
+
     }
 }
