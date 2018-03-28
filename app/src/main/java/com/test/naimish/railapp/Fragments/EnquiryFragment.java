@@ -1,16 +1,13 @@
 package com.test.naimish.railapp.Fragments;
 
-import android.content.Intent;
+
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.Button;
 
-import com.test.naimish.railapp.Activities.LiveTrainStatusActivity;
-import com.test.naimish.railapp.Activities.PnrEnquiryActivity;
 import com.test.naimish.railapp.R;
 import com.test.naimish.railapp.Utils.VivzAdapter;
 
@@ -35,39 +32,30 @@ public class EnquiryFragment extends RailAppFragment implements VivzAdapter.Clic
 
     }
 
+
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
 
+
     }
+
 
     @Override
     protected int getResourceId() {
         return R.layout.fragment_enquiry;
     }
 
-//    @OnClick(R.id.pnr_enquiry)
-//    public void pnrEnquiry() {
-//        startActivity(new Intent(getActivity(), PnrEnquiryActivity.class));
-//    }
-//
-//    @OnClick(R.id.live_train_status)
-//    public void lineTrainStatus() {
-//        startActivity(new Intent(getActivity(), LiveTrainStatusActivity.class));
 
-
-    //    @Override
-//    public void itemclicked(int position) {
-//
-//    }
     @BindView(R.id.recyclerList)
-    private RecyclerView recycler;
+    RecyclerView recycler;
 
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        // setContentView(R.layout.fragment_enquiry);
 
         adapter = new VivzAdapter(getContext(), getdata());
         adapter.setClicklistener(this);
@@ -82,9 +70,11 @@ public class EnquiryFragment extends RailAppFragment implements VivzAdapter.Clic
         data.add(0, "Pnr Enquiry");
         data.add(1, "Live Train Status");
 
+        //add imageView
 
         return data;
     }
+
 
     @Override
     public void itemclicked(int position) {
@@ -92,4 +82,5 @@ public class EnquiryFragment extends RailAppFragment implements VivzAdapter.Clic
         //  intent.putExtra("key", position);
 
     }
+
 }

@@ -36,6 +36,7 @@ public class VivzAdapter extends RecyclerView.Adapter<VivzAdapter.MyViewHolder> 
         return holder;
     }
 
+
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         holder.title.setText(data.get(position));
@@ -46,13 +47,13 @@ public class VivzAdapter extends RecyclerView.Adapter<VivzAdapter.MyViewHolder> 
         return data.size();
     }
     class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView title;
+       private TextView title;
         ImageView image;
 
         public MyViewHolder(View itemView) {
             super(itemView);
-            itemView=View.f
-            title = (TextView) itemView.findViewById(R.layout.fragment_enquiry);
+
+            title = (TextView) itemView.findViewById(R.id.pnr_text);
             itemView.setOnClickListener(this);
         }
 
@@ -61,7 +62,7 @@ public class VivzAdapter extends RecyclerView.Adapter<VivzAdapter.MyViewHolder> 
 
 
             if (clicklistener != null) {
-               (clicklistener.itemclicked(getAdapterPosition());
+        //       (clicklistener.itemclicked(data.get(getAdapterPosition())));
 
             }
 
