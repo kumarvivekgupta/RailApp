@@ -1,46 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-                                    xmlns:card_view="http://schemas.android.com/tools"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="80dp"
-                                    android:divider="@android:color/transparent"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="5dp"
+    android:paddingTop="7dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:orientation="vertical"
 
-                                    android:dividerHeight="5px"
-                                    card_view:cardElevation="10dp">
+    >
 
-
-    <LinearLayout
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:weightSum="3">
+        android:layout_height="wrap_content"
+        android:elevation="8dp"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="0.0px"
+        android:clipToPadding="false"
+        android:clipChildren="false"
+        app:cardCornerRadius="5dp"
+        card_view:cardElevation="10dp"
+        card_view:cardPreventCornerOverlap="false"
 
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_weight="0.8"
-            >
+        >
 
-            android:scaleType="fitXY">
-        </ImageView>
-        <!--android:src="@drawable/pnr_stock" />-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
-
-        <com.test.naimish.railapp.Views.LightTextView
-            android:id="@+id/pnr_text"
-            android:layout_width="0dp"
-            android:layout_height="150dp"
-            android:layout_weight="2.2"
-            android:paddingLeft="9dp"
-            android:paddingTop="20dp"
-            android:text="PNR ENQUIRY"
-
-            android:textColor="@color/black"
-            android:textSize="24dp"
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:scaleType="fitXY"/>
 
 
-            />
-
-
-    </LinearLayout>
-</android.support.v7.widget.CardView>
+            <com.test.naimish.railapp.Views.LightTextView
+                android:id="@+id/pnr_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:text="PNR ENQUIRY"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                />
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>
