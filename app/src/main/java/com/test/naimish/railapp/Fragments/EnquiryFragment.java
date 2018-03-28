@@ -30,25 +30,18 @@ public class EnquiryFragment extends RailAppFragment implements VivzAdapter.Clic
 
     public static Fragment newInstance() {
         return new EnquiryFragment();
-
     }
-
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
-
-
     }
-
 
     @Override
     protected int getResourceId() {
         return R.layout.fragment_enquiry;
     }
-
-
 
     @BindView(R.id.recyclerList)
     RecyclerView recycler;
@@ -67,22 +60,14 @@ public class EnquiryFragment extends RailAppFragment implements VivzAdapter.Clic
 
     public static ArrayList<String> getdata() {
         ArrayList<String> data = new ArrayList<>();
-
-
         data.add(0, "Pnr Enquiry");
         data.add(1, "Live Train Status");
-
-        //add imageView
-
         return data;
     }
 
-
     @Override
     public void itemclicked(int position) {
-
         //  intent.putExtra("key", position);
-
 
     }
 
