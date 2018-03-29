@@ -1,37 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/popup_relative_layout">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-    <com.test.naimish.railapp.Views.BoldTextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/select_any_one"
-        android:textColor="@color/black"
-        android:textSize="30sp"
-        android:gravity="center|center_horizontal"/>
-    <com.test.naimish.railapp.Views.LightTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/camera"
-        android:textColor="@color/black"
-        android:textSize="25sp"
-        android:paddingTop="7dp"/>
+
+        <com.test.naimish.railapp.Views.BoldTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center|center_horizontal"
+            android:text="@string/select_any_one"
+            android:textColor="@color/black"
+            android:textSize="30sp" />
+
         <com.test.naimish.railapp.Views.LightTextView
+            android:id="@+id/take_a_pic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingTop="7dp"
+            android:text="@string/camera"
+            android:textColor="@color/black"
+            android:textSize="25sp" />
+
+        <com.test.naimish.railapp.Views.LightTextView
+            android:id="@+id/gallery"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="7dp"
             android:text="@string/gallery"
             android:textColor="@color/black"
-            android:textSize="25sp"
-            android:paddingTop="7dp"
-            />
+            android:textSize="25sp" />
 
     </LinearLayout>
-
-
 
 
 </RelativeLayout>
