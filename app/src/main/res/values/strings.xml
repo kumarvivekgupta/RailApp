@@ -18,5 +18,7 @@
     <string name="or_text">OR</string>
     <string name="change_password">CHANGE PASSWORD</string>
     <string name="user_already_registered">User Already Registered</string>
-
+    <string name="select_any_one">Select Any One</string>
+    <string name="camera">Take a Picture</string>
+    <string name="gallery">Gallery</string>
 </resources>
