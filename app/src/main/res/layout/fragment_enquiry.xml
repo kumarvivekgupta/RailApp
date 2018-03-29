@@ -4,7 +4,7 @@
               xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-
+                 android:id="@+id/linear_layout_enquiry_fragment"
               android:layout_rowWeight="2"
               android:orientation="vertical"
               tools:context="com.test.naimish.railapp.Activities.EnquiryActivity">
@@ -21,6 +21,7 @@
             android:layout_height="100dp"
             android:layout_marginTop="60dp"
             android:src="@drawable/pic"
+            android:id="@+id/user_pic"
             />
 
         <com.test.naimish.railapp.Views.LightTextView

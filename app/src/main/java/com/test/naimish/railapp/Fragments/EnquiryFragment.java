@@ -1,24 +1,32 @@
 package com.test.naimish.railapp.Fragments;
 
 
+import android.content.Context;
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 
+import com.test.naimish.railapp.Activities.EnquiryActivity;
 import com.test.naimish.railapp.R;
 import com.test.naimish.railapp.Utils.VivzAdapter;
+import com.test.naimish.railapp.Views.ImagePopupWindow;
 
 import java.util.ArrayList;
 
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
-
-import static android.media.CamcorderProfile.get;
 
 /**
  * Created by Vivek on 2/17/2018.
@@ -27,6 +35,10 @@ import static android.media.CamcorderProfile.get;
 public class EnquiryFragment extends RailAppFragment implements VivzAdapter.Clicklistener {
 
     private VivzAdapter adapter;
+
+    @BindView(R.id.recyclerList)
+    RecyclerView recycler;
+
 
     public static Fragment newInstance() {
         return new EnquiryFragment();
@@ -43,14 +55,11 @@ public class EnquiryFragment extends RailAppFragment implements VivzAdapter.Clic
         return R.layout.fragment_enquiry;
     }
 
-    @BindView(R.id.recyclerList)
-    RecyclerView recycler;
-
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        // setContentView(R.layout.fragment_enquiry);
+
 
         adapter = new VivzAdapter(getContext(), getdata());
         adapter.setClicklistener(this);
@@ -70,5 +79,13 @@ public class EnquiryFragment extends RailAppFragment implements VivzAdapter.Clic
         //  intent.putExtra("key", position);
 
     }
+
+    @OnClick(R.id.user_pic)
+    public void userImage() {
+        ImagePopupWindow imagePopupWindow = new ImagePopupWindow(getContext());
+
+
+    }
+
 
 }
