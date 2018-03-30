@@ -18,7 +18,6 @@ import android.widget.RelativeLayout;
 import com.test.naimish.railapp.Activities.EnquiryActivity;
 import com.test.naimish.railapp.R;
 import com.test.naimish.railapp.Utils.VivzAdapter;
-import com.test.naimish.railapp.Views.ImagePopupWindow;
 
 import java.util.ArrayList;
 
@@ -82,9 +81,8 @@ public class EnquiryFragment extends RailAppFragment implements VivzAdapter.Clic
 
     @OnClick(R.id.user_pic)
     public void userImage() {
-        ImagePopupWindow imagePopupWindow = new ImagePopupWindow(getContext());
 
-
+        
     }
 
 
