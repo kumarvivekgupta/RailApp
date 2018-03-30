@@ -1,21 +1,15 @@
 package com.test.naimish.railapp.Fragments;
 
 
-import android.content.Context;
-import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.PopupWindow;
-import android.widget.RelativeLayout;
 
-import com.test.naimish.railapp.Activities.EnquiryActivity;
 import com.test.naimish.railapp.R;
 import com.test.naimish.railapp.Utils.VivzAdapter;
 
@@ -81,8 +75,10 @@ public class EnquiryFragment extends RailAppFragment implements VivzAdapter.Clic
 
     @OnClick(R.id.user_pic)
     public void userImage() {
+        FragmentManager manager = getActivity().getSupportFragmentManager();
+        CameraDialogFragment cameraDialogFragment = CameraDialogFragment.newInsatance();
+        cameraDialogFragment.show(manager, "Camera Dialog");
 
-        
     }
 
 
