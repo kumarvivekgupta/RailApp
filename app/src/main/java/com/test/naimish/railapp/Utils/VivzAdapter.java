@@ -17,21 +17,21 @@ import java.util.ArrayList;
  */
 
 public class VivzAdapter extends RecyclerView.Adapter<VivzAdapter.MyViewHolder> {
-    private LayoutInflater inflater;
-    ArrayList<String> data=new ArrayList<>();
-    Context context;
-    private Clicklistener clicklistener;
+    private LayoutInflater mLayoutInflater;
+    private ArrayList<String> mListItems;
+    private Context mContext;
+    private Clicklistener mClickListener;
 
     public VivzAdapter(Context context, ArrayList<String> data) {
-        this.context = context;
-        inflater = LayoutInflater.from(context);
-        this.data = new ArrayList<>();
-        this.data = data;
+        this.mContext = context;
+        mLayoutInflater = LayoutInflater.from(context);
+        this.mListItems = new ArrayList<>();
+        this.mListItems = data;
     }
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = inflater.inflate(R.layout.recycler_single_row, parent, false);
+        View view = mLayoutInflater.inflate(R.layout.recycler_single_row, parent, false);
         MyViewHolder holder = new MyViewHolder(view);
         return holder;
     }
@@ -39,44 +39,38 @@ public class VivzAdapter extends RecyclerView.Adapter<VivzAdapter.MyViewHolder> 
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        holder.title.setText(data.get(position));
+        holder.mTitle.setText(mListItems.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return data.size();
+        return mListItems.size();
     }
+
     class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-       private TextView title;
-        ImageView image;
+        private TextView mTitle;
+        private ImageView mImage;
 
         public MyViewHolder(View itemView) {
             super(itemView);
-
-            title = (TextView) itemView.findViewById(R.id.pnr_text);
+            mTitle = itemView.findViewById(R.id.pnr_text);
             itemView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
-
-
-            if (clicklistener != null) {
-        //       (clicklistener.itemclicked(data.get(getAdapterPosition())));
+            if (mClickListener != null) {
+                //       (clicklistener.itemclicked(data.get(getAdapterPosition())));
 
             }
-
         }
     }
+
     public interface Clicklistener {
-        public void itemclicked(int position);
-
-
+        void itemclicked(int position);
     }
 
     public void setClicklistener(Clicklistener clicklistener) {
-        this.clicklistener = clicklistener;
+        this.mClickListener = clicklistener;
     }
-
-
 }
