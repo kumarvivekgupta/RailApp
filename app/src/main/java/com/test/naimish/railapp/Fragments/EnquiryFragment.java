@@ -1,6 +1,8 @@
 package com.test.naimish.railapp.Fragments;
 
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -9,6 +11,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.test.naimish.railapp.R;
 import com.test.naimish.railapp.Utils.VivzAdapter;
@@ -28,9 +31,12 @@ import butterknife.OnClick;
 public class EnquiryFragment extends RailAppFragment implements VivzAdapter.Clicklistener {
 
     private VivzAdapter adapter;
+    @BindView(R.id.user_pic)
+    ImageView userPic;
 
     @BindView(R.id.recyclerList)
     RecyclerView recycler;
+
 
 
     public static Fragment newInstance() {
@@ -58,6 +64,7 @@ public class EnquiryFragment extends RailAppFragment implements VivzAdapter.Clic
         adapter.setClicklistener(this);
         recycler.setAdapter(adapter);
         recycler.setLayoutManager(new LinearLayoutManager(getContext()));
+
     }
 
     public static ArrayList<String> getdata() {
@@ -78,6 +85,11 @@ public class EnquiryFragment extends RailAppFragment implements VivzAdapter.Clic
         FragmentManager manager = getActivity().getSupportFragmentManager();
         CameraDialogFragment cameraDialogFragment = CameraDialogFragment.newInsatance();
         cameraDialogFragment.show(manager, "Camera Dialog");
+
+
+    }
+    public  void setImage(Uri uri){
+       this. userPic.setImageURI(uri);
 
     }
 
