@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.test.naimish.railapp.Activities.EnquiryActivity;
 import com.test.naimish.railapp.R;
+import com.test.naimish.railapp.Utils.SharedPreference;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -27,27 +28,26 @@ import static android.app.Activity.RESULT_OK;
  */
 
 public class CameraDialogFragment extends DialogFragment {
-//    private static final int REQUEST_GALLERY_CODE = 1;
-//    private static final int REQUEST_CAMERA_CODE = 20;
+    private static final int REQUEST_GALLERY_CODE = 1;
+    private static final int REQUEST_CAMERA_CODE = 20;
+    private static final String PROFILE_PIC_CONSTANT = "Profile picture uri";
     private Uri uri = null;
 
-//
-//    @OnClick(R.id.take_a_pic)
-//    public void cameraPic() {
-//        getDialog().dismiss();
-//        Toast.makeText(getActivity(), "CameraClickable", Toast.LENGTH_SHORT).show();
-//
-//    }
-//
-//    @OnClick(R.id.gallery)
-//    public void gallery() {
-//        getDialog().dismiss();
-//        Toast.makeText(getActivity(), "Clickable", Toast.LENGTH_SHORT).show();
-//        Intent galleryIntent = new Intent(Intent.ACTION_PICK);
-//        galleryIntent.setType("image/*");
-//        startActivityForResult(galleryIntent, REQUEST_GALLERY_CODE);
-//
-//    }
+    //
+    @OnClick(R.id.take_a_pic)
+    public void cameraPic() {
+        Toast.makeText(getActivity(), "CameraClickable", Toast.LENGTH_SHORT).show();
+
+    }
+
+    @OnClick(R.id.gallery)
+    public void gallery() {
+        Toast.makeText(getActivity(), "Clickable", Toast.LENGTH_SHORT).show();
+        Intent galleryIntent = new Intent(Intent.ACTION_PICK);
+        galleryIntent.setType("image/*");
+        startActivityForResult(galleryIntent, REQUEST_GALLERY_CODE);
+
+    }
 
     public static CameraDialogFragment newInsatance() {
         return new CameraDialogFragment();
@@ -60,16 +60,14 @@ public class CameraDialogFragment extends DialogFragment {
     }
 
 
-//    @Override
-//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        if (requestCode == REQUEST_GALLERY_CODE) {
-//            uri = data.getData();
-//            Log.i("Uri", "" + uri);
-//            EnquiryFragment enquiryFragment = new EnquiryFragment();
-//            enquiryFragment.setImage(uri);
-//        }
-//    }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_GALLERY_CODE) {
+            uri = data.getData();
+            getDialog().dismiss();
+        }
+    }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
