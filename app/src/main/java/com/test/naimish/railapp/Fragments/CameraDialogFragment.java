@@ -9,19 +9,38 @@ import android.view.ViewGroup;
 
 import com.test.naimish.railapp.R;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 /**
  * Created by naimish on 3/30/2018.
  */
 
 public class CameraDialogFragment extends DialogFragment {
+    @OnClick(R.id.option_camera)
+    public void cameraSelected() {
 
-    public static CameraDialogFragment newInsatance(){
+    }
+
+    @OnClick(R.id.option_gallery)
+    public void gallerySelected() {
+
+    }
+
+    public static CameraDialogFragment newInsatance() {
         return new CameraDialogFragment();
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_camera_popup,container,false);
+        return inflater.inflate(R.layout.fragment_camera_popup, container, false);
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        ButterKnife.bind(this, view);
     }
 }
