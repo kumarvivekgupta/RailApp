@@ -1,17 +1,15 @@
 package com.test.naimish.railapp.Fragments;
 
 
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
 
 import com.test.naimish.railapp.R;
 import com.test.naimish.railapp.Utils.VivzAdapter;
@@ -22,6 +20,7 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 /**
@@ -31,12 +30,12 @@ import butterknife.OnClick;
 public class EnquiryFragment extends RailAppFragment implements VivzAdapter.Clicklistener {
 
     private VivzAdapter adapter;
+
     @BindView(R.id.user_pic)
-    ImageView userPic;
+    CircleImageView userPic;
 
     @BindView(R.id.recyclerList)
     RecyclerView recycler;
-
 
 
     public static Fragment newInstance() {
@@ -58,13 +57,10 @@ public class EnquiryFragment extends RailAppFragment implements VivzAdapter.Clic
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
-
         adapter = new VivzAdapter(getContext(), getdata());
         adapter.setClicklistener(this);
         recycler.setAdapter(adapter);
         recycler.setLayoutManager(new LinearLayoutManager(getContext()));
-
     }
 
     public static ArrayList<String> getdata() {
@@ -88,8 +84,11 @@ public class EnquiryFragment extends RailAppFragment implements VivzAdapter.Clic
 
 
     }
-    public  void setImage(Uri uri){
-       this. userPic.setImageURI(uri);
+
+    public void setImage(Uri uri) {
+        //userPic.setImageURI(uri);
+        Log.i("uri", "" + uri);
+        Log.i("img view", "" + userPic);
 
     }
 
