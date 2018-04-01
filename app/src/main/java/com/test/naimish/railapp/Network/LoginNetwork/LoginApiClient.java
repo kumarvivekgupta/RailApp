@@ -2,7 +2,7 @@ package com.test.naimish.railapp.Network.LoginNetwork;
 
 import com.google.gson.Gson;
 import com.test.naimish.railapp.BuildConfig;
-import com.test.naimish.railapp.Models.LoginUser;
+import com.test.naimish.railapp.Models.LoginModel.LoginUser;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;

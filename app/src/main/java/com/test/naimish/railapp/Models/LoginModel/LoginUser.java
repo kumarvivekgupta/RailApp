@@ -1,4 +1,4 @@
-package com.test.naimish.railapp.Models;
+package com.test.naimish.railapp.Models.LoginModel;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -8,6 +8,7 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class LoginUser {
+    
     @SerializedName("email")
     @Expose
     private String mEmail;
@@ -20,6 +21,14 @@ public class LoginUser {
     @Expose
     private String mToken;
 
+    @SerializedName("success")
+    @Expose
+    private boolean mIsSuccess;
+
+    @SerializedName("user")
+    @Expose
+    private Response mResponse;
+
     public LoginUser(String mEmail, String mPassword) {
         this.mEmail = mEmail;
         this.mPassword = mPassword;
@@ -29,5 +38,8 @@ public class LoginUser {
         return this.mToken;
     }
 
+    public Response getmResponse() {
+        return this.mResponse;
+    }
 
 }

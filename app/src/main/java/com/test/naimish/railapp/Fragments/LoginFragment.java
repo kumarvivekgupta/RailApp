@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.test.naimish.railapp.Activities.EnquiryActivity;
-import com.test.naimish.railapp.Models.LoginUser;
+import com.test.naimish.railapp.Models.LoginModel.LoginUser;
 import com.test.naimish.railapp.Network.LoginNetwork.LoginApiClient;
 import com.test.naimish.railapp.R;
 import com.test.naimish.railapp.Utils.Validations;
