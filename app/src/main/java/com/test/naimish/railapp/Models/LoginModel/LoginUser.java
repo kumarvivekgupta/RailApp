@@ -29,6 +29,10 @@ public class LoginUser {
     @Expose
     private Response mResponse;
 
+    @SerializedName("msg")
+    @Expose
+    private String mMessage;
+
     public LoginUser(String mEmail, String mPassword) {
         this.mEmail = mEmail;
         this.mPassword = mPassword;
@@ -46,4 +50,7 @@ public class LoginUser {
         return this.mIsSuccess;
     }
 
+    public String getmMessage() {
+        return mMessage;
+    }
 }

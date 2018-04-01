@@ -89,7 +89,6 @@ public class LoginFragment extends RailAppFragment implements LoginApiClient.Log
 
     @Override
     public void onResponse(LoginUser response) {
-        Log.i("Login Response",response.getmResponse().getmName());
         if(response.getmIsSuccess()){
             SharedPreference.setPreference(getContext(), SharedConstants.TOKEN_CONSTANT,response.getToken());
             SharedPreference.setPreference(getContext(), SharedConstants.USERID_CONSTANT,response.getmResponse().getmId());
