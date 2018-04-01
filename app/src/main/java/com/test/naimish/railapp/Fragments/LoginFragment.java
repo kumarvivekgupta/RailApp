@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.test.naimish.railapp.Activities.EnquiryActivity;
+import com.test.naimish.railapp.Activities.LandingActivity;
 import com.test.naimish.railapp.Models.LoginModel.LoginUser;
 import com.test.naimish.railapp.Network.LoginNetwork.LoginApiClient;
 import com.test.naimish.railapp.R;
@@ -94,10 +95,11 @@ public class LoginFragment extends RailAppFragment implements LoginApiClient.Log
             SharedPreference.setPreference(getContext(), SharedConstants.USERID_CONSTANT,response.getmResponse().getmId());
             SharedPreference.setPreference(getContext(), SharedConstants.NAME_CONSTANT,response.getmResponse().getmName());
             SharedPreference.setPreference(getContext(), SharedConstants.EMAIL_CONSTANT,response.getmResponse().getmEmail());
+            getActivity().finish();
             startActivity(new Intent(getActivity(),EnquiryActivity.class));
         }
         else{
-            Snackbar.make(getView(),R.string.common_error,Snackbar.LENGTH_SHORT);
+            Snackbar.make(getView(),response.getmMessage(),Snackbar.LENGTH_SHORT).show();
         }
     }
 }
