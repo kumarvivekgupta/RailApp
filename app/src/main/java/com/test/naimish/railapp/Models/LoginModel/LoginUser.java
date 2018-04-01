@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class LoginUser {
-    
+
     @SerializedName("email")
     @Expose
     private String mEmail;
@@ -40,6 +40,10 @@ public class LoginUser {
 
     public Response getmResponse() {
         return this.mResponse;
+    }
+
+    public Boolean getmIsSuccess() {
+        return this.mIsSuccess;
     }
 
 }

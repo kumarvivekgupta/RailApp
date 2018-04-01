@@ -66,7 +66,6 @@ public class LoginFragment extends RailAppFragment implements LoginApiClient.Log
     private void loginUser() {
         LoginApiClient client = new LoginApiClient(this);
         client.loginUser(mEmail, mPassword);
-        startActivity(new Intent(getActivity(), EnquiryActivity.class));
     }
 
 
@@ -88,5 +87,8 @@ public class LoginFragment extends RailAppFragment implements LoginApiClient.Log
     @Override
     public void onResponse(LoginUser response) {
         Log.i("Login Response",response.getmResponse().getmName());
+        if(response.getmIsSuccess()){
+            
+        }
     }
 }
