@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
@@ -86,6 +87,6 @@ public class LoginFragment extends RailAppFragment implements LoginApiClient.Log
 
     @Override
     public void onResponse(LoginUser response) {
-
+        Log.i("Login Response",response.getmResponse().getmName());
     }
 }
