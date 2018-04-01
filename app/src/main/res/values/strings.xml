@@ -21,4 +21,5 @@
     <string name="select_any_one">Select Any One</string>
     <string name="camera">Take a Picture</string>
     <string name="gallery">Import from Gallery</string>
+    <string name="common_error">Something went wrong!!</string>
 </resources>
