@@ -13,14 +13,12 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 
 import com.test.naimish.railapp.R;
 import com.test.naimish.railapp.Utils.RailAppConstants;
 import com.test.naimish.railapp.Utils.SharedPreference;
 import com.test.naimish.railapp.Utils.VivzAdapter;
-import com.test.naimish.railapp.Views.BoldTextView;
 import com.test.naimish.railapp.Views.LightTextView;
 
 import java.util.ArrayList;
