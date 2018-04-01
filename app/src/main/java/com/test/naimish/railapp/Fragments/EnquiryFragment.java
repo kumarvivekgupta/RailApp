@@ -1,16 +1,23 @@
 package com.test.naimish.railapp.Fragments;
 
 
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 
 import com.test.naimish.railapp.R;
+import com.test.naimish.railapp.Utils.SharedPreference;
 import com.test.naimish.railapp.Utils.VivzAdapter;
 
 import java.util.ArrayList;
@@ -19,6 +26,7 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 /**
@@ -28,6 +36,11 @@ import butterknife.OnClick;
 public class EnquiryFragment extends RailAppFragment implements VivzAdapter.Clicklistener {
 
     private VivzAdapter adapter;
+    private static final String PROFILE_PIC_CONSTANT = "Profile picture uri";
+    private static final int REQUEST_CODE = 123;
+
+    @BindView(R.id.user_pic)
+    CircleImageView userPic;
 
     @BindView(R.id.recyclerList)
     RecyclerView recycler;
@@ -52,12 +65,12 @@ public class EnquiryFragment extends RailAppFragment implements VivzAdapter.Clic
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
-
+        checkPermission();
         adapter = new VivzAdapter(getContext(), getdata());
         adapter.setClicklistener(this);
         recycler.setAdapter(adapter);
         recycler.setLayoutManager(new LinearLayoutManager(getContext()));
+
     }
 
     public static ArrayList<String> getdata() {
@@ -79,7 +92,28 @@ public class EnquiryFragment extends RailAppFragment implements VivzAdapter.Clic
         CameraDialogFragment cameraDialogFragment = CameraDialogFragment.newInsatance();
         cameraDialogFragment.show(manager, "Camera Dialog");
 
+
     }
 
+
+    private void checkPermission() {
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CAMERA}, REQUEST_CODE);
+            } else {
+
+            }
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == REQUEST_CODE) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED && grantResults[2] == PackageManager.PERMISSION_GRANTED)
+                ;
+
+        }
+    }
 
 }
