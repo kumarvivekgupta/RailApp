@@ -17,8 +17,11 @@ import android.util.Log;
 import android.view.View;
 
 import com.test.naimish.railapp.R;
+import com.test.naimish.railapp.Utils.RailAppConstants;
 import com.test.naimish.railapp.Utils.SharedPreference;
 import com.test.naimish.railapp.Utils.VivzAdapter;
+import com.test.naimish.railapp.Views.BoldTextView;
+import com.test.naimish.railapp.Views.LightTextView;
 
 import java.util.ArrayList;
 
@@ -36,14 +39,18 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class EnquiryFragment extends RailAppFragment implements VivzAdapter.Clicklistener {
 
     private VivzAdapter adapter;
-    private static final String PROFILE_PIC_CONSTANT = "Profile picture uri";
-    private static final int REQUEST_CODE = 123;
 
     @BindView(R.id.user_pic)
     CircleImageView userPic;
 
     @BindView(R.id.recyclerList)
     RecyclerView recycler;
+
+    @BindView(R.id.user_name)
+    LightTextView mUserName;
+
+    @BindView(R.id.user_email)
+    LightTextView mUserEmail;
 
 
     public static Fragment newInstance() {
@@ -70,6 +77,8 @@ public class EnquiryFragment extends RailAppFragment implements VivzAdapter.Clic
         adapter.setClicklistener(this);
         recycler.setAdapter(adapter);
         recycler.setLayoutManager(new LinearLayoutManager(getContext()));
+        mUserName.setText(SharedPreference.getPreference(getContext(),RailAppConstants.NAME_CONSTANT));
+        mUserEmail.setText(SharedPreference.getPreference(getContext(),RailAppConstants.EMAIL_CONSTANT));
 
     }
 
@@ -99,7 +108,7 @@ public class EnquiryFragment extends RailAppFragment implements VivzAdapter.Clic
     private void checkPermission() {
         if (Build.VERSION.SDK_INT >= 23) {
             if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CAMERA}, REQUEST_CODE);
+                requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CAMERA}, RailAppConstants.PERMISSION_REQUEST_CODE);
             } else {
 
             }
@@ -109,7 +118,7 @@ public class EnquiryFragment extends RailAppFragment implements VivzAdapter.Clic
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == REQUEST_CODE) {
+        if (requestCode == RailAppConstants.PERMISSION_REQUEST_CODE) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED && grantResults[2] == PackageManager.PERMISSION_GRANTED)
                 ;
 

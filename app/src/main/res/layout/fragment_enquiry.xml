@@ -25,6 +25,7 @@
             />
 
         <com.test.naimish.railapp.Views.LightTextView
+            android:id="@+id/user_name"
             android:layout_width="374dp"
             android:layout_height="50dp"
             android:paddingLeft="5dp"
@@ -36,6 +37,7 @@
 
 
         <com.test.naimish.railapp.Views.LightTextView
+            android:id="@+id/user_email"
             android:layout_width="374dp"
             android:layout_height="50dp"
             android:paddingLeft="5dp"

@@ -6,16 +6,14 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
 import com.test.naimish.railapp.Activities.EnquiryActivity;
-import com.test.naimish.railapp.Activities.LandingActivity;
 import com.test.naimish.railapp.Models.LoginModel.LoginUser;
 import com.test.naimish.railapp.Network.LoginNetwork.LoginApiClient;
 import com.test.naimish.railapp.R;
-import com.test.naimish.railapp.Utils.SharedConstants;
+import com.test.naimish.railapp.Utils.RailAppConstants;
 import com.test.naimish.railapp.Utils.SharedPreference;
 import com.test.naimish.railapp.Utils.Validations;
 
@@ -91,10 +89,10 @@ public class LoginFragment extends RailAppFragment implements LoginApiClient.Log
     @Override
     public void onResponse(LoginUser response) {
         if(response.getmIsSuccess()){
-            SharedPreference.setPreference(getContext(), SharedConstants.TOKEN_CONSTANT,response.getToken());
-            SharedPreference.setPreference(getContext(), SharedConstants.USERID_CONSTANT,response.getmResponse().getmId());
-            SharedPreference.setPreference(getContext(), SharedConstants.NAME_CONSTANT,response.getmResponse().getmName());
-            SharedPreference.setPreference(getContext(), SharedConstants.EMAIL_CONSTANT,response.getmResponse().getmEmail());
+            SharedPreference.setPreference(getContext(), RailAppConstants.TOKEN_CONSTANT,response.getToken());
+            SharedPreference.setPreference(getContext(), RailAppConstants.USERID_CONSTANT,response.getmResponse().getmId());
+            SharedPreference.setPreference(getContext(), RailAppConstants.NAME_CONSTANT,response.getmResponse().getmName());
+            SharedPreference.setPreference(getContext(), RailAppConstants.EMAIL_CONSTANT,response.getmResponse().getmEmail());
             getActivity().finish();
             startActivity(new Intent(getActivity(),EnquiryActivity.class));
         }
