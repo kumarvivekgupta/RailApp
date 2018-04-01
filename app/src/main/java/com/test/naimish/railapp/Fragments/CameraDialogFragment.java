@@ -41,13 +41,11 @@ public class CameraDialogFragment extends DialogFragment {
     //
     @OnClick(R.id.option_camera)
     public void cameraPic() {
-        Toast.makeText(getActivity(), "CameraClickable", Toast.LENGTH_SHORT).show();
 
     }
 
     @OnClick(R.id.option_camera)
     public void gallery() {
-        Toast.makeText(getActivity(), "Clickable", Toast.LENGTH_SHORT).show();
         Intent galleryIntent = new Intent(Intent.ACTION_PICK);
         galleryIntent.setType("image/*");
         startActivityForResult(galleryIntent, REQUEST_GALLERY_CODE);
