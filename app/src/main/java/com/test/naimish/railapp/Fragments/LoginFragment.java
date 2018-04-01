@@ -13,13 +13,17 @@ import com.test.naimish.railapp.Activities.EnquiryActivity;
 import com.test.naimish.railapp.Models.LoginModel.LoginUser;
 import com.test.naimish.railapp.Network.LoginNetwork.LoginApiClient;
 import com.test.naimish.railapp.R;
-import com.test.naimish.railapp.Utils.RailAppConstants;
 import com.test.naimish.railapp.Utils.SharedPreference;
 import com.test.naimish.railapp.Utils.Validations;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
+import static com.test.naimish.railapp.Utils.RailAppConstants.EMAIL_CONSTANT;
+import static com.test.naimish.railapp.Utils.RailAppConstants.NAME_CONSTANT;
+import static com.test.naimish.railapp.Utils.RailAppConstants.TOKEN_CONSTANT;
+import static com.test.naimish.railapp.Utils.RailAppConstants.USERID_CONSTANT;
 
 /**
  * Created by naimish on 2/10/2018.
@@ -88,16 +92,15 @@ public class LoginFragment extends RailAppFragment implements LoginApiClient.Log
 
     @Override
     public void onResponse(LoginUser response) {
-        if(response.getmIsSuccess()){
-            SharedPreference.setPreference(getContext(), RailAppConstants.TOKEN_CONSTANT,response.getToken());
-            SharedPreference.setPreference(getContext(), RailAppConstants.USERID_CONSTANT,response.getmResponse().getmId());
-            SharedPreference.setPreference(getContext(), RailAppConstants.NAME_CONSTANT,response.getmResponse().getmName());
-            SharedPreference.setPreference(getContext(), RailAppConstants.EMAIL_CONSTANT,response.getmResponse().getmEmail());
+        if (response.getmIsSuccess()) {
+            SharedPreference.setPreference(getContext(), TOKEN_CONSTANT, response.getToken());
+            SharedPreference.setPreference(getContext(), USERID_CONSTANT, response.getmResponse().getmId());
+            SharedPreference.setPreference(getContext(), NAME_CONSTANT, response.getmResponse().getmName());
+            SharedPreference.setPreference(getContext(), EMAIL_CONSTANT, response.getmResponse().getmEmail());
             getActivity().finish();
-            startActivity(new Intent(getActivity(),EnquiryActivity.class));
-        }
-        else{
-            Snackbar.make(getView(),response.getmMessage(),Snackbar.LENGTH_SHORT).show();
+            startActivity(new Intent(getActivity(), EnquiryActivity.class));
+        } else {
+            Snackbar.make(getView(), response.getmMessage(), Snackbar.LENGTH_SHORT).show();
         }
     }
 }

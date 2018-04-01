@@ -73,12 +73,9 @@ public class ChangePasswordFragment extends RailAppFragment {
             focusView.requestFocus();
         else
             setNewPassword();
-
-
     }
 
     private static void setNewPassword() {
-
 
     }
 }

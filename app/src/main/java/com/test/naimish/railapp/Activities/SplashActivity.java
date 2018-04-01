@@ -1,11 +1,8 @@
 package com.test.naimish.railapp.Activities;
 
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 
 import com.test.naimish.railapp.Fragments.SplashFragment;
-import com.test.naimish.railapp.R;
 
 public class SplashActivity extends SingleFragmentActivity {
 
