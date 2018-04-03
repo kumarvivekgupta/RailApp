@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/rail">
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/rail">
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
@@ -12,11 +12,9 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="90dp"
-        app:cardCornerRadius="5dp"
-       android:paddingLeft="10dp"
+        android:paddingLeft="10dp"
         android:paddingRight="10dp"
-
-        >
+        app:cardCornerRadius="5dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -36,16 +34,15 @@
                     android:padding="10dp"
                     android:text="From"
                     android:textColor="@color/white"
-                    android:textSize="25dp" />
+                    android:textSize="25dp"/>
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="15dp"
-
                     android:rotation="270"
-                    app:srcCompat="@android:drawable/arrow_down_float" />
+                    app:srcCompat="@android:drawable/arrow_down_float"/>
 
                 <ImageView
                     android:layout_width="0dp"
@@ -54,16 +51,15 @@
                     android:layout_marginStart="5dp"
                     android:layout_marginTop="20dp"
                     android:layout_weight="1"
-                    android:background="@color/colorLightGrey" />
+                    android:background="@color/colorLightGrey"/>
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="15dp"
-
                     android:rotation="270"
-                    app:srcCompat="@android:drawable/arrow_down_float" />
+                    app:srcCompat="@android:drawable/arrow_down_float"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -71,11 +67,8 @@
                     android:background="@color/color_forest"
                     android:padding="10dp"
                     android:text="To"
-
                     android:textColor="@color/white"
-                    android:textSize="25dp" />
-
-
+                    android:textSize="25dp"/>
             </LinearLayout>
 
             <LinearLayout
@@ -91,7 +84,7 @@
                     android:paddingRight="20dp"
                     android:text="From Name"
                     android:textColor="@color/white"
-                    android:textSize="18dp" />
+                    android:textSize="18dp"/>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -100,8 +93,8 @@
                     android:paddingRight="5dp"
                     android:text="To Name"
                     android:textColor="@color/white"
-                    android:textSize="18dp" />
-                
+                    android:textSize="18dp"/>
+
 
             </LinearLayout>
 
@@ -110,27 +103,26 @@
                 android:layout_height="wrap_content"
                 android:background="@color/color_forest"
                 android:gravity="center_horizontal"
-                android:text="date"
                 android:padding="5dp"
+                android:text="date"
                 android:textColor="@color/white"
-                android:textSize="25dp" />
+                android:textSize="25dp"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
+                android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@color/color_crimson"
+                    android:paddingBottom="5dp"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
-                    android:paddingBottom="5dp"
                     android:text="A"
                     android:textColor="@color/white"
-                    android:textSize="20dp" />
+                    android:textSize="20dp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -139,9 +131,7 @@
                     android:paddingLeft="12dp"
                     android:paddingRight="20dp"
                     android:text="Scheduled"
-                    android:textSize="20dp"
-
-                    />
+                    android:textSize="20dp"/>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -149,9 +139,7 @@
                     android:hint="time"
                     android:paddingBottom="5dp"
                     android:textAlignment="textEnd"
-                    android:textSize="20dp"
-                   />
-
+                    android:textSize="20dp"/>
 
             </LinearLayout>
 
@@ -164,12 +152,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:background="@color/color_crimson"
+                    android:paddingBottom="5dp"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:text="R"
                     android:textColor="@color/white"
-                    android:textSize="20dp"
-                    android:paddingBottom="5dp"/>
+                    android:textSize="20dp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -178,16 +166,15 @@
                     android:paddingLeft="12dp"
                     android:paddingRight="20dp"
                     android:text="@string/actual_arrival"
-                    android:textSize="20dp" />
+                    android:textSize="20dp"/>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="time"
-                    android:textAlignment="textEnd"
                     android:paddingBottom="5dp"
-
-                    android:textSize="20dp" />
+                    android:textAlignment="textEnd"
+                    android:textSize="20dp"/>
 
 
             </LinearLayout>
@@ -201,12 +188,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:background="@color/color_crimson"
+                    android:paddingBottom="5dp"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:text="R"
-                    android:paddingBottom="5dp"
                     android:textColor="@color/white"
-                    android:textSize="20dp" />
+                    android:textSize="20dp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -215,16 +202,15 @@
                     android:paddingLeft="12dp"
                     android:paddingRight="20dp"
                     android:text="@string/delay"
-                    android:textSize="20dp" />
+                    android:textSize="20dp"/>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="time"
-                    android:textAlignment="textEnd"
                     android:paddingBottom="5dp"
-
-                    android:textSize="20dp" />
+                    android:textAlignment="textEnd"
+                    android:textSize="20dp"/>
 
 
             </LinearLayout>
@@ -238,12 +224,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:background="@color/color_green"
+                    android:paddingBottom="5dp"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:text="D"
-                    android:paddingBottom="5dp"
                     android:textColor="@color/white"
-                    android:textSize="20dp" />
+                    android:textSize="20dp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -252,16 +238,15 @@
                     android:paddingLeft="12dp"
                     android:paddingRight="20dp"
                     android:text="Scheduled"
-                    android:textSize="20dp" />
+                    android:textSize="20dp"/>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="time"
-                    android:textAlignment="textEnd"
                     android:paddingBottom="5dp"
-
-                    android:textSize="20dp" />
+                    android:textAlignment="textEnd"
+                    android:textSize="20dp"/>
 
 
             </LinearLayout>
@@ -275,12 +260,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:background="@color/color_green"
+                    android:paddingBottom="5dp"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:text="E"
-                    android:paddingBottom="5dp"
                     android:textColor="@color/white"
-                    android:textSize="20dp" />
+                    android:textSize="20dp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -289,16 +274,15 @@
                     android:paddingLeft="12dp"
                     android:paddingRight="20dp"
                     android:text="@string/actual_arrival"
-                    android:textSize="20dp" />
+                    android:textSize="20dp"/>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="time"
-                    android:textAlignment="textEnd"
                     android:paddingBottom="5dp"
-
-                    android:textSize="20dp" />
+                    android:textAlignment="textEnd"
+                    android:textSize="20dp"/>
 
 
             </LinearLayout>
@@ -312,12 +296,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:background="@color/color_green"
+                    android:paddingBottom="5dp"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:text="P"
-                    android:paddingBottom="5dp"
                     android:textColor="@color/white"
-                    android:textSize="20dp" />
+                    android:textSize="20dp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -326,16 +310,15 @@
                     android:paddingLeft="12dp"
                     android:paddingRight="20dp"
                     android:text="@string/delay"
-                    android:textSize="20dp" />
+                    android:textSize="20dp"/>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="time"
-                    android:textAlignment="textEnd"
                     android:paddingBottom="5dp"
-
-                    android:textSize="20dp" />
+                    android:textAlignment="textEnd"
+                    android:textSize="20dp"/>
 
 
             </LinearLayout>
@@ -349,22 +332,21 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:background="@color/colorfbblue"
+                    android:paddingBottom="5dp"
                     android:paddingLeft="10dp"
                     android:paddingRight="20dp"
                     android:text="LastUpdate"
-                    android:paddingBottom="5dp"
                     android:textColor="@color/white"
-                    android:textSize="20dp" />
+                    android:textSize="20dp"/>
 
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="time"
-                    android:textAlignment="textEnd"
                     android:paddingBottom="5dp"
-
-                    android:textSize="20dp" />
+                    android:textAlignment="textEnd"
+                    android:textSize="20dp"/>
 
 
             </LinearLayout>
@@ -377,18 +359,14 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-
                     android:hint="Yet to start from Source"
+                    android:paddingBottom="5dp"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:textColor="@color/white"
-                    android:textSize="20dp"
-                    android:paddingBottom="5dp"/>
-
+                    android:textSize="20dp"/>
 
             </LinearLayout>
-
-
         </LinearLayout>
 
 
