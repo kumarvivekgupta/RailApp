@@ -33,6 +33,7 @@
                     android:background="@color/color_forest"
                     android:padding="10dp"
                     android:text="From"
+                    android:id="@+id/starting_point_code"
                     android:textColor="@color/white"
                     android:textSize="25dp"/>
 
@@ -67,6 +68,7 @@
                     android:background="@color/color_forest"
                     android:padding="10dp"
                     android:text="To"
+                    android:id="@+id/end_point_code"
                     android:textColor="@color/white"
                     android:textSize="25dp"/>
             </LinearLayout>
@@ -83,6 +85,7 @@
                     android:paddingLeft="5dp"
                     android:paddingRight="20dp"
                     android:text="From Name"
+                    android:id="@+id/starting_point_name"
                     android:textColor="@color/white"
                     android:textSize="18dp"/>
 
@@ -92,6 +95,7 @@
                     android:paddingLeft="120dp"
                     android:paddingRight="5dp"
                     android:text="To Name"
+                    android:id="@+id/end_point_name"
                     android:textColor="@color/white"
                     android:textSize="18dp"/>
 
@@ -105,6 +109,7 @@
                 android:gravity="center_horizontal"
                 android:padding="5dp"
                 android:text="date"
+                android:id="@+id/train_running_date"
                 android:textColor="@color/white"
                 android:textSize="25dp"/>
 
@@ -137,6 +142,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="time"
+                    android:id="@+id/train_sch_arrival"
                     android:paddingBottom="5dp"
                     android:textAlignment="textEnd"
                     android:textSize="20dp"/>
@@ -172,6 +178,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="time"
+                    android:id="@+id/train_actual_arrival"
                     android:paddingBottom="5dp"
                     android:textAlignment="textEnd"
                     android:textSize="20dp"/>
@@ -208,6 +215,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="time"
+                    android:id="@+id/train_delay_on_arr"
                     android:paddingBottom="5dp"
                     android:textAlignment="textEnd"
                     android:textSize="20dp"/>
@@ -244,6 +252,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="time"
+                    android:id="@+id/train_ach_dep"
                     android:paddingBottom="5dp"
                     android:textAlignment="textEnd"
                     android:textSize="20dp"/>
@@ -280,6 +289,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="time"
+                    android:id="@+id/train_ach_dep_actual_dep"
                     android:paddingBottom="5dp"
                     android:textAlignment="textEnd"
                     android:textSize="20dp"/>
@@ -316,6 +326,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="time"
+                    android:id="@+id/train_delay_dep"
                     android:paddingBottom="5dp"
                     android:textAlignment="textEnd"
                     android:textSize="20dp"/>

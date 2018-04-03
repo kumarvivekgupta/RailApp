@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -18,6 +19,7 @@ import android.widget.Toast;
 
 import com.test.naimish.railapp.Activities.EnquiryActivity;
 import com.test.naimish.railapp.Activities.LiveTrainStatusActivity;
+import com.test.naimish.railapp.Models.LiveTrainStatusModel.BaseModel;
 import com.test.naimish.railapp.Network.LiveTrainNetwork.LiveTrainApiClient;
 import com.test.naimish.railapp.R;
 import com.test.naimish.railapp.Utils.SharedPreference;
@@ -97,11 +99,11 @@ public class EnquiryFragment extends RailAppFragment implements VivzAdapter.Clic
     @Override
     public void itemclicked(int position) {
         Toast.makeText(getActivity(),"position"+position,Toast.LENGTH_LONG).show();
-//        if(position==1){
-        startActivity(new Intent(getActivity(), LiveTrainStatusActivity.class));
+       if(position==1){
+       //liveTrainInfo();
            LiveTrainApiClient.liveTrainStatus("12566","03-04-2018");
 
-//        }
+       }
 
     }
 
@@ -131,5 +133,14 @@ public class EnquiryFragment extends RailAppFragment implements VivzAdapter.Clic
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED && grantResults[2] == PackageManager.PERMISSION_GRANTED)
                 ;
         }
+    }
+   public void liveTrainInfo(BaseModel baseModel){
+
+       Intent intent=new Intent(getActivity(), LiveTrainStatusActivity.class);
+       Bundle bundle=new Bundle();
+       bundle.putParcelable("Base Model", (Parcelable) baseModel);
+       intent.putExtra("Train_Info",bundle);
+       startActivity(intent);
+
     }
 }

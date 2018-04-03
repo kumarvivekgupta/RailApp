@@ -5,34 +5,63 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
+import com.test.naimish.railapp.Activities.EnquiryActivity;
 import com.test.naimish.railapp.Models.LiveTrainStatusModel.BaseModel;
+import com.test.naimish.railapp.Models.LiveTrainStatusModel.TrainRouteModel;
 import com.test.naimish.railapp.Network.LiveTrainNetwork.LiveTrainApiClient;
 import com.test.naimish.railapp.R;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
  * Created by Vivek on 4/3/2018.
  */
 
-public class LiveTrainStatusFragment extends RailAppFragment  {
+public class LiveTrainStatusFragment extends RailAppFragment {
+//    public static String trainStartingPointCode;
+//    private String trainEndPointCode;
+
+
+    @BindView(R.id.starting_point_code)
+    TextView startingPointCode;
+    @BindView(R.id.end_point_code)
+    TextView endPointCode;
+    @BindView(R.id.starting_point_name)
+    TextView startingPointName;
+    @BindView(R.id.end_point_name)
+    TextView endPointName;
+    @BindView(R.id.train_running_date)
+    TextView trainRunningDate;
+    @BindView(R.id.train_sch_arrival)
+    TextView trainSchArrival;
+    @BindView(R.id.train_actual_arrival)
+    TextView trainActualArrival;
+    @BindView(R.id.train_delay_on_arr)
+    TextView trainDelayOnArrival;
+
 
     @Override
     protected int getResourceId() {
         return R.layout.live_train_status;
     }
-    public static Fragment newInstance(){
+
+    public static Fragment newInstance() {
         return new LiveTrainStatusFragment();
+
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ButterKnife.bind(this,view);
+        ButterKnife.bind(this, view);
+
     }
-    public  static  void livetrain(BaseModel baseModel){
-        Log.i("Response",baseModel.getPosition());
+
+    public void livetrain() {
+
 
     }
 
