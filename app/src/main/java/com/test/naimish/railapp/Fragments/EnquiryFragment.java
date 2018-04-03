@@ -22,7 +22,7 @@ import com.test.naimish.railapp.Models.LiveTrainStatusModel.LiveStatusBaseModel;
 import com.test.naimish.railapp.Network.LiveTrainNetwork.LiveTrainApiClient;
 import com.test.naimish.railapp.R;
 import com.test.naimish.railapp.Utils.SharedPreference;
-import com.test.naimish.railapp.Utils.VivzAdapter;
+import com.test.naimish.railapp.Utils.EnquiryAdapter;
 import com.test.naimish.railapp.Views.LightTextView;
 
 import java.util.ArrayList;
@@ -42,9 +42,9 @@ import static com.test.naimish.railapp.Utils.RailAppConstants.PERMISSION_REQUEST
  * Created by Vivek on 2/17/2018.
  */
 
-public class EnquiryFragment extends RailAppFragment implements VivzAdapter.Clicklistener, LiveTrainApiClient.LiveStatusResponse {
+public class EnquiryFragment extends RailAppFragment implements EnquiryAdapter.Clicklistener, LiveTrainApiClient.LiveStatusResponse {
 
-    private VivzAdapter adapter;
+    private EnquiryAdapter adapter;
 
     @BindView(R.id.user_pic)
     CircleImageView userPic;
@@ -79,7 +79,7 @@ public class EnquiryFragment extends RailAppFragment implements VivzAdapter.Clic
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         checkPermission();
-        adapter = new VivzAdapter(getContext(), getdata());
+        adapter = new EnquiryAdapter(getContext(), getdata());
         adapter.setClicklistener(this);
         recycler.setAdapter(adapter);
         recycler.setLayoutManager(new LinearLayoutManager(getContext()));

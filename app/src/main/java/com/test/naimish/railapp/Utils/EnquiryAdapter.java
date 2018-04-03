@@ -16,13 +16,13 @@ import java.util.ArrayList;
  * Created by Vivek on 3/23/2018.
  */
 
-public class VivzAdapter extends RecyclerView.Adapter<VivzAdapter.MyViewHolder> {
+public class EnquiryAdapter extends RecyclerView.Adapter<EnquiryAdapter.MyViewHolder> {
     private LayoutInflater mLayoutInflater;
     private ArrayList<String> mListItems;
     private Context mContext;
     private Clicklistener mClickListener;
 
-    public VivzAdapter(Context context, ArrayList<String> data) {
+    public EnquiryAdapter(Context context, ArrayList<String> data) {
         this.mContext = context;
         mLayoutInflater = LayoutInflater.from(context);
         this.mListItems = new ArrayList<>();
