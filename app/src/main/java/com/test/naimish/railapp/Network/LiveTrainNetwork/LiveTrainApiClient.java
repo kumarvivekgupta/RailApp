@@ -1,13 +1,9 @@
 package com.test.naimish.railapp.Network.LiveTrainNetwork;
 
-import android.content.Intent;
 import android.util.Log;
 
-import com.google.gson.Gson;
-import com.test.naimish.railapp.Activities.LiveTrainStatusActivity;
 import com.test.naimish.railapp.BuildConfig;
-import com.test.naimish.railapp.Fragments.EnquiryFragment;
-import com.test.naimish.railapp.Fragments.LiveTrainStatusFragment;
+import com.test.naimish.railapp.Models.LiveTrainStatusModel.LiveStatusBaseModel;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -23,8 +19,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LiveTrainApiClient {
     private static final String BASE_URL = "https://api.railwayapi.com/";
+    private LiveStatusResponse liveStatusResponse;
 
-    public static void liveTrainStatus(String trainNo, String date) {
+    public LiveTrainApiClient(LiveStatusResponse liveStatusResponse) {
+        this.liveStatusResponse = liveStatusResponse;
+    }
+
+    public void liveTrainStatus(String trainNo, String date) {
         OkHttpClient.Builder okhttpbuilder = new OkHttpClient.Builder();
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
@@ -36,19 +37,16 @@ public class LiveTrainApiClient {
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(okhttpbuilder.build())
                 .build();
-        final Gson gson = new Gson();
         LiveTrainApiInterface liveTrainApiInterface = retrofit.create(LiveTrainApiInterface.class);
-        Call<com.test.naimish.railapp.Models.LiveTrainStatusModel.BaseModel> call = liveTrainApiInterface.liveTrainInfo(trainNo, date);
-        call.enqueue(new Callback<com.test.naimish.railapp.Models.LiveTrainStatusModel.BaseModel>() {
+        Call<LiveStatusBaseModel> call = liveTrainApiInterface.liveTrainInfo(trainNo, date);
+        call.enqueue(new Callback<LiveStatusBaseModel>() {
             @Override
-            public void onResponse(Call<com.test.naimish.railapp.Models.LiveTrainStatusModel.BaseModel> call, Response<com.test.naimish.railapp.Models.LiveTrainStatusModel.BaseModel> response) {
-              //  Log.i("Response", gson.toJson(response.body()));
-                EnquiryFragment enquiryFragment=new EnquiryFragment();
-                enquiryFragment.liveTrainInfo(response.body());
+            public void onResponse(Call<LiveStatusBaseModel> call, Response<LiveStatusBaseModel> response) {
+               liveStatusResponse.getResponse(response.body());
             }
 
             @Override
-            public void onFailure(Call<com.test.naimish.railapp.Models.LiveTrainStatusModel.BaseModel> call, Throwable t) {
+            public void onFailure(Call<LiveStatusBaseModel> call, Throwable t) {
                 Log.i("Error", "error");
             }
         });
@@ -56,4 +54,7 @@ public class LiveTrainApiClient {
 
     }
 
+    public interface LiveStatusResponse {
+        void getResponse(LiveStatusBaseModel statusBaseModel);
+    }
 }

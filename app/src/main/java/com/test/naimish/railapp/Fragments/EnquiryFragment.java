@@ -17,9 +17,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Toast;
 
-import com.test.naimish.railapp.Activities.EnquiryActivity;
 import com.test.naimish.railapp.Activities.LiveTrainStatusActivity;
-import com.test.naimish.railapp.Models.LiveTrainStatusModel.BaseModel;
+import com.test.naimish.railapp.Models.LiveTrainStatusModel.LiveStatusBaseModel;
 import com.test.naimish.railapp.Network.LiveTrainNetwork.LiveTrainApiClient;
 import com.test.naimish.railapp.R;
 import com.test.naimish.railapp.Utils.SharedPreference;
@@ -43,7 +42,7 @@ import static com.test.naimish.railapp.Utils.RailAppConstants.PERMISSION_REQUEST
  * Created by Vivek on 2/17/2018.
  */
 
-public class EnquiryFragment extends RailAppFragment implements VivzAdapter.Clicklistener {
+public class EnquiryFragment extends RailAppFragment implements VivzAdapter.Clicklistener, LiveTrainApiClient.LiveStatusResponse {
 
     private VivzAdapter adapter;
 
@@ -98,12 +97,11 @@ public class EnquiryFragment extends RailAppFragment implements VivzAdapter.Clic
 
     @Override
     public void itemclicked(int position) {
-        Toast.makeText(getActivity(),"position"+position,Toast.LENGTH_LONG).show();
-       if(position==1){
-       //liveTrainInfo();
-           LiveTrainApiClient.liveTrainStatus("12566","03-04-2018");
-
-       }
+        Toast.makeText(getActivity(), "position" + position, Toast.LENGTH_LONG).show();
+        if (position == 1) {
+            LiveTrainApiClient apiClient = new LiveTrainApiClient(this);
+            apiClient.liveTrainStatus("12566", "03-04-2018");
+        }
 
     }
 
@@ -134,13 +132,13 @@ public class EnquiryFragment extends RailAppFragment implements VivzAdapter.Clic
                 ;
         }
     }
-   public void liveTrainInfo(BaseModel baseModel){
 
-       Intent intent=new Intent(getActivity(), LiveTrainStatusActivity.class);
-       Bundle bundle=new Bundle();
-       bundle.putParcelable("Base Model", (Parcelable) baseModel);
-       intent.putExtra("Train_Info",bundle);
-       startActivity(intent);
-
+    @Override
+    public void getResponse(LiveStatusBaseModel statusBaseModel) {
+        Intent intent = new Intent(getActivity(), LiveTrainStatusActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("Base Model", (Parcelable) statusBaseModel);
+        intent.putExtra("Train_Info", bundle);
+        startActivity(intent);
     }
 }

@@ -3,14 +3,9 @@ package com.test.naimish.railapp.Fragments;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import com.test.naimish.railapp.Activities.EnquiryActivity;
-import com.test.naimish.railapp.Models.LiveTrainStatusModel.BaseModel;
-import com.test.naimish.railapp.Models.LiveTrainStatusModel.TrainRouteModel;
-import com.test.naimish.railapp.Network.LiveTrainNetwork.LiveTrainApiClient;
 import com.test.naimish.railapp.R;
 
 import butterknife.BindView;
@@ -21,9 +16,6 @@ import butterknife.ButterKnife;
  */
 
 public class LiveTrainStatusFragment extends RailAppFragment {
-//    public static String trainStartingPointCode;
-//    private String trainEndPointCode;
-
 
     @BindView(R.id.starting_point_code)
     TextView startingPointCode;
