@@ -19,5 +19,4 @@ public interface RailAppConstants {
     int REQUEST_GALLERY_CODE = 1;
     int REQUEST_CAMERA_CODE = 20;
 
-
 }

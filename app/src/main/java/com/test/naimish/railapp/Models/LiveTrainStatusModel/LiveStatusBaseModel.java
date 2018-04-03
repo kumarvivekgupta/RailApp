@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
  * Created by Vivek on 3/17/2018.
  */
 
-public class BaseModel {
+public class LiveStatusBaseModel {
 
 
     @SerializedName("position")

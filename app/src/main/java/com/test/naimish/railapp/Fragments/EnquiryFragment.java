@@ -2,6 +2,7 @@ package com.test.naimish.railapp.Fragments;
 
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -13,10 +14,13 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Toast;
 
+import com.test.naimish.railapp.Activities.LiveTrainStatusActivity;
+import com.test.naimish.railapp.Network.LiveTrainNetwork.LiveTrainApiClient;
 import com.test.naimish.railapp.R;
 import com.test.naimish.railapp.Utils.SharedPreference;
-import com.test.naimish.railapp.Utils.VivzAdapter;
+import com.test.naimish.railapp.Utils.EnquiryAdapter;
 import com.test.naimish.railapp.Views.LightTextView;
 
 import java.util.ArrayList;
@@ -36,9 +40,9 @@ import static com.test.naimish.railapp.Utils.RailAppConstants.PERMISSION_REQUEST
  * Created by Vivek on 2/17/2018.
  */
 
-public class EnquiryFragment extends RailAppFragment implements VivzAdapter.Clicklistener {
+public class EnquiryFragment extends RailAppFragment implements EnquiryAdapter.Clicklistener {
 
-    private VivzAdapter adapter;
+    private EnquiryAdapter adapter;
 
     @BindView(R.id.user_pic)
     CircleImageView userPic;
@@ -73,7 +77,7 @@ public class EnquiryFragment extends RailAppFragment implements VivzAdapter.Clic
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         checkPermission();
-        adapter = new VivzAdapter(getContext(), getdata());
+        adapter = new EnquiryAdapter(getContext(), getdata());
         adapter.setClicklistener(this);
         recycler.setAdapter(adapter);
         recycler.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -91,7 +95,13 @@ public class EnquiryFragment extends RailAppFragment implements VivzAdapter.Clic
 
     @Override
     public void itemclicked(int position) {
-        //  intent.putExtra("key", position);
+        Toast.makeText(getActivity(), "position" + position, Toast.LENGTH_LONG).show();
+        if (position == 1) {
+
+            LiveTrainApiClient.liveTrainStatus("12566", "03-04-2018");
+            Intent intent = new Intent(getActivity(), LiveTrainStatusActivity.class);
+            startActivity(intent);
+        }
 
     }
 

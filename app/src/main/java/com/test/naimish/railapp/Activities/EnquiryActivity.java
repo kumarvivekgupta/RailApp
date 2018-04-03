@@ -4,14 +4,14 @@ import android.support.v4.app.Fragment;
 
 import com.test.naimish.railapp.Fragments.EnquiryFragment;
 import com.test.naimish.railapp.R;
-import com.test.naimish.railapp.Utils.VivzAdapter;
+import com.test.naimish.railapp.Utils.EnquiryAdapter;
 
 /**
  * Created by Vivek on 2/17/2018.
  */
 
 
-public class EnquiryActivity extends SingleFragmentActivity implements VivzAdapter.Clicklistener {
+public class EnquiryActivity extends SingleFragmentActivity implements EnquiryAdapter.Clicklistener {
     private static final String TOOLBAR_TITLE = "ENQUIRY";
 
     @Override

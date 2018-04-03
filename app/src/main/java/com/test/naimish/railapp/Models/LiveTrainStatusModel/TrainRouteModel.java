@@ -8,6 +8,9 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class TrainRouteModel {
+    @SerializedName("scharr")
+    @Expose
+    private String mSchduleArrival;
 
 
     @SerializedName("distance")
@@ -73,6 +76,10 @@ public class TrainRouteModel {
 
     public StationModel getStation() {
         return mStation;
+    }
+
+    public String getSchduleArrival() {
+        return mSchduleArrival;
     }
 
 

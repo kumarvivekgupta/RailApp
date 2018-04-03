@@ -2,8 +2,10 @@ package com.test.naimish.railapp.Network.LiveTrainNetwork;
 
 import android.util.Log;
 
-import com.google.gson.Gson;
 import com.test.naimish.railapp.BuildConfig;
+import com.test.naimish.railapp.Models.LiveTrainStatusModel.LiveStatusBaseModel;
+
+import org.greenrobot.eventbus.EventBus;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -20,6 +22,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class LiveTrainApiClient {
     private static final String BASE_URL = "https://api.railwayapi.com/";
 
+
     public static void liveTrainStatus(String trainNo, String date) {
         OkHttpClient.Builder okhttpbuilder = new OkHttpClient.Builder();
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
@@ -32,17 +35,16 @@ public class LiveTrainApiClient {
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(okhttpbuilder.build())
                 .build();
-        final Gson gson = new Gson();
         LiveTrainApiInterface liveTrainApiInterface = retrofit.create(LiveTrainApiInterface.class);
-        Call<com.test.naimish.railapp.Models.LiveTrainStatusModel.BaseModel> call = liveTrainApiInterface.liveTrainInfo(trainNo, date);
-        call.enqueue(new Callback<com.test.naimish.railapp.Models.LiveTrainStatusModel.BaseModel>() {
+        Call<LiveStatusBaseModel> call = liveTrainApiInterface.liveTrainInfo(trainNo, date);
+        call.enqueue(new Callback<LiveStatusBaseModel>() {
             @Override
-            public void onResponse(Call<com.test.naimish.railapp.Models.LiveTrainStatusModel.BaseModel> call, Response<com.test.naimish.railapp.Models.LiveTrainStatusModel.BaseModel> response) {
-                Log.i("Response", gson.toJson(response.body()));
+            public void onResponse(Call<LiveStatusBaseModel> call, Response<LiveStatusBaseModel> response) {
+                EventBus.getDefault().post(response.body());
             }
 
             @Override
-            public void onFailure(Call<com.test.naimish.railapp.Models.LiveTrainStatusModel.BaseModel> call, Throwable t) {
+            public void onFailure(Call<LiveStatusBaseModel> call, Throwable t) {
                 Log.i("Error", "error");
             }
         });
