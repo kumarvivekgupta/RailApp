@@ -32,5 +32,7 @@
     <color name="fbutton_color_concrete">#95a5a6</color>
     <color name="fbutton_color_asbestos">#7f8c8d</color>
     <color name="colorfbblue">#0b77cb</color>
-
+    <color name="color_crimson">#8D230F</color>
+    <color name="color_forest">#1E434C</color>
+    <color name="color_green">#f403fa0b</color>
 </resources>
