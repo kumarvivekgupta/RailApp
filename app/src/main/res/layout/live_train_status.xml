@@ -112,12 +112,12 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:background="@color/color_crimson"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
@@ -127,21 +127,22 @@
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:paddingBottom="5dp"
                     android:paddingLeft="12dp"
                     android:paddingRight="20dp"
                     android:text="Scheduled"
-                    android:textSize="20dp" />
+                    android:textSize="20dp"
+                    />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:hint="time"
                     android:paddingBottom="5dp"
-                    android:paddingLeft="100dp"
-                    android:paddingRight="20dp"
-                    android:textSize="20dp" />
+                    android:textAlignment="textEnd"
+                    android:textSize="20dp"
+                   />
 
 
             </LinearLayout>
