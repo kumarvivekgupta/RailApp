@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -18,15 +17,12 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.test.naimish.railapp.Activities.LiveTrainStatusActivity;
-import com.test.naimish.railapp.Models.LiveTrainStatusModel.LiveStatusBaseModel;
 import com.test.naimish.railapp.Network.LiveTrainNetwork.LiveTrainApiClient;
 import com.test.naimish.railapp.R;
-import com.test.naimish.railapp.Utils.RailAppConstants;
 import com.test.naimish.railapp.Utils.SharedPreference;
 import com.test.naimish.railapp.Utils.EnquiryAdapter;
 import com.test.naimish.railapp.Views.LightTextView;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 
@@ -36,7 +32,6 @@ import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 import static com.test.naimish.railapp.Utils.RailAppConstants.EMAIL_CONSTANT;
-import static com.test.naimish.railapp.Utils.RailAppConstants.LIVE_TRAIN_STATUS_CONSTANT;
 import static com.test.naimish.railapp.Utils.RailAppConstants.NAME_CONSTANT;
 import static com.test.naimish.railapp.Utils.RailAppConstants.PERMISSION_REQUEST_CODE;
 
@@ -45,7 +40,7 @@ import static com.test.naimish.railapp.Utils.RailAppConstants.PERMISSION_REQUEST
  * Created by Vivek on 2/17/2018.
  */
 
-public class EnquiryFragment extends RailAppFragment implements EnquiryAdapter.Clicklistener{
+public class EnquiryFragment extends RailAppFragment implements EnquiryAdapter.Clicklistener {
 
     private EnquiryAdapter adapter;
 
@@ -133,7 +128,8 @@ public class EnquiryFragment extends RailAppFragment implements EnquiryAdapter.C
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == PERMISSION_REQUEST_CODE) {
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED && grantResults[2] == PackageManager.PERMISSION_GRANTED);
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED && grantResults[2] == PackageManager.PERMISSION_GRANTED)
+                ;
         }
     }
 }

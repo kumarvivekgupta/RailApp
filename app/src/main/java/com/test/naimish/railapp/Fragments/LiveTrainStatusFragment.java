@@ -9,15 +9,12 @@ import android.widget.TextView;
 
 import com.test.naimish.railapp.Models.LiveTrainStatusModel.LiveStatusBaseModel;
 import com.test.naimish.railapp.R;
-import com.test.naimish.railapp.Utils.RailAppConstants;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
-import static com.test.naimish.railapp.Utils.RailAppConstants.LIVE_TRAIN_STATUS_CONSTANT;
 
 /**
  * Created by Vivek on 4/3/2018.
