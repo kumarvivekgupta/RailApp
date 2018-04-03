@@ -11,6 +11,9 @@ import com.test.naimish.railapp.Models.LiveTrainStatusModel.LiveStatusBaseModel;
 import com.test.naimish.railapp.R;
 import com.test.naimish.railapp.Utils.RailAppConstants;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -67,7 +70,12 @@ public class LiveTrainStatusFragment extends RailAppFragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        LiveStatusBaseModel statusBaseModel=(LiveStatusBaseModel) getActivity().getIntent().getExtras().get(LIVE_TRAIN_STATUS_CONSTANT);
-        Log.i("status model",statusBaseModel+"");
+        EventBus.getDefault().register(this);
     }
+
+    @Subscribe
+    public void getLiveStatus(LiveStatusBaseModel statusBaseModel) {
+        Log.i("status model", statusBaseModel.getPosition() + "");
+    }
+
 }

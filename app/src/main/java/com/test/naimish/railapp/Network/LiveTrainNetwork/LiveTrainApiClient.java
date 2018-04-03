@@ -5,6 +5,8 @@ import android.util.Log;
 import com.test.naimish.railapp.BuildConfig;
 import com.test.naimish.railapp.Models.LiveTrainStatusModel.LiveStatusBaseModel;
 
+import org.greenrobot.eventbus.EventBus;
+
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
@@ -19,13 +21,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LiveTrainApiClient {
     private static final String BASE_URL = "https://api.railwayapi.com/";
-    private LiveStatusResponse liveStatusResponse;
 
-    public LiveTrainApiClient(LiveStatusResponse liveStatusResponse) {
-        this.liveStatusResponse = liveStatusResponse;
-    }
 
-    public void liveTrainStatus(String trainNo, String date) {
+    public static void liveTrainStatus(String trainNo, String date) {
         OkHttpClient.Builder okhttpbuilder = new OkHttpClient.Builder();
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
@@ -42,7 +40,7 @@ public class LiveTrainApiClient {
         call.enqueue(new Callback<LiveStatusBaseModel>() {
             @Override
             public void onResponse(Call<LiveStatusBaseModel> call, Response<LiveStatusBaseModel> response) {
-               liveStatusResponse.getResponse(response.body());
+                EventBus.getDefault().post(response.body());
             }
 
             @Override
@@ -54,7 +52,4 @@ public class LiveTrainApiClient {
 
     }
 
-    public interface LiveStatusResponse {
-        void getResponse(LiveStatusBaseModel statusBaseModel);
-    }
 }

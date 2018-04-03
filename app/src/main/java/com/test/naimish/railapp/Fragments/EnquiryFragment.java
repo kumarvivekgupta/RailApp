@@ -45,7 +45,7 @@ import static com.test.naimish.railapp.Utils.RailAppConstants.PERMISSION_REQUEST
  * Created by Vivek on 2/17/2018.
  */
 
-public class EnquiryFragment extends RailAppFragment implements EnquiryAdapter.Clicklistener, LiveTrainApiClient.LiveStatusResponse {
+public class EnquiryFragment extends RailAppFragment implements EnquiryAdapter.Clicklistener{
 
     private EnquiryAdapter adapter;
 
@@ -102,8 +102,10 @@ public class EnquiryFragment extends RailAppFragment implements EnquiryAdapter.C
     public void itemclicked(int position) {
         Toast.makeText(getActivity(), "position" + position, Toast.LENGTH_LONG).show();
         if (position == 1) {
-            LiveTrainApiClient apiClient = new LiveTrainApiClient(this);
-            apiClient.liveTrainStatus("12566", "03-04-2018");
+
+            LiveTrainApiClient.liveTrainStatus("12566", "03-04-2018");
+            Intent intent = new Intent(getActivity(), LiveTrainStatusActivity.class);
+            startActivity(intent);
         }
 
     }
@@ -133,12 +135,5 @@ public class EnquiryFragment extends RailAppFragment implements EnquiryAdapter.C
         if (requestCode == PERMISSION_REQUEST_CODE) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED && grantResults[2] == PackageManager.PERMISSION_GRANTED);
         }
-    }
-
-    @Override
-    public void getResponse(LiveStatusBaseModel statusBaseModel) {
-        Intent intent = new Intent(getActivity(), LiveTrainStatusActivity.class);
-        intent.putExtra(LIVE_TRAIN_STATUS_CONSTANT,statusBaseModel);
-        startActivity(intent);
     }
 }
