@@ -13,6 +13,8 @@
         android:layout_marginRight="20dp"
         android:layout_marginTop="90dp"
         app:cardCornerRadius="5dp"
+       android:paddingLeft="10dp"
+        android:paddingRight="10dp"
 
         >
 
@@ -31,7 +33,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@color/color_forest"
-                    android:padding="5dp"
+                    android:padding="10dp"
                     android:text="From"
                     android:textColor="@color/white"
                     android:textSize="25dp" />
@@ -40,7 +42,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="15dp"
 
                     android:rotation="270"
                     app:srcCompat="@android:drawable/arrow_down_float" />
@@ -50,7 +52,7 @@
                     android:layout_height="1dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginStart="5dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="20dp"
                     android:layout_weight="1"
                     android:background="@color/colorLightGrey" />
 
@@ -58,7 +60,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="15dp"
 
                     android:rotation="270"
                     app:srcCompat="@android:drawable/arrow_down_float" />
@@ -67,8 +69,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@color/color_forest"
-                    android:padding="5dp"
+                    android:padding="10dp"
                     android:text="To"
+
                     android:textColor="@color/white"
                     android:textSize="25dp" />
 
@@ -78,7 +81,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorfbblue">
+                android:background="@color/colorfbblue"
+                android:padding="5dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -107,13 +111,15 @@
                 android:background="@color/color_forest"
                 android:gravity="center_horizontal"
                 android:text="date"
+                android:padding="5dp"
                 android:textColor="@color/white"
                 android:textSize="25dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                >
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -121,6 +127,7 @@
                     android:background="@color/color_crimson"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
+                    android:paddingBottom="5dp"
                     android:text="A"
                     android:textColor="@color/white"
                     android:textSize="20dp" />
@@ -133,6 +140,7 @@
                     android:paddingRight="20dp"
                     android:text="Scheduled"
                     android:textSize="20dp"
+
                     />
 
                 <TextView
@@ -160,7 +168,8 @@
                     android:paddingRight="10dp"
                     android:text="R"
                     android:textColor="@color/white"
-                    android:textSize="20dp" />
+                    android:textSize="20dp"
+                    android:paddingBottom="5dp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -172,12 +181,12 @@
                     android:textSize="20dp" />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:hint="time"
+                    android:textAlignment="textEnd"
                     android:paddingBottom="5dp"
-                    android:paddingLeft="100dp"
-                    android:paddingRight="20dp"
+
                     android:textSize="20dp" />
 
 
@@ -195,6 +204,7 @@
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:text="R"
+                    android:paddingBottom="5dp"
                     android:textColor="@color/white"
                     android:textSize="20dp" />
 
@@ -208,12 +218,12 @@
                     android:textSize="20dp" />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:hint="time"
+                    android:textAlignment="textEnd"
                     android:paddingBottom="5dp"
-                    android:paddingLeft="140dp"
-                    android:paddingRight="20dp"
+
                     android:textSize="20dp" />
 
 
@@ -231,6 +241,7 @@
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:text="D"
+                    android:paddingBottom="5dp"
                     android:textColor="@color/white"
                     android:textSize="20dp" />
 
@@ -244,12 +255,12 @@
                     android:textSize="20dp" />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:hint="time"
+                    android:textAlignment="textEnd"
                     android:paddingBottom="5dp"
-                    android:paddingLeft="100dp"
-                    android:paddingRight="20dp"
+
                     android:textSize="20dp" />
 
 
@@ -267,6 +278,7 @@
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:text="E"
+                    android:paddingBottom="5dp"
                     android:textColor="@color/white"
                     android:textSize="20dp" />
 
@@ -280,12 +292,12 @@
                     android:textSize="20dp" />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:hint="time"
+                    android:textAlignment="textEnd"
                     android:paddingBottom="5dp"
-                    android:paddingLeft="100dp"
-                    android:paddingRight="20dp"
+
                     android:textSize="20dp" />
 
 
@@ -303,6 +315,7 @@
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:text="P"
+                    android:paddingBottom="5dp"
                     android:textColor="@color/white"
                     android:textSize="20dp" />
 
@@ -316,12 +329,12 @@
                     android:textSize="20dp" />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:hint="time"
+                    android:textAlignment="textEnd"
                     android:paddingBottom="5dp"
-                    android:paddingLeft="140dp"
-                    android:paddingRight="20dp"
+
                     android:textSize="20dp" />
 
 
@@ -339,17 +352,18 @@
                     android:paddingLeft="10dp"
                     android:paddingRight="20dp"
                     android:text="LastUpdate"
+                    android:paddingBottom="5dp"
                     android:textColor="@color/white"
                     android:textSize="20dp" />
 
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:hint="time"
+                    android:textAlignment="textEnd"
                     android:paddingBottom="5dp"
-                    android:paddingLeft="120dp"
-                    android:paddingRight="20dp"
+
                     android:textSize="20dp" />
 
 
@@ -368,7 +382,8 @@
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:textColor="@color/white"
-                    android:textSize="20dp" />
+                    android:textSize="20dp"
+                    android:paddingBottom="5dp"/>
 
 
             </LinearLayout>
