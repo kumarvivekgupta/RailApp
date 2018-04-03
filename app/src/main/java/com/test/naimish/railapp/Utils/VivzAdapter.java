@@ -60,14 +60,14 @@ public class VivzAdapter extends RecyclerView.Adapter<VivzAdapter.MyViewHolder> 
         @Override
         public void onClick(View v) {
             if (mClickListener != null) {
-                //       (clicklistener.itemclicked(data.get(getAdapterPosition())));
+                mClickListener.itemclicked(getAdapterPosition());
 
             }
         }
     }
 
     public interface Clicklistener {
-        void itemclicked(int position);
+        public void itemclicked(int position);
     }
 
     public void setClicklistener(Clicklistener clicklistener) {

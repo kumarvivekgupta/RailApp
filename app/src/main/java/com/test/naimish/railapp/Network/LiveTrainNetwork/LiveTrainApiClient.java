@@ -3,7 +3,9 @@ package com.test.naimish.railapp.Network.LiveTrainNetwork;
 import android.util.Log;
 
 import com.google.gson.Gson;
+import com.test.naimish.railapp.Activities.LiveTrainStatusActivity;
 import com.test.naimish.railapp.BuildConfig;
+import com.test.naimish.railapp.Fragments.LiveTrainStatusFragment;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -38,7 +40,8 @@ public class LiveTrainApiClient {
         call.enqueue(new Callback<com.test.naimish.railapp.Models.LiveTrainStatusModel.BaseModel>() {
             @Override
             public void onResponse(Call<com.test.naimish.railapp.Models.LiveTrainStatusModel.BaseModel> call, Response<com.test.naimish.railapp.Models.LiveTrainStatusModel.BaseModel> response) {
-                Log.i("Response", gson.toJson(response.body()));
+              //  Log.i("Response", gson.toJson(response.body()));
+                LiveTrainStatusFragment.livetrain((response.body()));
             }
 
             @Override

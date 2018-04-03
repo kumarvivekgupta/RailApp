@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.test.naimish.railapp">
+    package="com.test.naimish.railapp">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -14,19 +14,17 @@
         android:theme="@style/AppTheme">
         <activity android:name=".Activities.LandingActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activities.EnquiryActivity">
-        </activity>
-        <activity android:name=".Activities.RegisterActivity"/>
-        <activity android:name=".Activities.PnrEnquiryActivity"/>
-        <activity android:name=".Activities.LoginActivity">
-        </activity>
-        <activity android:name=".Activities.SplashActivity">
-        </activity>
+        <activity android:name=".Activities.EnquiryActivity"></activity>
+        <activity android:name=".Activities.RegisterActivity" />
+        <activity android:name=".Activities.PnrEnquiryActivity" />
+        <activity android:name=".Activities.LoginActivity"></activity>
+        <activity android:name=".Activities.SplashActivity"></activity>
+        <activity android:name=".Activities.LiveTrainStatusActivity"></activity>
     </application>
 
 </manifest>

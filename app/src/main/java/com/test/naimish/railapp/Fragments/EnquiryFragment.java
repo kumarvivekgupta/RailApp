@@ -2,6 +2,7 @@ package com.test.naimish.railapp.Fragments;
 
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -13,7 +14,11 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Toast;
 
+import com.test.naimish.railapp.Activities.EnquiryActivity;
+import com.test.naimish.railapp.Activities.LiveTrainStatusActivity;
+import com.test.naimish.railapp.Network.LiveTrainNetwork.LiveTrainApiClient;
 import com.test.naimish.railapp.R;
 import com.test.naimish.railapp.Utils.SharedPreference;
 import com.test.naimish.railapp.Utils.VivzAdapter;
@@ -91,7 +96,12 @@ public class EnquiryFragment extends RailAppFragment implements VivzAdapter.Clic
 
     @Override
     public void itemclicked(int position) {
-        //  intent.putExtra("key", position);
+        Toast.makeText(getActivity(),"position"+position,Toast.LENGTH_LONG).show();
+//        if(position==1){
+        startActivity(new Intent(getActivity(), LiveTrainStatusActivity.class));
+           LiveTrainApiClient.liveTrainStatus("12566","03-04-2018");
+
+//        }
 
     }
 
