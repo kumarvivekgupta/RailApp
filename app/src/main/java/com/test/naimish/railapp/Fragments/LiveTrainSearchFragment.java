@@ -37,8 +37,7 @@ import static com.test.naimish.railapp.Fragments.EnquiryFragment.getdata;
 public class LiveTrainSearchFragment extends RailAppFragment implements EnquiryAdapter.Clicklistener {
     private EnquiryAdapter adapter;
     private String trainNo;
-   private static LiveStatusBaseModel liveTrainRoute;
-
+    public static LiveStatusBaseModel liveTrainRoute;
 
 
     @BindView(R.id.enter_train)
@@ -70,17 +69,14 @@ public class LiveTrainSearchFragment extends RailAppFragment implements EnquiryA
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        adapter = new EnquiryAdapter(getContext(), getdata());
-        adapter.setClicklistener(this);
-        stationsRecyclerView.setAdapter(adapter);
-        stationsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
     }
 
     @Override
     public void itemclicked(int position) {
         Intent intent = new Intent(getActivity(), LiveTrainStatusActivity.class);
-      //  startActivity(intent);
-        intent.putExtra("Station",position);
+        //  startActivity(intent);
+        intent.putExtra("Station", position);
 
 
     }
@@ -89,7 +85,9 @@ public class LiveTrainSearchFragment extends RailAppFragment implements EnquiryA
 
 
         ArrayList<String> data = new ArrayList<>();
-         ArrayList<TrainRouteModel> trainRouteModel = new ArrayList<>();
+
+
+        ArrayList<TrainRouteModel> trainRouteModel = new ArrayList<>();
         for (int i = 0; i < liveTrainRoute.getRoute().length; i++) {
             trainRouteModel.add(liveTrainRoute.getRoute()[0]);
         }
@@ -105,14 +103,22 @@ public class LiveTrainSearchFragment extends RailAppFragment implements EnquiryA
         trainNo = enterTrain.getText().toString();
         if (Validations.checkTrainNo(trainNo)) {
             LiveTrainApiClient.liveTrainStatus(trainNo, "04-04-2018");
-            EventBus.getDefault().register(this);
 
-        }
-        else
+
+        } else
             Snackbar.make(getView(), "Train No Incorrect", Snackbar.LENGTH_SHORT).show();
     }
-    public static   void trainLiveModel(LiveStatusBaseModel trainRouteModel){
-        liveTrainRoute=trainRouteModel;
-       
+
+    public void trainLiveModel(LiveStatusBaseModel trainRouteModel) {
+
+        liveTrainRoute = trainRouteModel;
+        EventBus.getDefault().register(this);
+        adapter = new EnquiryAdapter(getContext(), getdata());
+        adapter.setClicklistener(this);
+        stationsRecyclerView.setAdapter(adapter);
+        stationsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+
     }
+
 }
