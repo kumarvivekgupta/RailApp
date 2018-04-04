@@ -98,7 +98,7 @@ public class EnquiryFragment extends RailAppFragment implements EnquiryAdapter.C
         Toast.makeText(getActivity(), "position" + position, Toast.LENGTH_LONG).show();
         if (position == 1) {
 
-            LiveTrainApiClient.liveTrainStatus("12566", "03-04-2018");
+            LiveTrainApiClient.liveTrainStatus("12566", "04-04-2018");
             Intent intent = new Intent(getActivity(), LiveTrainStatusActivity.class);
             startActivity(intent);
         }
