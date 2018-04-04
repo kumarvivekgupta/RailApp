@@ -36,4 +36,10 @@ public class Validations {
         else return false;
     }
 
+    public static boolean checkTrainNo(String trainNo) {
+        if (trainNo.length() == 5)
+            return true;
+        else return false;
+    }
+
 }

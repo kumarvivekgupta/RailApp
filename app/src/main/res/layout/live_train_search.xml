@@ -16,6 +16,7 @@
             android:orientation="horizontal">
 
             <EditText
+                android:id="@+id/enter_train"
                 android:layout_width="312dp"
                 android:layout_height="50dp"
                android:paddingLeft="10dp"
@@ -24,16 +25,19 @@
                 android:textColor="@color/colorLightGrey"
                 android:background="@color/white"/>
 
-            <ImageButton
+            <ImageView
+                android:id="@+id/search_live_train"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
+                android:background="@color/white"
+                android:paddingRight="10dp"
 
                 android:src="?android:attr/actionModeWebSearchDrawable" />
         </LinearLayout>
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/stationsRecyclerView"
+            android:id="@+id/stations_recycler_view"
             android:paddingTop="20dp">
 
         </android.support.v7.widget.RecyclerView>

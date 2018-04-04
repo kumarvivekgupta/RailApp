@@ -1,5 +1,6 @@
 package com.test.naimish.railapp.Fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -25,6 +26,7 @@ import butterknife.ButterKnife;
  */
 
 public class LiveTrainStatusFragment extends RailAppFragment {
+    private static int stationPosition;
 
     @BindView(R.id.starting_point_code)
     TextView startingPointCode;
@@ -81,12 +83,22 @@ public class LiveTrainStatusFragment extends RailAppFragment {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
 
+
+
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         EventBus.getDefault().register(this);
+
+
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+//        stationPosition=getActivity().getIntent().getExtras().getInt("Station");
     }
 
     @Subscribe
@@ -94,19 +106,19 @@ public class LiveTrainStatusFragment extends RailAppFragment {
         Log.i("status model", statusBaseModel.getPosition() + "");
        ArrayList <TrainRouteModel> trainRouteModel = new ArrayList<>();
         for (int i = 0; i < statusBaseModel.getRoute().length; i++) {
-            trainRouteModel.add( statusBaseModel.getRoute()[0]);
+            trainRouteModel.add( statusBaseModel.getRoute()[i]);
         }
-        trainSchArrival.setText(trainRouteModel.get(0).getSchduleArrival());
-        trainActualArrival.setText(trainRouteModel.get(0).getAccArr());
-        trainDelayOnArrival.setText(trainRouteModel.get(0).getLateMin());
-        trainSchDep.setText(trainRouteModel.get(0).getSchdep());
-        trainAchDep.setText(trainRouteModel.get(0).getActDep());
-        trainDepDelay.setText(trainRouteModel.get(0).getLateMin());
+        trainSchArrival.setText(trainRouteModel.get(stationPosition).getSchduleArrival());
+        trainActualArrival.setText(trainRouteModel.get(stationPosition).getAccArr());
+        trainDelayOnArrival.setText(trainRouteModel.get(stationPosition).getLateMin());
+        trainSchDep.setText(trainRouteModel.get(stationPosition).getSchdep());
+        trainAchDep.setText(trainRouteModel.get(stationPosition).getActDep());
+        trainDepDelay.setText(trainRouteModel.get(stationPosition).getLateMin());
         trainRunningDate.setText(statusBaseModel.getTrainStartDate());
-        startingPointCode.setText(trainRouteModel.get(0).getStation().getCode());
+        startingPointCode.setText(trainRouteModel.get(stationPosition).getStation().getCode());
         endPointCode.setText(trainRouteModel.get((trainRouteModel.size())-1).getStation().getCode());
         sourceCondition.setText(statusBaseModel.getPosition());
-        startingPointName.setText(trainRouteModel.get(0).getStation().getStationName());
+        startingPointName.setText(trainRouteModel.get(stationPosition).getStation().getStationName());
 
 
     }

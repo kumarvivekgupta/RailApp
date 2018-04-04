@@ -3,6 +3,7 @@ package com.test.naimish.railapp.Network.LiveTrainNetwork;
 import android.util.Log;
 
 import com.test.naimish.railapp.BuildConfig;
+import com.test.naimish.railapp.Fragments.LiveTrainSearchFragment;
 import com.test.naimish.railapp.Models.LiveTrainStatusModel.LiveStatusBaseModel;
 
 import org.greenrobot.eventbus.EventBus;
@@ -41,6 +42,7 @@ public class LiveTrainApiClient {
             @Override
             public void onResponse(Call<LiveStatusBaseModel> call, Response<LiveStatusBaseModel> response) {
                 EventBus.getDefault().post(response.body());
+               // LiveTrainSearchFragment.trainLiveModel(response.body());
             }
 
             @Override
