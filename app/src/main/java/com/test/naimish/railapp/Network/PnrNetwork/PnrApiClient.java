@@ -14,13 +14,13 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import static com.test.naimish.railapp.Utils.RailAppConstants.RAIL_BASE_URL;
+
 /**
  * Created by naimish on 2/20/2018.
  */
 
 public class PnrApiClient {
-    private static final String BASE_URL = "https://api.railwayapi.com/";
-
     public static void getPnrStatus(String pnrNo) {
         OkHttpClient.Builder okhttpbuilder = new OkHttpClient.Builder();
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
@@ -29,7 +29,7 @@ public class PnrApiClient {
             okhttpbuilder.addInterceptor(interceptor);
         }
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
+                .baseUrl(RAIL_BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(okhttpbuilder.build())
                 .build();

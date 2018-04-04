@@ -15,13 +15,13 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import static com.test.naimish.railapp.Utils.RailAppConstants.RAIL_BASE_URL;
+
 /**
  * Created by Vivek on 3/17/2018.
  */
 
 public class LiveTrainApiClient {
-    private static final String BASE_URL = "https://api.railwayapi.com/";
-
 
     public static void liveTrainStatus(String trainNo, String date) {
         OkHttpClient.Builder okhttpbuilder = new OkHttpClient.Builder();
@@ -31,7 +31,7 @@ public class LiveTrainApiClient {
             okhttpbuilder.addInterceptor(interceptor);
         }
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
+                .baseUrl(RAIL_BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(okhttpbuilder.build())
                 .build();

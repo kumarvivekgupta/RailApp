@@ -21,5 +21,7 @@ public interface RailAppConstants {
 
     //REST constants
 
-    String BASE_URL="https://fierce-forest-53940.herokuapp.com/";
+    String BASE_URL = "https://fierce-forest-53940.herokuapp.com/";
+    String RAIL_BASE_URL = "https://api.railwayapi.com/";
+
 }
