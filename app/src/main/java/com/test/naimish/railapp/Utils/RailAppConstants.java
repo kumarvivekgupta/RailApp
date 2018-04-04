@@ -19,4 +19,7 @@ public interface RailAppConstants {
     int REQUEST_GALLERY_CODE = 1;
     int REQUEST_CAMERA_CODE = 20;
 
+    //REST constants
+
+    String BASE_URL="https://fierce-forest-53940.herokuapp.com/";
 }

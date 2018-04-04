@@ -14,12 +14,13 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import static com.test.naimish.railapp.Utils.RailAppConstants.BASE_URL;
+
 /**
  * Created by naimish on 3/14/2018.
  */
 
 public class RegisterApiClient {
-    private static final String BASE_URL = "https://fierce-forest-53940.herokuapp.com/";
 
     private NetworkResponse networkResponse;
 

@@ -12,12 +12,13 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import static com.test.naimish.railapp.Utils.RailAppConstants.BASE_URL;
+
 /**
  * Created by Vivek on 3/16/2018.
  */
 
 public class LoginApiClient {
-    private static final String BASE_URL = "https://fierce-forest-53940.herokuapp.com/";
     private LoginResponse loginResponse;
 
     public LoginApiClient(LoginResponse loginResponse) {
