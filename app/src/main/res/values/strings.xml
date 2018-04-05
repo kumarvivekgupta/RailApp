@@ -25,5 +25,6 @@
     <string name="scheduled">Scheduled</string>
     <string name="actual_arrival">Act./Exp.*</string>
     <string name="delay">Delay</string>
+    <string name="settings_menu">Settings</string>
 
 </resources>
