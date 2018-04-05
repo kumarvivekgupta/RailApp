@@ -252,7 +252,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="time"
-                    android:id="@+id/train_ach_dep"
+                    android:id="@+id/train_sch_dep"
                     android:paddingBottom="5dp"
                     android:textAlignment="textEnd"
                     android:textSize="20dp"/>
@@ -289,7 +289,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="time"
-                    android:id="@+id/train_ach_dep_actual_dep"
+                    android:id="@+id/train_ach_dep"
                     android:paddingBottom="5dp"
                     android:textAlignment="textEnd"
                     android:textSize="20dp"/>
@@ -352,6 +352,7 @@
 
 
                 <TextView
+                    android:id="@+id/lastUpdated"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="time"
@@ -368,6 +369,7 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/sourceCondition"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:hint="Yet to start from Source"

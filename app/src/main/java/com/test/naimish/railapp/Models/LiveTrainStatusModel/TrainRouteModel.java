@@ -42,6 +42,11 @@ public class TrainRouteModel {
     @Expose
     private String mStatus;
 
+
+    @SerializedName("latemin")
+    @Expose
+    private String mLateMin;
+
     @SerializedName("station")
     @Expose
     private StationModel mStation;
@@ -81,6 +86,10 @@ public class TrainRouteModel {
     public String getSchduleArrival() {
         return mSchduleArrival;
     }
+    public String getLateMin() {
+        return mLateMin;
+    }
+
 
 
 }

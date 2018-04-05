@@ -16,6 +16,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Toast;
 
+import com.test.naimish.railapp.Activities.LiveTrainSearchActivity;
 import com.test.naimish.railapp.Activities.LiveTrainStatusActivity;
 import com.test.naimish.railapp.Network.LiveTrainNetwork.LiveTrainApiClient;
 import com.test.naimish.railapp.R;
@@ -97,9 +98,7 @@ public class EnquiryFragment extends RailAppFragment implements EnquiryAdapter.C
     public void itemclicked(int position) {
         Toast.makeText(getActivity(), "position" + position, Toast.LENGTH_LONG).show();
         if (position == 1) {
-
-            LiveTrainApiClient.liveTrainStatus("12566", "03-04-2018");
-            Intent intent = new Intent(getActivity(), LiveTrainStatusActivity.class);
+            Intent intent = new Intent(getActivity(), LiveTrainSearchActivity.class);
             startActivity(intent);
         }
 
