@@ -26,6 +26,8 @@
         <activity android:name=".Activities.SplashActivity"/>
         <activity android:name=".Activities.LiveTrainStatusActivity"/>
         <activity android:name=".Activities.LiveTrainSearchActivity"/>
+        <activity android:name=".Activities.SettingsActivity">
+        </activity>
     </application>
 
 </manifest>
