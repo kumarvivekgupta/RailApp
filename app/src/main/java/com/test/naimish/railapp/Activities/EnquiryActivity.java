@@ -48,7 +48,7 @@ public class EnquiryActivity extends SingleFragmentActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.settings_menu_item:
-                
+
         }
         return super.onOptionsItemSelected(item);
     }
