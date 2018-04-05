@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.test.naimish.railapp.Models.LiveTrainStatusModel.LiveStatusBaseModel;
 import com.test.naimish.railapp.Models.LiveTrainStatusModel.TrainRouteModel;
@@ -90,7 +91,8 @@ public class LiveTrainStatusFragment extends RailAppFragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        EventBus.getDefault().register(this);
+
+
 
 
     }
@@ -98,11 +100,15 @@ public class LiveTrainStatusFragment extends RailAppFragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        stationPosition=getActivity().getIntent().getExtras().getInt("Station");
+
     }
 
     @Subscribe
     public void getLiveStatus(LiveStatusBaseModel statusBaseModel) {
+        stationPosition=getActivity().getIntent().getExtras().getInt("Station");
+        Log.i("Msg",stationPosition+"");
+        Toast.makeText(getActivity(),stationPosition+"",Toast.LENGTH_LONG).show();
+        EventBus.getDefault().register(this);
         Log.i("status model", statusBaseModel.getPosition() + "");
        ArrayList <TrainRouteModel> trainRouteModel = new ArrayList<>();
         for (int i = 0; i < statusBaseModel.getRoute().length; i++) {
@@ -122,5 +128,6 @@ public class LiveTrainStatusFragment extends RailAppFragment {
 
 
     }
+
 
 }
