@@ -1,6 +1,9 @@
 package com.test.naimish.railapp.Activities;
 
 import android.support.v4.app.Fragment;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
 import com.test.naimish.railapp.Fragments.EnquiryFragment;
 import com.test.naimish.railapp.R;
@@ -11,7 +14,7 @@ import com.test.naimish.railapp.Utils.EnquiryAdapter;
  */
 
 
-public class EnquiryActivity extends SingleFragmentActivity implements EnquiryAdapter.Clicklistener {
+public class EnquiryActivity extends SingleFragmentActivity {
     private static final String TOOLBAR_TITLE = "ENQUIRY";
 
     @Override
@@ -35,7 +38,18 @@ public class EnquiryActivity extends SingleFragmentActivity implements EnquiryAd
     }
 
     @Override
-    public void itemclicked(int position) {
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.settings_menu, menu);
+        return true;
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.settings_menu_item:
+                
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
