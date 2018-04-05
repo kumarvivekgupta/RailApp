@@ -13,6 +13,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="80dp"
+            android:layout_marginLeft="15dp"
             android:orientation="horizontal">
 
             <EditText
@@ -22,7 +23,7 @@
                android:paddingLeft="10dp"
                 android:hint="Train No"
                 android:textSize="20dp"
-                android:textColor="@color/colorLightGrey"
+                android:textColor="@color/colorPrimaryDark"
                 android:background="@color/white"/>
 
             <ImageView

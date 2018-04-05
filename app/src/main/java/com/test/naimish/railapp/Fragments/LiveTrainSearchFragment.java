@@ -111,6 +111,7 @@ public class LiveTrainSearchFragment extends RailAppFragment implements EnquiryA
     public void trainLiveModel(LiveStatusBaseModel trainRouteModel) {
 
         liveTrainRoute = trainRouteModel;
+        EnquiryAdapter.getLayoutResourseId(R.layout.recycler_single_row_live_train);
         adapter = new EnquiryAdapter(getContext(), getdata());
         adapter.setClicklistener(this);
         stationsRecyclerView.setAdapter(adapter);

@@ -16,11 +16,12 @@ import java.util.ArrayList;
  * Created by Vivek on 3/23/2018.
  */
 
-public class EnquiryAdapter extends RecyclerView.Adapter<EnquiryAdapter.MyViewHolder> {
+public  class EnquiryAdapter extends RecyclerView.Adapter<EnquiryAdapter.MyViewHolder> {
     private LayoutInflater mLayoutInflater;
     private ArrayList<String> mListItems;
     private Context mContext;
     private Clicklistener mClickListener;
+    public static int layoutResource;
 
     public EnquiryAdapter(Context context, ArrayList<String> data) {
         this.mContext = context;
@@ -31,7 +32,7 @@ public class EnquiryAdapter extends RecyclerView.Adapter<EnquiryAdapter.MyViewHo
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = mLayoutInflater.inflate(R.layout.recycler_single_row, parent, false);
+        View view = mLayoutInflater.inflate(layoutResource, parent, false);
         MyViewHolder holder = new MyViewHolder(view);
         return holder;
     }
@@ -73,4 +74,9 @@ public class EnquiryAdapter extends RecyclerView.Adapter<EnquiryAdapter.MyViewHo
     public void setClicklistener(Clicklistener clicklistener) {
         this.mClickListener = clicklistener;
     }
+    public  static void   getLayoutResourseId(int layout) {
+        layoutResource=layout;
+    }
+
+
 }

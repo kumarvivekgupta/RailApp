@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v7.widget.CardView android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/tools"
+    android:elevation="8dp"
+    android:divider="@android:color/transparent"
+    android:dividerHeight="0.0px"
+    android:clipToPadding="false"
+    android:clipChildren="false"
+    app:cardCornerRadius="5dp"
+    card_view:cardElevation="10dp"
+    card_view:cardPreventCornerOverlap="false"
+    android:layout_margin="20dp"
+
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+
+
+            <com.test.naimish.railapp.Views.LightTextView
+                android:id="@+id/pnr_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:text="PNR ENQUIRY"
+                android:textColor="@color/black"
+                android:textSize="25dp"
+                />
+
+    </android.support.v7.widget.CardView>
