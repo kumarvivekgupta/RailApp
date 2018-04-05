@@ -47,7 +47,6 @@ public class LiveTrainApiClient {
 
             @Override
             public void onFailure(Call<LiveStatusBaseModel> call, Throwable t) {
-                Log.i("Error", "error");
             }
         });
 
