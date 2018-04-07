@@ -1,11 +1,14 @@
 package com.test.naimish.railapp.Fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.EditText;
 
+import com.test.naimish.railapp.Activities.SettingsActivity;
 import com.test.naimish.railapp.Models.ChangePassword;
 import com.test.naimish.railapp.Network.ChangePasswordNetwork.ChangePasswordApiClient;
 import com.test.naimish.railapp.R;
@@ -77,17 +80,20 @@ public class ChangePasswordFragment extends RailAppFragment implements ChangePas
         if (killSwtich)
             focusView.requestFocus();
         else {
-            String userid= SharedPreference.getPreference(getContext(), RailAppConstants.USERID_CONSTANT);
-            ChangePasswordApiClient apiClient=new ChangePasswordApiClient(this);
-            apiClient.changePassword(userid,mOldPassword,mNewPassword);
+            String userid = SharedPreference.getPreference(getContext(), RailAppConstants.USERID_CONSTANT);
+            ChangePasswordApiClient apiClient = new ChangePasswordApiClient(this);
+            apiClient.changePassword(userid, mOldPassword, mNewPassword);
         }
     }
 
 
     @Override
     public void onResponse(ChangePassword response) {
-        if(response.isSuccess()){
-            
+        if (response.isSuccess()) {
+            startActivity(new Intent(getActivity(), SettingsActivity.class));
+            Snackbar.make(getView(), R.string.change_password_msg, Snackbar.LENGTH_SHORT).show();
+        } else {
+            Snackbar.make(getView(), response.getMessage(), Snackbar.LENGTH_SHORT).show();
         }
 
     }

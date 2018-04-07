@@ -28,5 +28,6 @@
     <string name="settings_menu">Settings</string>
     <string name="change_picture">CHANGE PICTURE</string>
     <string name="save">SAVE</string>
+    <string name="change_password_msg">Password changed successfully!!</string>
 
 </resources>
