@@ -65,13 +65,13 @@ public class ChangePasswordFragment extends RailAppFragment implements ChangePas
             killSwtich = true;
             focusView = oldPassword;
         }
-        if (Validations.checkPassword(mOldPassword)) {
+        if (!Validations.checkPassword(mOldPassword)) {
             oldPassword.setError(getResources().getString(R.string.password_error));
             killSwtich = true;
             focusView = oldPassword;
 
         }
-        if (Validations.checkPassword(mNewPassword) || Validations.checkPassword(mNewPassword, mConfirmPassword)) {
+        if (!Validations.checkPassword(mNewPassword) || !Validations.checkPassword(mNewPassword, mConfirmPassword)) {
             newPassword.setError(getResources().getString(R.string.password_error));
             killSwtich = true;
             focusView = newPassword;
