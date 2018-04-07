@@ -15,8 +15,8 @@ import butterknife.OnClick;
 
 public class SettingsFragment extends RailAppFragment {
 
-    private String oldUserName;
-    private String oldUserEmail;
+    private String oldName;
+    private String oldEmail;
 
     @BindView(R.id.edit_text_name)
     EditText mUserName;
