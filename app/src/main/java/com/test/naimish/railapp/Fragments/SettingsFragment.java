@@ -55,5 +55,6 @@ public class SettingsFragment extends RailAppFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        ButterKnife.bind(this,view);
     }
 }
