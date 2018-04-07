@@ -24,6 +24,6 @@
     <string name="common_error">Something went wrong!!</string>
     <string name="scheduled">Scheduled</string>
     <string name="actual_arrival">Act./Exp.*</string>
-    <string name="delay">Delay</string>
+    <string name="delay">Delay in min</string>
 
 </resources>

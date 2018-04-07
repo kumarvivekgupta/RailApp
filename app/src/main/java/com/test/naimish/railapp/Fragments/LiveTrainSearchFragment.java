@@ -33,7 +33,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -51,6 +53,7 @@ public class LiveTrainSearchFragment extends RailAppFragment implements EnquiryA
     public LiveStatusBaseModel mliveTrainRoute;
     private List<String> categories;
     private String mdateTrain;
+    private ArrayList<TrainRouteModel> mtrainRouteModel;
 
 
     @BindView(R.id.enter_train)
@@ -113,8 +116,40 @@ public class LiveTrainSearchFragment extends RailAppFragment implements EnquiryA
     @Override
     public void itemclicked(int position) {
         Intent intent = new Intent(getActivity(), LiveTrainStatusActivity.class);
+
+
+//      Map<String,String>  stationInfo = new HashMap<String, String>();
+//        stationInfo.put("SchArr", mtrainRouteModel.get(position).getSchduleArrival());
+//        stationInfo.put("ActArr", mtrainRouteModel.get(position).getAccArr());
+//        stationInfo.put("ArrDelay",mtrainRouteModel.get(position).getLateMin());
+//        stationInfo.put("SchDep", mtrainRouteModel.get(position).getSchdep());
+//        stationInfo.put("ActDep", mtrainRouteModel.get(position).getActDep());
+//        stationInfo.put("DepDelay",mtrainRouteModel.get(position).getLateMin());
+//        Map<String,String> trainInfo=new HashMap<>();
+//        trainInfo.put("TrainStartStationCode",mtrainRouteModel.get(0).getStation().getCode());
+//        trainInfo.put("TrainEndStationCode",mtrainRouteModel.get(((mliveTrainRoute.getRoute().length)-1))
+//                .getStation().getCode());
+//        trainInfo.put("TrainStartStationName",mtrainRouteModel.get(0).getStation().getStationName());
+//        trainInfo.put("TrainEndStationCode",mtrainRouteModel.get(((mliveTrainRoute.getRoute().length)-1))
+//                .getStation().getCode());
+//        Map<String,String> trainPosition=new HashMap<>();
+//        trainPosition.put("Date",mliveTrainRoute.getTrainStartDate());
+//        trainPosition.put("Position",mliveTrainRoute.getPosition());
+//        intent.putExtra("StationInfo",stationInfo+"");
+        intent.putExtra("SchArr", mtrainRouteModel.get(position).getSchduleArrival());
+        intent.putExtra("ActArr", mtrainRouteModel.get(position).getAccArr());
+        intent.putExtra("ArrDelay", mtrainRouteModel.get(position).getLateMin());
+        intent.putExtra("SchDep", mtrainRouteModel.get(position).getSchdep());
+        intent.putExtra("ActDep", mtrainRouteModel.get(position).getActDep());
+        intent.putExtra("SchArr", mtrainRouteModel.get(position).getSchduleArrival());
+        intent.putExtra("TrainDate", mliveTrainRoute.getTrainStartDate());
+        intent.putExtra("Position", mliveTrainRoute.getPosition());
+        intent.putExtra("TrainStartStationCode", mtrainRouteModel.get(position).getStation().getCode());
+        intent.putExtra("TrainEndStationCode", mtrainRouteModel.get(((mliveTrainRoute.getRoute().length) - 1)).getStation().getCode());
+        intent.putExtra("TrainStartStationName", mtrainRouteModel.get(position).getStation().getStationName());
+        intent.putExtra("TrainEndStationName", mtrainRouteModel.get(((mliveTrainRoute.getRoute().length) - 1)).getStation().getStationName());
+
         startActivity(intent);
-        intent.putExtra("Station", position);
 
 
     }
@@ -125,13 +160,13 @@ public class LiveTrainSearchFragment extends RailAppFragment implements EnquiryA
         ArrayList<String> data = new ArrayList<>();
 
 
-        ArrayList<TrainRouteModel> trainRouteModel = new ArrayList<>();
+        mtrainRouteModel = new ArrayList<>();
         for (int i = 0; i < mliveTrainRoute.getRoute().length; i++) {
-            trainRouteModel.add(mliveTrainRoute.getRoute()[i]);
+            mtrainRouteModel.add(mliveTrainRoute.getRoute()[i]);
         }
 
         for (int i = 0; i < mliveTrainRoute.getRoute().length; i++) {
-            data.add(trainRouteModel.get(i).getStation().getStationName());
+            data.add(mtrainRouteModel.get(i).getStation().getStationName());
         }
         return data;
     }
