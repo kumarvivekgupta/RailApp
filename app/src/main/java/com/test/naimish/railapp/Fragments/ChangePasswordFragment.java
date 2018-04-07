@@ -6,7 +6,11 @@ import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.EditText;
 
+import com.test.naimish.railapp.Models.ChangePassword;
+import com.test.naimish.railapp.Network.ChangePasswordNetwork.ChangePasswordApiClient;
 import com.test.naimish.railapp.R;
+import com.test.naimish.railapp.Utils.RailAppConstants;
+import com.test.naimish.railapp.Utils.SharedPreference;
 import com.test.naimish.railapp.Utils.Validations;
 
 import butterknife.BindView;
@@ -17,10 +21,11 @@ import butterknife.OnClick;
  * Created by Vivek on 3/9/2018.
  */
 
-public class ChangePasswordFragment extends RailAppFragment {
+public class ChangePasswordFragment extends RailAppFragment implements ChangePasswordApiClient.ChangePasswordResponse {
     private String mOldPassword;
     private String mNewPassword;
     private String mConfirmPassword;
+
     @BindView(R.id.old_password)
     EditText oldPassword;
     @BindView(R.id.new_password)
@@ -71,11 +76,19 @@ public class ChangePasswordFragment extends RailAppFragment {
         }
         if (killSwtich)
             focusView.requestFocus();
-        else
-            setNewPassword();
+        else {
+            String userid= SharedPreference.getPreference(getContext(), RailAppConstants.USERID_CONSTANT);
+            ChangePasswordApiClient apiClient=new ChangePasswordApiClient(this);
+            apiClient.changePassword(userid,mOldPassword,mNewPassword);
+        }
     }
 
-    private static void setNewPassword() {
+
+    @Override
+    public void onResponse(ChangePassword response) {
+        if(response.isSuccess()){
+            
+        }
 
     }
 }
