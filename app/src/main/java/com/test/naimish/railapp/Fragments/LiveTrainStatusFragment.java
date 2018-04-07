@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.test.naimish.railapp.Models.LiveTrainStatusModel.LiveStatusBaseModel;
 import com.test.naimish.railapp.Models.LiveTrainStatusModel.TrainRouteModel;
@@ -17,6 +18,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -26,7 +28,7 @@ import butterknife.ButterKnife;
  */
 
 public class LiveTrainStatusFragment extends RailAppFragment {
-    private static int stationPosition;
+
 
     @BindView(R.id.starting_point_code)
     TextView startingPointCode;
@@ -84,13 +86,13 @@ public class LiveTrainStatusFragment extends RailAppFragment {
         ButterKnife.bind(this, view);
 
 
-
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        EventBus.getDefault().register(this);
+
+        getLiveStatus();
 
 
     }
@@ -98,29 +100,27 @@ public class LiveTrainStatusFragment extends RailAppFragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        stationPosition=getActivity().getIntent().getExtras().getInt("Station");
-    }
-
-    @Subscribe
-    public void getLiveStatus(LiveStatusBaseModel statusBaseModel) {
-        Log.i("status model", statusBaseModel.getPosition() + "");
-       ArrayList <TrainRouteModel> trainRouteModel = new ArrayList<>();
-        for (int i = 0; i < statusBaseModel.getRoute().length; i++) {
-            trainRouteModel.add( statusBaseModel.getRoute()[i]);
-        }
-        trainSchArrival.setText(trainRouteModel.get(stationPosition).getSchduleArrival());
-        trainActualArrival.setText(trainRouteModel.get(stationPosition).getAccArr());
-        trainDelayOnArrival.setText(trainRouteModel.get(stationPosition).getLateMin());
-        trainSchDep.setText(trainRouteModel.get(stationPosition).getSchdep());
-        trainAchDep.setText(trainRouteModel.get(stationPosition).getActDep());
-        trainDepDelay.setText(trainRouteModel.get(stationPosition).getLateMin());
-        trainRunningDate.setText(statusBaseModel.getTrainStartDate());
-        startingPointCode.setText(trainRouteModel.get(stationPosition).getStation().getCode());
-        endPointCode.setText(trainRouteModel.get((trainRouteModel.size())-1).getStation().getCode());
-        sourceCondition.setText(statusBaseModel.getPosition());
-        startingPointName.setText(trainRouteModel.get(stationPosition).getStation().getStationName());
 
 
     }
+
+
+    public void getLiveStatus() {
+        trainSchArrival.setText(getActivity().getIntent().getStringExtra("SchArr"));
+        trainActualArrival.setText(getActivity().getIntent().getStringExtra("ActArr"));
+        trainDelayOnArrival.setText(getActivity().getIntent().getStringExtra("ArrDelay"));
+        trainSchDep.setText(getActivity().getIntent().getStringExtra("SchDep"));
+        trainAchDep.setText(getActivity().getIntent().getStringExtra("ActDep"));
+        trainDepDelay.setText(getActivity().getIntent().getStringExtra("ArrDelay"));
+        trainRunningDate.setText(getActivity().getIntent().getStringExtra("TrainDate"));
+        startingPointCode.setText(getActivity().getIntent().getStringExtra("TrainStartStationCode"));
+        endPointCode.setText(getActivity().getIntent().getStringExtra("TrainEndStationCode"));
+        sourceCondition.setText(getActivity().getIntent().getStringExtra("Position"));
+        startingPointName.setText(getActivity().getIntent().getStringExtra("TrainStartStationName"));
+        endPointName.setText(getActivity().getIntent().getStringExtra("TrainEndStationName"));
+        Toast.makeText(getActivity(), getActivity().getIntent().getStringExtra("Position"), Toast.LENGTH_LONG).show();
+
+    }
+
 
 }

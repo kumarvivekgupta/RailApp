@@ -30,6 +30,7 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.internal.Utils;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 import static com.test.naimish.railapp.Utils.RailAppConstants.EMAIL_CONSTANT;
@@ -78,6 +79,7 @@ public class EnquiryFragment extends RailAppFragment implements EnquiryAdapter.C
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         checkPermission();
+        EnquiryAdapter.getLayoutResourseId(R.layout.recycler_single_row);
         adapter = new EnquiryAdapter(getContext(), getdata());
         adapter.setClicklistener(this);
         recycler.setAdapter(adapter);
@@ -131,4 +133,7 @@ public class EnquiryFragment extends RailAppFragment implements EnquiryAdapter.C
                 ;
         }
     }
+
+
+
 }
