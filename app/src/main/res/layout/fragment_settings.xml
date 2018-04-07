@@ -96,6 +96,7 @@
             android:text="@string/change_password"
             android:textColor="@color/fbutton_color_pomegranate"
             android:textSize="17sp"
+            android:clickable="true"
             />
 
         <Button
