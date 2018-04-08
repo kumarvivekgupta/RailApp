@@ -63,8 +63,8 @@ public class LiveTrainStatusFragment extends RailAppFragment {
     @BindView(R.id.train_delay_dep)
     TextView trainDepDelay;
 
-    @BindView(R.id.lastUpdated)
-    TextView lastUpdated;
+    @BindView(R.id.train_name)
+    TextView trainName;
 
     @BindView(R.id.sourceCondition)
     TextView sourceCondition;
@@ -118,7 +118,7 @@ public class LiveTrainStatusFragment extends RailAppFragment {
         sourceCondition.setText(getActivity().getIntent().getStringExtra("Position"));
         startingPointName.setText(getActivity().getIntent().getStringExtra("TrainStartStationName"));
         endPointName.setText(getActivity().getIntent().getStringExtra("TrainEndStationName"));
-        Toast.makeText(getActivity(), getActivity().getIntent().getStringExtra("Position"), Toast.LENGTH_LONG).show();
+        trainName.setText(getActivity().getIntent().getStringExtra("TrainName"));
 
     }
 

@@ -6,8 +6,10 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.test.naimish.railapp.Activities.EnquiryActivity;
 import com.test.naimish.railapp.Models.LoginModel.LoginUser;
@@ -92,6 +94,7 @@ public class LoginFragment extends RailAppFragment implements LoginApiClient.Log
 
     @Override
     public void onResponse(LoginUser response) {
+        Toast.makeText(getContext(),response.getmIsSuccess().toString(),Toast.LENGTH_LONG).show();
         if (response.getmIsSuccess()) {
             SharedPreference.setPreference(getContext(), TOKEN_CONSTANT, response.getToken());
             SharedPreference.setPreference(getContext(), USERID_CONSTANT, response.getmResponse().getmId());
@@ -101,6 +104,7 @@ public class LoginFragment extends RailAppFragment implements LoginApiClient.Log
             startActivity(new Intent(getActivity(), EnquiryActivity.class));
         } else {
             Snackbar.make(getView(), response.getmMessage(), Snackbar.LENGTH_SHORT).show();
+
         }
     }
 }
