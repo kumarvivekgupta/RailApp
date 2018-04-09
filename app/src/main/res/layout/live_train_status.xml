@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/rail">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/rail">
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
@@ -22,20 +22,35 @@
             android:orientation="vertical"
             android:padding="2dp">
 
+
+            <com.test.naimish.railapp.Views.LightTextView
+                android:id="@+id/train_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorfbblue"
+                android:padding="10dp"
+                android:paddingRight="5dp"
+                android:text="Name"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="20dp" />
+
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
 
-                <TextView
+
+                <com.test.naimish.railapp.Views.LightTextView
+                    android:id="@+id/starting_point_code"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@color/color_forest"
                     android:padding="10dp"
                     android:text="From"
-                    android:id="@+id/starting_point_code"
                     android:textColor="@color/white"
-                    android:textSize="25dp"/>
+                    android:textSize="18dp" />
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -43,7 +58,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="15dp"
                     android:rotation="270"
-                    app:srcCompat="@android:drawable/arrow_down_float"/>
+                    app:srcCompat="@android:drawable/arrow_down_float" />
 
                 <ImageView
                     android:layout_width="0dp"
@@ -52,7 +67,7 @@
                     android:layout_marginStart="5dp"
                     android:layout_marginTop="20dp"
                     android:layout_weight="1"
-                    android:background="@color/colorLightGrey"/>
+                    android:background="@color/colorLightGrey" />
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -60,17 +75,17 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="15dp"
                     android:rotation="270"
-                    app:srcCompat="@android:drawable/arrow_down_float"/>
+                    app:srcCompat="@android:drawable/arrow_down_float" />
 
-                <TextView
+                <com.test.naimish.railapp.Views.LightTextView
+                    android:id="@+id/end_point_code"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@color/color_forest"
                     android:padding="10dp"
                     android:text="To"
-                    android:id="@+id/end_point_code"
                     android:textColor="@color/white"
-                    android:textSize="25dp"/>
+                    android:textSize="18dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -79,47 +94,47 @@
                 android:background="@color/colorfbblue"
                 android:padding="5dp">
 
-                <TextView
+                <com.test.naimish.railapp.Views.LightTextView
+                    android:id="@+id/starting_point_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingLeft="5dp"
-                    android:paddingRight="20dp"
+                    android:paddingRight="40dp"
                     android:text="From Name"
-                    android:id="@+id/starting_point_name"
                     android:textColor="@color/white"
-                    android:textSize="18dp"/>
+                    android:textSize="15dp" />
 
-                <TextView
+                <com.test.naimish.railapp.Views.LightTextView
+                    android:id="@+id/end_point_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="120dp"
+                    android:paddingLeft="60dp"
                     android:paddingRight="5dp"
                     android:text="To Name"
-                    android:id="@+id/end_point_name"
                     android:textColor="@color/white"
-                    android:textSize="18dp"/>
+                    android:textSize="15dp" />
 
 
             </LinearLayout>
 
-            <TextView
+            <com.test.naimish.railapp.Views.LightTextView
+                android:id="@+id/train_running_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/color_forest"
                 android:gravity="center_horizontal"
                 android:padding="5dp"
                 android:text="date"
-                android:id="@+id/train_running_date"
                 android:textColor="@color/white"
-                android:textSize="25dp"/>
+                android:textSize="20dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <com.test.naimish.railapp.Views.BoldTextView
+                    android:layout_width="35dp"
                     android:layout_height="wrap_content"
                     android:background="@color/color_crimson"
                     android:paddingBottom="5dp"
@@ -127,25 +142,25 @@
                     android:paddingRight="10dp"
                     android:text="A"
                     android:textColor="@color/white"
-                    android:textSize="20dp"/>
+                    android:textSize="20dp" />
 
-                <TextView
+                <com.test.naimish.railapp.Views.LightTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingBottom="5dp"
                     android:paddingLeft="12dp"
                     android:paddingRight="20dp"
                     android:text="Scheduled"
-                    android:textSize="20dp"/>
+                    android:textSize="15dp" />
 
                 <TextView
+                    android:id="@+id/train_sch_arrival"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="time"
-                    android:id="@+id/train_sch_arrival"
                     android:paddingBottom="5dp"
                     android:textAlignment="textEnd"
-                    android:textSize="20dp"/>
+                    android:textSize="15dp" />
 
             </LinearLayout>
 
@@ -154,34 +169,34 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                <com.test.naimish.railapp.Views.BoldTextView
+                    android:layout_width="35dp"
+                    android:layout_height="wrap_content"
                     android:background="@color/color_crimson"
                     android:paddingBottom="5dp"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:text="R"
                     android:textColor="@color/white"
-                    android:textSize="20dp"/>
+                    android:textSize="20dp" />
 
-                <TextView
+                <com.test.naimish.railapp.Views.LightTextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:paddingBottom="5dp"
                     android:paddingLeft="12dp"
                     android:paddingRight="20dp"
                     android:text="@string/actual_arrival"
-                    android:textSize="20dp"/>
+                    android:textSize="15dp" />
 
                 <TextView
+                    android:id="@+id/train_actual_arrival"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="time"
-                    android:id="@+id/train_actual_arrival"
                     android:paddingBottom="5dp"
                     android:textAlignment="textEnd"
-                    android:textSize="20dp"/>
+                    android:textSize="15dp" />
 
 
             </LinearLayout>
@@ -191,34 +206,34 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                <com.test.naimish.railapp.Views.BoldTextView
+                    android:layout_width="35dp"
+                    android:layout_height="wrap_content"
                     android:background="@color/color_crimson"
                     android:paddingBottom="5dp"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:text="R"
                     android:textColor="@color/white"
-                    android:textSize="20dp"/>
+                    android:textSize="20dp" />
 
-                <TextView
+                <com.test.naimish.railapp.Views.LightTextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:paddingBottom="5dp"
                     android:paddingLeft="12dp"
                     android:paddingRight="20dp"
-                    android:text= "@string/delay"
-                    android:textSize="20dp"/>
+                    android:text="@string/delay"
+                    android:textSize="15dp" />
 
                 <TextView
+                    android:id="@+id/train_delay_on_arr"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="time"
-                    android:id="@+id/train_delay_on_arr"
                     android:paddingBottom="5dp"
                     android:textAlignment="textEnd"
-                    android:textSize="20dp"/>
+                    android:textSize="15dp" />
 
 
             </LinearLayout>
@@ -228,34 +243,34 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                <com.test.naimish.railapp.Views.BoldTextView
+                    android:layout_width="35dp"
+                    android:layout_height="wrap_content"
                     android:background="@color/color_green"
                     android:paddingBottom="5dp"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:text="D"
                     android:textColor="@color/white"
-                    android:textSize="20dp"/>
+                    android:textSize="20dp" />
 
-                <TextView
+                <com.test.naimish.railapp.Views.LightTextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:paddingBottom="5dp"
                     android:paddingLeft="12dp"
                     android:paddingRight="20dp"
                     android:text="Scheduled"
-                    android:textSize="20dp"/>
+                    android:textSize="15dp" />
 
                 <TextView
+                    android:id="@+id/train_sch_dep"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="time"
-                    android:id="@+id/train_sch_dep"
                     android:paddingBottom="5dp"
                     android:textAlignment="textEnd"
-                    android:textSize="20dp"/>
+                    android:textSize="15dp" />
 
 
             </LinearLayout>
@@ -265,34 +280,34 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                <com.test.naimish.railapp.Views.BoldTextView
+                    android:layout_width="35dp"
+                    android:layout_height="wrap_content"
                     android:background="@color/color_green"
                     android:paddingBottom="5dp"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:text="E"
                     android:textColor="@color/white"
-                    android:textSize="20dp"/>
+                    android:textSize="20dp" />
 
-                <TextView
+                <com.test.naimish.railapp.Views.LightTextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:paddingBottom="5dp"
                     android:paddingLeft="12dp"
                     android:paddingRight="20dp"
                     android:text="@string/actual_arrival"
-                    android:textSize="20dp"/>
+                    android:textSize="15dp" />
 
                 <TextView
+                    android:id="@+id/train_ach_dep"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="time"
-                    android:id="@+id/train_ach_dep"
                     android:paddingBottom="5dp"
                     android:textAlignment="textEnd"
-                    android:textSize="20dp"/>
+                    android:textSize="15dp" />
 
 
             </LinearLayout>
@@ -302,34 +317,34 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                <com.test.naimish.railapp.Views.BoldTextView
+                    android:layout_width="35dp"
+                    android:layout_height="wrap_content"
                     android:background="@color/color_green"
                     android:paddingBottom="5dp"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:text="P"
                     android:textColor="@color/white"
-                    android:textSize="20dp"/>
+                    android:textSize="20dp" />
 
-                <TextView
+                <com.test.naimish.railapp.Views.LightTextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:paddingBottom="5dp"
                     android:paddingLeft="12dp"
                     android:paddingRight="20dp"
-                    android:text= "@string/delay"
-                    android:textSize="20dp"/>
+                    android:text="@string/delay"
+                    android:textSize="15dp" />
 
                 <TextView
+                    android:id="@+id/train_delay_dep"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="time"
-                    android:id="@+id/train_delay_dep"
                     android:paddingBottom="5dp"
                     android:textAlignment="textEnd"
-                    android:textSize="20dp"/>
+                    android:textSize="15dp" />
 
 
             </LinearLayout>
@@ -339,7 +354,7 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
 
-                <TextView
+                <com.test.naimish.railapp.Views.LightTextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:background="@color/colorfbblue"
@@ -348,17 +363,7 @@
                     android:paddingRight="20dp"
                     android:text="LastUpdate"
                     android:textColor="@color/white"
-                    android:textSize="20dp"/>
-
-
-                <TextView
-                    android:id="@+id/lastUpdated"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="time"
-                    android:paddingBottom="5dp"
-                    android:textAlignment="textEnd"
-                    android:textSize="20dp"/>
+                    android:textSize="15dp" />
 
 
             </LinearLayout>
@@ -368,16 +373,16 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
 
-                <TextView
+                <com.test.naimish.railapp.Views.LightTextView
                     android:id="@+id/sourceCondition"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:hint="Yet to start from Source"
                     android:paddingBottom="5dp"
                     android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:textColor="@color/white"
-                    android:textSize="20dp"/>
+
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="15dp" />
 
             </LinearLayout>
         </LinearLayout>
@@ -385,4 +390,4 @@
 
     </android.support.v7.widget.CardView>
 
-</RelativeLayout>
+</ScrollView>

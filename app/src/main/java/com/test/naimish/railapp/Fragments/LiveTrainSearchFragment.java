@@ -148,6 +148,7 @@ public class LiveTrainSearchFragment extends RailAppFragment implements EnquiryA
         intent.putExtra("TrainEndStationCode", mtrainRouteModel.get(((mliveTrainRoute.getRoute().length) - 1)).getStation().getCode());
         intent.putExtra("TrainStartStationName", mtrainRouteModel.get(position).getStation().getStationName());
         intent.putExtra("TrainEndStationName", mtrainRouteModel.get(((mliveTrainRoute.getRoute().length) - 1)).getStation().getStationName());
+        intent.putExtra("TrainName", mliveTrainRoute.getTrainInfo().getTrainName());
 
         startActivity(intent);
 

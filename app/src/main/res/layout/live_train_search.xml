@@ -18,7 +18,7 @@
 
             <EditText
                 android:id="@+id/enter_train"
-                android:layout_width="312dp"
+                android:layout_width="305dp"
                 android:layout_height="50dp"
                 android:background="@color/white"
                 android:hint="Train No"
@@ -38,10 +38,10 @@
 
        <Spinner
            android:id="@+id/date_spinner"
-           android:layout_width="330dp"
+           android:layout_width="337dp"
            android:layout_height="50dp"
            android:paddingRight="10dp"
-           android:layout_marginLeft="18dp"
+           android:layout_marginLeft="11dp"
            android:layout_marginTop="10dp"
            android:background="@color/white"
            ></Spinner>

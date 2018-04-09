@@ -29,7 +29,7 @@ public class LoginUser {
     @Expose
     private Response mResponse;
 
-    @SerializedName("msg")
+    @SerializedName("message")
     @Expose
     private String mMessage;
 

@@ -10,16 +10,16 @@ import com.test.naimish.railapp.R;
  */
 
 public class ChangePasswordActivity extends SingleFragmentActivity {
-    private static final String TOOLBAR_TITLE = "CHANGE PASSWORD";
+
 
     @Override
     protected boolean showToolbar() {
-        return true;
+        return false;
     }
 
     @Override
     protected String getToolbarTitle() {
-        return TOOLBAR_TITLE;
+        return null;
     }
 
     @Override
