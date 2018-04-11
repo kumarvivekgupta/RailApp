@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/rail">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="85dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <com.test.naimish.railapp.Views.LightTextView
+                        android:id="@+id/trainNo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/colorfbblue"
+                        android:gravity="center"
+                        android:text="Train name"
+                        android:textColor="@color/white"
+                        android:padding="5dp"
+                        android:textSize="20dp" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="5dp">
+
+                    <com.test.naimish.railapp.Views.LightTextView
+                        android:id="@+id/fromStation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/color_forest"
+                        android:text="from"
+                        android:textColor="@color/white"
+                        android:padding="10dp"
+                        android:textSize="15dp" />
+
+                    <ImageView
+                        android:layout_width="225dp"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="17dp"
+
+                        android:background="@color/colorLightGrey" />
+
+                    <com.test.naimish.railapp.Views.LightTextView
+                        android:id="@+id/toStation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:background="@color/color_forest"
+                        android:text="to.."
+                        android:textColor="@color/white"
+                        android:padding="10dp"
+                        android:textSize="15dp" />
+                </LinearLayout>
+
+                <com.test.naimish.railapp.Views.LightTextView
+                    android:id="@+id/dateTravel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorfbblue"
+                    android:gravity="center"
+                    android:text="date"
+                    android:textColor="@color/white"
+                    android:padding="5dp"
+                    android:textSize="20dp" />
+                <com.test.naimish.railapp.Views.BoldTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Passenger Details"
+                    android:background="@color/color_forest"
+                    android:textColor="@color/white"
+                    android:padding="5dp"
+                    android:textSize="20dp"
+                    android:gravity="center"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="5dp"
+                    android:background="@color/colorfbblue">
+                    <com.test.naimish.railapp.Views.LightTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Passenger"
+                        android:textColor="@color/white"
+                        android:textSize="15dp"/>
+                    <com.test.naimish.railapp.Views.LightTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Booking Status"
+                        android:layout_marginLeft="35dp"
+                        android:textColor="@color/white"
+                        android:textSize="15dp"/>
+                    <com.test.naimish.railapp.Views.LightTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Current Status"
+                        android:textColor="@color/white"
+                        android:layout_marginLeft="30dp"
+                        android:textSize="15dp"/>
+
+
+
+
+
+
+
+
+
+                </LinearLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp">
+
+                </android.support.v7.widget.RecyclerView>
+
+                <com.test.naimish.railapp.Views.LightTextView
+                    android:id="@+id/chartStatus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/color_forest"
+                    android:gravity="center_horizontal"
+                    android:text="Chart Not Prepared or Prepared"
+                    android:padding="5dp"
+                    android:textColor="@color/white"
+                    android:textSize="15dp" />
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+
+</RelativeLayout>
