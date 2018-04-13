@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.test.naimish.railapp.Activities.LiveTrainSearchActivity;
 import com.test.naimish.railapp.Activities.LiveTrainStatusActivity;
+import com.test.naimish.railapp.Activities.PnrEnquiryActivity;
 import com.test.naimish.railapp.Network.LiveTrainNetwork.LiveTrainApiClient;
 import com.test.naimish.railapp.R;
 import com.test.naimish.railapp.Utils.SharedPreference;
@@ -99,7 +100,11 @@ public class EnquiryFragment extends RailAppFragment implements EnquiryAdapter.C
     @Override
     public void itemclicked(int position) {
         Toast.makeText(getActivity(), "position" + position, Toast.LENGTH_LONG).show();
-        if (position == 1) {
+        if (position == 0) {
+            Intent intent = new Intent(getActivity(), PnrEnquiryActivity.class);
+            startActivity(intent);
+        }
+        else {
             Intent intent = new Intent(getActivity(), LiveTrainSearchActivity.class);
             startActivity(intent);
         }
@@ -133,7 +138,6 @@ public class EnquiryFragment extends RailAppFragment implements EnquiryAdapter.C
                 ;
         }
     }
-
 
 
 }
