@@ -1,5 +1,6 @@
 package com.test.naimish.railapp.Models;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 /**
@@ -8,18 +9,23 @@ import com.google.gson.annotations.SerializedName;
 
 public class RegisterUser {
     @SerializedName("name")
+    @Expose
     private String mName;
 
     @SerializedName("email")
+    @Expose
     private String mEmail;
 
     @SerializedName("password")
+    @Expose
     private String mPassword;
 
     @SerializedName("success")
+    @Expose
     private Boolean mIsSuccess;
 
     @SerializedName("msg")
+    @Expose
     private String mMessagge;
 
     public RegisterUser(String mName, String mPassword, String mEmail) {
