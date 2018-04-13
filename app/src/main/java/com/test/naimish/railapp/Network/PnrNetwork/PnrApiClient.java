@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 import com.test.naimish.railapp.BuildConfig;
+import com.test.naimish.railapp.Fragments.PnrEnquiryFragment;
 import com.test.naimish.railapp.Models.PnrModel.BaseModel;
 
 import okhttp3.OkHttpClient;
@@ -41,6 +42,8 @@ public class PnrApiClient {
             @Override
             public void onResponse(Call<BaseModel> call, Response<BaseModel> response) {
                 Log.i("Response", gson.toJson(response.body()));
+                PnrEnquiryFragment pnrEnquiryFragment=new PnrEnquiryFragment();
+                pnrEnquiryFragment.pnrDisplay(response.body());
             }
 
             @Override
