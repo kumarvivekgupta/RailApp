@@ -38,7 +38,7 @@ public class ChangePasswordFragment extends RailAppFragment implements ChangePas
 
     @Override
     protected int getResourceId() {
-        return R.layout.fragment_forgot_password;
+        return R.layout.fragment_change_password;
     }
 
     public static Fragment newInstance() {
