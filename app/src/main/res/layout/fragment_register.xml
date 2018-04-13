@@ -53,6 +53,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:maxLines="1"
+                    android:fontFamily="@font/ubuntu_medium"
                     android:text="@string/signup_with_facebook"
                     android:textColor="@color/white"
                     android:textSize="15sp"/>
@@ -79,7 +80,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10sp"
-                    android:text="@string/or_text"/>
+                    android:text="@string/or_text"
+                    android:fontFamily="@font/ubuntu_light"/>
 
                 <ImageView
                     android:layout_width="0dp"
@@ -109,6 +111,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="textEmailAddress"
                     android:maxLines="2"
+                    android:fontFamily="@font/ubuntu_light"
                     android:textSize="20sp"/>
 
                 <com.test.naimish.railapp.Views.LightTextView
@@ -125,6 +128,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPersonName"
+                    android:fontFamily="@font/ubuntu_light"
                     android:textSize="20sp"/>
 
                 <com.test.naimish.railapp.Views.LightTextView
@@ -167,6 +171,7 @@
                     android:layout_marginTop="15sp"
                     android:background="@drawable/signup_buttons_background"
                     android:text="@string/submit_text"
+                    android:fontFamily="@font/ubuntu_medium"
                     android:textColor="@color/fbutton_color_peter_river"/>
 
             </LinearLayout>
