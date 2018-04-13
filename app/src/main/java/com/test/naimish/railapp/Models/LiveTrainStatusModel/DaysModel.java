@@ -8,6 +8,7 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class DaysModel {
+
     @SerializedName("runs")
     @Expose
     private char trainRuns;

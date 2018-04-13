@@ -8,6 +8,7 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class StationModel {
+
     @SerializedName("code")
     @Expose
     private String stationCode;

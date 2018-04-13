@@ -38,7 +38,8 @@ public class RegisterUser {
     public Boolean getResponse() {
         return this.mIsSuccess;
     }
-    public String getMessage(){
+
+    public String getMessage() {
         return this.mMessagge;
     }
 
