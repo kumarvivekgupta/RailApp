@@ -16,7 +16,7 @@
     <string name="login_with_facebook">Login with Facebook</string>
     <string name="signup_with_facebook">Sign Up with Facebook</string>
     <string name="or_text">OR</string>
-    <string name="change_password">Change Password</string>
+    <string name="change_password"><u>Change Password</u></string>
     <string name="user_already_registered">User Already Registered</string>
     <string name="select_any_one">Select Any One</string>
     <string name="camera">Take a Picture</string>
@@ -28,6 +28,10 @@
     <string name="settings_menu">Settings</string>
     <string name="change_picture">CHANGE PICTURE</string>
     <string name="save">SAVE</string>
+    <string name="old_password">Old Password</string>
+    <string name="new_password">New Password</string>
+    <string name="confirm_new_password">Confirm New Password</string>
+    <string name="reset">RESET</string>
     <string name="change_password_msg">Password changed successfully!!</string>
 
 </resources>
