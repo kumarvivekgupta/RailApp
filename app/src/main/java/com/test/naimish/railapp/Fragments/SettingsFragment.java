@@ -19,14 +19,11 @@ import butterknife.OnClick;
 
 public class SettingsFragment extends RailAppFragment {
 
-    private String oldName;
-    private String oldEmail;
+    private String mOldName;
+    private String mNewName;
 
     @BindView(R.id.edit_text_name)
     EditText mUserName;
-
-    @BindView(R.id.edit_text_email)
-    EditText mUserEmail;
 
     @OnClick(R.id.change_password)
     public void changePassword() {
@@ -40,6 +37,7 @@ public class SettingsFragment extends RailAppFragment {
 
     @OnClick(R.id.save_settings)
     public void saveSettings() {
+        String
 
     }
 

@@ -12,6 +12,7 @@ import android.view.ViewGroup;
  */
 
 public abstract class RailAppFragment extends Fragment {
+
     protected abstract int getResourceId();
 
     @Nullable
