@@ -28,6 +28,11 @@ public class RegisterActivity extends SingleFragmentActivity {
     }
 
     @Override
+    protected boolean showBackButton() {
+        return true;
+    }
+
+    @Override
     protected Fragment getFragmentInstance() {
         return RegisterFragment.newInstance();
     }

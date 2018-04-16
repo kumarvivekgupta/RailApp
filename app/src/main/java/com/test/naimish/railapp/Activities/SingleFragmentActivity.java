@@ -31,6 +31,8 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
 
     protected abstract int getToolbarColor();
 
+    protected abstract boolean showBackButton();
+
     protected abstract Fragment getFragmentInstance();
 
     protected int getLayoutResourseId() {
@@ -55,6 +57,14 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
             }
         } else {
             mToolbar.setVisibility(View.INVISIBLE);
+        }
+        if(showBackButton()){
+            setSupportActionBar(mToolbar);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+        else {
+            setSupportActionBar(mToolbar);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         }
         AddFragment.addFragment(getFragmentInstance(), this, R.id.container);
 

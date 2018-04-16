@@ -34,6 +34,11 @@ public class EnquiryActivity extends SingleFragmentActivity {
     }
 
     @Override
+    protected boolean showBackButton() {
+        return false;
+    }
+
+    @Override
     protected Fragment getFragmentInstance() {
         return EnquiryFragment.newInstance();
     }

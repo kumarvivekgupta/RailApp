@@ -28,6 +28,11 @@ public class LoginActivity extends SingleFragmentActivity {
     }
 
     @Override
+    protected boolean showBackButton() {
+        return true;
+    }
+
+    @Override
     protected Fragment getFragmentInstance() {
         return LoginFragment.newInstance();
     }

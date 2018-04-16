@@ -22,6 +22,11 @@ public class SplashActivity extends SingleFragmentActivity {
     }
 
     @Override
+    protected boolean showBackButton() {
+        return false;
+    }
+
+    @Override
     protected Fragment getFragmentInstance() {
         return SplashFragment.newInstance();
     }
