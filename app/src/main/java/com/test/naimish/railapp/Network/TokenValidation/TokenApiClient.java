@@ -45,11 +45,15 @@ public class TokenApiClient {
         final Gson gson = new Gson();
         TokenApiInterface tokenApiInterface = retrofit.create(TokenApiInterface.class);
         Call<AuthorizationResponse> call = tokenApiInterface.getAutherization(mToken);
-        call.enqueue(new Callback<AuthorizationResponse> () {
+        call.enqueue(new Callback<AuthorizationResponse>() {
             @Override
             public void onResponse(Call<AuthorizationResponse> call, Response<AuthorizationResponse> response) {
                 Log.i("Response", gson.toJson(response.body()));
-                tokenResponse.onResponse(response.body());
+                if (response.body() != null)
+                    tokenResponse.onResponse(response.body());
+                else
+                    tokenResponse.onNullResponse();
+
             }
 
             @Override
@@ -62,11 +66,11 @@ public class TokenApiClient {
 
     public interface TokenResponse {
         void onResponse(AuthorizationResponse data);
+
+        void onNullResponse();
+
         void onFailure();
     }
-
-
-
 
 
 }

@@ -30,6 +30,7 @@
         android:text="@string/reload"
         android:textColor="@color/white"
         android:textSize="20sp"
+        android:visibility="invisible"
         android:fontFamily="@font/ubuntu_medium"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

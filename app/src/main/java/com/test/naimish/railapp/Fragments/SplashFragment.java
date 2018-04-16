@@ -75,11 +75,13 @@ public class SplashFragment extends RailAppFragment implements TokenApiClient.To
             startActivity(new Intent(getActivity(), EnquiryActivity.class));
             getActivity().finish();
         }
-        else{
-            startActivity(new Intent(getActivity(), LandingActivity.class));
-            getActivity().finish();
-        }
 
+    }
+
+    @Override
+    public void onNullResponse() {
+        startActivity(new Intent(getActivity(), LandingActivity.class));
+        getActivity().finish();
     }
 
     @Override
