@@ -35,5 +35,6 @@
     <string name="change_password_msg">Password changed successfully!!</string>
     <string name="settings_unchanged_message">Same details as previous one!!</string>
     <string name="settings_success_message">Profile updated successfully.</string>
+    <string name="reload"><u>Reload</u></string>
 
 </resources>

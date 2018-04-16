@@ -55,13 +55,18 @@ public class TokenApiClient {
             @Override
             public void onFailure(Call<AuthorizationResponse> call, Throwable t) {
                 Log.i("Error", t.getMessage());
+                tokenResponse.onFailure();
             }
         });
     }
 
     public interface TokenResponse {
         void onResponse(AuthorizationResponse data);
+        void onFailure();
     }
+
+
+
 
 
 }

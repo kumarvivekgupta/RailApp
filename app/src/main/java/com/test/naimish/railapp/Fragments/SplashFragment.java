@@ -3,9 +3,11 @@ package com.test.naimish.railapp.Fragments;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.test.naimish.railapp.Activities.EnquiryActivity;
 import com.test.naimish.railapp.Activities.LandingActivity;
@@ -17,6 +19,7 @@ import com.test.naimish.railapp.Utils.SharedPreference;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by naimish on 4/1/2018.
@@ -26,6 +29,15 @@ public class SplashFragment extends RailAppFragment implements TokenApiClient.To
 
     @BindView(R.id.splash_progress_bar)
     ProgressBar progressBar;
+
+    @BindView(R.id.reload_text)
+    TextView reload;
+
+    @OnClick(R.id.reload_text)
+    public void onReload(){
+        reload.setVisibility(View.INVISIBLE);
+        validateUser();
+    }
 
     private String mToken;
     @Override
@@ -47,8 +59,12 @@ public class SplashFragment extends RailAppFragment implements TokenApiClient.To
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        progressBar.setVisibility(View.VISIBLE);
         mToken= SharedPreference.getPreference(getContext(), RailAppConstants.TOKEN_CONSTANT);
+        validateUser();
+    }
+
+    private void validateUser(){
+        progressBar.setVisibility(View.VISIBLE);
         TokenApiClient apiClient=new TokenApiClient(this);
         apiClient.validateUser(mToken);
     }
@@ -64,5 +80,12 @@ public class SplashFragment extends RailAppFragment implements TokenApiClient.To
             getActivity().finish();
         }
 
+    }
+
+    @Override
+    public void onFailure() {
+        Snackbar.make(getView(),R.string.common_error,Snackbar.LENGTH_SHORT).show();
+        progressBar.setVisibility(View.INVISIBLE);
+        reload.setVisibility(View.VISIBLE);
     }
 }
