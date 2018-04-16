@@ -46,6 +46,8 @@ import static com.test.naimish.railapp.Utils.RailAppConstants.PERMISSION_REQUEST
 public class EnquiryFragment extends RailAppFragment implements EnquiryAdapter.Clicklistener {
 
     private EnquiryAdapter adapter;
+    private int flag=0;
+
 
     @BindView(R.id.user_pic)
     CircleImageView userPic;
@@ -74,6 +76,8 @@ public class EnquiryFragment extends RailAppFragment implements EnquiryAdapter.C
     protected int getResourceId() {
         return R.layout.fragment_enquiry;
     }
+
+
 
 
     @Override
@@ -110,6 +114,8 @@ public class EnquiryFragment extends RailAppFragment implements EnquiryAdapter.C
         }
 
     }
+
+
 
     @OnClick(R.id.user_pic)
     public void userImage() {

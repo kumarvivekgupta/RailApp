@@ -1,6 +1,8 @@
 package com.test.naimish.railapp.Activities;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
+import android.view.MenuItem;
 
 import com.test.naimish.railapp.Fragments.PnrEnquiryFragment;
 import com.test.naimish.railapp.R;
@@ -35,5 +37,12 @@ public class PnrEnquiryActivity extends SingleFragmentActivity {
     @Override
     protected Fragment getFragmentInstance() {
         return PnrEnquiryFragment.newInstance();
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId()==android.R.id.home){
+            startActivity(new Intent(this, EnquiryActivity.class));
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
