@@ -53,7 +53,6 @@ public class TokenApiClient {
                     tokenResponse.onResponse(response.body());
                 else
                     tokenResponse.onNullResponse();
-
             }
 
             @Override

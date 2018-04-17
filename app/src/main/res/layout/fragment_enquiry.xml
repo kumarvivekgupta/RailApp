@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.8"
-        android:background="@drawable/home_page_small"
+        android:background="@drawable/home_page"
         android:orientation="vertical">
 
         <de.hdodenhof.circleimageview.CircleImageView
@@ -54,12 +54,4 @@
         android:layout_weight="1"
         />
 
-    <!--<Button-->
-    <!--android:id="@+id/live_train_status"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="0dp"-->
-    <!--android:layout_weight="1.2"-->
-    <!--android:background="@drawable/trainlivestatus"-->
-
-    <!--/>-->
 </LinearLayout>
