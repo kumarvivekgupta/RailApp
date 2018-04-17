@@ -85,8 +85,9 @@ public class EnquiryActivity extends SingleFragmentActivity {
             case R.id.logout_menu_item:
                 logout();
                 break;
-            return super.onOptionsItemSelected(item);
+
         }
+        return super.onOptionsItemSelected(item);
     }
 
     private void logout() {
