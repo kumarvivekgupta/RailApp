@@ -36,5 +36,5 @@
     <string name="settings_unchanged_message">Same details as previous one!!</string>
     <string name="settings_success_message">Profile updated successfully.</string>
     <string name="reload"><u>Reload</u></string>
-
+    <string name="logout_user">Logout</string>
 </resources>
