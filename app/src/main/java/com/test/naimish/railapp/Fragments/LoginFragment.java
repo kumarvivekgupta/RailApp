@@ -102,6 +102,7 @@ public class LoginFragment extends RailAppFragment implements LoginApiClient.Log
             SharedPreference.setPreference(getContext(), EMAIL_CONSTANT, response.getmResponse().getmEmail());
             getActivity().finish();
             startActivity(new Intent(getActivity(), EnquiryActivity.class));
+            getActivity().finish();
         } else {
             Snackbar.make(getView(), response.getmMessage(), Snackbar.LENGTH_SHORT).show();
 

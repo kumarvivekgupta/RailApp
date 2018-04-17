@@ -25,6 +25,11 @@ public class LiveTrainStatusActivity extends SingleFragmentActivity {
     }
 
     @Override
+    protected boolean showBackButton() {
+        return false;
+    }
+
+    @Override
     protected Fragment getFragmentInstance() {
         return  LiveTrainStatusFragment.newInstance();
     }

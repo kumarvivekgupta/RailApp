@@ -28,6 +28,7 @@ public class ChangePasswordFragment extends RailAppFragment implements ChangePas
     private String mOldPassword;
     private String mNewPassword;
     private String mConfirmPassword;
+    private int flag=0;
 
     @BindView(R.id.old_password)
     EditText oldPassword;
@@ -40,6 +41,7 @@ public class ChangePasswordFragment extends RailAppFragment implements ChangePas
     protected int getResourceId() {
         return R.layout.fragment_change_password;
     }
+
 
     public static Fragment newInstance() {
         return new ChangePasswordFragment();

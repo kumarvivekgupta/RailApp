@@ -22,6 +22,11 @@ public class LandingActivity extends SingleFragmentActivity {
     }
 
     @Override
+    protected boolean showBackButton() {
+        return true;
+    }
+
+    @Override
     protected Fragment getFragmentInstance() {
         return LandingFragment.newInstance();
     }

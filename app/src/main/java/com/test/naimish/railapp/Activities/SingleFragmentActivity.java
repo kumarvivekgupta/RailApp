@@ -5,8 +5,10 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import com.test.naimish.railapp.R;
 import com.test.naimish.railapp.Utils.AddFragment;
@@ -31,7 +33,11 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
 
     protected abstract int getToolbarColor();
 
+    protected abstract boolean showBackButton();
+
     protected abstract Fragment getFragmentInstance();
+
+
 
     protected int getLayoutResourseId() {
         return R.layout.activity_single_fragment;
@@ -56,7 +62,21 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
         } else {
             mToolbar.setVisibility(View.INVISIBLE);
         }
+        if(showBackButton()){
+            setSupportActionBar(mToolbar);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+          //  getActionBar().setHomeButtonEnabled(true);
+        }
+        else {
+            setSupportActionBar(mToolbar);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        }
         AddFragment.addFragment(getFragmentInstance(), this, R.id.container);
 
     }
+
+
+
+
+
 }

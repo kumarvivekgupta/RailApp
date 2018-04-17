@@ -5,10 +5,13 @@ import android.support.v4.app.Fragment;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.test.naimish.railapp.Fragments.EnquiryFragment;
 import com.test.naimish.railapp.R;
 import com.test.naimish.railapp.Utils.EnquiryAdapter;
+
+import butterknife.BindView;
 
 /**
  * Created by Vivek on 2/17/2018.
@@ -17,6 +20,7 @@ import com.test.naimish.railapp.Utils.EnquiryAdapter;
 
 public class EnquiryActivity extends SingleFragmentActivity {
     private static final String TOOLBAR_TITLE = "ENQUIRY";
+    private static int flag = 0;
 
     @Override
     protected boolean showToolbar() {
@@ -34,8 +38,30 @@ public class EnquiryActivity extends SingleFragmentActivity {
     }
 
     @Override
+    protected boolean showBackButton() {
+        return false;
+    }
+
+    @Override
     protected Fragment getFragmentInstance() {
         return EnquiryFragment.newInstance();
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        if (flag == 0) {
+            Toast.makeText(this, "Press Again to exit", Toast.LENGTH_LONG).show();
+            flag++;
+
+        } else {
+            super.onBackPressed();
+            moveTaskToBack(true);
+            android.os.Process.killProcess(android.os.Process.myPid());
+            System.exit(1);
+        }
+
+
     }
 
     @Override
@@ -51,8 +77,9 @@ public class EnquiryActivity extends SingleFragmentActivity {
             case R.id.settings_menu_item:
                 startActivity(new Intent(this, SettingsActivity.class));
                 break;
-
         }
         return super.onOptionsItemSelected(item);
+
     }
+
 }
