@@ -1,6 +1,9 @@
 package com.test.naimish.railapp.Activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -10,6 +13,8 @@ import android.widget.Toast;
 import com.test.naimish.railapp.Fragments.EnquiryFragment;
 import com.test.naimish.railapp.R;
 import com.test.naimish.railapp.Utils.EnquiryAdapter;
+
+import java.util.Set;
 
 import butterknife.BindView;
 
@@ -74,15 +79,28 @@ public class EnquiryActivity extends SingleFragmentActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.settings_menu_item: {
+            case R.id.settings_menu_item:
                 startActivity(new Intent(this, SettingsActivity.class));
+                break;
 
-
+            case R.id.logout_menu_item: {
+                logout();
+                break;
             }
 
+
         }
 
-            return super.onOptionsItemSelected(item);
-        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void logout() {
+
+        PreferenceManager.getDefaultSharedPreferences(getBaseContext()).
+                edit().clear().apply();
+        startActivity(new Intent(this, LandingActivity.class));
 
     }
+
+}
