@@ -13,10 +13,16 @@ import android.widget.Toast;
 import com.test.naimish.railapp.Fragments.EnquiryFragment;
 import com.test.naimish.railapp.R;
 import com.test.naimish.railapp.Utils.EnquiryAdapter;
+import com.test.naimish.railapp.Utils.SharedPreference;
 
 import java.util.Set;
 
 import butterknife.BindView;
+
+import static com.test.naimish.railapp.Utils.RailAppConstants.EMAIL_CONSTANT;
+import static com.test.naimish.railapp.Utils.RailAppConstants.NAME_CONSTANT;
+import static com.test.naimish.railapp.Utils.RailAppConstants.TOKEN_CONSTANT;
+import static com.test.naimish.railapp.Utils.RailAppConstants.USERID_CONSTANT;
 
 /**
  * Created by Vivek on 2/17/2018.
@@ -64,6 +70,8 @@ public class EnquiryActivity extends SingleFragmentActivity {
             moveTaskToBack(true);
             android.os.Process.killProcess(android.os.Process.myPid());
             System.exit(1);
+            this.finish();
+
         }
 
 
@@ -92,10 +100,13 @@ public class EnquiryActivity extends SingleFragmentActivity {
 
     private void logout() {
 
-        PreferenceManager.getDefaultSharedPreferences(getBaseContext()).
-                edit().clear().apply();
-        startActivity(new Intent(this, LandingActivity.class));
+        SharedPreference.setPreference(getBaseContext(), TOKEN_CONSTANT, null);
+        SharedPreference.setPreference(getBaseContext(), USERID_CONSTANT, null);
+        SharedPreference.setPreference(getBaseContext(), NAME_CONSTANT, null);
+        SharedPreference.setPreference(getBaseContext(), EMAIL_CONSTANT, null);
 
+        startActivity(new Intent(this, LandingActivity.class));
+        this.finish();
     }
 
 }
