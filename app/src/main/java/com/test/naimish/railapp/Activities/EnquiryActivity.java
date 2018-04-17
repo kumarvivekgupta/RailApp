@@ -50,6 +50,8 @@ public class EnquiryActivity extends SingleFragmentActivity {
         switch (item.getItemId()) {
             case R.id.settings_menu_item:
                 startActivity(new Intent(this, SettingsActivity.class));
+                break;
+
         }
         return super.onOptionsItemSelected(item);
     }
