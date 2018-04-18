@@ -23,6 +23,7 @@
                 android:background="@color/white"
                 android:hint="Train No"
                 android:paddingLeft="10dp"
+                android:fontFamily="@font/ubuntu_light"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="20dp" />
 
@@ -47,7 +48,8 @@
                 android:id="@+id/date_spinner"
                 android:layout_width="337dp"
                 android:layout_height="50dp"
-                android:paddingRight="10dp" />
+                android:paddingRight="10dp"
+                />
 
         </LinearLayout>
 

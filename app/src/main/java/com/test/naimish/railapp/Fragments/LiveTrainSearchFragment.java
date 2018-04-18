@@ -41,7 +41,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-import static com.test.naimish.railapp.Fragments.EnquiryFragment.getdata;
 
 /**
  * Created by Vivek on 4/4/2018.
@@ -186,12 +185,12 @@ public class LiveTrainSearchFragment extends RailAppFragment implements EnquiryA
     @Subscribe
     public void trainLiveModel(LiveStatusBaseModel trainRouteModel) {
 
-        mliveTrainRoute = trainRouteModel;
-        EnquiryAdapter.getLayoutResourseId(R.layout.recycler_single_row_live_train);
-        madapter = new EnquiryAdapter(getContext(), getdata());
-        madapter.setClicklistener(this);
-        stationsRecyclerView.setAdapter(madapter);
-        stationsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+//        mliveTrainRoute = trainRouteModel;
+//        EnquiryAdapter.getLayoutResourseId(R.layout.recycler_single_row_live_train);
+////        madapter = new EnquiryAdapter(getContext(), getdata());
+//        madapter.setClicklistener(this);
+//        stationsRecyclerView.setAdapter(madapter);
+//        stationsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
     }
 

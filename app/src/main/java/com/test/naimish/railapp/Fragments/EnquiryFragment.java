@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.test.naimish.railapp.Activities.LiveTrainSearchActivity;
 import com.test.naimish.railapp.Activities.LiveTrainStatusActivity;
 import com.test.naimish.railapp.Activities.PnrEnquiryActivity;
+import com.test.naimish.railapp.Models.RecyclerModel;
 import com.test.naimish.railapp.Network.LiveTrainNetwork.LiveTrainApiClient;
 import com.test.naimish.railapp.R;
 import com.test.naimish.railapp.Utils.SharedPreference;
@@ -46,8 +47,6 @@ import static com.test.naimish.railapp.Utils.RailAppConstants.PERMISSION_REQUEST
 public class EnquiryFragment extends RailAppFragment implements EnquiryAdapter.Clicklistener {
 
     private EnquiryAdapter adapter;
-    private int flag=0;
-
 
     @BindView(R.id.user_pic)
     CircleImageView userPic;
@@ -77,9 +76,6 @@ public class EnquiryFragment extends RailAppFragment implements EnquiryAdapter.C
         return R.layout.fragment_enquiry;
     }
 
-
-
-
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -94,10 +90,10 @@ public class EnquiryFragment extends RailAppFragment implements EnquiryAdapter.C
 
     }
 
-    public static ArrayList<String> getdata() {
-        ArrayList<String> data = new ArrayList<>();
-        data.add(0, "Pnr Enquiry");
-        data.add(1, "Live Train Status");
+    private  ArrayList<RecyclerModel> getdata() {
+        ArrayList<RecyclerModel> data = new ArrayList<>();
+        data.add(new RecyclerModel("Check PNR Status",R.drawable.pnr_icon));
+        data.add(new RecyclerModel("Check Live Train Status",R.drawable.live_status_icon));
         return data;
     }
 
@@ -115,15 +111,11 @@ public class EnquiryFragment extends RailAppFragment implements EnquiryAdapter.C
 
     }
 
-
-
     @OnClick(R.id.user_pic)
     public void userImage() {
         FragmentManager manager = getActivity().getSupportFragmentManager();
         CameraDialogFragment cameraDialogFragment = CameraDialogFragment.newInsatance();
         cameraDialogFragment.show(manager, "Camera Dialog");
-
-
     }
 
     private void checkPermission() {

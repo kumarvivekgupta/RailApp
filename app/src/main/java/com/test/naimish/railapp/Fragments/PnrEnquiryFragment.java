@@ -26,7 +26,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-import static com.test.naimish.railapp.Fragments.EnquiryFragment.getdata;
 
 /**
  * Created by Vivek on 2/19/2018.
@@ -80,19 +79,19 @@ public class PnrEnquiryFragment extends RailAppFragment {
     }
 
     public void pnrDisplay(BaseModel pnrBaseModel) {
-
-        EnquiryAdapter.getLayoutResourseId(R.layout.pnr_single_row_passenger);
-
-        pnrStatusCardLayout.setVisibility(View.VISIBLE);
-        fromStation.setText(pnrBaseModel.getFromStation().getStationName());
-        toStation.setText(pnrBaseModel.getToStation().getStationName());
-        trainName.setText(pnrBaseModel.getTrainNumber().getTrainName());
-        for (int i = 0; i < mBaseModel.getPassengersDetails().length; i++) {
-            mPassengerList.add(mBaseModel.getPassengersDetails()[i]);
-        }
-        madapter = new EnquiryAdapter(getContext(), getdata1());
-        passengerListRecycler.setAdapter(madapter);
-        passengerListRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+//
+//        EnquiryAdapter.getLayoutResourseId(R.layout.pnr_single_row_passenger);
+//
+//        pnrStatusCardLayout.setVisibility(View.VISIBLE);
+//        fromStation.setText(pnrBaseModel.getFromStation().getStationName());
+//        toStation.setText(pnrBaseModel.getToStation().getStationName());
+//        trainName.setText(pnrBaseModel.getTrainNumber().getTrainName());
+//        for (int i = 0; i < mBaseModel.getPassengersDetails().length; i++) {
+//            mPassengerList.add(mBaseModel.getPassengersDetails()[i]);
+//        }
+//        madapter = new EnquiryAdapter(getContext(), getdata1());
+//        passengerListRecycler.setAdapter(madapter);
+//        passengerListRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
 
 
     }
