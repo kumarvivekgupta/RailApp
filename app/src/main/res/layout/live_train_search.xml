@@ -21,6 +21,7 @@
                 android:layout_width="305dp"
                 android:layout_height="50dp"
                 android:background="@color/white"
+                android:fontFamily="@font/ubuntu_bold"
                 android:hint="Train No"
                 android:paddingLeft="10dp"
                 android:textColor="@color/colorPrimaryDark"

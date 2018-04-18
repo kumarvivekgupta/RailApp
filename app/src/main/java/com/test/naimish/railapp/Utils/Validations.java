@@ -42,4 +42,11 @@ public class Validations {
         else return false;
     }
 
+    public static boolean checkPNR(String pnr) {
+        if (pnr.length() == 10)
+            return true;
+        else
+            return false;
+    }
+
 }
