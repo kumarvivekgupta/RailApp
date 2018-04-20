@@ -43,7 +43,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="75dp"
-            android:visibility="invisible">
+            android:visibility="visible">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -92,7 +92,7 @@
                             android:textSize="15dp" />
 
                         <ImageView
-                            android:layout_width="225dp"
+                            android:layout_width="215dp"
                             android:layout_height="1dp"
                             android:layout_marginLeft="5dp"
                             android:layout_marginStart="5dp"
@@ -104,10 +104,10 @@
                             android:id="@+id/toStation"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
+
                             android:background="@color/color_forest"
                             android:padding="10dp"
-                            android:text="to.."
+                            android:text="to"
                             android:textColor="@color/white"
                             android:textSize="15dp" />
                     </LinearLayout>

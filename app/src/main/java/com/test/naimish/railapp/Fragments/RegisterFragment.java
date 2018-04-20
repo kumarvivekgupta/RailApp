@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.test.naimish.railapp.Activities.EnquiryActivity;
+import com.test.naimish.railapp.Activities.LoginActivity;
 import com.test.naimish.railapp.Models.RegisterUser;
 import com.test.naimish.railapp.Network.RegisterNetwork.RegisterApiClient;
 import com.test.naimish.railapp.R;
@@ -101,7 +102,8 @@ public class RegisterFragment extends RailAppFragment implements RegisterApiClie
     @Override
     public void onResponse(RegisterUser data) {
         if (data.getResponse()) {
-            startActivity(new Intent(getContext(), EnquiryActivity.class));
+            startActivity(new Intent(getContext(), LoginActivity.class));
+            getActivity().finish();
         } else {
             Snackbar.make(getView(), getResources().getString(R.string.user_already_registered), Snackbar.LENGTH_SHORT).show();
         }

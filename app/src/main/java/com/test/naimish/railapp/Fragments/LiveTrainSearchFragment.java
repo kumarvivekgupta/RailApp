@@ -177,6 +177,7 @@ public class LiveTrainSearchFragment extends RailAppFragment implements EnquiryA
 
 
         if (Validations.checkTrainNo(mtrainNo)) {
+
             LiveTrainApiClient.liveTrainStatus(mtrainNo, mdateTrain);
         } else
             Snackbar.make(getView(), "Train No Incorrect", Snackbar.LENGTH_SHORT).show();

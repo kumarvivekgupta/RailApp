@@ -2,6 +2,7 @@ package com.test.naimish.railapp.Fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
@@ -18,6 +19,7 @@ import com.test.naimish.railapp.Models.PnrModel.PassengerModel;
 import com.test.naimish.railapp.Network.PnrNetwork.PnrApiClient;
 import com.test.naimish.railapp.R;
 import com.test.naimish.railapp.Utils.EnquiryAdapter;
+import com.test.naimish.railapp.Utils.Validations;
 import com.test.naimish.railapp.Views.LightTextView;
 
 import java.util.ArrayList;
@@ -31,7 +33,7 @@ import butterknife.OnClick;
  * Created by Vivek on 2/19/2018.
  */
 
-public class PnrEnquiryFragment extends RailAppFragment {
+public class PnrEnquiryFragment extends RailAppFragment  {
     private BaseModel mBaseModel;
     private EnquiryAdapter madapter;
     private ArrayList<PassengerModel> mPassengerList;
@@ -65,7 +67,10 @@ public class PnrEnquiryFragment extends RailAppFragment {
 
     @OnClick(R.id.search_pnr_status)
     public void getPnrStatus() {
+        if(Validations.checkPNR(pnrText.getText().toString()))
         PnrApiClient.getPnrStatus(pnrText.getText().toString());
+        else
+            Snackbar.make(getView(),"Enter Valid PNR",2);
     }
 
     public static Fragment newInstance() {
@@ -79,6 +84,7 @@ public class PnrEnquiryFragment extends RailAppFragment {
     }
 
     public void pnrDisplay(BaseModel pnrBaseModel) {
+
 //
 //        EnquiryAdapter.getLayoutResourseId(R.layout.pnr_single_row_passenger);
 //
@@ -92,7 +98,6 @@ public class PnrEnquiryFragment extends RailAppFragment {
 //        madapter = new EnquiryAdapter(getContext(), getdata1());
 //        passengerListRecycler.setAdapter(madapter);
 //        passengerListRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
-
 
     }
 
@@ -108,6 +113,7 @@ public class PnrEnquiryFragment extends RailAppFragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        pnrStatusCardLayout.setVisibility(View.VISIBLE);
 
     }
 }

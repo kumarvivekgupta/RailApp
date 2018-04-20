@@ -13,7 +13,7 @@
         android:layout_marginBottom="70sp"
         android:layout_marginLeft="20sp"
         android:layout_marginRight="20sp"
-        android:layout_marginTop="40sp"
+        android:layout_marginTop="60sp"
         app:cardCornerRadius="5dp">
 
 
@@ -22,77 +22,78 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:paddingLeft="25sp"
-            android:paddingRight="25sp">
+            android:paddingRight="25sp"
+            android:layout_marginTop="15dp">
 
 
-            <LinearLayout
-                android:id="@+id/ll_facebook_login"
-                android:layout_width="match_parent"
-                android:layout_height="36dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginTop="25sp"
-                android:background="@drawable/facebook_button_background"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:padding="2sp">
+            <!--<LinearLayout-->
+                <!--android:id="@+id/ll_facebook_login"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="36dp"-->
+                <!--android:layout_marginLeft="16dp"-->
+                <!--android:layout_marginRight="16dp"-->
+                <!--android:layout_marginTop="25sp"-->
+                <!--android:background="@drawable/facebook_button_background"-->
+                <!--android:gravity="center_vertical"-->
+                <!--android:orientation="horizontal"-->
+                <!--android:padding="2sp">-->
 
-                <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:layout_marginEnd="15dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="15dp"
-                    android:layout_marginStart="20dp"
-                    android:gravity="center_vertical"
-                    android:paddingTop="2dp"
-                    android:src="@drawable/facebook_icon"
-                    android:textColor="@color/white"
-                    android:textSize="15sp"/>
+                <!--<ImageView-->
+                    <!--android:layout_width="25dp"-->
+                    <!--android:layout_height="25dp"-->
+                    <!--android:layout_marginEnd="15dp"-->
+                    <!--android:layout_marginLeft="20dp"-->
+                    <!--android:layout_marginRight="15dp"-->
+                    <!--android:layout_marginStart="20dp"-->
+                    <!--android:gravity="center_vertical"-->
+                    <!--android:paddingTop="2dp"-->
+                    <!--android:src="@drawable/facebook_icon"-->
+                    <!--android:textColor="@color/white"-->
+                    <!--android:textSize="15sp"/>-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/login_with_facebook"
-                    android:textColor="@color/white"
-                    android:fontFamily="@font/ubuntu_medium"
-                    android:textSize="15sp"/>
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="@string/login_with_facebook"-->
+                    <!--android:textColor="@color/white"-->
+                    <!--android:fontFamily="@font/ubuntu_medium"-->
+                    <!--android:textSize="15sp"/>-->
 
-            </LinearLayout>
+            <!--</LinearLayout>-->
 
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="15sp"
-                android:layout_marginTop="15sp"
-                android:gravity="center"
-                android:orientation="horizontal">
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginBottom="15sp"-->
+                <!--android:layout_marginTop="15sp"-->
+                <!--android:gravity="center"-->
+                <!--android:orientation="horizontal">-->
 
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="1dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginStart="5dp"
-                    android:layout_weight="1"
-                    android:background="@color/colorLightGrey"/>
+                <!--<ImageView-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="1dp"-->
+                    <!--android:layout_marginLeft="5dp"-->
+                    <!--android:layout_marginStart="5dp"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:background="@color/colorLightGrey"/>-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10sp"
-                    android:fontFamily="@font/ubuntu_light"
-                    android:text="@string/or_text"/>
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_margin="10sp"-->
+                    <!--android:fontFamily="@font/ubuntu_light"-->
+                    <!--android:text="@string/or_text"/>-->
 
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="1dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginStart="5dp"
-                    android:layout_weight="1"
-                    android:background="@color/colorLightGrey"/>
+                <!--<ImageView-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="1dp"-->
+                    <!--android:layout_marginLeft="5dp"-->
+                    <!--android:layout_marginStart="5dp"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:background="@color/colorLightGrey"/>-->
 
-            </LinearLayout>
+            <!--</LinearLayout>-->
 
 
             <com.test.naimish.railapp.Views.LightTextView
