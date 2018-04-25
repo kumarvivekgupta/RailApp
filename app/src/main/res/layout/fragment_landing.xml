@@ -14,15 +14,20 @@
         android:paddingLeft="30sp"
         android:paddingRight="30sp"
         android:paddingTop="25sp">
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/logo"
+            android:layout_marginTop="40dp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="180dp"
             android:fontFamily="@font/ubuntu_medium"
+            android:layout_marginTop="20dp"
             android:text="@string/welcome_text"
             android:textColor="@color/white"
-            android:textSize="45sp"
+            android:textSize="40sp"
             android:typeface="serif"/>
     </LinearLayout>
 
