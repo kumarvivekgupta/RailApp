@@ -38,7 +38,6 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
     protected abstract Fragment getFragmentInstance();
 
 
-
     protected int getLayoutResourseId() {
         return R.layout.activity_single_fragment;
     }
@@ -62,21 +61,16 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
         } else {
             mToolbar.setVisibility(View.INVISIBLE);
         }
-        if(showBackButton()){
+        if (showBackButton()) {
             setSupportActionBar(mToolbar);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-          //  getActionBar().setHomeButtonEnabled(true);
-        }
-        else {
+        } else {
             setSupportActionBar(mToolbar);
             getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         }
         AddFragment.addFragment(getFragmentInstance(), this, R.id.container);
 
     }
-
-
-
 
 
 }

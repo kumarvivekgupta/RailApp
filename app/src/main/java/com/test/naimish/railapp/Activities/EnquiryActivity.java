@@ -104,9 +104,9 @@ public class EnquiryActivity extends SingleFragmentActivity {
         SharedPreference.setPreference(getBaseContext(), USERID_CONSTANT, null);
         SharedPreference.setPreference(getBaseContext(), NAME_CONSTANT, null);
         SharedPreference.setPreference(getBaseContext(), EMAIL_CONSTANT, null);
-
-        startActivity(new Intent(this, LandingActivity.class));
         this.finish();
+        startActivity(new Intent(this, LandingActivity.class));
+
     }
 
 }
