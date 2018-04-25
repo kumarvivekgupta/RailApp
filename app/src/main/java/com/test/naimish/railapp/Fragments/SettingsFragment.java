@@ -118,12 +118,12 @@ public class SettingsFragment extends RailAppFragment implements ResponseListene
 
     @Override
     public void onFailure(Throwable throwable) {
-        Snackbar.make(getView(), throwable.getMessage().toString() + R.string.try_again, Snackbar.LENGTH_SHORT).show();
+        Snackbar.make(getView(), throwable.getMessage().toString() +" "+ R.string.try_again, Snackbar.LENGTH_SHORT).show();
     }
 
     @Override
     public void onNullResponse() {
-        Snackbar.make(getView(), R.string.common_error + R.string.try_again, Snackbar.LENGTH_SHORT).show();
+        Snackbar.make(getView(), R.string.common_error +" "+ R.string.try_again, Snackbar.LENGTH_SHORT).show();
     }
 
 }
