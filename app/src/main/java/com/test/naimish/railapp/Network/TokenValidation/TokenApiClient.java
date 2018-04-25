@@ -2,11 +2,9 @@ package com.test.naimish.railapp.Network.TokenValidation;
 
 import android.util.Log;
 
-import com.google.gson.Gson;
 import com.test.naimish.railapp.BuildConfig;
 import com.test.naimish.railapp.Models.AuthorizationResponse;
-
-import java.util.List;
+import com.test.naimish.railapp.Utils.ResponseListener;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -24,10 +22,10 @@ import static com.test.naimish.railapp.Utils.RailAppConstants.BASE_URL;
 
 public class TokenApiClient {
 
-    private TokenResponse tokenResponse;
+    private ResponseListener<AuthorizationResponse> responseListener;
 
-    public TokenApiClient(TokenResponse tokenResponse) {
-        this.tokenResponse = tokenResponse;
+    public TokenApiClient(ResponseListener<AuthorizationResponse> responseListener) {
+        this.responseListener = responseListener;
     }
 
     public void validateUser(String mToken) {
@@ -42,33 +40,23 @@ public class TokenApiClient {
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(okhttpbuilder.build())
                 .build();
-        final Gson gson = new Gson();
         TokenApiInterface tokenApiInterface = retrofit.create(TokenApiInterface.class);
         Call<AuthorizationResponse> call = tokenApiInterface.getAutherization(mToken);
         call.enqueue(new Callback<AuthorizationResponse>() {
             @Override
             public void onResponse(Call<AuthorizationResponse> call, Response<AuthorizationResponse> response) {
-                Log.i("Response", gson.toJson(response.body()));
                 if (response.body() != null)
-                    tokenResponse.onResponse(response.body());
+                    responseListener.onSuccess(response.body());
                 else
-                    tokenResponse.onNullResponse();
+                    responseListener.onNullResponse();
             }
 
             @Override
             public void onFailure(Call<AuthorizationResponse> call, Throwable t) {
                 Log.i("Error", t.getMessage());
-                tokenResponse.onFailure();
+                responseListener.onFailure(t);
             }
         });
-    }
-
-    public interface TokenResponse {
-        void onResponse(AuthorizationResponse data);
-
-        void onNullResponse();
-
-        void onFailure();
     }
 
 

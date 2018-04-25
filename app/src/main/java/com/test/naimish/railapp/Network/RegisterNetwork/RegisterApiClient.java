@@ -1,10 +1,8 @@
 package com.test.naimish.railapp.Network.RegisterNetwork;
 
-import android.util.Log;
-
-import com.google.gson.Gson;
 import com.test.naimish.railapp.BuildConfig;
 import com.test.naimish.railapp.Models.RegisterUser;
+import com.test.naimish.railapp.Utils.ResponseListener;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -22,10 +20,10 @@ import static com.test.naimish.railapp.Utils.RailAppConstants.BASE_URL;
 
 public class RegisterApiClient {
 
-    private NetworkResponse networkResponse;
+    private ResponseListener<RegisterUser> responseListener;
 
-    public RegisterApiClient(NetworkResponse networkResponse) {
-        this.networkResponse = networkResponse;
+    public RegisterApiClient(ResponseListener<RegisterUser> responseListener) {
+        this.responseListener=responseListener;
     }
 
     public void createNewUser(String mName, String mEmail, String mPassword) {
@@ -40,27 +38,23 @@ public class RegisterApiClient {
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(okhttpbuilder.build())
                 .build();
-        final Gson gson = new Gson();
         RegisterApiInterface registerApiInterface = retrofit.create(RegisterApiInterface.class);
         Call<RegisterUser> call = registerApiInterface.createUser(new RegisterUser(mName, mPassword, mEmail));
         call.enqueue(new Callback<RegisterUser>() {
             @Override
             public void onResponse(Call<RegisterUser> call, Response<RegisterUser> response) {
-                Log.i("Response", gson.toJson(response.body()));
-                networkResponse.onResponse(response.body());
+                if(response.body()!=null)
+                    responseListener.onSuccess(response.body());
+                else
+                    responseListener.onNullResponse();
             }
 
             @Override
             public void onFailure(Call<RegisterUser> call, Throwable t) {
-                Log.i("Error", "error");
+                responseListener.onFailure(t);
             }
         });
     }
-
-    public interface NetworkResponse {
-        void onResponse(RegisterUser data);
-    }
-
 
 }
 

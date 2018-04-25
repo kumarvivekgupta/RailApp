@@ -13,6 +13,7 @@ import com.test.naimish.railapp.Activities.LoginActivity;
 import com.test.naimish.railapp.Models.RegisterUser;
 import com.test.naimish.railapp.Network.RegisterNetwork.RegisterApiClient;
 import com.test.naimish.railapp.R;
+import com.test.naimish.railapp.Utils.ResponseListener;
 import com.test.naimish.railapp.Utils.Validations;
 
 import butterknife.BindView;
@@ -24,7 +25,7 @@ import butterknife.OnClick;
  * Created by Vivek on 2/18/2018.
  */
 
-public class RegisterFragment extends RailAppFragment implements RegisterApiClient.NetworkResponse {
+public class RegisterFragment extends RailAppFragment implements ResponseListener<RegisterUser> {
     private String mEmail;
     private String mName;
     private String mPassword;
@@ -100,13 +101,22 @@ public class RegisterFragment extends RailAppFragment implements RegisterApiClie
     }
 
     @Override
-    public void onResponse(RegisterUser data) {
-        if (data.getResponse()) {
+    public void onSuccess(RegisterUser response) {
+        if (response.getResponse()) {
             startActivity(new Intent(getContext(), LoginActivity.class));
             getActivity().finish();
         } else {
             Snackbar.make(getView(), getResources().getString(R.string.user_already_registered), Snackbar.LENGTH_SHORT).show();
         }
 
+    }
+    @Override
+    public void onFailure(Throwable throwable) {
+        Snackbar.make(getView(), throwable.getMessage().toString() + R.string.try_again, Snackbar.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onNullResponse() {
+        Snackbar.make(getView(), R.string.common_error + R.string.try_again, Snackbar.LENGTH_SHORT).show();
     }
 }
