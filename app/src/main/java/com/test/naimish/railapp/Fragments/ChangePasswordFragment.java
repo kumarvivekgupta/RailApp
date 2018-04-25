@@ -4,8 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 
 import com.test.naimish.railapp.Activities.SettingsActivity;
@@ -25,7 +28,7 @@ import butterknife.OnClick;
  * Created by Vivek on 3/9/2018.
  */
 
-public class ChangePasswordFragment extends RailAppFragment implements ResponseListener<ChangePassword> {
+public class ChangePasswordFragment extends DialogFragment implements ResponseListener<ChangePassword> {
     private String mOldPassword;
     private String mNewPassword;
     private String mConfirmPassword;
@@ -38,14 +41,11 @@ public class ChangePasswordFragment extends RailAppFragment implements ResponseL
     @BindView(R.id.comfirm_new_password)
     EditText confirmNewPassword;
 
+    @Nullable
     @Override
-    protected int getResourceId() {
-        return R.layout.fragment_change_password;
-    }
-
-
-    public static Fragment newInstance() {
-        return new ChangePasswordFragment();
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+        getDialog().getWindow().setLayout(100,100);
+        return inflater.inflate(R.layout.fragment_change_password, container, false);
     }
 
     @Override
@@ -93,7 +93,7 @@ public class ChangePasswordFragment extends RailAppFragment implements ResponseL
     @Override
     public void onSuccess(ChangePassword response) {
         if (response.isSuccess()) {
-            startActivity(new Intent(getActivity(), SettingsActivity.class));
+            getDialog().dismiss();
             Snackbar.make(getView(), R.string.change_password_msg, Snackbar.LENGTH_SHORT).show();
         } else {
             Snackbar.make(getView(), response.getMessage(), Snackbar.LENGTH_SHORT).show();

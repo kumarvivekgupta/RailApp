@@ -1,14 +1,13 @@
 package com.test.naimish.railapp.Fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.test.naimish.railapp.Activities.ChangePasswordActivity;
 import com.test.naimish.railapp.Models.UpdateProfile;
 import com.test.naimish.railapp.Network.UpdateProfileNetwork.UpdateProfileApiClient;
 import com.test.naimish.railapp.R;
@@ -45,7 +44,10 @@ public class SettingsFragment extends RailAppFragment implements ResponseListene
 
     @OnClick(R.id.change_password)
     public void changePassword() {
-        startActivity(new Intent(getActivity(), ChangePasswordActivity.class));
+        FragmentManager manager=getActivity().getSupportFragmentManager();
+        ChangePasswordFragment changePasswordFragment=new ChangePasswordFragment();
+        changePasswordFragment.show(manager,"Settings Dialog");
+
     }
 
     @OnClick(R.id.change_profile_picture)
