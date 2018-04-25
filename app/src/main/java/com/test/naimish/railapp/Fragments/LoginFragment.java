@@ -6,15 +6,14 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.test.naimish.railapp.Activities.EnquiryActivity;
 import com.test.naimish.railapp.Models.LoginModel.LoginUser;
 import com.test.naimish.railapp.Network.LoginNetwork.LoginApiClient;
 import com.test.naimish.railapp.R;
+import com.test.naimish.railapp.Utils.ResponseListener;
 import com.test.naimish.railapp.Utils.SharedPreference;
 import com.test.naimish.railapp.Utils.Validations;
 
@@ -31,7 +30,7 @@ import static com.test.naimish.railapp.Utils.RailAppConstants.USERID_CONSTANT;
  * Created by naimish on 2/10/2018.
  */
 
-public class LoginFragment extends RailAppFragment implements LoginApiClient.LoginResponse {
+public class LoginFragment extends RailAppFragment implements ResponseListener<LoginUser> {
     private String mEmail;
     private String mPassword;
     private ProgressDialog mProgress;
@@ -93,8 +92,7 @@ public class LoginFragment extends RailAppFragment implements LoginApiClient.Log
     }
 
     @Override
-    public void onResponse(LoginUser response) {
-        Toast.makeText(getContext(),response.getmIsSuccess().toString(),Toast.LENGTH_LONG).show();
+    public void onSuccess(LoginUser response) {
         if (response.getmIsSuccess()) {
             SharedPreference.setPreference(getContext(), TOKEN_CONSTANT, response.getToken());
             SharedPreference.setPreference(getContext(), USERID_CONSTANT, response.getmResponse().getmId());
@@ -107,5 +105,15 @@ public class LoginFragment extends RailAppFragment implements LoginApiClient.Log
             Snackbar.make(getView(), response.getmMessage(), Snackbar.LENGTH_SHORT).show();
 
         }
+    }
+
+    @Override
+    public void onFailure(Throwable throwable) {
+        Snackbar.make(getView(), throwable.getMessage().toString() + R.string.try_again, Snackbar.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onNullResponse() {
+        Snackbar.make(getView(), R.string.common_error + R.string.try_again, Snackbar.LENGTH_SHORT).show();
     }
 }

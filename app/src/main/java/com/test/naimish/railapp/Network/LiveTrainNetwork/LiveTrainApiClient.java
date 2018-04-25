@@ -42,7 +42,6 @@ public class LiveTrainApiClient {
             @Override
             public void onResponse(Call<LiveStatusBaseModel> call, Response<LiveStatusBaseModel> response) {
                 EventBus.getDefault().post(response.body());
-               // LiveTrainSearchFragment.trainLiveModel(response.body());
             }
 
             @Override

@@ -29,7 +29,7 @@ public class ChangePasswordFragment extends RailAppFragment implements ResponseL
     private String mOldPassword;
     private String mNewPassword;
     private String mConfirmPassword;
-    private int flag=0;
+    private int flag = 0;
 
     @BindView(R.id.old_password)
     EditText oldPassword;
@@ -102,8 +102,8 @@ public class ChangePasswordFragment extends RailAppFragment implements ResponseL
     }
 
     @Override
-    public void onFailure() {
-        Snackbar.make(getView(), R.string.common_error + R.string.try_again, Snackbar.LENGTH_SHORT).show();
+    public void onFailure(Throwable throwable) {
+        Snackbar.make(getView(), throwable.getMessage().toString() + R.string.try_again, Snackbar.LENGTH_SHORT).show();
     }
 
     @Override

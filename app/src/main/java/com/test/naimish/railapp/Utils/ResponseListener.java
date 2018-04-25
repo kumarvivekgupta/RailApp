@@ -4,7 +4,7 @@ public interface ResponseListener<T> {
 
     void onSuccess(T response);
 
-    void onFailure();
+    void onFailure(Throwable throwable);
 
     void onNullResponse();
 }

@@ -1,6 +1,5 @@
 package com.test.naimish.railapp.Network.ChangePasswordNetwork;
 
-import com.google.gson.Gson;
 import com.test.naimish.railapp.BuildConfig;
 import com.test.naimish.railapp.Models.ChangePassword;
 import com.test.naimish.railapp.Utils.ResponseListener;
@@ -39,7 +38,6 @@ public class ChangePasswordApiClient {
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(okHttpBuilder.build())
                 .build();
-        final Gson gson = new Gson();
         ChangePasswordInterface changePasswordInterface = retrofit.create(ChangePasswordInterface.class);
         Call<ChangePassword> call = changePasswordInterface.changePasssword(new ChangePassword(userId, oldPassword, newPassword));
         call.enqueue(new Callback<ChangePassword>() {
@@ -53,7 +51,7 @@ public class ChangePasswordApiClient {
 
             @Override
             public void onFailure(Call<ChangePassword> call, Throwable t) {
-                responseListener.onFailure();
+                responseListener.onFailure(t);
             }
         });
 
