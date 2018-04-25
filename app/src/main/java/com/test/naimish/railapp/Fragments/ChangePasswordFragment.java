@@ -13,6 +13,7 @@ import com.test.naimish.railapp.Models.ChangePassword;
 import com.test.naimish.railapp.Network.ChangePasswordNetwork.ChangePasswordApiClient;
 import com.test.naimish.railapp.R;
 import com.test.naimish.railapp.Utils.RailAppConstants;
+import com.test.naimish.railapp.Utils.ResponseListener;
 import com.test.naimish.railapp.Utils.SharedPreference;
 import com.test.naimish.railapp.Utils.Validations;
 
@@ -24,7 +25,7 @@ import butterknife.OnClick;
  * Created by Vivek on 3/9/2018.
  */
 
-public class ChangePasswordFragment extends RailAppFragment implements ChangePasswordApiClient.ChangePasswordResponse {
+public class ChangePasswordFragment extends RailAppFragment implements ResponseListener<ChangePassword> {
     private String mOldPassword;
     private String mNewPassword;
     private String mConfirmPassword;
@@ -90,7 +91,7 @@ public class ChangePasswordFragment extends RailAppFragment implements ChangePas
 
 
     @Override
-    public void onResponse(ChangePassword response) {
+    public void onSuccess(ChangePassword response) {
         if (response.isSuccess()) {
             startActivity(new Intent(getActivity(), SettingsActivity.class));
             Snackbar.make(getView(), R.string.change_password_msg, Snackbar.LENGTH_SHORT).show();
@@ -98,5 +99,15 @@ public class ChangePasswordFragment extends RailAppFragment implements ChangePas
             Snackbar.make(getView(), response.getMessage(), Snackbar.LENGTH_SHORT).show();
         }
 
+    }
+
+    @Override
+    public void onFailure() {
+        Snackbar.make(getView(), R.string.common_error + R.string.try_again, Snackbar.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onNullResponse() {
+        Snackbar.make(getView(), R.string.common_error + R.string.try_again, Snackbar.LENGTH_SHORT).show();
     }
 }

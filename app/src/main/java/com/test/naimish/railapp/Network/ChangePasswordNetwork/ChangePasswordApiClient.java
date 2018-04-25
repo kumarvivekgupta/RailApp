@@ -3,6 +3,7 @@ package com.test.naimish.railapp.Network.ChangePasswordNetwork;
 import com.google.gson.Gson;
 import com.test.naimish.railapp.BuildConfig;
 import com.test.naimish.railapp.Models.ChangePassword;
+import com.test.naimish.railapp.Utils.ResponseListener;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -20,10 +21,10 @@ import static com.test.naimish.railapp.Utils.RailAppConstants.BASE_URL;
 
 public class ChangePasswordApiClient {
 
-    private ChangePasswordApiClient.ChangePasswordResponse changePasswordResponse;
+    private ResponseListener<ChangePassword> responseListener;
 
-    public ChangePasswordApiClient(ChangePasswordApiClient.ChangePasswordResponse changePasswordResponse) {
-        this.changePasswordResponse = changePasswordResponse;
+    public ChangePasswordApiClient(ResponseListener<ChangePassword> responseListener) {
+        this.responseListener = responseListener;
     }
 
     public void changePassword(String userId, String oldPassword, String newPassword) {
@@ -44,18 +45,19 @@ public class ChangePasswordApiClient {
         call.enqueue(new Callback<ChangePassword>() {
             @Override
             public void onResponse(Call<ChangePassword> call, Response<ChangePassword> response) {
-                changePasswordResponse.onResponse(response.body());
+                if (response.body() != null)
+                    responseListener.onSuccess(response.body());
+                else
+                    responseListener.onNullResponse();
             }
 
             @Override
             public void onFailure(Call<ChangePassword> call, Throwable t) {
-
+                responseListener.onFailure();
             }
         });
 
     }
 
-    public interface ChangePasswordResponse {
-        void onResponse(ChangePassword response);
-    }
+
 }

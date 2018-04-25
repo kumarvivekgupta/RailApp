@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "825020049533",
+    "firebase_url": "https://railapp-25b33.firebaseio.com",
+    "project_id": "railapp-25b33",
+    "storage_bucket": "railapp-25b33.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:825020049533:android:a6b0b816ee97d34f",
+        "android_client_info": {
+          "package_name": "com.test.naimish.railapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "825020049533-ac1ahrkivooj97tpcg8r2o8omjn4mfd0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCoL25sDAvtFF_BD1nEw0oyKlb85mGPQf4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
