@@ -5,14 +5,10 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.test.naimish.railapp.Models.PnrModel.BaseModel;
 import com.test.naimish.railapp.Models.PnrModel.PassengerModel;
@@ -37,7 +33,8 @@ public class PnrEnquiryFragment extends RailAppFragment  {
     private BaseModel mBaseModel;
     private EnquiryAdapter madapter;
     private ArrayList<PassengerModel> mPassengerList;
-    ArrayList<String> data = new ArrayList<>();
+    private ArrayList<String> data = new ArrayList<>();
+    private PnrApiClient apiClient;
 
     @Override
     protected int getResourceId() {
@@ -68,7 +65,7 @@ public class PnrEnquiryFragment extends RailAppFragment  {
     @OnClick(R.id.search_pnr_status)
     public void getPnrStatus() {
         if(Validations.checkPNR(pnrText.getText().toString()))
-        PnrApiClient.getPnrStatus(pnrText.getText().toString());
+        apiClient.getPnrStatus(pnrText.getText().toString());
         else
             Snackbar.make(getView(),"Enter Valid PNR",2);
     }
@@ -114,6 +111,7 @@ public class PnrEnquiryFragment extends RailAppFragment  {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         pnrStatusCardLayout.setVisibility(View.VISIBLE);
+        apiClient=new PnrApiClient(getContext());
 
     }
 }
