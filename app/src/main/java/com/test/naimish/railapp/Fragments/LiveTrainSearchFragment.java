@@ -53,6 +53,7 @@ public class LiveTrainSearchFragment extends RailAppFragment implements EnquiryA
     private List<String> categories;
     private String mdateTrain;
     private ArrayList<TrainRouteModel> mtrainRouteModel;
+    private LiveTrainApiClient apiClient;
 
 
     @BindView(R.id.enter_train)
@@ -108,6 +109,7 @@ public class LiveTrainSearchFragment extends RailAppFragment implements EnquiryA
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        apiClient=new LiveTrainApiClient(getContext());
         EventBus.getDefault().register(this);
 
     }
@@ -178,7 +180,7 @@ public class LiveTrainSearchFragment extends RailAppFragment implements EnquiryA
 
         if (Validations.checkTrainNo(mtrainNo)) {
 
-            LiveTrainApiClient.liveTrainStatus(mtrainNo, mdateTrain);
+            apiClient.liveTrainStatus(mtrainNo, mdateTrain);
         } else
             Snackbar.make(getView(), "Train No Incorrect", Snackbar.LENGTH_SHORT).show();
     }

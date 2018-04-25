@@ -1,10 +1,13 @@
 package com.test.naimish.railapp.Network.LiveTrainNetwork;
 
+import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.test.naimish.railapp.BuildConfig;
 import com.test.naimish.railapp.Fragments.LiveTrainSearchFragment;
 import com.test.naimish.railapp.Models.LiveTrainStatusModel.LiveStatusBaseModel;
+import com.test.naimish.railapp.R;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -24,7 +27,13 @@ import static com.test.naimish.railapp.Utils.RailAppConstants.RAIL_BASE_URL;
 
 public class LiveTrainApiClient {
 
-    public static void liveTrainStatus(String trainNo, String date) {
+    private Context context;
+
+    public LiveTrainApiClient(Context context) {
+        this.context = context;
+    }
+
+    public void liveTrainStatus(String trainNo, String date) {
         OkHttpClient.Builder okhttpbuilder = new OkHttpClient.Builder();
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
@@ -41,11 +50,15 @@ public class LiveTrainApiClient {
         call.enqueue(new Callback<LiveStatusBaseModel>() {
             @Override
             public void onResponse(Call<LiveStatusBaseModel> call, Response<LiveStatusBaseModel> response) {
-                EventBus.getDefault().post(response.body());
+                if (response.body() != null)
+                    EventBus.getDefault().post(response.body());
+                else
+                   Toast.makeText(context,R.string.common_error+" "+R.string.try_again,Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onFailure(Call<LiveStatusBaseModel> call, Throwable t) {
+                Toast.makeText(context,t.getMessage()+" "+R.string.try_again,Toast.LENGTH_SHORT).show();
             }
         });
 
