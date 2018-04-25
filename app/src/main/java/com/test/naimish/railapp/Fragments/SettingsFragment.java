@@ -12,7 +12,7 @@ import com.test.naimish.railapp.Activities.ChangePasswordActivity;
 import com.test.naimish.railapp.Models.UpdateProfile;
 import com.test.naimish.railapp.Network.UpdateProfileNetwork.UpdateProfileApiClient;
 import com.test.naimish.railapp.R;
-import com.test.naimish.railapp.Utils.RailAppConstants;
+import com.test.naimish.railapp.Utils.ResponseListener;
 import com.test.naimish.railapp.Utils.SharedPreference;
 
 import butterknife.BindView;
@@ -28,7 +28,7 @@ import static com.test.naimish.railapp.Utils.RailAppConstants.USERID_CONSTANT;
  * Created by naimish on 4/6/2018.
  */
 
-public class SettingsFragment extends RailAppFragment implements UpdateProfileApiClient.UpdateProfileResponse {
+public class SettingsFragment extends RailAppFragment implements ResponseListener<UpdateProfile> {
 
     private String mOldName;
     private String mOldEmail;
@@ -108,11 +108,22 @@ public class SettingsFragment extends RailAppFragment implements UpdateProfileAp
 
 
     @Override
-    public void onResponse(UpdateProfile updateProfile) {
-        if (updateProfile.getSuccess()) {
+    public void onSuccess(UpdateProfile response) {
+        if (response.getSuccess()) {
             SharedPreference.setPreference(getContext(), NAME_CONSTANT, mNewName);
             SharedPreference.setPreference(getContext(), PROFILE_PIC_CONSTANT, mprofileUrl);
             Snackbar.make(getView(), R.string.settings_success_message, Snackbar.LENGTH_SHORT).show();
         }
     }
+
+    @Override
+    public void onFailure(Throwable throwable) {
+        Snackbar.make(getView(), throwable.getMessage().toString() + R.string.try_again, Snackbar.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onNullResponse() {
+        Snackbar.make(getView(), R.string.common_error + R.string.try_again, Snackbar.LENGTH_SHORT).show();
+    }
+
 }
