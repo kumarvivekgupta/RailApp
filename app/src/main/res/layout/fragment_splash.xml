@@ -5,8 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/rail"
-    android:alpha=".5">
+    android:background="@drawable/splash"
+    android:alpha=".8">
 
     <ProgressBar
         android:id="@+id/splash_progress_bar"
