@@ -19,6 +19,7 @@ import com.test.naimish.railapp.Utils.RailAppConstants;
 import com.test.naimish.railapp.Utils.ResponseListener;
 import com.test.naimish.railapp.Utils.SharedPreference;
 import com.test.naimish.railapp.Utils.Validations;
+import com.test.naimish.railapp.Views.ProgressLoader;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -32,7 +33,7 @@ public class ChangePasswordFragment extends DialogFragment implements ResponseLi
     private String mOldPassword;
     private String mNewPassword;
     private String mConfirmPassword;
-    private int flag = 0;
+    private ProgressLoader loader;
 
     @BindView(R.id.old_password)
     EditText oldPassword;
@@ -44,7 +45,7 @@ public class ChangePasswordFragment extends DialogFragment implements ResponseLi
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        getDialog().getWindow().setLayout(100,100);
+        getDialog().getWindow().setLayout(100, 100);
         return inflater.inflate(R.layout.fragment_change_password, container, false);
     }
 
@@ -52,6 +53,12 @@ public class ChangePasswordFragment extends DialogFragment implements ResponseLi
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        loader=new ProgressLoader(getActivity());
     }
 
     @OnClick(R.id.comfirm_new_password_button)
@@ -83,6 +90,7 @@ public class ChangePasswordFragment extends DialogFragment implements ResponseLi
         if (killSwtich)
             focusView.requestFocus();
         else {
+            loader.showLoader();
             String userid = SharedPreference.getPreference(getContext(), RailAppConstants.USERID_CONSTANT);
             ChangePasswordApiClient apiClient = new ChangePasswordApiClient(this);
             apiClient.changePassword(userid, mOldPassword, mNewPassword);
@@ -92,6 +100,7 @@ public class ChangePasswordFragment extends DialogFragment implements ResponseLi
 
     @Override
     public void onSuccess(ChangePassword response) {
+        loader.dismissLoader();
         if (response.isSuccess()) {
             getDialog().dismiss();
             Snackbar.make(getView(), R.string.change_password_msg, Snackbar.LENGTH_SHORT).show();
@@ -103,11 +112,13 @@ public class ChangePasswordFragment extends DialogFragment implements ResponseLi
 
     @Override
     public void onFailure(Throwable throwable) {
-        Snackbar.make(getView(), throwable.getMessage().toString() +" "+ R.string.try_again, Snackbar.LENGTH_SHORT).show();
+        loader.dismissLoader();
+        Snackbar.make(getView(), throwable.getMessage().toString() + " " + R.string.try_again, Snackbar.LENGTH_SHORT).show();
     }
 
     @Override
     public void onNullResponse() {
-        Snackbar.make(getView(), R.string.common_error +" "+ R.string.try_again, Snackbar.LENGTH_SHORT).show();
+        loader.dismissLoader();
+        Snackbar.make(getView(), R.string.common_error + " " + R.string.try_again, Snackbar.LENGTH_SHORT).show();
     }
 }

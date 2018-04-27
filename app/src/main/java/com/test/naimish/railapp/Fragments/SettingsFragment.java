@@ -13,6 +13,7 @@ import com.test.naimish.railapp.Network.UpdateProfileNetwork.UpdateProfileApiCli
 import com.test.naimish.railapp.R;
 import com.test.naimish.railapp.Utils.ResponseListener;
 import com.test.naimish.railapp.Utils.SharedPreference;
+import com.test.naimish.railapp.Views.ProgressLoader;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -34,6 +35,7 @@ public class SettingsFragment extends RailAppFragment implements ResponseListene
     private String mNewName;
     private String mprofileUrl;
     private UpdateProfileApiClient apiClient;
+    private ProgressLoader loader;
 
     @BindView(R.id.edit_text_name)
     EditText mUserName;
@@ -99,11 +101,11 @@ public class SettingsFragment extends RailAppFragment implements ResponseListene
         mOldEmail = SharedPreference.getPreference(getContext(), EMAIL_CONSTANT);
         mUserName.setText(mOldName);
         mUserEmail.setText(mOldEmail);
-
-
+        loader=new ProgressLoader(getActivity());
     }
 
     private void changeSettings() {
+        loader.showLoader();
         String userId = SharedPreference.getPreference(getContext(), USERID_CONSTANT);
         apiClient.updateProfile(userId, mNewName, mprofileUrl);
     }
@@ -111,20 +113,26 @@ public class SettingsFragment extends RailAppFragment implements ResponseListene
 
     @Override
     public void onSuccess(UpdateProfile response) {
+        loader.dismissLoader();
         if (response.getSuccess()) {
             SharedPreference.setPreference(getContext(), NAME_CONSTANT, mNewName);
             SharedPreference.setPreference(getContext(), PROFILE_PIC_CONSTANT, mprofileUrl);
             Snackbar.make(getView(), R.string.settings_success_message, Snackbar.LENGTH_SHORT).show();
         }
+        else{
+            Snackbar.make(getView(), R.string.common_error +" "+ R.string.try_again, Snackbar.LENGTH_SHORT).show();
+        }
     }
 
     @Override
     public void onFailure(Throwable throwable) {
+        loader.dismissLoader();
         Snackbar.make(getView(), throwable.getMessage().toString() +" "+ R.string.try_again, Snackbar.LENGTH_SHORT).show();
     }
 
     @Override
     public void onNullResponse() {
+        loader.dismissLoader();
         Snackbar.make(getView(), R.string.common_error +" "+ R.string.try_again, Snackbar.LENGTH_SHORT).show();
     }
 

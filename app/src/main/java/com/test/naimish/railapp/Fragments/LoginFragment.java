@@ -101,13 +101,13 @@ public class LoginFragment extends RailAppFragment implements ResponseListener<L
 
     @Override
     public void onSuccess(LoginUser response) {
+        loader.dismissLoader();
         if (response.getmIsSuccess()) {
             SharedPreference.setPreference(getContext(), TOKEN_CONSTANT, response.getToken());
             SharedPreference.setPreference(getContext(), USERID_CONSTANT, response.getmResponse().getmId());
             SharedPreference.setPreference(getContext(), NAME_CONSTANT, response.getmResponse().getmName());
             SharedPreference.setPreference(getContext(), EMAIL_CONSTANT, response.getmResponse().getmEmail());
             getActivity().finish();
-            loader.dismissLoader();
             startActivity(new Intent(getActivity(), EnquiryActivity.class));
         } else {
             Snackbar.make(getView(), response.getmMessage(), Snackbar.LENGTH_SHORT).show();

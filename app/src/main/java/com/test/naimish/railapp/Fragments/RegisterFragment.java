@@ -15,6 +15,7 @@ import com.test.naimish.railapp.Network.RegisterNetwork.RegisterApiClient;
 import com.test.naimish.railapp.R;
 import com.test.naimish.railapp.Utils.ResponseListener;
 import com.test.naimish.railapp.Utils.Validations;
+import com.test.naimish.railapp.Views.ProgressLoader;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -30,6 +31,7 @@ public class RegisterFragment extends RailAppFragment implements ResponseListene
     private String mName;
     private String mPassword;
     private String mConfirmPassword;
+    private ProgressLoader loader;
     @BindView(R.id.email)
     EditText mEmailField;
     @BindView(R.id.name)
@@ -58,6 +60,7 @@ public class RegisterFragment extends RailAppFragment implements ResponseListene
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        loader=new ProgressLoader(getActivity());
     }
 
     @OnClick(R.id.register)
@@ -96,12 +99,14 @@ public class RegisterFragment extends RailAppFragment implements ResponseListene
     }
 
     private void signUpUser() {
+        loader.showLoader();
         RegisterApiClient client = new RegisterApiClient(this);
         client.createNewUser(mName, mEmail, mPassword);
     }
 
     @Override
     public void onSuccess(RegisterUser response) {
+        loader.dismissLoader();
         if (response.getResponse()) {
             startActivity(new Intent(getContext(), LoginActivity.class));
             getActivity().finish();
@@ -112,11 +117,13 @@ public class RegisterFragment extends RailAppFragment implements ResponseListene
     }
     @Override
     public void onFailure(Throwable throwable) {
+        loader.dismissLoader();
         Snackbar.make(getView(), throwable.getMessage().toString() +" "+ R.string.try_again, Snackbar.LENGTH_SHORT).show();
     }
 
     @Override
     public void onNullResponse() {
+        loader.dismissLoader();
         Snackbar.make(getView(), R.string.common_error +" "+ R.string.try_again, Snackbar.LENGTH_SHORT).show();
     }
 }
