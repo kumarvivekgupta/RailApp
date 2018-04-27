@@ -118,6 +118,10 @@ public class SettingsFragment extends RailAppFragment implements ResponseListene
             SharedPreference.setPreference(getContext(), NAME_CONSTANT, mNewName);
             SharedPreference.setPreference(getContext(), PROFILE_PIC_CONSTANT, mprofileUrl);
             Snackbar.make(getView(), R.string.settings_success_message, Snackbar.LENGTH_SHORT).show();
+            mUserName.setEnabled(false);
+            mSaveSettings.setBackgroundColor(getActivity().getResources().getColor(R.color.white));
+            mSaveSettings.setTextColor(getActivity().getResources().getColor(R.color.fbutton_color_pomegranate));
+            mSaveSettings.setEnabled(false);
         }
         else{
             Snackbar.make(getView(), R.string.common_error +" "+ R.string.try_again, Snackbar.LENGTH_SHORT).show();
