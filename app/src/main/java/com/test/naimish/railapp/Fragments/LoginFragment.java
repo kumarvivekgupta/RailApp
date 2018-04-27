@@ -16,6 +16,7 @@ import com.test.naimish.railapp.R;
 import com.test.naimish.railapp.Utils.ResponseListener;
 import com.test.naimish.railapp.Utils.SharedPreference;
 import com.test.naimish.railapp.Utils.Validations;
+import com.test.naimish.railapp.Views.ProgressLoader;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -33,7 +34,7 @@ import static com.test.naimish.railapp.Utils.RailAppConstants.USERID_CONSTANT;
 public class LoginFragment extends RailAppFragment implements ResponseListener<LoginUser> {
     private String mEmail;
     private String mPassword;
-    private ProgressDialog mProgress;
+    private ProgressLoader loader;
 
     @BindView(R.id.login_email)
     EditText mEmailField;
@@ -71,6 +72,7 @@ public class LoginFragment extends RailAppFragment implements ResponseListener<L
     }
 
     private void loginUser() {
+        loader.showLoader();
         LoginApiClient client = new LoginApiClient(this);
         client.loginUser(mEmail, mPassword);
     }
@@ -92,6 +94,12 @@ public class LoginFragment extends RailAppFragment implements ResponseListener<L
     }
 
     @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        loader=new ProgressLoader(getActivity());
+    }
+
+    @Override
     public void onSuccess(LoginUser response) {
         if (response.getmIsSuccess()) {
             SharedPreference.setPreference(getContext(), TOKEN_CONSTANT, response.getToken());
@@ -99,8 +107,8 @@ public class LoginFragment extends RailAppFragment implements ResponseListener<L
             SharedPreference.setPreference(getContext(), NAME_CONSTANT, response.getmResponse().getmName());
             SharedPreference.setPreference(getContext(), EMAIL_CONSTANT, response.getmResponse().getmEmail());
             getActivity().finish();
+            loader.dismissLoader();
             startActivity(new Intent(getActivity(), EnquiryActivity.class));
-            getActivity().finish();
         } else {
             Snackbar.make(getView(), response.getmMessage(), Snackbar.LENGTH_SHORT).show();
 
@@ -109,11 +117,13 @@ public class LoginFragment extends RailAppFragment implements ResponseListener<L
 
     @Override
     public void onFailure(Throwable throwable) {
+        loader.dismissLoader();
         Snackbar.make(getView(), throwable.getMessage().toString() +" "+ R.string.try_again, Snackbar.LENGTH_SHORT).show();
     }
 
     @Override
     public void onNullResponse() {
+        loader.dismissLoader();
         Snackbar.make(getView(), R.string.common_error +" "+ R.string.try_again, Snackbar.LENGTH_SHORT).show();
     }
 }
