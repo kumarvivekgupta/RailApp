@@ -38,12 +38,5 @@ public class PnrEnquiryActivity extends SingleFragmentActivity {
     protected Fragment getFragmentInstance() {
         return PnrEnquiryFragment.newInstance();
     }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId()==android.R.id.home){
-            startActivity(new Intent(this, EnquiryActivity.class));
-            this.finish();
-        }
-        return super.onOptionsItemSelected(item);
-    }
+
 }

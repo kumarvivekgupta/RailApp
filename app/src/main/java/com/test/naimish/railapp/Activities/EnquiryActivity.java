@@ -100,10 +100,10 @@ public class EnquiryActivity extends SingleFragmentActivity {
 
     private void logout() {
 
-        SharedPreference.setPreference(getBaseContext(), TOKEN_CONSTANT, null);
-        SharedPreference.setPreference(getBaseContext(), USERID_CONSTANT, null);
-        SharedPreference.setPreference(getBaseContext(), NAME_CONSTANT, null);
-        SharedPreference.setPreference(getBaseContext(), EMAIL_CONSTANT, null);
+        SharedPreference.setPreference(this, TOKEN_CONSTANT, "");
+        SharedPreference.setPreference(this, USERID_CONSTANT, "");
+        SharedPreference.setPreference(this, NAME_CONSTANT, "");
+        SharedPreference.setPreference(this, EMAIL_CONSTANT, "");
         this.finish();
         startActivity(new Intent(this, LandingActivity.class));
 

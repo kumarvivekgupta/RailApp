@@ -62,7 +62,13 @@ public class SplashFragment extends RailAppFragment implements ResponseListener<
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mToken = SharedPreference.getPreference(getContext(), RailAppConstants.TOKEN_CONSTANT);
-        validateUser();
+        if (mToken != "")
+            validateUser();
+        else {
+            startActivity(new Intent(getActivity(), LandingActivity.class));
+            getActivity().finish();
+        }
+
     }
 
     private void validateUser() {

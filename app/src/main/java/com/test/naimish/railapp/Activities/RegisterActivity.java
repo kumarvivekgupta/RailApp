@@ -38,12 +38,5 @@ public class RegisterActivity extends SingleFragmentActivity {
     protected Fragment getFragmentInstance() {
         return RegisterFragment.newInstance();
     }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId()==android.R.id.home){
-            startActivity(new Intent(this, LandingActivity.class));
-            this.finish();
-        }
-        return super.onOptionsItemSelected(item);
-    }
+
 }

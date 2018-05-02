@@ -1,7 +1,9 @@
 package com.test.naimish.railapp.Activities;
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -69,6 +71,12 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
         AddFragment.addFragment(getFragmentInstance(), this, R.id.container);
 
     }
-
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId()==android.R.id.home){
+            this.onBackPressed();
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
 }
