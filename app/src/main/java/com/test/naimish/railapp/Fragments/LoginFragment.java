@@ -71,6 +71,11 @@ public class LoginFragment extends RailAppFragment implements ResponseListener<L
         }
     }
 
+    @OnClick(R.id.forgot_password)
+    public void forgotPasswordClicked(){
+
+    }
+
     private void loginUser() {
         loader.showLoader();
         LoginApiClient client = new LoginApiClient(this);

@@ -55,6 +55,9 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         if (showToolbar()) {
             setSupportActionBar(mToolbar);
+            if (showBackButton()) {
+                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            }
             mToolbarTitle.setText(getToolbarTitle());
             if (getToolbarColor() != 0) {
                 mToolbar.setBackgroundColor(getResources().getColor(getToolbarColor()));
@@ -62,13 +65,7 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
         } else {
             mToolbar.setVisibility(View.INVISIBLE);
         }
-        if (showBackButton()) {
-            setSupportActionBar(mToolbar);
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        } else {
-            setSupportActionBar(mToolbar);
-            getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-        }
+
         AddFragment.addFragment(getFragmentInstance(), this, R.id.container);
 
     }

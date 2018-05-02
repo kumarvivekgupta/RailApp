@@ -38,4 +38,8 @@
     <string name="settings_success_message">Profile updated successfully.</string>
     <string name="reload"><u>Reload</u></string>
     <string name="logout_user">Logout</string>
+    <string name="forgot_password"><u>Forgot your password?</u></string>
+    <string name="forgot_password_message">Please provide the registered email id.
+        An email will be sent to you which will contain new password.
+        You can change your password in settings tab after logging in! </string>
 </resources>
