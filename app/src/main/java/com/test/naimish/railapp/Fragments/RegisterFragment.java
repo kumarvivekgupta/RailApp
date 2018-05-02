@@ -111,7 +111,7 @@ public class RegisterFragment extends RailAppFragment implements ResponseListene
             startActivity(new Intent(getContext(), LoginActivity.class));
             getActivity().finish();
         } else {
-            Snackbar.make(getView(), getResources().getString(R.string.user_already_registered), Snackbar.LENGTH_SHORT).show();
+            Snackbar.make(getView(), response.getMessage(), Snackbar.LENGTH_SHORT).show();
         }
 
     }
