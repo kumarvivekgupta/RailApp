@@ -28,6 +28,8 @@ import butterknife.ButterKnife;
  */
 
 public class LiveTrainStatusFragment extends RailAppFragment {
+    private ArrayList<TrainRouteModel> mTrainRouteModel;
+    private LiveStatusBaseModel trainRouteModel;
 
 
     @BindView(R.id.starting_point_code)
@@ -92,9 +94,6 @@ public class LiveTrainStatusFragment extends RailAppFragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        getLiveStatus();
-
-
     }
 
     @Override
@@ -104,23 +103,58 @@ public class LiveTrainStatusFragment extends RailAppFragment {
 
     }
 
+    @Subscribe
+    public void getLiveStatus(LiveStatusBaseModel mLiveStatusModel) {
+        Log.i("Event Bus 2", mLiveStatusModel.getPosition().toString());
+        trainRouteModel = mLiveStatusModel;
+     //   getCurrentStatus();
 
-    public void getLiveStatus() {
-        trainSchArrival.setText(getActivity().getIntent().getStringExtra("SchArr"));
-        trainActualArrival.setText(getActivity().getIntent().getStringExtra("ActArr"));
-        trainDelayOnArrival.setText(getActivity().getIntent().getStringExtra("ArrDelay"));
-        trainSchDep.setText(getActivity().getIntent().getStringExtra("SchDep"));
-        trainAchDep.setText(getActivity().getIntent().getStringExtra("ActDep"));
-        trainDepDelay.setText(getActivity().getIntent().getStringExtra("ArrDelay"));
-        trainRunningDate.setText(getActivity().getIntent().getStringExtra("TrainDate"));
-        startingPointCode.setText(getActivity().getIntent().getStringExtra("TrainStartStationCode"));
-        endPointCode.setText(getActivity().getIntent().getStringExtra("TrainEndStationCode"));
-        sourceCondition.setText(getActivity().getIntent().getStringExtra("Position"));
-        startingPointName.setText(getActivity().getIntent().getStringExtra("TrainStartStationName"));
-        endPointName.setText(getActivity().getIntent().getStringExtra("TrainEndStationName"));
-        trainName.setText(getActivity().getIntent().getStringExtra("TrainName"));
 
     }
+
+//    public void getCurrentStatus() {
+//        Intent i = new Intent();
+//        String n = i.getStringExtra("Position");
+//    int position = Integer.valueOf(n);
+//        for (int e = 0; e < trainRouteModel.getRoute().length; e++) {
+//            mTrainRouteModel.add(trainRouteModel.getRoute()[e]);
+//        }
+//        Toast.makeText(getContext(), trainRouteModel.getTrainStartDate(), Toast.LENGTH_LONG).show();
+//
+//
+//        trainSchArrival.setText(mTrainRouteModel.get(position).getSchduleArrival());
+//        trainActualArrival.setText(mTrainRouteModel.get(position).getAccArr());
+//        trainDelayOnArrival.setText(mTrainRouteModel.get(position).getLateMin());
+//        trainSchDep.setText(mTrainRouteModel.get(position).getSchdep());
+//        trainAchDep.setText(mTrainRouteModel.get(position).getActDep());
+//        trainDepDelay.setText(mTrainRouteModel.get(position).getLateMin());
+//        trainRunningDate.setText(trainRouteModel.getTrainStartDate());
+//        startingPointCode.setText(mTrainRouteModel.get(0).getStation().getCode());
+//        endPointCode.setText(mTrainRouteModel.get(n.length() - 1).getStation().getCode());
+//
+//        startingPointName.setText(mTrainRouteModel.get(0).getStation().getStationName());
+//        endPointName.setText(mTrainRouteModel.get(0).getStation().getStationName());
+//        trainName.setText(trainRouteModel.getTrainInfo().getTrainName());
+//        String s = trainRouteModel.getPosition();
+//
+//        String t = "";
+//        int a = 0;
+//        int l = s.length();
+//        for (int j = l - 9; j > l - 13; j--) {
+//            if (s.charAt(l - 8) == s.charAt(j)) {
+//                a = j;
+//                break;
+//            }
+//            t = t + s.charAt(j);
+//        }
+//        int a1 = Integer.valueOf(t);
+//        int hours = a1 / 60;
+//        int min = a1 % 60;
+//        String s1 = trainRouteModel.getPosition().substring(0, a);
+//        sourceCondition.setText(s1 + hours + "hours" + min + "minutes");
+//
+//
+//    }
 
 
 }

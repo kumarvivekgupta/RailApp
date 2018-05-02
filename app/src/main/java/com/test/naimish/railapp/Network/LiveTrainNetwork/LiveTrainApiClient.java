@@ -50,10 +50,10 @@ public class LiveTrainApiClient {
         call.enqueue(new Callback<LiveStatusBaseModel>() {
             @Override
             public void onResponse(Call<LiveStatusBaseModel> call, Response<LiveStatusBaseModel> response) {
-                if (response.body() != null)
+                if (response.body().getPosition() != null) {
                     EventBus.getDefault().post(response.body());
-                else
-                   Toast.makeText(context,R.string.common_error+" "+R.string.try_again,Toast.LENGTH_SHORT).show();
+                    // LiveTrainSearchFragment.trainLiveModel(response.body());
+                }
             }
 
             @Override

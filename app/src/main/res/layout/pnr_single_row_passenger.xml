@@ -8,12 +8,14 @@
         android:orientation="horizontal"
         android:layout_margin="5dp">
        <com.test.naimish.railapp.Views.LightTextView
+           android:id="@+id/passenger_no"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            android:text="Passenger no"
            android:padding="5dp"
            android:textSize="15dp"/>
         <com.test.naimish.railapp.Views.LightTextView
+            android:id="@+id/passenger_booking_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Booking status"
@@ -22,6 +24,7 @@
 
             android:textSize="15dp"/>
        <com.test.naimish.railapp.Views.LightTextView
+           android:id="@+id/passenger_current_status"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            android:text="Currnet Status"

@@ -23,6 +23,7 @@ import com.test.naimish.railapp.Models.LiveTrainStatusModel.TrainRouteModel;
 import com.test.naimish.railapp.Network.LiveTrainNetwork.LiveTrainApiClient;
 import com.test.naimish.railapp.R;
 import com.test.naimish.railapp.Utils.EnquiryAdapter;
+import com.test.naimish.railapp.Utils.StationAdapter;
 import com.test.naimish.railapp.Utils.Validations;
 
 import org.greenrobot.eventbus.EventBus;
@@ -46,8 +47,8 @@ import butterknife.OnClick;
  * Created by Vivek on 4/4/2018.
  */
 
-public class LiveTrainSearchFragment extends RailAppFragment implements EnquiryAdapter.Clicklistener, AdapterView.OnItemSelectedListener {
-    private EnquiryAdapter madapter;
+public class LiveTrainSearchFragment extends RailAppFragment implements StationAdapter.Clicklistener, AdapterView.OnItemSelectedListener {
+    private StationAdapter madapter;
     private String mtrainNo;
     public LiveStatusBaseModel mliveTrainRoute;
     private List<String> categories;
@@ -111,14 +112,17 @@ public class LiveTrainSearchFragment extends RailAppFragment implements EnquiryA
         super.onActivityCreated(savedInstanceState);
         apiClient=new LiveTrainApiClient(getContext());
         EventBus.getDefault().register(this);
+        EventBus.getDefault().register(new LiveTrainStatusFragment());
+
 
     }
 
     @Override
     public void itemclicked(int position) {
         Intent intent = new Intent(getActivity(), LiveTrainStatusActivity.class);
-
-
+        intent.putExtra("Position", position+"");
+//        EventBus.getDefault().post(mliveTrainRoute);
+//        intent.putExtra("Position", position);
 //      Map<String,String>  stationInfo = new HashMap<String, String>();
 //        stationInfo.put("SchArr", mtrainRouteModel.get(position).getSchduleArrival());
 //        stationInfo.put("ActArr", mtrainRouteModel.get(position).getAccArr());
@@ -137,19 +141,19 @@ public class LiveTrainSearchFragment extends RailAppFragment implements EnquiryA
 //        trainPosition.put("Date",mliveTrainRoute.getTrainStartDate());
 //        trainPosition.put("Position",mliveTrainRoute.getPosition());
 //        intent.putExtra("StationInfo",stationInfo+"");
-        intent.putExtra("SchArr", mtrainRouteModel.get(position).getSchduleArrival());
-        intent.putExtra("ActArr", mtrainRouteModel.get(position).getAccArr());
-        intent.putExtra("ArrDelay", mtrainRouteModel.get(position).getLateMin());
-        intent.putExtra("SchDep", mtrainRouteModel.get(position).getSchdep());
-        intent.putExtra("ActDep", mtrainRouteModel.get(position).getActDep());
-        intent.putExtra("SchArr", mtrainRouteModel.get(position).getSchduleArrival());
-        intent.putExtra("TrainDate", mliveTrainRoute.getTrainStartDate());
-        intent.putExtra("Position", mliveTrainRoute.getPosition());
-        intent.putExtra("TrainStartStationCode", mtrainRouteModel.get(position).getStation().getCode());
-        intent.putExtra("TrainEndStationCode", mtrainRouteModel.get(((mliveTrainRoute.getRoute().length) - 1)).getStation().getCode());
-        intent.putExtra("TrainStartStationName", mtrainRouteModel.get(position).getStation().getStationName());
-        intent.putExtra("TrainEndStationName", mtrainRouteModel.get(((mliveTrainRoute.getRoute().length) - 1)).getStation().getStationName());
-        intent.putExtra("TrainName", mliveTrainRoute.getTrainInfo().getTrainName());
+//        intent.putExtra("SchArr", mtrainRouteModel.get(position).getSchduleArrival());
+//        intent.putExtra("ActArr", mtrainRouteModel.get(position).getAccArr());
+//        intent.putExtra("ArrDelay", mtrainRouteModel.get(position).getLateMin());
+//        intent.putExtra("SchDep", mtrainRouteModel.get(position).getSchdep());
+//        intent.putExtra("ActDep", mtrainRouteModel.get(position).getActDep());
+//        intent.putExtra("SchArr", mtrainRouteModel.get(position).getSchduleArrival());
+//        intent.putExtra("TrainDate", mliveTrainRoute.getTrainStartDate());
+//        intent.putExtra("Position", mliveTrainRoute.getPosition());
+//        intent.putExtra("TrainStartStationCode", mtrainRouteModel.get(position).getStation().getCode());
+//        intent.putExtra("TrainEndStationCode", mtrainRouteModel.get(((mliveTrainRoute.getRoute().length) - 1)).getStation().getCode());
+//        intent.putExtra("TrainStartStationName", mtrainRouteModel.get(position).getStation().getStationName());
+//        intent.putExtra("TrainEndStationName", mtrainRouteModel.get(((mliveTrainRoute.getRoute().length) - 1)).getStation().getStationName());
+//        intent.putExtra("TrainName", mliveTrainRoute.getTrainInfo().getTrainName());
 
         startActivity(intent);
 
@@ -168,7 +172,7 @@ public class LiveTrainSearchFragment extends RailAppFragment implements EnquiryA
         }
 
         for (int i = 0; i < mliveTrainRoute.getRoute().length; i++) {
-            data.add(mtrainRouteModel.get(i).getStation().getStationName());
+            data.add(mtrainRouteModel.get(i).getStation().getStationName());//Actual code
         }
         return data;
     }
@@ -188,12 +192,13 @@ public class LiveTrainSearchFragment extends RailAppFragment implements EnquiryA
     @Subscribe
     public void trainLiveModel(LiveStatusBaseModel trainRouteModel) {
 
-//        mliveTrainRoute = trainRouteModel;
-//        EnquiryAdapter.getLayoutResourseId(R.layout.recycler_single_row_live_train);
-////        madapter = new EnquiryAdapter(getContext(), getdata());
-//        madapter.setClicklistener(this);
-//        stationsRecyclerView.setAdapter(madapter);
-//        stationsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        mliveTrainRoute = trainRouteModel;
+        //  EnquiryAdapter.getLayoutResourseId(R.layout.recycler_single_row_live_train);
+        madapter = new StationAdapter(getContext(), getdata());
+        madapter.setClicklistener(this);
+        stationsRecyclerView.setAdapter(madapter);
+        stationsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+      //  EventBus.getDefault().post(trainRouteModel);
 
     }
 

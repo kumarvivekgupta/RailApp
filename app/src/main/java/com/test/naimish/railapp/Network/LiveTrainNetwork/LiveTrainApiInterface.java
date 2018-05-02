@@ -14,4 +14,5 @@ public interface LiveTrainApiInterface {
 
     @GET("/v2/live/train/{train_no}/date/{date}/apikey/k5quhfa6m8/")
     Call<LiveStatusBaseModel> liveTrainInfo(@Path("train_no") String trainNo, @Path("date") String date);
+
 }
