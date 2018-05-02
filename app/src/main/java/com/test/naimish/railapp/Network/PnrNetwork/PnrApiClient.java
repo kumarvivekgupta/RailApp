@@ -22,7 +22,13 @@ import static com.test.naimish.railapp.Utils.RailAppConstants.RAIL_BASE_URL;
  */
 
 public class PnrApiClient {
-    public static void getPnrStatus(String pnrNo) {
+    private PnrResponse pnrResponse;
+
+    public PnrApiClient(PnrResponse pnrResponse) {
+        this.pnrResponse = pnrResponse;
+    }
+
+    public  void getPnrStatus(String pnrNo) {
         OkHttpClient.Builder okhttpbuilder = new OkHttpClient.Builder();
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
@@ -42,8 +48,9 @@ public class PnrApiClient {
             @Override
             public void onResponse(Call<BaseModel> call, Response<BaseModel> response) {
                 Log.i("Response", gson.toJson(response.body()));
-                PnrEnquiryFragment pnrEnquiryFragment=new PnrEnquiryFragment();
-                pnrEnquiryFragment.pnrDisplay(response.body());
+//                PnrEnquiryFragment pnrEnquiryFragment=new PnrEnquiryFragment();
+//                pnrEnquiryFragment.pnrDisplay(response.body());
+                pnrResponse.onRespobnse(response.body());
             }
 
             @Override
@@ -51,5 +58,9 @@ public class PnrApiClient {
                 Log.i("Error", "error");
             }
         });
+    }
+
+    public interface PnrResponse{
+        void onRespobnse( BaseModel pnrBaseModel);
     }
 }

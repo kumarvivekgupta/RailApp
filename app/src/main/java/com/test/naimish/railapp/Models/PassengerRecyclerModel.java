@@ -22,7 +22,7 @@ public class PassengerRecyclerModel {
     }
 
 
-    public PassengerRecyclerModel(String bookingStatus, int passengerNo, String currentStatus) {
+    public PassengerRecyclerModel( int passengerNo,String bookingStatus, String currentStatus) {
         this.bookingStatus = bookingStatus;
         this.passengerNo = passengerNo;
         this.currentStatus = currentStatus;
