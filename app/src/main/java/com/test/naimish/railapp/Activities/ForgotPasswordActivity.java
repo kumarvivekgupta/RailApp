@@ -4,6 +4,7 @@ package com.test.naimish.railapp.Activities;
 
 import android.support.v4.app.Fragment;
 
+import com.test.naimish.railapp.Fragments.ForgotPasswordFragment;
 import com.test.naimish.railapp.R;
 
 public class ForgotPasswordActivity extends SingleFragmentActivity {
@@ -30,6 +31,6 @@ public class ForgotPasswordActivity extends SingleFragmentActivity {
 
     @Override
     protected Fragment getFragmentInstance() {
-        return null;
+        return ForgotPasswordFragment.newInstance();
     }
 }

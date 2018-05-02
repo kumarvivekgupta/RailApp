@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.test.naimish.railapp.Activities.EnquiryActivity;
+import com.test.naimish.railapp.Activities.ForgotPasswordActivity;
 import com.test.naimish.railapp.Models.LoginModel.LoginUser;
 import com.test.naimish.railapp.Network.LoginNetwork.LoginApiClient;
 import com.test.naimish.railapp.R;
@@ -72,8 +73,8 @@ public class LoginFragment extends RailAppFragment implements ResponseListener<L
     }
 
     @OnClick(R.id.forgot_password)
-    public void forgotPasswordClicked(){
-
+    public void forgotPasswordClicked() {
+        startActivity(new Intent(getActivity(), ForgotPasswordActivity.class));
     }
 
     private void loginUser() {
@@ -101,7 +102,7 @@ public class LoginFragment extends RailAppFragment implements ResponseListener<L
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        loader=new ProgressLoader(getActivity());
+        loader = new ProgressLoader(getActivity());
     }
 
     @Override
@@ -123,12 +124,12 @@ public class LoginFragment extends RailAppFragment implements ResponseListener<L
     @Override
     public void onFailure(Throwable throwable) {
         loader.dismissLoader();
-        Snackbar.make(getView(), throwable.getMessage().toString() +" "+ R.string.try_again, Snackbar.LENGTH_SHORT).show();
+        Snackbar.make(getView(), throwable.getMessage().toString() + " " + R.string.try_again, Snackbar.LENGTH_SHORT).show();
     }
 
     @Override
     public void onNullResponse() {
         loader.dismissLoader();
-        Snackbar.make(getView(), R.string.common_error +" "+ R.string.try_again, Snackbar.LENGTH_SHORT).show();
+        Snackbar.make(getView(), R.string.common_error + " " + R.string.try_again, Snackbar.LENGTH_SHORT).show();
     }
 }
