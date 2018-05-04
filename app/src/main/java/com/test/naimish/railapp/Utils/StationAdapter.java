@@ -42,7 +42,7 @@ public class StationAdapter extends RecyclerView.Adapter<StationAdapter.MyViewHo
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        holder.stationName.setText(mListItems.get(position));
+//        holder.stationName.setText(mListItems.get(position));
     }
 
     @Override
@@ -51,8 +51,8 @@ public class StationAdapter extends RecyclerView.Adapter<StationAdapter.MyViewHo
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        @BindView(R.id.station_name)
-        LightTextView stationName;
+//        @BindView(R.id.station_name)
+//        LightTextView stationName;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -70,7 +70,7 @@ public class StationAdapter extends RecyclerView.Adapter<StationAdapter.MyViewHo
     }
 
     public interface Clicklistener {
-        public void itemclicked(int position);
+         void itemclicked(int position);
     }
 
     public void setClicklistener(StationAdapter.Clicklistener clicklistener) {
