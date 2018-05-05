@@ -23,6 +23,7 @@ import com.test.naimish.railapp.Utils.RailAppConstants;
 import com.test.naimish.railapp.Utils.ResponseListener;
 import com.test.naimish.railapp.Utils.StationAdapter;
 import com.test.naimish.railapp.Utils.TrainController;
+import com.test.naimish.railapp.Views.ProgressLoader;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -43,6 +44,7 @@ public class LiveTrainSearchFragment extends RailAppFragment implements Response
     private String mTrainNo;
     private String mSelectedDate;
     private LiveStatusBaseModel statusBaseModel;
+    private ProgressLoader loader;
 
     @BindView(R.id.enter_train)
     EditText trainNo;
@@ -56,6 +58,7 @@ public class LiveTrainSearchFragment extends RailAppFragment implements Response
     @OnClick(R.id.search_live_train)
     public void searchLiveTrain() {
         mTrainNo = trainNo.getText().toString();
+        loader.showLoader();
         mApiClient.liveTrainStatus(mTrainNo, mSelectedDate);
     }
 
@@ -108,11 +111,13 @@ public class LiveTrainSearchFragment extends RailAppFragment implements Response
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mApiClient = new LiveTrainApiClient(this);
+        loader=new ProgressLoader(getActivity());
     }
 
 
     @Override
     public void onSuccess(LiveStatusBaseModel response) {
+        loader.dismissLoader();
         this.statusBaseModel=response;
         StationAdapter adapter=new StationAdapter(getContext(),TrainController.getStationList(response.getRoute()));
         stationsRecyclerView.setAdapter(adapter);
@@ -122,12 +127,14 @@ public class LiveTrainSearchFragment extends RailAppFragment implements Response
 
     @Override
     public void onFailure(Throwable throwable) {
-
+        loader.dismissLoader();
+        Snackbar.make(getView(), throwable.getMessage().toString() + " " + R.string.try_again, Snackbar.LENGTH_SHORT).show();
     }
 
     @Override
     public void onNullResponse() {
-
+        loader.dismissLoader();
+        Snackbar.make(getView(), R.string.common_error + " " + R.string.try_again, Snackbar.LENGTH_SHORT).show();
     }
 
 
