@@ -29,6 +29,11 @@ public class BaseModel {
     private PassengerModel[] passengersDetails;
 
 
+    @SerializedName("chart_prepared")
+    @Expose
+    private Boolean chartPrepared;
+
+
     public String getPnr() {
         return pnr;
     }
@@ -47,5 +52,9 @@ public class BaseModel {
 
     public PassengerModel[] getPassengersDetails() {
         return passengersDetails;
+    }
+
+    public Boolean getChartPrepared() {
+        return chartPrepared;
     }
 }
