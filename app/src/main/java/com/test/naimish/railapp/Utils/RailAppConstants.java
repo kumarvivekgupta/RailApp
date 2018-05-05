@@ -17,7 +17,6 @@ public interface RailAppConstants {
 
     int PERMISSION_REQUEST_CODE = 123;
     int REQUEST_GALLERY_CODE = 1;
-    int REQUEST_CAMERA_CODE = 20;
 
     //REST constants
 

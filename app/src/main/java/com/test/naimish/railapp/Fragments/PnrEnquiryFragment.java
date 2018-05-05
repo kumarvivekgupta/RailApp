@@ -42,7 +42,7 @@ public class PnrEnquiryFragment extends RailAppFragment implements PnrApiClient.
 
     private PassengerAdapter madapter;
     private ArrayList<PassengerModel> mPassengerList = new ArrayList<>();
-  //  ArrayList<PassengerRecyclerModel> data = new ArrayList<>();
+    //  ArrayList<PassengerRecyclerModel> data = new ArrayList<>();
 
 
     @Override
@@ -71,6 +71,12 @@ public class PnrEnquiryFragment extends RailAppFragment implements PnrApiClient.
 
     @BindView(R.id.passenger_list_recycler)
     RecyclerView passengerListRecycler;
+
+    @BindView(R.id.chartStatus)
+    LightTextView mChartStatus;
+
+    @BindView(R.id.dateTravel)
+    LightTextView mDateTravel;
 
     @OnClick(R.id.search_pnr_status)
     public void getPnrStatus() {
@@ -120,22 +126,27 @@ public class PnrEnquiryFragment extends RailAppFragment implements PnrApiClient.
 
     @Override
     public void onRespobnse(BaseModel pnrBaseModel) {
-        if(pnrBaseModel.getPnr()!=null) {
+        if (pnrBaseModel.getPnr() != null) {
 //        Log.i("PNR", pnrBaseModel.getFromStation().getStationCode());
             mBaseModel = pnrBaseModel;
             pnrStatusCardLayout.setVisibility(View.VISIBLE);
-            fromStation.setText(mBaseModel.getFromStation().getStationName());
-            Toast.makeText(getContext(),mBaseModel.getToStation().getStationName(),Toast.LENGTH_LONG).show();
-            toStation.setText(mBaseModel.getToStation().getStationName());
+            fromStation.setText(mBaseModel.getFromStation().getStationCode());
+            // Toast.makeText(getContext(),mBaseModel.getToStation().getStationName(),Toast.LENGTH_LONG).show();
+            toStation.setText(mBaseModel.getToStation().getStationCode());
+            mDateTravel.setText(mBaseModel.getDateOfTravel());
             trainName.setText(mBaseModel.getTrainNumber().getTrainName());
+            if (mBaseModel.getChartPrepared() == true) {
+                mChartStatus.setText("Chart Prepared");
+            } else {
+                mChartStatus.setText("Chart not Prepared");
+            }
             for (int i = 0; i < mBaseModel.getPassengersDetails().length; i++) {
                 mPassengerList.add(mBaseModel.getPassengersDetails()[i]);
             }
             madapter = new PassengerAdapter(getContext(), getdata1());
             passengerListRecycler.setAdapter(madapter);
             passengerListRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
-        }
-        else
-            Toast.makeText(getContext(),"Api Not Working",Toast.LENGTH_SHORT).show();
+        } else
+            Toast.makeText(getContext(), "Api Not Working", Toast.LENGTH_SHORT).show();
     }
 }

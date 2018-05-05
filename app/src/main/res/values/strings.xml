@@ -42,4 +42,9 @@
     <string name="forgot_password_message">Please provide the registered email id.
         An email will be sent to you which will contain new password.
         You can change your password in settings tab after logging in! </string>
+    <string name="chart_prepared">Chart is prepared</string>
+    <string name="chart_not_prepared">Chart is not prepared</string>
+    <string name="passenger_no">Passenger</string>
+    <string name="booking_status">Booking Status</string>
+    <string name="current_status">Current Status</string>
 </resources>
