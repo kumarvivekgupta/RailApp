@@ -7,12 +7,14 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -23,6 +25,7 @@ import com.test.naimish.railapp.Models.LiveTrainStatusModel.TrainRouteModel;
 import com.test.naimish.railapp.Network.LiveTrainNetwork.LiveTrainApiClient;
 import com.test.naimish.railapp.R;
 import com.test.naimish.railapp.Utils.EnquiryAdapter;
+import com.test.naimish.railapp.Utils.ResponseListener;
 import com.test.naimish.railapp.Utils.StationAdapter;
 import com.test.naimish.railapp.Utils.Validations;
 
@@ -47,20 +50,26 @@ import butterknife.OnClick;
  * Created by Vivek on 4/4/2018.
  */
 
-public class LiveTrainSearchFragment extends RailAppFragment {
+public class LiveTrainSearchFragment extends RailAppFragment implements ResponseListener<LiveStatusBaseModel>, StationAdapter.StationNameClicklistener {
     private ArrayList<String> mDates;
+    private LiveTrainApiClient mApiClient;
+    private String mTrainNo;
+    private String mSelectedDate;
 
     @BindView(R.id.enter_train)
-    EditText enterTrain;
-
-    @BindView(R.id.search_live_train)
-    ImageView searchLiveTrain;
+    EditText trainNo;
 
     @BindView(R.id.stations_recycler_view)
     RecyclerView stationsRecyclerView;
 
     @BindView(R.id.date_spinner)
     Spinner dateSpinner;
+
+    @OnClick(R.id.search_live_train)
+    public void searchLiveTrain() {
+        mTrainNo = trainNo.getText().toString();
+        mApiClient.liveTrainStatus(mTrainNo, mSelectedDate);
+    }
 
 
     @Override
@@ -91,18 +100,59 @@ public class LiveTrainSearchFragment extends RailAppFragment {
         mDates.add(dateFormat.format(cal.getTime()).toString());
         cal.add(Calendar.DATE, 1);
         mDates.add(dateFormat.format(cal.getTime()).toString());
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, mDates);
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        dateSpinner.setAdapter(dataAdapter);
+        ArrayAdapter<String> dateAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, mDates);
+        dateAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        dateSpinner.setAdapter(dateAdapter);
+        dateSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                mSelectedDate = mDates.get(i);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        mApiClient = new LiveTrainApiClient(this);
+    }
 
+
+    @Override
+    public void onSuccess(LiveStatusBaseModel response) {
+        StationAdapter adapter=new StationAdapter(getContext(),getStationList(response.getRoute()));
+        stationsRecyclerView.setAdapter(adapter);
+        adapter.setClicklistenerInstance(this);
+        stationsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+    }
+
+    @Override
+    public void onFailure(Throwable throwable) {
+
+    }
+
+    @Override
+    public void onNullResponse() {
 
     }
 
 
+    private ArrayList<String> getStationList(TrainRouteModel[] trainRoute) {
+        ArrayList stationList = new ArrayList();
+        for (int i = 0; i < trainRoute.length; i++) {
+            stationList.add(trainRoute[i].getStation().getStationName());
+        }
+        return stationList;
+    }
+
+    @Override
+    public void itemclicked(int position) {
+        Log.i("Adapter Position", position + "");
+    }
 }
 

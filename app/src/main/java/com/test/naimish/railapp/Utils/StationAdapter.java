@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.test.naimish.railapp.Fragments.LiveTrainSearchFragment;
 import com.test.naimish.railapp.Models.PassengerRecyclerModel;
 import com.test.naimish.railapp.R;
 import com.test.naimish.railapp.Views.LightTextView;
@@ -21,16 +22,19 @@ import butterknife.ButterKnife;
  */
 
 public class StationAdapter extends RecyclerView.Adapter<StationAdapter.MyViewHolder> {
-    private StationAdapter.Clicklistener mClickListener;
-    private Context mContext;
+    private StationNameClicklistener clicklistener;
+    Context context;
     private LayoutInflater mLayoutInflater;
     private ArrayList<String> mListItems;
 
-    public StationAdapter(Context context, ArrayList<String> data) {
-        this.mContext = context;
+    public StationAdapter(Context clicklistener, ArrayList<String> data) {
+        this.context = clicklistener;
         mLayoutInflater = LayoutInflater.from(context);
         this.mListItems = new ArrayList<>();
         this.mListItems = data;
+    }
+    public void setClicklistenerInstance(StationNameClicklistener clicklistener){
+        this.clicklistener=clicklistener;
     }
 
     @Override
@@ -42,7 +46,7 @@ public class StationAdapter extends RecyclerView.Adapter<StationAdapter.MyViewHo
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-//        holder.stationName.setText(mListItems.get(position));
+        holder.stationName.setText(mListItems.get(position));
     }
 
     @Override
@@ -50,30 +54,25 @@ public class StationAdapter extends RecyclerView.Adapter<StationAdapter.MyViewHo
         return mListItems.size();
     }
 
-    class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-//        @BindView(R.id.station_name)
-//        LightTextView stationName;
+    class MyViewHolder extends RecyclerView.ViewHolder {
+        @BindView(R.id.station_name)
+        LightTextView stationName;
 
-        public MyViewHolder(View itemView) {
+        public MyViewHolder(final View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
-            itemView.setOnClickListener(this);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    clicklistener.itemclicked(getAdapterPosition());
+                }
+            });
         }
 
-        @Override
-        public void onClick(View v) {
-            if (mClickListener != null) {
-                mClickListener.itemclicked(getAdapterPosition());
-
-            }
-        }
     }
 
-    public interface Clicklistener {
-         void itemclicked(int position);
+    public interface StationNameClicklistener {
+        void itemclicked(int position);
     }
 
-    public void setClicklistener(StationAdapter.Clicklistener clicklistener) {
-        this.mClickListener = clicklistener;
-    }
 }
