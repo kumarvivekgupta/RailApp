@@ -24,4 +24,8 @@ public interface RailAppConstants {
     String BASE_URL = "https://fierce-forest-53940.herokuapp.com/";
     String RAIL_BASE_URL = "https://api.railwayapi.com/";
 
+    //Intent Constants
+
+    String SINGLE_STATION_DETAILS="single station details";
+
 }

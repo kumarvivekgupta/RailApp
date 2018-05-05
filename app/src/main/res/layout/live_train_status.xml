@@ -24,7 +24,7 @@
 
 
             <com.test.naimish.railapp.Views.LightTextView
-                android:id="@+id/train_name"
+                android:id="@+id/station_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/colorfbblue"
