@@ -1,6 +1,5 @@
 package com.test.naimish.railapp.Utils;
 
-import android.util.Log;
 
 import com.google.gson.Gson;
 import com.test.naimish.railapp.Models.LiveTrainStatusModel.LiveStatusBaseModel;
