@@ -13,15 +13,7 @@ public class TrainModel {
     @Expose
     private String trainName;
 
-    @SerializedName("no")
-    @Expose
-    private String trainNumber;
-
     public String getTrainName() {
         return trainName;
-    }
-
-    public String getTrainNumber() {
-        return trainNumber;
     }
 }

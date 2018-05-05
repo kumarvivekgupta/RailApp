@@ -2,6 +2,7 @@ package com.test.naimish.railapp.Fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -18,6 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.test.naimish.railapp.Activities.LiveTrainSearchActivity;
 import com.test.naimish.railapp.Activities.LiveTrainStatusActivity;
 import com.test.naimish.railapp.Models.LiveTrainStatusModel.LiveStatusBaseModel;
@@ -55,6 +57,7 @@ public class LiveTrainSearchFragment extends RailAppFragment implements Response
     private LiveTrainApiClient mApiClient;
     private String mTrainNo;
     private String mSelectedDate;
+    private LiveStatusBaseModel statusBaseModel;
 
     @BindView(R.id.enter_train)
     EditText trainNo;
@@ -125,6 +128,10 @@ public class LiveTrainSearchFragment extends RailAppFragment implements Response
 
     @Override
     public void onSuccess(LiveStatusBaseModel response) {
+        this.statusBaseModel=response;
+        Gson gson=new Gson();
+        String json=gson.toJson(response);
+        Log.i("json",json);
         StationAdapter adapter=new StationAdapter(getContext(),getStationList(response.getRoute()));
         stationsRecyclerView.setAdapter(adapter);
         adapter.setClicklistenerInstance(this);
@@ -153,6 +160,19 @@ public class LiveTrainSearchFragment extends RailAppFragment implements Response
     @Override
     public void itemclicked(int position) {
         Log.i("Adapter Position", position + "");
+        getDisplayInformation();
+    }
+
+    private void getDisplayInformation(){
+        String stationName;
+        String fromStation;
+        String toStation;
+        String actualArrival;
+        String scheduledArival;
+        String actualDeparture;
+        String scheduledDepartire;
+
+
     }
 }
 

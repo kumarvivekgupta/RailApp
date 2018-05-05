@@ -92,14 +92,9 @@ public class LiveTrainStatusFragment extends RailAppFragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
 
     }
+
 
 
 }
