@@ -27,8 +27,10 @@ import com.test.naimish.railapp.Models.LiveTrainStatusModel.TrainRouteModel;
 import com.test.naimish.railapp.Network.LiveTrainNetwork.LiveTrainApiClient;
 import com.test.naimish.railapp.R;
 import com.test.naimish.railapp.Utils.EnquiryAdapter;
+import com.test.naimish.railapp.Utils.RailAppConstants;
 import com.test.naimish.railapp.Utils.ResponseListener;
 import com.test.naimish.railapp.Utils.StationAdapter;
+import com.test.naimish.railapp.Utils.TrainController;
 import com.test.naimish.railapp.Utils.Validations;
 
 import org.greenrobot.eventbus.EventBus;
@@ -132,7 +134,7 @@ public class LiveTrainSearchFragment extends RailAppFragment implements Response
         Gson gson=new Gson();
         String json=gson.toJson(response);
         Log.i("json",json);
-        StationAdapter adapter=new StationAdapter(getContext(),getStationList(response.getRoute()));
+        StationAdapter adapter=new StationAdapter(getContext(),TrainController.getStationList(response.getRoute()));
         stationsRecyclerView.setAdapter(adapter);
         adapter.setClicklistenerInstance(this);
         stationsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -149,30 +151,13 @@ public class LiveTrainSearchFragment extends RailAppFragment implements Response
     }
 
 
-    private ArrayList<String> getStationList(TrainRouteModel[] trainRoute) {
-        ArrayList stationList = new ArrayList();
-        for (int i = 0; i < trainRoute.length; i++) {
-            stationList.add(trainRoute[i].getStation().getStationName());
-        }
-        return stationList;
-    }
-
     @Override
     public void itemclicked(int position) {
-        Log.i("Adapter Position", position + "");
-        getDisplayInformation();
+        String response=TrainController.getDisplayInformation(statusBaseModel,position);
+        Intent intent=new Intent(getActivity(),LiveTrainStatusActivity.class);
+        intent.putExtra(RailAppConstants.SINGLE_STATION_DETAILS,response);
+        startActivity(intent);
     }
 
-    private void getDisplayInformation(){
-        String stationName;
-        String fromStation;
-        String toStation;
-        String actualArrival;
-        String scheduledArival;
-        String actualDeparture;
-        String scheduledDepartire;
-
-
-    }
 }
 

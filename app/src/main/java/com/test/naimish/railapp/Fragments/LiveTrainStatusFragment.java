@@ -9,9 +9,12 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.test.naimish.railapp.Models.LiveTrainStatusModel.LiveStatusBaseModel;
 import com.test.naimish.railapp.Models.LiveTrainStatusModel.TrainRouteModel;
+import com.test.naimish.railapp.Models.StationStatusDisplayModel;
 import com.test.naimish.railapp.R;
+import com.test.naimish.railapp.Utils.RailAppConstants;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -79,7 +82,6 @@ public class LiveTrainStatusFragment extends RailAppFragment {
 
     public static Fragment newInstance() {
         return new LiveTrainStatusFragment();
-
     }
 
     @Override
@@ -91,10 +93,12 @@ public class LiveTrainStatusFragment extends RailAppFragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
+        String response = getActivity().getIntent().getExtras().getString(RailAppConstants.SINGLE_STATION_DETAILS);
+        Gson gson = new Gson();
+        StationStatusDisplayModel displayModel = gson.fromJson(response, StationStatusDisplayModel.class);
+        Log.i("Current status", displayModel.getCurrentStatus());
 
     }
-
 
 
 }
