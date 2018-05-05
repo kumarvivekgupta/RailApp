@@ -34,6 +34,11 @@ public class BaseModel {
     private Boolean chartPrepared;
 
 
+    @SerializedName("doj")
+    @Expose
+    private String dateOfTravel;
+
+
     public String getPnr() {
         return pnr;
     }
@@ -56,5 +61,8 @@ public class BaseModel {
 
     public Boolean getChartPrepared() {
         return chartPrepared;
+    }
+    public String getDateOfTravel() {
+        return dateOfTravel;
     }
 }

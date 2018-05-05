@@ -75,6 +75,9 @@ public class PnrEnquiryFragment extends RailAppFragment implements PnrApiClient.
     @BindView(R.id.chartStatus)
     LightTextView mChartStatus;
 
+    @BindView(R.id.dateTravel)
+    LightTextView mDateTravel;
+
     @OnClick(R.id.search_pnr_status)
     public void getPnrStatus() {
         if (Validations.checkPNR(pnrText.getText().toString())) {
@@ -116,7 +119,7 @@ public class PnrEnquiryFragment extends RailAppFragment implements PnrApiClient.
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        pnrStatusCardLayout.setVisibility(View.VISIBLE);
+        pnrStatusCardLayout.setVisibility(View.INVISIBLE);
 
 
     }
@@ -130,12 +133,12 @@ public class PnrEnquiryFragment extends RailAppFragment implements PnrApiClient.
             fromStation.setText(mBaseModel.getFromStation().getStationCode());
             // Toast.makeText(getContext(),mBaseModel.getToStation().getStationName(),Toast.LENGTH_LONG).show();
             toStation.setText(mBaseModel.getToStation().getStationCode());
-
+            mDateTravel.setText(mBaseModel.getDateOfTravel());
             trainName.setText(mBaseModel.getTrainNumber().getTrainName());
             if (mBaseModel.getChartPrepared() == true) {
-                mChartStatus.setText("@string/chart_prepared");
+                mChartStatus.setText("Chart Prepared");
             } else {
-                mChartStatus.setText("@string/chart_not_prepared");
+                mChartStatus.setText("Chart not Prepared");
             }
             for (int i = 0; i < mBaseModel.getPassengersDetails().length; i++) {
                 mPassengerList.add(mBaseModel.getPassengersDetails()[i]);
