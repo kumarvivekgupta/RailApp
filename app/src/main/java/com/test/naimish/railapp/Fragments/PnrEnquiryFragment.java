@@ -16,11 +16,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.google.android.gms.ads.AdView;
 import com.test.naimish.railapp.Models.PassengerRecyclerModel;
 import com.test.naimish.railapp.Models.PnrModel.BaseModel;
 import com.test.naimish.railapp.Models.PnrModel.PassengerModel;
 import com.test.naimish.railapp.Network.PnrNetwork.PnrApiClient;
 import com.test.naimish.railapp.R;
+import com.test.naimish.railapp.Utils.AddService;
 import com.test.naimish.railapp.Utils.EnquiryAdapter;
 import com.test.naimish.railapp.Utils.PassengerAdapter;
 import com.test.naimish.railapp.Utils.Validations;
@@ -49,6 +51,9 @@ public class PnrEnquiryFragment extends RailAppFragment implements PnrApiClient.
     protected int getResourceId() {
         return R.layout.pnr_status;
     }
+
+    @BindView(R.id.adView)
+    AdView adView;
 
     @BindView(R.id.enter_pnr)
     EditText pnrText;
@@ -120,8 +125,7 @@ public class PnrEnquiryFragment extends RailAppFragment implements PnrApiClient.
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         pnrStatusCardLayout.setVisibility(View.INVISIBLE);
-
-
+        adView.loadAd(AddService.getAdRequest(getActivity()));
     }
 
     @Override

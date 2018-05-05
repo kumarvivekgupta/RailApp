@@ -16,12 +16,16 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 import com.test.naimish.railapp.Activities.LiveTrainSearchActivity;
 import com.test.naimish.railapp.Activities.LiveTrainStatusActivity;
 import com.test.naimish.railapp.Activities.PnrEnquiryActivity;
 import com.test.naimish.railapp.Models.RecyclerModel;
 import com.test.naimish.railapp.Network.LiveTrainNetwork.LiveTrainApiClient;
 import com.test.naimish.railapp.R;
+import com.test.naimish.railapp.Utils.AddService;
 import com.test.naimish.railapp.Utils.SharedPreference;
 import com.test.naimish.railapp.Utils.EnquiryAdapter;
 import com.test.naimish.railapp.Views.LightTextView;
@@ -48,6 +52,7 @@ public class EnquiryFragment extends RailAppFragment implements EnquiryAdapter.C
 
     private EnquiryAdapter adapter;
 
+
     @BindView(R.id.user_pic)
     CircleImageView userPic;
 
@@ -59,6 +64,9 @@ public class EnquiryFragment extends RailAppFragment implements EnquiryAdapter.C
 
     @BindView(R.id.user_email)
     LightTextView mUserEmail;
+
+    @BindView(R.id.adView)
+    AdView adView;
 
 
     public static Fragment newInstance() {
@@ -87,6 +95,7 @@ public class EnquiryFragment extends RailAppFragment implements EnquiryAdapter.C
         recycler.setLayoutManager(new LinearLayoutManager(getContext()));
         mUserName.setText(SharedPreference.getPreference(getContext(), NAME_CONSTANT));
         mUserEmail.setText(SharedPreference.getPreference(getContext(), EMAIL_CONSTANT));
+        adView.loadAd(AddService.getAdRequest(getActivity()));
 
     }
 
