@@ -9,10 +9,6 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class TrainModel {
-    @SerializedName("days")
-    @Expose
-    private DaysModel[] trainDays;
-
     @SerializedName("name")
     @Expose
     private String trainName;
@@ -20,11 +16,6 @@ public class TrainModel {
     @SerializedName("no")
     @Expose
     private String trainNumber;
-
-    public DaysModel[] getTrainDays() {
-        return trainDays;
-
-    }
 
     public String getTrainName() {
         return trainName;

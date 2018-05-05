@@ -13,11 +13,6 @@ public class TrainRouteModel {
     private String mSchduleArrival;
 
 
-    @SerializedName("distance")
-    @Expose
-    private String mDistance;
-
-
     @SerializedName("actarr")
     @Expose
     private String mActualArrval;
@@ -26,21 +21,9 @@ public class TrainRouteModel {
     @Expose
     private String mSchduledeparture;
 
-    @SerializedName("day")
-    @Expose
-    private String mDay;
-
     @SerializedName("actdep")
     @Expose
     private String mActualDeparture;
-
-    @SerializedName("has_arrived")
-    @Expose
-    private boolean mHasArrived;
-
-    @SerializedName("status")
-    @Expose
-    private String mStatus;
 
 
     @SerializedName("latemin")
@@ -51,9 +34,6 @@ public class TrainRouteModel {
     @Expose
     private StationModel mStation;
 
-    public String getDistance() {
-        return mDistance;
-    }
 
     public String getAccArr() {
         return mActualArrval;
@@ -63,20 +43,8 @@ public class TrainRouteModel {
         return mSchduledeparture;
     }
 
-    public String getDay() {
-        return mDay;
-    }
-
     public String getActDep() {
         return mActualDeparture;
-    }
-
-    public boolean isHasArrived() {
-        return mHasArrived;
-    }
-
-    public String getStatus() {
-        return mStatus;
     }
 
     public StationModel getStation() {
@@ -86,10 +54,10 @@ public class TrainRouteModel {
     public String getSchduleArrival() {
         return mSchduleArrival;
     }
+
     public String getLateMin() {
         return mLateMin;
     }
-
 
 
 }
