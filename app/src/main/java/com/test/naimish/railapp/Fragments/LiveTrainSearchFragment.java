@@ -47,15 +47,8 @@ import butterknife.OnClick;
  * Created by Vivek on 4/4/2018.
  */
 
-public class LiveTrainSearchFragment extends RailAppFragment implements StationAdapter.Clicklistener, AdapterView.OnItemSelectedListener {
-    private StationAdapter madapter;
-    private String mtrainNo;
-    public LiveStatusBaseModel mliveTrainRoute;
-    private List<String> categories;
-    private String mdateTrain;
-    private ArrayList<TrainRouteModel> mtrainRouteModel;
-    private LiveTrainApiClient apiClient;
-
+public class LiveTrainSearchFragment extends RailAppFragment {
+    private ArrayList<String> mDates;
 
     @BindView(R.id.enter_train)
     EditText enterTrain;
@@ -84,25 +77,21 @@ public class LiveTrainSearchFragment extends RailAppFragment implements StationA
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
-        dateSpinner.setOnItemSelectedListener(this);
         createSpinnerDropdown();
     }
 
     private void createSpinnerDropdown() {
 
-        categories = new ArrayList<String>();
+        mDates = new ArrayList<String>();
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         Calendar cal = Calendar.getInstance();
         cal.add(Calendar.DATE, -1);
-        categories.add(dateFormat.format(cal.getTime()).toString()); //your formatted date here
-
-
+        mDates.add(dateFormat.format(cal.getTime()).toString());
         cal.add(Calendar.DATE, 1);
-        categories.add(dateFormat.format(cal.getTime()).toString());
+        mDates.add(dateFormat.format(cal.getTime()).toString());
         cal.add(Calendar.DATE, 1);
-        categories.add(dateFormat.format(cal.getTime()).toString());
-
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, categories);
+        mDates.add(dateFormat.format(cal.getTime()).toString());
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, mDates);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         dateSpinner.setAdapter(dataAdapter);
     }
@@ -110,112 +99,10 @@ public class LiveTrainSearchFragment extends RailAppFragment implements StationA
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        apiClient=new LiveTrainApiClient(getContext());
-        EventBus.getDefault().register(this);
-        EventBus.getDefault().register(new LiveTrainStatusFragment());
 
 
     }
 
-    @Override
-    public void itemclicked(int position) {
-        Intent intent = new Intent(getActivity(), LiveTrainStatusActivity.class);
-        intent.putExtra("Position", position+"");
-//        EventBus.getDefault().post(mliveTrainRoute);
-//        intent.putExtra("Position", position);
-//      Map<String,String>  stationInfo = new HashMap<String, String>();
-//        stationInfo.put("SchArr", mtrainRouteModel.get(position).getSchduleArrival());
-//        stationInfo.put("ActArr", mtrainRouteModel.get(position).getAccArr());
-//        stationInfo.put("ArrDelay",mtrainRouteModel.get(position).getLateMin());
-//        stationInfo.put("SchDep", mtrainRouteModel.get(position).getSchdep());
-//        stationInfo.put("ActDep", mtrainRouteModel.get(position).getActDep());
-//        stationInfo.put("DepDelay",mtrainRouteModel.get(position).getLateMin());
-//        Map<String,String> trainInfo=new HashMap<>();
-//        trainInfo.put("TrainStartStationCode",mtrainRouteModel.get(0).getStation().getCode());
-//        trainInfo.put("TrainEndStationCode",mtrainRouteModel.get(((mliveTrainRoute.getRoute().length)-1))
-//                .getStation().getCode());
-//        trainInfo.put("TrainStartStationName",mtrainRouteModel.get(0).getStation().getStationName());
-//        trainInfo.put("TrainEndStationCode",mtrainRouteModel.get(((mliveTrainRoute.getRoute().length)-1))
-//                .getStation().getCode());
-//        Map<String,String> trainPosition=new HashMap<>();
-//        trainPosition.put("Date",mliveTrainRoute.getTrainStartDate());
-//        trainPosition.put("Position",mliveTrainRoute.getPosition());
-//        intent.putExtra("StationInfo",stationInfo+"");
-//        intent.putExtra("SchArr", mtrainRouteModel.get(position).getSchduleArrival());
-//        intent.putExtra("ActArr", mtrainRouteModel.get(position).getAccArr());
-//        intent.putExtra("ArrDelay", mtrainRouteModel.get(position).getLateMin());
-//        intent.putExtra("SchDep", mtrainRouteModel.get(position).getSchdep());
-//        intent.putExtra("ActDep", mtrainRouteModel.get(position).getActDep());
-//        intent.putExtra("SchArr", mtrainRouteModel.get(position).getSchduleArrival());
-//        intent.putExtra("TrainDate", mliveTrainRoute.getTrainStartDate());
-//        intent.putExtra("Position", mliveTrainRoute.getPosition());
-//        intent.putExtra("TrainStartStationCode", mtrainRouteModel.get(position).getStation().getCode());
-//        intent.putExtra("TrainEndStationCode", mtrainRouteModel.get(((mliveTrainRoute.getRoute().length) - 1)).getStation().getCode());
-//        intent.putExtra("TrainStartStationName", mtrainRouteModel.get(position).getStation().getStationName());
-//        intent.putExtra("TrainEndStationName", mtrainRouteModel.get(((mliveTrainRoute.getRoute().length) - 1)).getStation().getStationName());
-//        intent.putExtra("TrainName", mliveTrainRoute.getTrainInfo().getTrainName());
 
-        startActivity(intent);
-
-
-    }
-
-    public ArrayList<String> getdata() {
-
-
-        ArrayList<String> data = new ArrayList<>();
-
-
-        mtrainRouteModel = new ArrayList<>();
-        for (int i = 0; i < mliveTrainRoute.getRoute().length; i++) {
-            mtrainRouteModel.add(mliveTrainRoute.getRoute()[i]);
-        }
-
-        for (int i = 0; i < mliveTrainRoute.getRoute().length; i++) {
-            data.add(mtrainRouteModel.get(i).getStation().getStationName());//Actual code
-        }
-        return data;
-    }
-
-    @OnClick(R.id.search_live_train)
-    public void searchLiveTrainStationsList() {
-        mtrainNo = enterTrain.getText().toString();
-
-
-        if (Validations.checkTrainNo(mtrainNo)) {
-
-            apiClient.liveTrainStatus(mtrainNo, mdateTrain);
-        } else
-            Snackbar.make(getView(), "Train No Incorrect", Snackbar.LENGTH_SHORT).show();
-    }
-
-    @Subscribe
-    public void trainLiveModel(LiveStatusBaseModel trainRouteModel) {
-
-        mliveTrainRoute = trainRouteModel;
-        //  EnquiryAdapter.getLayoutResourseId(R.layout.recycler_single_row_live_train);
-        madapter = new StationAdapter(getContext(), getdata());
-        madapter.setClicklistener(this);
-        stationsRecyclerView.setAdapter(madapter);
-        stationsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-      //  EventBus.getDefault().post(trainRouteModel);
-
-    }
-
-
-    @Override
-    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        // On selecting a spinner item
-        mdateTrain = adapterView.getItemAtPosition(i).toString();
-
-        // Showing selected spinner item
-        Toast.makeText(adapterView.getContext(), "Selected: " + mdateTrain, Toast.LENGTH_LONG).show();
-
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> adapterView) {
-
-    }
 }
 
