@@ -22,24 +22,30 @@ public class TrainController {
     public static String getDisplayInformation(LiveStatusBaseModel statusBaseModel, int position) {
         String stationName;
         String fromStation;
+        String fromStationCode;
         String toStation;
+        String toStationCode;
         String actualArrival;
         String scheduledArival;
         String actualDeparture;
         String scheduledDepartire;
         String late;
         String currentStatus;
+        String date;
 
         TrainRouteModel currentRoute=statusBaseModel.getRoute()[position];
         stationName=currentRoute.getStation().getStationName();
-        fromStation=statusBaseModel.getRoute()[0].getStation().getCode();
-        toStation=statusBaseModel.getRoute()[statusBaseModel.getRoute().length-1].getStation().getCode();
+        fromStationCode=statusBaseModel.getRoute()[0].getStation().getCode();
+        fromStation=statusBaseModel.getRoute()[0].getStation().getStationName();
+        toStationCode=statusBaseModel.getRoute()[statusBaseModel.getRoute().length-1].getStation().getCode();
+        toStation=statusBaseModel.getRoute()[statusBaseModel.getRoute().length-1].getStation().getStationName();
         actualArrival=currentRoute.getAccArr();
         scheduledArival=currentRoute.getSchduleArrival();
         actualDeparture=currentRoute.getActDep();
         scheduledDepartire=currentRoute.getSchdep();
         late=currentRoute.getLateMin();
         currentStatus=statusBaseModel.getPosition();
+        date=currentRoute.getDate();
 
         StationStatusDisplayModel model=new StationStatusDisplayModel(
                 stationName,
@@ -50,10 +56,12 @@ public class TrainController {
                 actualDeparture,
                 scheduledDepartire,
                 late,
-                currentStatus);
+                currentStatus,
+                date,
+                fromStationCode,
+                toStationCode);
         Gson gson=new Gson();
         String response=gson.toJson(model);
-        Log.i("display",response);
         return response;
     }
 }

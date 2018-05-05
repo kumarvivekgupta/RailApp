@@ -34,6 +34,10 @@ public class TrainRouteModel {
     @Expose
     private StationModel mStation;
 
+    @SerializedName("scharr_date")
+    @Expose
+    private String mDate;
+
 
     public String getAccArr() {
         return mActualArrval;
@@ -59,5 +63,7 @@ public class TrainRouteModel {
         return mLateMin;
     }
 
-
+    public String getDate() {
+        return mDate;
+    }
 }

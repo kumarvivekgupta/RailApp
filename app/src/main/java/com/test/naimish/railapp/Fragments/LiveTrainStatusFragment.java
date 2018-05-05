@@ -1,27 +1,15 @@
 package com.test.naimish.railapp.Fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.google.gson.Gson;
-import com.test.naimish.railapp.Models.LiveTrainStatusModel.LiveStatusBaseModel;
-import com.test.naimish.railapp.Models.LiveTrainStatusModel.TrainRouteModel;
 import com.test.naimish.railapp.Models.StationStatusDisplayModel;
 import com.test.naimish.railapp.R;
 import com.test.naimish.railapp.Utils.RailAppConstants;
-
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
-import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -31,9 +19,6 @@ import butterknife.ButterKnife;
  */
 
 public class LiveTrainStatusFragment extends RailAppFragment {
-    private ArrayList<TrainRouteModel> mTrainRouteModel;
-    private LiveStatusBaseModel trainRouteModel;
-
 
     @BindView(R.id.starting_point_code)
     TextView startingPointCode;
@@ -57,7 +42,7 @@ public class LiveTrainStatusFragment extends RailAppFragment {
     TextView trainActualArrival;
 
     @BindView(R.id.train_delay_on_arr)
-    TextView trainDelayOnArrival;
+    TextView trainArrivalDelay;
 
     @BindView(R.id.train_sch_dep)
     TextView trainSchDep;
@@ -68,8 +53,8 @@ public class LiveTrainStatusFragment extends RailAppFragment {
     @BindView(R.id.train_delay_dep)
     TextView trainDepDelay;
 
-    @BindView(R.id.train_name)
-    TextView trainName;
+    @BindView(R.id.station_name)
+    TextView stationName;
 
     @BindView(R.id.sourceCondition)
     TextView sourceCondition;
@@ -97,8 +82,18 @@ public class LiveTrainStatusFragment extends RailAppFragment {
         Gson gson = new Gson();
         StationStatusDisplayModel displayModel = gson.fromJson(response, StationStatusDisplayModel.class);
         Log.i("Current status", displayModel.getCurrentStatus());
-
+        stationName.setText(displayModel.getStationName());
+        startingPointCode.setText(displayModel.getFromStationCode());
+        startingPointName.setText(displayModel.getFromStation());
+        endPointName.setText(displayModel.getToStation());
+        endPointCode.setText(displayModel.getToStationCode());
+        trainRunningDate.setText(displayModel.getDate());
+        trainAchDep.setText(displayModel.getActualDeparture());
+        trainActualArrival.setText(displayModel.getActualArrival());
+        trainSchDep.setText(displayModel.getScheduledDepartire());
+        trainSchArrival.setText(displayModel.getScheduledArival());
+        sourceCondition.setText(displayModel.getCurrentStatus());
+        trainArrivalDelay.setText(displayModel.getLate());
+        trainDepDelay.setText(displayModel.getLate());
     }
-
-
 }

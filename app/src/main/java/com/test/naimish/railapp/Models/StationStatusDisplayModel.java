@@ -11,8 +11,11 @@ public class StationStatusDisplayModel {
     private String scheduledDepartire;
     private String late;
     private String currentStatus;
+    private String date;
+    private String fromStationCode;
+    private String toStationCode;
 
-    public StationStatusDisplayModel(String stationName, String fromStation, String toStation, String actualArrival, String scheduledArival, String actualDeparture, String scheduledDepartire, String late, String currentStatus) {
+    public StationStatusDisplayModel(String stationName, String fromStation, String toStation, String actualArrival, String scheduledArival, String actualDeparture, String scheduledDepartire, String late, String currentStatus, String date, String fromStationCode, String toStationCode) {
         this.stationName = stationName;
         this.fromStation = fromStation;
         this.toStation = toStation;
@@ -22,6 +25,9 @@ public class StationStatusDisplayModel {
         this.scheduledDepartire = scheduledDepartire;
         this.late = late;
         this.currentStatus = currentStatus;
+        this.date = date;
+        this.fromStationCode = fromStationCode;
+        this.toStationCode = toStationCode;
     }
 
     public String getStationName() {
@@ -58,5 +64,17 @@ public class StationStatusDisplayModel {
 
     public String getCurrentStatus() {
         return currentStatus;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public String getFromStationCode() {
+        return fromStationCode;
+    }
+
+    public String getToStationCode() {
+        return toStationCode;
     }
 }

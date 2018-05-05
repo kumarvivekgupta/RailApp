@@ -2,7 +2,6 @@ package com.test.naimish.railapp.Fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -12,39 +11,23 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
-import com.test.naimish.railapp.Activities.LiveTrainSearchActivity;
 import com.test.naimish.railapp.Activities.LiveTrainStatusActivity;
 import com.test.naimish.railapp.Models.LiveTrainStatusModel.LiveStatusBaseModel;
-import com.test.naimish.railapp.Models.LiveTrainStatusModel.TrainRouteModel;
 import com.test.naimish.railapp.Network.LiveTrainNetwork.LiveTrainApiClient;
 import com.test.naimish.railapp.R;
-import com.test.naimish.railapp.Utils.EnquiryAdapter;
 import com.test.naimish.railapp.Utils.RailAppConstants;
 import com.test.naimish.railapp.Utils.ResponseListener;
 import com.test.naimish.railapp.Utils.StationAdapter;
 import com.test.naimish.railapp.Utils.TrainController;
-import com.test.naimish.railapp.Utils.Validations;
-
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -131,9 +114,6 @@ public class LiveTrainSearchFragment extends RailAppFragment implements Response
     @Override
     public void onSuccess(LiveStatusBaseModel response) {
         this.statusBaseModel=response;
-        Gson gson=new Gson();
-        String json=gson.toJson(response);
-        Log.i("json",json);
         StationAdapter adapter=new StationAdapter(getContext(),TrainController.getStationList(response.getRoute()));
         stationsRecyclerView.setAdapter(adapter);
         adapter.setClicklistenerInstance(this);
