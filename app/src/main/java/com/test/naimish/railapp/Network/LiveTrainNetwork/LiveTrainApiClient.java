@@ -51,7 +51,7 @@ public class LiveTrainApiClient {
         call.enqueue(new Callback<LiveStatusBaseModel>() {
             @Override
             public void onResponse(Call<LiveStatusBaseModel> call, Response<LiveStatusBaseModel> response) {
-                if (response.body().getPosition() != null) {
+                if (response.body()!= null) {
                     responseListener.onSuccess(response.body());
                 }
                 else{

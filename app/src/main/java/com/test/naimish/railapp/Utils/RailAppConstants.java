@@ -27,4 +27,7 @@ public interface RailAppConstants {
 
     String SINGLE_STATION_DETAILS="single station details";
 
+    //Add mob constants
+
+    String APP_ID="ca-app-pub-3940256099942544~3347511713";
 }
