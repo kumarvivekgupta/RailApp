@@ -1,6 +1,7 @@
 package com.test.naimish.railapp.Fragments;
 
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
@@ -61,12 +62,18 @@ public class SplashFragment extends RailAppFragment implements ResponseListener<
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mToken = SharedPreference.getPreference(getContext(), RailAppConstants.TOKEN_CONSTANT);
-        if (mToken != "")
-            validateUser();
-        else {
-            startActivity(new Intent(getActivity(), LandingActivity.class));
-            getActivity().finish();
+        if (isOnline()) {
+            mToken = SharedPreference.getPreference(getContext(), RailAppConstants.TOKEN_CONSTANT);
+            if (mToken != "")
+                validateUser();
+            else {
+                startActivity(new Intent(getActivity(), LandingActivity.class));
+                getActivity().finish();
+            }
+        } else {
+            progressBar.setVisibility(View.INVISIBLE);
+            reload.setVisibility(View.VISIBLE);
+            Snackbar.make(getView(), R.string.internet_connection, Snackbar.LENGTH_SHORT).show();
         }
 
     }
@@ -96,5 +103,10 @@ public class SplashFragment extends RailAppFragment implements ResponseListener<
         Snackbar.make(getView(), R.string.common_error, Snackbar.LENGTH_SHORT).show();
         progressBar.setVisibility(View.INVISIBLE);
         reload.setVisibility(View.VISIBLE);
+    }
+
+    public boolean isOnline() {
+        ConnectivityManager cm = (ConnectivityManager) getActivity().getSystemService(getContext().CONNECTIVITY_SERVICE);
+        return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnectedOrConnecting();
     }
 }

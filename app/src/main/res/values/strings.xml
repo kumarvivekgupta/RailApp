@@ -22,6 +22,7 @@
     <string name="camera">Take a Picture</string>
     <string name="gallery">Import from Gallery</string>
     <string name="common_error">Something went wrong!!</string>
+    <string name="internet_connection">Please check your internet connection and try again!</string>
     <string name="try_again">Please try again.</string>
     <string name="scheduled">Scheduled</string>
     <string name="actual_arrival">Act./Exp.*</string>
