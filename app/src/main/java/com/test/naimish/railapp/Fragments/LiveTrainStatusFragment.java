@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+
 import com.google.gson.Gson;
 import com.test.naimish.railapp.Models.StationStatusDisplayModel;
 import com.test.naimish.railapp.R;
@@ -44,7 +45,6 @@ public class LiveTrainStatusFragment extends RailAppFragment {
 
     @BindView(R.id.train_delay_on_arr)
     LightTextView trainArrivalDelay;
-
     @BindView(R.id.train_sch_dep)
     LightTextView trainSchDep;
 
@@ -55,6 +55,7 @@ public class LiveTrainStatusFragment extends RailAppFragment {
     LightTextView trainDepDelay;
 
     @BindView(R.id.station_name)
+
     LightTextView stationName;
 
     @BindView(R.id.sourceCondition)

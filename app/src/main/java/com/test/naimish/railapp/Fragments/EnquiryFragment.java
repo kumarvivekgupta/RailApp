@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -95,15 +94,15 @@ public class EnquiryFragment extends RailAppFragment implements EnquiryAdapter.C
         mUserName.setText(SharedPreference.getPreference(getContext(), NAME_CONSTANT));
         mUserEmail.setText(SharedPreference.getPreference(getContext(), EMAIL_CONSTANT));
         adView.loadAd(AddService.getAdRequest(getActivity()));
-        loader=new PicassoLoader();
-        loader.loadImage(userPic,"random url",SharedPreference.getPreference(getContext(), NAME_CONSTANT));
+        loader = new PicassoLoader();
+        loader.loadImage(userPic, "random url", SharedPreference.getPreference(getContext(), NAME_CONSTANT));
 
     }
 
-    private  ArrayList<RecyclerModel> getdata() {
+    private ArrayList<RecyclerModel> getdata() {
         ArrayList<RecyclerModel> data = new ArrayList<>();
-        data.add(new RecyclerModel("Check PNR Status",R.drawable.pnr_icon));
-        data.add(new RecyclerModel("Check Live Train Status",R.drawable.live_status_icon));
+        data.add(new RecyclerModel("Check PNR Status", R.drawable.pnr_icon));
+        data.add(new RecyclerModel("Check Live Train Status", R.drawable.live_status_icon));
         return data;
     }
 
@@ -113,8 +112,7 @@ public class EnquiryFragment extends RailAppFragment implements EnquiryAdapter.C
         if (position == 0) {
             Intent intent = new Intent(getActivity(), PnrEnquiryActivity.class);
             startActivity(intent);
-        }
-        else {
+        } else {
             Intent intent = new Intent(getActivity(), LiveTrainSearchActivity.class);
             startActivity(intent);
         }
