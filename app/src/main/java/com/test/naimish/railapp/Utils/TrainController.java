@@ -1,6 +1,8 @@
 package com.test.naimish.railapp.Utils;
 
 
+import android.util.Log;
+
 import com.google.gson.Gson;
 import com.test.naimish.railapp.Models.LiveTrainStatusModel.LiveStatusBaseModel;
 import com.test.naimish.railapp.Models.LiveTrainStatusModel.TrainRouteModel;
@@ -32,21 +34,31 @@ public class TrainController {
         String currentStatus;
         String date;
 
-        TrainRouteModel currentRoute=statusBaseModel.getRoute()[position];
-        stationName=currentRoute.getStation().getStationName();
-        fromStationCode=statusBaseModel.getRoute()[0].getStation().getCode();
-        fromStation=statusBaseModel.getRoute()[0].getStation().getStationName();
-        toStationCode=statusBaseModel.getRoute()[statusBaseModel.getRoute().length-1].getStation().getCode();
-        toStation=statusBaseModel.getRoute()[statusBaseModel.getRoute().length-1].getStation().getStationName();
-        actualArrival=currentRoute.getAccArr();
-        scheduledArival=currentRoute.getSchduleArrival();
-        actualDeparture=currentRoute.getActDep();
-        scheduledDepartire=currentRoute.getSchdep();
-        late=currentRoute.getLateMin();
-        currentStatus=statusBaseModel.getPosition();
-        date=currentRoute.getDate();
+        int hour;
+        int min;
+        int i, j;
+        String pos;
+        String time = "";
 
-        StationStatusDisplayModel model=new StationStatusDisplayModel(
+        TrainRouteModel currentRoute = statusBaseModel.getRoute()[position];
+
+        hour = TimeConversion.hours(currentRoute.getLateMin().toString());
+        min = TimeConversion.min(currentRoute.getLateMin().toString());
+        pos = statusBaseModel.getPosition();
+        stationName = currentRoute.getStation().getStationName();
+        fromStationCode = statusBaseModel.getRoute()[0].getStation().getCode();
+        fromStation = statusBaseModel.getRoute()[0].getStation().getStationName();
+        toStationCode = statusBaseModel.getRoute()[statusBaseModel.getRoute().length - 1].getStation().getCode();
+        toStation = statusBaseModel.getRoute()[statusBaseModel.getRoute().length - 1].getStation().getStationName();
+        actualArrival = currentRoute.getAccArr();
+        scheduledArival = currentRoute.getSchduleArrival();
+        actualDeparture = currentRoute.getActDep();
+        scheduledDepartire = currentRoute.getSchdep();
+        late = hour + " hours " + min + " minutes";
+        currentStatus = pos.substring(0, (pos.indexOf("by") + 3)) + hour + " hours " + min + " minutes";
+        date = currentRoute.getDate();
+
+        StationStatusDisplayModel model = new StationStatusDisplayModel(
                 stationName,
                 fromStation,
                 toStation,
@@ -59,8 +71,8 @@ public class TrainController {
                 date,
                 fromStationCode,
                 toStationCode);
-        Gson gson=new Gson();
-        String response=gson.toJson(model);
+        Gson gson = new Gson();
+        String response = gson.toJson(model);
         return response;
     }
 }

@@ -52,8 +52,7 @@ public class PnrEnquiryFragment extends RailAppFragment implements PnrApiClient.
         return R.layout.pnr_status;
     }
 
-    @BindView(R.id.adView)
-    AdView adView;
+
 
     @BindView(R.id.enter_pnr)
     EditText pnrText;
@@ -125,7 +124,7 @@ public class PnrEnquiryFragment extends RailAppFragment implements PnrApiClient.
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         pnrStatusCardLayout.setVisibility(View.INVISIBLE);
-        adView.loadAd(AddService.getAdRequest(getActivity()));
+      //  adView.loadAd(AddService.getAdRequest(getActivity()));
     }
 
     @Override
