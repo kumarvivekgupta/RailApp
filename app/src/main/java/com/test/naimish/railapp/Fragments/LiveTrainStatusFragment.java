@@ -10,6 +10,7 @@ import com.google.gson.Gson;
 import com.test.naimish.railapp.Models.StationStatusDisplayModel;
 import com.test.naimish.railapp.R;
 import com.test.naimish.railapp.Utils.RailAppConstants;
+import com.test.naimish.railapp.Views.LightTextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -21,43 +22,43 @@ import butterknife.ButterKnife;
 public class LiveTrainStatusFragment extends RailAppFragment {
 
     @BindView(R.id.starting_point_code)
-    TextView startingPointCode;
+    LightTextView startingPointCode;
 
     @BindView(R.id.end_point_code)
-    TextView endPointCode;
+    LightTextView endPointCode;
 
     @BindView(R.id.starting_point_name)
-    TextView startingPointName;
+    LightTextView startingPointName;
 
     @BindView(R.id.end_point_name)
-    TextView endPointName;
+    LightTextView endPointName;
 
     @BindView(R.id.train_running_date)
-    TextView trainRunningDate;
+    LightTextView trainRunningDate;
 
     @BindView(R.id.train_sch_arrival)
-    TextView trainSchArrival;
+    LightTextView trainSchArrival;
 
     @BindView(R.id.train_actual_arrival)
-    TextView trainActualArrival;
+    LightTextView trainActualArrival;
 
     @BindView(R.id.train_delay_on_arr)
-    TextView trainArrivalDelay;
+    LightTextView trainArrivalDelay;
 
     @BindView(R.id.train_sch_dep)
-    TextView trainSchDep;
+    LightTextView trainSchDep;
 
     @BindView(R.id.train_ach_dep)
-    TextView trainAchDep;
+    LightTextView trainAchDep;
 
     @BindView(R.id.train_delay_dep)
-    TextView trainDepDelay;
+    LightTextView trainDepDelay;
 
     @BindView(R.id.station_name)
-    TextView stationName;
+    LightTextView stationName;
 
     @BindView(R.id.sourceCondition)
-    TextView sourceCondition;
+    LightTextView sourceCondition;
 
 
     @Override
