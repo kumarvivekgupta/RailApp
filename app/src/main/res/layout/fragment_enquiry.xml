@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-                 android:id="@+id/linear_layout_enquiry_fragment"
-              android:layout_rowWeight="2"
-              android:orientation="vertical"
-              tools:context="com.test.naimish.railapp.Activities.EnquiryActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linear_layout_enquiry_fragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_rowWeight="2"
+    android:orientation="vertical"
+    tools:context="com.test.naimish.railapp.Activities.EnquiryActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,43 +16,53 @@
         android:background="@drawable/home_page"
         android:orientation="vertical">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginTop="60dp"
-            android:src="@drawable/pic"
+        <agency.tango.android.avatarview.views.AvatarView
             android:id="@+id/user_pic"
-            />
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="60dp"
+            app:av_border_color="@android:color/white"
+            app:av_border_width="2dp"
+            app:av_text_size_percentage="35" />
 
         <com.test.naimish.railapp.Views.LightTextView
             android:id="@+id/user_name"
             android:layout_width="374dp"
             android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
             android:paddingLeft="5dp"
             android:paddingTop="15dp"
-            android:text="Vivek Kumar Gupta"
             android:textColor="@color/white"
             android:textSize="25sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
 
         <com.test.naimish.railapp.Views.LightTextView
             android:id="@+id/user_email"
             android:layout_width="374dp"
             android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
             android:paddingLeft="5dp"
-            android:text="cseakgec182@gmail.com"
             android:textColor="@color/white"
-            android:textSize="18sp"
-            />
+            android:textSize="18sp" />
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerList"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
         android:layout_margin="10dp"
-        />
+        android:layout_weight=".85" />
+
+    <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/adView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="@string/add_unit_id"></com.google.android.gms.ads.AdView>
+
 
 </LinearLayout>

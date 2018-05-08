@@ -16,12 +16,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdView;
 import com.test.naimish.railapp.Activities.LiveTrainSearchActivity;
-import com.test.naimish.railapp.Activities.LiveTrainStatusActivity;
 import com.test.naimish.railapp.Activities.PnrEnquiryActivity;
 import com.test.naimish.railapp.Models.RecyclerModel;
-import com.test.naimish.railapp.Network.LiveTrainNetwork.LiveTrainApiClient;
 import com.test.naimish.railapp.R;
+import com.test.naimish.railapp.Utils.AddService;
 import com.test.naimish.railapp.Utils.SharedPreference;
 import com.test.naimish.railapp.Utils.EnquiryAdapter;
 import com.test.naimish.railapp.Views.LightTextView;
@@ -29,11 +29,12 @@ import com.test.naimish.railapp.Views.LightTextView;
 import java.util.ArrayList;
 
 
+import agency.tango.android.avatarview.IImageLoader;
+import agency.tango.android.avatarview.loader.PicassoLoader;
+import agency.tango.android.avatarview.views.AvatarView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.internal.Utils;
-import de.hdodenhof.circleimageview.CircleImageView;
 
 import static com.test.naimish.railapp.Utils.RailAppConstants.EMAIL_CONSTANT;
 import static com.test.naimish.railapp.Utils.RailAppConstants.NAME_CONSTANT;
@@ -47,9 +48,11 @@ import static com.test.naimish.railapp.Utils.RailAppConstants.PERMISSION_REQUEST
 public class EnquiryFragment extends RailAppFragment implements EnquiryAdapter.Clicklistener {
 
     private EnquiryAdapter adapter;
+    private IImageLoader loader;
+
 
     @BindView(R.id.user_pic)
-    CircleImageView userPic;
+    AvatarView userPic;
 
     @BindView(R.id.recyclerList)
     RecyclerView recycler;
@@ -59,6 +62,9 @@ public class EnquiryFragment extends RailAppFragment implements EnquiryAdapter.C
 
     @BindView(R.id.user_email)
     LightTextView mUserEmail;
+
+    @BindView(R.id.adView)
+    AdView adView;
 
 
     public static Fragment newInstance() {
@@ -79,6 +85,7 @@ public class EnquiryFragment extends RailAppFragment implements EnquiryAdapter.C
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
         checkPermission();
         EnquiryAdapter.getLayoutResourseId(R.layout.recycler_single_row);
         adapter = new EnquiryAdapter(getContext(), getdata());
@@ -87,6 +94,9 @@ public class EnquiryFragment extends RailAppFragment implements EnquiryAdapter.C
         recycler.setLayoutManager(new LinearLayoutManager(getContext()));
         mUserName.setText(SharedPreference.getPreference(getContext(), NAME_CONSTANT));
         mUserEmail.setText(SharedPreference.getPreference(getContext(), EMAIL_CONSTANT));
+        adView.loadAd(AddService.getAdRequest(getActivity()));
+        loader=new PicassoLoader();
+        loader.loadImage(userPic,"random url",SharedPreference.getPreference(getContext(), NAME_CONSTANT));
 
     }
 
@@ -111,12 +121,12 @@ public class EnquiryFragment extends RailAppFragment implements EnquiryAdapter.C
 
     }
 
-    @OnClick(R.id.user_pic)
-    public void userImage() {
-        FragmentManager manager = getActivity().getSupportFragmentManager();
-        CameraDialogFragment cameraDialogFragment = CameraDialogFragment.newInsatance();
-        cameraDialogFragment.show(manager, "Camera Dialog");
-    }
+//    @OnClick(R.id.user_pic)
+//    public void userImage() {
+//        FragmentManager manager = getActivity().getSupportFragmentManager();
+//        CameraDialogFragment cameraDialogFragment = CameraDialogFragment.newInsatance();
+//        cameraDialogFragment.show(manager, "Camera Dialog");
+//    }
 
     private void checkPermission() {
         if (Build.VERSION.SDK_INT >= 23) {

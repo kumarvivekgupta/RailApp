@@ -6,8 +6,10 @@ import android.widget.Toast;
 
 import com.test.naimish.railapp.BuildConfig;
 import com.test.naimish.railapp.Fragments.LiveTrainSearchFragment;
+import com.test.naimish.railapp.Models.ChangePassword;
 import com.test.naimish.railapp.Models.LiveTrainStatusModel.LiveStatusBaseModel;
 import com.test.naimish.railapp.R;
+import com.test.naimish.railapp.Utils.ResponseListener;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -27,12 +29,11 @@ import static com.test.naimish.railapp.Utils.RailAppConstants.RAIL_BASE_URL;
 
 public class LiveTrainApiClient {
 
-    private Context context;
+    private ResponseListener<LiveStatusBaseModel> responseListener;
 
-    public LiveTrainApiClient(Context context) {
-        this.context = context;
+    public LiveTrainApiClient(ResponseListener<LiveStatusBaseModel> responseListener) {
+        this.responseListener = responseListener;
     }
-
     public void liveTrainStatus(String trainNo, String date) {
         OkHttpClient.Builder okhttpbuilder = new OkHttpClient.Builder();
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
@@ -50,19 +51,19 @@ public class LiveTrainApiClient {
         call.enqueue(new Callback<LiveStatusBaseModel>() {
             @Override
             public void onResponse(Call<LiveStatusBaseModel> call, Response<LiveStatusBaseModel> response) {
-                if (response.body().getPosition() != null) {
-                    EventBus.getDefault().post(response.body());
-                    // LiveTrainSearchFragment.trainLiveModel(response.body());
+                if (response.body()!= null) {
+                    responseListener.onSuccess(response.body());
+                }
+                else{
+                    responseListener.onNullResponse();
                 }
             }
 
             @Override
             public void onFailure(Call<LiveStatusBaseModel> call, Throwable t) {
-                Toast.makeText(context,t.getMessage()+" "+R.string.try_again,Toast.LENGTH_SHORT).show();
+                responseListener.onFailure(t);
             }
         });
-
-
     }
 
 }

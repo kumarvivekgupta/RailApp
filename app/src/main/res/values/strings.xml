@@ -22,6 +22,7 @@
     <string name="camera">Take a Picture</string>
     <string name="gallery">Import from Gallery</string>
     <string name="common_error">Something went wrong!!</string>
+    <string name="internet_connection">Please check your internet connection and try again!</string>
     <string name="try_again">Please try again.</string>
     <string name="scheduled">Scheduled</string>
     <string name="actual_arrival">Act./Exp.*</string>
@@ -42,4 +43,10 @@
     <string name="forgot_password_message">Please provide the registered email id.
         An email will be sent to you which will contain new password.
         You can change your password in settings tab after logging in! </string>
+    <string name="chart_prepared">Chart is prepared</string>
+    <string name="chart_not_prepared">Chart is not prepared</string>
+    <string name="passenger_no">Passenger</string>
+    <string name="booking_status">Booking Status</string>
+    <string name="current_status">Current Status</string>
+    <string name="add_unit_id">ca-app-pub-3940256099942544/6300978111</string>
 </resources>

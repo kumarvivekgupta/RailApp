@@ -21,19 +21,19 @@
                 android:layout_width="305dp"
                 android:layout_height="50dp"
                 android:background="@color/white"
+                android:fontFamily="@font/ubuntu_light"
                 android:hint="Train No"
                 android:paddingLeft="10dp"
-                android:fontFamily="@font/ubuntu_light"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="20dp" />
 
-            <ImageView
+            <ImageButton
                 android:id="@+id/search_live_train"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:background="@color/white"
+                android:clickable="true"
                 android:paddingRight="10dp"
-
                 android:src="?android:attr/actionModeWebSearchDrawable" />
         </LinearLayout>
 
@@ -48,8 +48,7 @@
                 android:id="@+id/date_spinner"
                 android:layout_width="337dp"
                 android:layout_height="50dp"
-                android:paddingRight="10dp"
-                />
+                android:paddingRight="10dp" />
 
         </LinearLayout>
 

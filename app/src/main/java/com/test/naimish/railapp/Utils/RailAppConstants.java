@@ -17,11 +17,17 @@ public interface RailAppConstants {
 
     int PERMISSION_REQUEST_CODE = 123;
     int REQUEST_GALLERY_CODE = 1;
-    int REQUEST_CAMERA_CODE = 20;
 
     //REST constants
 
     String BASE_URL = "https://fierce-forest-53940.herokuapp.com/";
     String RAIL_BASE_URL = "https://api.railwayapi.com/";
 
+    //Intent Constants
+
+    String SINGLE_STATION_DETAILS="single station details";
+
+    //Add mob constants
+
+    String APP_ID="ca-app-pub-3940256099942544~3347511713";
 }

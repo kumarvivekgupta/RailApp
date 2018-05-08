@@ -15,6 +15,9 @@ import com.test.naimish.railapp.Utils.ResponseListener;
 import com.test.naimish.railapp.Utils.SharedPreference;
 import com.test.naimish.railapp.Views.ProgressLoader;
 
+import agency.tango.android.avatarview.IImageLoader;
+import agency.tango.android.avatarview.loader.PicassoLoader;
+import agency.tango.android.avatarview.views.AvatarView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -36,6 +39,7 @@ public class SettingsFragment extends RailAppFragment implements ResponseListene
     private String mprofileUrl;
     private UpdateProfileApiClient apiClient;
     private ProgressLoader loader;
+    private IImageLoader imageLoader;
 
     @BindView(R.id.edit_text_name)
     EditText mUserName;
@@ -43,6 +47,8 @@ public class SettingsFragment extends RailAppFragment implements ResponseListene
     EditText mUserEmail;
     @BindView(R.id.save_settings)
     Button mSaveSettings;
+    @BindView(R.id.user_profile_picture)
+    AvatarView mProfilePic;
 
     @OnClick(R.id.change_password)
     public void changePassword() {
@@ -54,7 +60,7 @@ public class SettingsFragment extends RailAppFragment implements ResponseListene
 
     @OnClick(R.id.change_profile_picture)
     public void changeProfilePicture() {
-
+        Snackbar.make(getView(), "Feature comming soon...", Snackbar.LENGTH_SHORT).show();
     }
 
 
@@ -102,6 +108,9 @@ public class SettingsFragment extends RailAppFragment implements ResponseListene
         mUserName.setText(mOldName);
         mUserEmail.setText(mOldEmail);
         loader=new ProgressLoader(getActivity());
+        imageLoader=new PicassoLoader();
+        imageLoader.loadImage(mProfilePic,"random url",SharedPreference.getPreference(getContext(), NAME_CONSTANT));
+
     }
 
     private void changeSettings() {

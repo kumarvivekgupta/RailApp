@@ -14,10 +14,6 @@ public class LiveStatusBaseModel {
     @Expose
     private String trainPosition;
 
-    @SerializedName("current_station")
-    @Expose
-    private CurrentStationModel trainCurrentStation;
-
     @SerializedName("route")
     @Expose
     private TrainRouteModel[] trainRoute;
@@ -27,16 +23,8 @@ public class LiveStatusBaseModel {
     @Expose
     private TrainModel trainInfo;
 
-    @SerializedName("start_date")
-    @Expose
-    private String trainStartDate;
-
     public String getPosition() {
         return trainPosition;
-    }
-
-    public CurrentStationModel getCurrentStation() {
-        return trainCurrentStation;
     }
 
     public TrainRouteModel[] getRoute() {
@@ -47,8 +35,21 @@ public class LiveStatusBaseModel {
         return trainInfo;
     }
 
-    public String getTrainStartDate() {
-        return trainStartDate;
-    }
-
 }
+
+/*
+train name -
+from -
+to -
+date -
+latest update -
+act arrival -
+sch arrival -
+act departure -
+sch departure -
+dep delay -
+arr delay -
+*/
+
+
+
