@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -21,6 +22,7 @@ import com.test.naimish.railapp.Utils.RailAppConstants;
 import com.test.naimish.railapp.Utils.ResponseListener;
 import com.test.naimish.railapp.Utils.StationAdapter;
 import com.test.naimish.railapp.Utils.TrainController;
+import com.test.naimish.railapp.Views.LightTextView;
 import com.test.naimish.railapp.Views.ProgressLoader;
 
 import java.text.DateFormat;
@@ -52,6 +54,12 @@ public class LiveTrainSearchFragment extends RailAppFragment implements Response
 
     @BindView(R.id.date_spinner)
     Spinner dateSpinner;
+
+    @BindView(R.id.train_name)
+    LightTextView trainName;
+
+    @BindView(R.id.train_info_card_view)
+    CardView cardView;
 
     @OnClick(R.id.search_live_train)
     public void searchLiveTrain() {
@@ -116,6 +124,8 @@ public class LiveTrainSearchFragment extends RailAppFragment implements Response
     @Override
     public void onSuccess(LiveStatusBaseModel response) {
         loader.dismissLoader();
+        cardView.setVisibility(View.VISIBLE);
+        trainName.setText(response.getTrainInfo().getTrainName());
         this.statusBaseModel=response;
         StationAdapter adapter=new StationAdapter(getContext(),TrainController.getStationList(response.getRoute()));
         stationsRecyclerView.setAdapter(adapter);
