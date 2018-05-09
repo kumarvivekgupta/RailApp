@@ -14,11 +14,11 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="70dp"
             android:orientation="horizontal"
-            android:weightSum="100">
+            android:weightSum="100"
+            android:layout_marginTop="50dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp">
 
             <EditText
                 android:id="@+id/enter_pnr"
@@ -50,6 +50,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="50dp">
+
 
             <LinearLayout
                 android:id="@+id/linear_card_layout"
@@ -194,6 +195,7 @@
                 </LinearLayout>
             </LinearLayout>
         </android.support.v7.widget.CardView>
+
     </LinearLayout>
 
 </ScrollView>

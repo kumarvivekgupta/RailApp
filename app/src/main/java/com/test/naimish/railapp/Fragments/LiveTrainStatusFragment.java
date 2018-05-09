@@ -45,6 +45,7 @@ public class LiveTrainStatusFragment extends RailAppFragment {
 
     @BindView(R.id.train_delay_on_arr)
     LightTextView trainArrivalDelay;
+
     @BindView(R.id.train_sch_dep)
     LightTextView trainSchDep;
 
@@ -55,7 +56,6 @@ public class LiveTrainStatusFragment extends RailAppFragment {
     LightTextView trainDepDelay;
 
     @BindView(R.id.station_name)
-
     LightTextView stationName;
 
     @BindView(R.id.sourceCondition)
