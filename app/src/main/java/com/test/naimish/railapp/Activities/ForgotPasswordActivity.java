@@ -21,7 +21,7 @@ public class ForgotPasswordActivity extends SingleFragmentActivity {
 
     @Override
     protected int getToolbarColor() {
-        return R.color.transparent;
+        return R.color.light_transparent;
     }
 
     @Override

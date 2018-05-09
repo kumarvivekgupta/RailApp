@@ -108,7 +108,6 @@ public class EnquiryFragment extends RailAppFragment implements EnquiryAdapter.C
 
     @Override
     public void itemclicked(int position) {
-        Toast.makeText(getActivity(), "position" + position, Toast.LENGTH_LONG).show();
         if (position == 0) {
             Intent intent = new Intent(getActivity(), PnrEnquiryActivity.class);
             startActivity(intent);
