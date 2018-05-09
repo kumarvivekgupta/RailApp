@@ -25,8 +25,10 @@ import com.test.naimish.railapp.R;
 import com.test.naimish.railapp.Utils.AddService;
 import com.test.naimish.railapp.Utils.EnquiryAdapter;
 import com.test.naimish.railapp.Utils.PassengerAdapter;
+import com.test.naimish.railapp.Utils.PassengerDetails;
 import com.test.naimish.railapp.Utils.Validations;
 import com.test.naimish.railapp.Views.LightTextView;
+import com.test.naimish.railapp.Views.ProgressLoader;
 
 import java.util.ArrayList;
 
@@ -41,10 +43,8 @@ import butterknife.OnClick;
 
 public class PnrEnquiryFragment extends RailAppFragment implements PnrApiClient.PnrResponse {
     private BaseModel mBaseModel;
-
+    private ProgressLoader loader;
     private PassengerAdapter madapter;
-    private ArrayList<PassengerModel> mPassengerList = new ArrayList<>();
-    //  ArrayList<PassengerRecyclerModel> data = new ArrayList<>();
 
 
     @Override
@@ -83,10 +83,11 @@ public class PnrEnquiryFragment extends RailAppFragment implements PnrApiClient.
     @OnClick(R.id.search_pnr_status)
     public void getPnrStatus() {
         if (Validations.checkPNR(pnrText.getText().toString())) {
+            loader.showLoader();
             PnrApiClient apiClient = new PnrApiClient(this);
             apiClient.getPnrStatus(pnrText.getText().toString());
         } else
-            Snackbar.make(getView(), "Enter Valid PNR", 2);
+            Snackbar.make(getView(), R.string.invalid_pnr, 2);
     }
 
     public static Fragment newInstance() {
@@ -100,46 +101,36 @@ public class PnrEnquiryFragment extends RailAppFragment implements PnrApiClient.
 
     }
 
-
     public ArrayList<PassengerRecyclerModel> getdata1() {
-        ArrayList<PassengerRecyclerModel> data1 = new ArrayList<>();
-
-        for (int i = 0; i < mPassengerList.size(); i++) {
-            data1.add(new PassengerRecyclerModel(mPassengerList.get(i).getPassengerNo(), mPassengerList.get(i).getBookingStatus()
-                    , mPassengerList.get(i).getCurrentStatus()));
-        }
-        return data1;
+        return PassengerDetails.getPassengerDetails(mBaseModel);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         pnrStatusCardLayout.setVisibility(View.INVISIBLE);
+        loader = new ProgressLoader(getActivity());
     }
 
     @Override
     public void onRespobnse(BaseModel pnrBaseModel) {
+        loader.dismissLoader();
         if (pnrBaseModel.getPnr() != null) {
-//        Log.i("PNR", pnrBaseModel.getFromStation().getStationCode());
             mBaseModel = pnrBaseModel;
             pnrStatusCardLayout.setVisibility(View.VISIBLE);
             fromStation.setText(mBaseModel.getFromStation().getStationCode());
-            // Toast.makeText(getContext(),mBaseModel.getToStation().getStationName(),Toast.LENGTH_LONG).show();
             toStation.setText(mBaseModel.getToStation().getStationCode());
             mDateTravel.setText(mBaseModel.getDateOfTravel());
             trainName.setText(mBaseModel.getTrainNumber().getTrainName());
             if (mBaseModel.getChartPrepared() == true) {
-                mChartStatus.setText("Chart Prepared");
+                mChartStatus.setText(R.string.chart_prepared);
             } else {
-                mChartStatus.setText("Chart not Prepared");
-            }
-            for (int i = 0; i < mBaseModel.getPassengersDetails().length; i++) {
-                mPassengerList.add(mBaseModel.getPassengersDetails()[i]);
+                mChartStatus.setText(R.string.chart_not_prepared);
             }
             madapter = new PassengerAdapter(getContext(), getdata1());
             passengerListRecycler.setAdapter(madapter);
             passengerListRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
         } else
-            Toast.makeText(getContext(), "Api Not Working", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), R.string.api_not_working, Toast.LENGTH_SHORT).show();
     }
 }

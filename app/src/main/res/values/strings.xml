@@ -50,4 +50,7 @@
     <string name="booking_status">Booking Status</string>
     <string name="current_status">Current Status</string>
     <string name="add_unit_id">ca-app-pub-3940256099942544/6300978111</string>
+
+    <string name="api_not_working">Api not Working</string>
+    <string name="invalid_pnr">Enter valid PNR</string>
 </resources>
