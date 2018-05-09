@@ -13,7 +13,9 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:elevation="8dp"
-        app:cardCornerRadius="5dp">
+        app:cardCornerRadius="5dp"
+        android:background="@drawable/ripple"
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
