@@ -93,6 +93,9 @@ public class EnquiryActivity extends SingleFragmentActivity {
             case R.id.logout_menu_item:
                 logout();
                 break;
+            case R.id.bug_report:
+                startActivity(new Intent(this,BugReportActivity.class));
+                break;
 
         }
         return super.onOptionsItemSelected(item);
