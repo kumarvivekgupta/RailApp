@@ -5,11 +5,12 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
 
+import com.google.android.gms.ads.AdView;
 import com.google.gson.Gson;
 import com.test.naimish.railapp.Models.StationStatusDisplayModel;
 import com.test.naimish.railapp.R;
+import com.test.naimish.railapp.Utils.AddService;
 import com.test.naimish.railapp.Utils.RailAppConstants;
 import com.test.naimish.railapp.Views.LightTextView;
 
@@ -61,6 +62,10 @@ public class LiveTrainStatusFragment extends RailAppFragment {
     @BindView(R.id.sourceCondition)
     LightTextView sourceCondition;
 
+    @BindView(R.id.adView)
+    AdView adView;
+
+
 
     @Override
     protected int getResourceId() {
@@ -80,6 +85,7 @@ public class LiveTrainStatusFragment extends RailAppFragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        adView.loadAd(AddService.getAdRequest(getActivity()));
         String response = getActivity().getIntent().getExtras().getString(RailAppConstants.SINGLE_STATION_DETAILS);
         Gson gson = new Gson();
         StationStatusDisplayModel displayModel = gson.fromJson(response, StationStatusDisplayModel.class);

@@ -1,14 +1,8 @@
 package com.test.naimish.railapp.Network.PnrNetwork;
 
-import android.content.Context;
-import android.util.Log;
-import android.widget.Toast;
-
-import com.google.gson.Gson;
 import com.test.naimish.railapp.BuildConfig;
-import com.test.naimish.railapp.Fragments.PnrEnquiryFragment;
 import com.test.naimish.railapp.Models.PnrModel.BaseModel;
-import com.test.naimish.railapp.R;
+import com.test.naimish.railapp.Utils.ResponseListener;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -25,13 +19,13 @@ import static com.test.naimish.railapp.Utils.RailAppConstants.RAIL_BASE_URL;
  */
 
 public class PnrApiClient {
-    private PnrResponse pnrResponse;
+    private ResponseListener<BaseModel> responseListener;
 
-    public PnrApiClient(PnrResponse pnrResponse) {
-        this.pnrResponse = pnrResponse;
+    public PnrApiClient(ResponseListener<BaseModel> responseListener) {
+        this.responseListener = responseListener;
     }
 
-    public  void getPnrStatus(String pnrNo) {
+    public void getPnrStatus(String pnrNo) {
 
         OkHttpClient.Builder okhttpbuilder = new OkHttpClient.Builder();
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
@@ -44,26 +38,24 @@ public class PnrApiClient {
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(okhttpbuilder.build())
                 .build();
-        final Gson gson = new Gson();
         PnrApiInterface pnrApiInterface = retrofit.create(PnrApiInterface.class);
         Call<BaseModel> call = pnrApiInterface.pnrInfo(pnrNo);
         call.enqueue(new Callback<BaseModel>() {
             @Override
             public void onResponse(Call<BaseModel> call, Response<BaseModel> response) {
-                Log.i("Response", gson.toJson(response.body()));
-//                PnrEnquiryFragment pnrEnquiryFragment=new PnrEnquiryFragment();
-//                pnrEnquiryFragment.pnrDisplay(response.body());
-                pnrResponse.onRespobnse(response.body());
+                if (response.body() != null) {
+                    responseListener.onSuccess(response.body());
+                } else {
+                    responseListener.onNullResponse();
+                }
 
             }
 
             @Override
             public void onFailure(Call<BaseModel> call, Throwable t) {
+                responseListener.onFailure(t);
             }
         });
     }
 
-    public interface PnrResponse{
-        void onRespobnse( BaseModel pnrBaseModel);
-    }
 }

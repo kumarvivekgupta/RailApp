@@ -107,6 +107,7 @@
                     android:paddingRight="40dp"
                     android:text="From Name"
                     android:textColor="@color/white"
+                    android:textAlignment="textStart"
                     android:textSize="15dp" />
 
                 <com.test.naimish.railapp.Views.LightTextView
@@ -117,6 +118,7 @@
                     android:paddingRight="5dp"
                     android:text="To Name"
                     android:textColor="@color/white"
+                    android:textAlignment="textEnd"
                     android:textSize="15dp" />
 
 

@@ -7,25 +7,19 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 
 import android.widget.TextView;
-import android.widget.Toast;
 
-
-import com.google.android.gms.ads.AdView;
 import com.test.naimish.railapp.Models.PassengerRecyclerModel;
 import com.test.naimish.railapp.Models.PnrModel.BaseModel;
-import com.test.naimish.railapp.Models.PnrModel.PassengerModel;
 import com.test.naimish.railapp.Network.PnrNetwork.PnrApiClient;
 import com.test.naimish.railapp.R;
-import com.test.naimish.railapp.Utils.AddService;
-import com.test.naimish.railapp.Utils.EnquiryAdapter;
 import com.test.naimish.railapp.Utils.PassengerAdapter;
 import com.test.naimish.railapp.Utils.PassengerDetails;
+import com.test.naimish.railapp.Utils.ResponseListener;
 import com.test.naimish.railapp.Utils.Validations;
 import com.test.naimish.railapp.Views.LightTextView;
 import com.test.naimish.railapp.Views.ProgressLoader;
@@ -41,7 +35,7 @@ import butterknife.OnClick;
  * Created by Vivek on 2/19/2018.
  */
 
-public class PnrEnquiryFragment extends RailAppFragment implements PnrApiClient.PnrResponse {
+public class PnrEnquiryFragment extends RailAppFragment implements ResponseListener<BaseModel> {
     private BaseModel mBaseModel;
     private ProgressLoader loader;
     private PassengerAdapter madapter;
@@ -113,10 +107,10 @@ public class PnrEnquiryFragment extends RailAppFragment implements PnrApiClient.
     }
 
     @Override
-    public void onRespobnse(BaseModel pnrBaseModel) {
+    public void onSuccess(BaseModel response) {
         loader.dismissLoader();
-        if (pnrBaseModel.getPnr() != null) {
-            mBaseModel = pnrBaseModel;
+        if (response.getPnr() != null) {
+            mBaseModel = response;
             pnrStatusCardLayout.setVisibility(View.VISIBLE);
             fromStation.setText(mBaseModel.getFromStation().getStationCode());
             toStation.setText(mBaseModel.getToStation().getStationCode());
@@ -131,6 +125,19 @@ public class PnrEnquiryFragment extends RailAppFragment implements PnrApiClient.
             passengerListRecycler.setAdapter(madapter);
             passengerListRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
         } else
-            Toast.makeText(getContext(), R.string.api_not_working, Toast.LENGTH_SHORT).show();
+            Snackbar.make(getView(), R.string.common_error + " " + R.string.try_again, Snackbar.LENGTH_SHORT).show();
+
+    }
+
+    @Override
+    public void onFailure(Throwable throwable) {
+        loader.dismissLoader();
+        Snackbar.make(getView(), throwable.getMessage().toString() + " " + R.string.try_again, Snackbar.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onNullResponse() {
+        loader.dismissLoader();
+        Snackbar.make(getView(), R.string.common_error + " " + R.string.try_again, Snackbar.LENGTH_SHORT).show();
     }
 }

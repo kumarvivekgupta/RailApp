@@ -52,7 +52,6 @@ public class EnquiryFragment extends RailAppFragment implements EnquiryAdapter.C
     private EnquiryAdapter adapter;
     private IImageLoader loader;
 
-
     @BindView(R.id.user_pic)
     AvatarView userPic;
 
@@ -162,14 +161,8 @@ public class EnquiryFragment extends RailAppFragment implements EnquiryAdapter.C
     }
 
     public void myUpdateOperation() {
-
         mSwipeRefreshLayout.setRefreshing(false);
         mUserName.setText(SharedPreference.getPreference(getContext(), NAME_CONSTANT));
-     
-
-
-
+        loader.loadImage(userPic, "random url", SharedPreference.getPreference(getContext(), NAME_CONSTANT));
     }
-
-
 }
