@@ -53,4 +53,5 @@
 
     <string name="api_not_working">Api not Working</string>
     <string name="invalid_pnr">Enter valid PNR</string>
+    <string name="send">SEND</string>
 </resources>
