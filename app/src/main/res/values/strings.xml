@@ -54,4 +54,6 @@
     <string name="api_not_working">Api not Working</string>
     <string name="invalid_pnr">Enter valid PNR</string>
     <string name="send">SEND</string>
+    <string name="bug_reported_successfully">Bug Reported Successfully</string>
+    <string name="empty_bug_message">Bug Message Empty</string>
 </resources>

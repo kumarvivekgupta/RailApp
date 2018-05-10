@@ -94,7 +94,7 @@ public class EnquiryActivity extends SingleFragmentActivity {
                 logout();
                 break;
             case R.id.bug_report:
-               // startActivity(new Intent(this,ReportBugActivity.class));
+                startActivity(new Intent(this,BugReportActivity.class));
                 break;
 
         }
