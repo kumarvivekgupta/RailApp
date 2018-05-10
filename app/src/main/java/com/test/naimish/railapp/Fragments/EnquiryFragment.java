@@ -10,12 +10,15 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.gms.ads.AdView;
+import com.test.naimish.railapp.Activities.EnquiryActivity;
 import com.test.naimish.railapp.Activities.LiveTrainSearchActivity;
 import com.test.naimish.railapp.Activities.PnrEnquiryActivity;
 import com.test.naimish.railapp.Models.RecyclerModel;
@@ -65,6 +68,9 @@ public class EnquiryFragment extends RailAppFragment implements EnquiryAdapter.C
     @BindView(R.id.adView)
     AdView adView;
 
+    @BindView(R.id.swiperefresh)
+    SwipeRefreshLayout mSwipeRefreshLayout;
+
 
     public static Fragment newInstance() {
         return new EnquiryFragment();
@@ -74,6 +80,15 @@ public class EnquiryFragment extends RailAppFragment implements EnquiryAdapter.C
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
+        mSwipeRefreshLayout.setOnRefreshListener(
+                new SwipeRefreshLayout.OnRefreshListener() {
+                    @Override
+                    public void onRefresh() {
+                        Toast.makeText(getContext(), "Refreshing", Toast.LENGTH_LONG).show();
+                        myUpdateOperation();
+                    }
+                }
+        );
     }
 
     @Override
@@ -96,6 +111,7 @@ public class EnquiryFragment extends RailAppFragment implements EnquiryAdapter.C
         adView.loadAd(AddService.getAdRequest(getActivity()));
         loader = new PicassoLoader();
         loader.loadImage(userPic, "random url", SharedPreference.getPreference(getContext(), NAME_CONSTANT));
+
 
     }
 
@@ -142,6 +158,17 @@ public class EnquiryFragment extends RailAppFragment implements EnquiryAdapter.C
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED && grantResults[2] == PackageManager.PERMISSION_GRANTED)
                 ;
         }
+
+    }
+
+    public void myUpdateOperation() {
+
+        mSwipeRefreshLayout.setRefreshing(false);
+        mUserName.setText(SharedPreference.getPreference(getContext(), NAME_CONSTANT));
+     
+
+
+
     }
 
 
