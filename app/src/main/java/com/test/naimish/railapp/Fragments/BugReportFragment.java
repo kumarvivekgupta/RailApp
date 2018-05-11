@@ -73,7 +73,7 @@ public class BugReportFragment extends RailAppFragment implements  ResponseListe
         if(response.isBugSuccess())
         Snackbar.make(getView(), R.string.bug_reported_successfully, Snackbar.LENGTH_SHORT).show();
         else
-            Snackbar.make(getView(), R.string.common_error+" "+R.string.try_again, Snackbar.LENGTH_SHORT).show();
+            Snackbar.make(getView(), R.string.common_error,Snackbar.LENGTH_SHORT).show();
 
     }
 
@@ -87,7 +87,7 @@ public class BugReportFragment extends RailAppFragment implements  ResponseListe
     @Override
     public void onNullResponse() {
         loader.dismissLoader();
-        Snackbar.make(getView(), R.string.common_error +" "+ R.string.try_again, Snackbar.LENGTH_SHORT).show();
+        Snackbar.make(getView(), R.string.common_error, Snackbar.LENGTH_SHORT).show();
 
     }
 }

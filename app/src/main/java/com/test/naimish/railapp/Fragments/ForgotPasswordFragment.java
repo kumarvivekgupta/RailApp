@@ -89,6 +89,6 @@ public class ForgotPasswordFragment extends RailAppFragment implements ResponseL
     @Override
     public void onNullResponse() {
         loader.dismissLoader();
-        Snackbar.make(getView(), R.string.common_error +" "+ R.string.try_again, Snackbar.LENGTH_SHORT).show();
+        Snackbar.make(getView(), R.string.common_error, Snackbar.LENGTH_SHORT).show();
     }
 }

@@ -133,7 +133,7 @@ public class SettingsFragment extends RailAppFragment implements ResponseListene
             mSaveSettings.setEnabled(false);
         }
         else{
-            Snackbar.make(getView(), R.string.common_error +" "+ R.string.try_again, Snackbar.LENGTH_SHORT).show();
+            Snackbar.make(getView(), R.string.common_error, Snackbar.LENGTH_SHORT).show();
         }
     }
 
@@ -146,7 +146,7 @@ public class SettingsFragment extends RailAppFragment implements ResponseListene
     @Override
     public void onNullResponse() {
         loader.dismissLoader();
-        Snackbar.make(getView(), R.string.common_error +" "+ R.string.try_again, Snackbar.LENGTH_SHORT).show();
+        Snackbar.make(getView(), R.string.common_error, Snackbar.LENGTH_SHORT).show();
     }
 
 }

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">RailApp</string>
+    <string name="app_name">Railway Enquiry</string>
     <string name="email_error">Invalid Email</string>
     <string name="name_error">Invalid Name</string>
     <string name="password_error">Invalid Password</string>
@@ -21,7 +21,7 @@
     <string name="select_any_one">Select Any One</string>
     <string name="camera">Take a Picture</string>
     <string name="gallery">Import from Gallery</string>
-    <string name="common_error">Something went wrong!!</string>
+    <string name="common_error">Something went wrong, please try again!!</string>
     <string name="internet_connection">Please check your internet connection and try again!</string>
     <string name="try_again">Please try again.</string>
     <string name="scheduled">Scheduled</string>
@@ -56,6 +56,7 @@
     <string name="send">SEND</string>
     <string name="bug_reported_successfully">Bug Reported Successfully</string>
     <string name="empty_bug_message">Bug Message Empty</string>
+    <string name="bug_message">Report bug</string>
     <string name="enter_bug">Please type your message here..</string>
     <string name="train_no_error">Please enter a valid train no.</string>
 </resources>
