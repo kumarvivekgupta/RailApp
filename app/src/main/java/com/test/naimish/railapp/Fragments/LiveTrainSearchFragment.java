@@ -22,6 +22,7 @@ import com.test.naimish.railapp.Utils.RailAppConstants;
 import com.test.naimish.railapp.Utils.ResponseListener;
 import com.test.naimish.railapp.Utils.StationAdapter;
 import com.test.naimish.railapp.Utils.TrainController;
+import com.test.naimish.railapp.Utils.Validations;
 import com.test.naimish.railapp.Views.LightTextView;
 import com.test.naimish.railapp.Views.ProgressLoader;
 
@@ -64,8 +65,13 @@ public class LiveTrainSearchFragment extends RailAppFragment implements Response
     @OnClick(R.id.search_live_train)
     public void searchLiveTrain() {
         mTrainNo = trainNo.getText().toString();
-        loader.showLoader();
-        mApiClient.liveTrainStatus(mTrainNo, mSelectedDate);
+        if(!Validations.isEmpty(mTrainNo)&&Validations.checkTrainNo(mTrainNo)) {
+            loader.showLoader();
+            mApiClient.liveTrainStatus(mTrainNo, mSelectedDate);
+        }
+        else{
+            Snackbar.make(getView(), R.string.train_no_error, Snackbar.LENGTH_SHORT).show();
+        }
     }
 
 
@@ -124,13 +130,18 @@ public class LiveTrainSearchFragment extends RailAppFragment implements Response
     @Override
     public void onSuccess(LiveStatusBaseModel response) {
         loader.dismissLoader();
-        cardView.setVisibility(View.VISIBLE);
-        trainName.setText(response.getTrainInfo().getTrainName());
-        this.statusBaseModel=response;
-        StationAdapter adapter=new StationAdapter(getContext(),TrainController.getStationList(response.getRoute()));
-        stationsRecyclerView.setAdapter(adapter);
-        adapter.setClicklistenerInstance(this);
-        stationsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        if(response.getTrainInfo().getTrainName()!=null) {
+            cardView.setVisibility(View.VISIBLE);
+            trainName.setText(response.getTrainInfo().getTrainName());
+            this.statusBaseModel = response;
+            StationAdapter adapter = new StationAdapter(getContext(), TrainController.getStationList(response.getRoute()));
+            stationsRecyclerView.setAdapter(adapter);
+            adapter.setClicklistenerInstance(this);
+            stationsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        }
+        else{
+            Snackbar.make(getView(), R.string.common_error + " " + R.string.try_again, Snackbar.LENGTH_SHORT).show();
+        }
     }
 
     @Override

@@ -41,6 +41,8 @@
                         android:fontFamily="@font/ubuntu_light"
                         android:hint="Train No"
                         android:paddingLeft="10dp"
+                        android:maxLines="1"
+                        android:maxLength="5"
                         android:textColor="@color/colorPrimaryDark"
                         android:textSize="20dp" />
 

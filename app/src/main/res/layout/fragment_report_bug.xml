@@ -22,13 +22,12 @@
             <EditText
                 android:id="@+id/bug_report"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="100dp"
                 android:fontFamily="@font/ubuntu_light"
-                android:hint="Enter your message"
-                android:padding="10dp"
+                android:hint="@string/enter_bug"
                 android:layout_marginRight="15dp"
                 android:layout_marginLeft="15dp"
-                android:textSize="20sp" />
+                android:textSize="15sp" />
 
             <Button
                 android:id="@+id/send_bug_report"

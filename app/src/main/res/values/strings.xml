@@ -56,4 +56,6 @@
     <string name="send">SEND</string>
     <string name="bug_reported_successfully">Bug Reported Successfully</string>
     <string name="empty_bug_message">Bug Message Empty</string>
+    <string name="enter_bug">Please type your message here..</string>
+    <string name="train_no_error">Please enter a valid train no.</string>
 </resources>

@@ -12,6 +12,7 @@ import com.test.naimish.railapp.Network.ReportBugNetwork.BugApiClient;
 import com.test.naimish.railapp.R;
 import com.test.naimish.railapp.Utils.ResponseListener;
 import com.test.naimish.railapp.Utils.SharedPreference;
+import com.test.naimish.railapp.Utils.Validations;
 import com.test.naimish.railapp.Views.ProgressLoader;
 
 import butterknife.BindView;
@@ -55,7 +56,7 @@ public class BugReportFragment extends RailAppFragment implements  ResponseListe
     @OnClick(R.id.send_bug_report)
     public void sendMessage(){
         messageBugReport=mBugReport.getText().toString();
-        if(messageBugReport!=null) {
+        if(!Validations.isEmpty(messageBugReport)) {
             loader.showLoader();
             BugApiClient bugApiClient = new BugApiClient(this);
             bugApiClient.reportBug( SharedPreference.getPreference(getContext(), EMAIL_CONSTANT).toString(),messageBugReport);
@@ -71,8 +72,8 @@ public class BugReportFragment extends RailAppFragment implements  ResponseListe
         loader.dismissLoader();
         if(response.isBugSuccess())
         Snackbar.make(getView(), R.string.bug_reported_successfully, Snackbar.LENGTH_SHORT).show();
-//        else
-//            Snackbar.make(getView(), response.getUserEmailInfo(), Snackbar.LENGTH_SHORT).show();
+        else
+            Snackbar.make(getView(), R.string.common_error+" "+R.string.try_again, Snackbar.LENGTH_SHORT).show();
 
     }
 
