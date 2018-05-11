@@ -77,7 +77,7 @@ public class LiveTrainSearchFragment extends RailAppFragment implements Response
 
     @Override
     protected int getResourceId() {
-        return R.layout.live_train_search;
+        return R.layout.fragment_live_train_search;
     }
 
     public static Fragment newInstance() {
@@ -140,7 +140,7 @@ public class LiveTrainSearchFragment extends RailAppFragment implements Response
             stationsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         }
         else{
-            Snackbar.make(getView(), R.string.common_error + " " + R.string.try_again, Snackbar.LENGTH_SHORT).show();
+            Snackbar.make(getView(), R.string.common_error, Snackbar.LENGTH_SHORT).show();
         }
     }
 
@@ -153,7 +153,7 @@ public class LiveTrainSearchFragment extends RailAppFragment implements Response
     @Override
     public void onNullResponse() {
         loader.dismissLoader();
-        Snackbar.make(getView(), R.string.common_error + " " + R.string.try_again, Snackbar.LENGTH_SHORT).show();
+        Snackbar.make(getView(), R.string.common_error, Snackbar.LENGTH_SHORT).show();
     }
 
 

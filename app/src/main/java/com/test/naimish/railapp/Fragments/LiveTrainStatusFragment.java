@@ -69,7 +69,7 @@ public class LiveTrainStatusFragment extends RailAppFragment {
 
     @Override
     protected int getResourceId() {
-        return R.layout.live_train_status;
+        return R.layout.fragment_live_train_status;
     }
 
     public static Fragment newInstance() {
@@ -89,7 +89,6 @@ public class LiveTrainStatusFragment extends RailAppFragment {
         String response = getActivity().getIntent().getExtras().getString(RailAppConstants.SINGLE_STATION_DETAILS);
         Gson gson = new Gson();
         StationStatusDisplayModel displayModel = gson.fromJson(response, StationStatusDisplayModel.class);
-        Log.i("Current status", displayModel.getCurrentStatus());
         stationName.setText(displayModel.getStationName());
         startingPointCode.setText(displayModel.getFromStationCode());
         startingPointName.setText(displayModel.getFromStation());

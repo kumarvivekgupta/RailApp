@@ -43,7 +43,7 @@ public class PnrEnquiryFragment extends RailAppFragment implements ResponseListe
 
     @Override
     protected int getResourceId() {
-        return R.layout.pnr_status;
+        return R.layout.fragment_pnr_status;
     }
 
     @BindView(R.id.enter_pnr)
@@ -81,7 +81,7 @@ public class PnrEnquiryFragment extends RailAppFragment implements ResponseListe
             PnrApiClient apiClient = new PnrApiClient(this);
             apiClient.getPnrStatus(pnrText.getText().toString());
         } else
-            Snackbar.make(getView(), R.string.invalid_pnr, 2);
+            Snackbar.make(getView(), R.string.invalid_pnr, Snackbar.LENGTH_SHORT).show();
     }
 
     public static Fragment newInstance() {
@@ -125,7 +125,7 @@ public class PnrEnquiryFragment extends RailAppFragment implements ResponseListe
             passengerListRecycler.setAdapter(madapter);
             passengerListRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
         } else
-            Snackbar.make(getView(), R.string.common_error + " " + R.string.try_again, Snackbar.LENGTH_SHORT).show();
+            Snackbar.make(getView(), R.string.common_error, Snackbar.LENGTH_SHORT).show();
 
     }
 
@@ -138,6 +138,6 @@ public class PnrEnquiryFragment extends RailAppFragment implements ResponseListe
     @Override
     public void onNullResponse() {
         loader.dismissLoader();
-        Snackbar.make(getView(), R.string.common_error + " " + R.string.try_again, Snackbar.LENGTH_SHORT).show();
+        Snackbar.make(getView(), R.string.common_error, Snackbar.LENGTH_SHORT).show();
     }
 }

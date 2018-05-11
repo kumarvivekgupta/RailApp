@@ -6,13 +6,8 @@ package com.test.naimish.railapp.Utils;
 
 public class Validations {
     public static boolean checkEmail(String email) {
-
-        if (email.contains("@")
-                && email.contains(".")
-                && email.indexOf('.') > email.indexOf('@') + 1)
+        if (email.contains("@") && email.contains("."))
             return true;
-
-
         return false;
     }
 
