@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:weightSum="100"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="70dp"
             android:layout_marginRight="10dp"
             android:layout_marginLeft="10dp">
 
@@ -27,7 +27,7 @@
                 android:layout_weight="90"
                 android:background="@color/white"
                 android:fontFamily="@font/ubuntu_light"
-                android:hint="Pnr Enquiry"
+                android:hint="@string/enter_pnr"
                 android:paddingLeft="10dp"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="20dp" />
