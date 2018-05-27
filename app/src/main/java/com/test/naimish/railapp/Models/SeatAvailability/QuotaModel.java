@@ -16,4 +16,11 @@ public class QuotaModel {
     @Expose
     private String quotaCode;
 
+    public String getQuotaName() {
+        return quotaName;
+    }
+
+    public String getQuotaCode() {
+        return quotaCode;
+    }
 }

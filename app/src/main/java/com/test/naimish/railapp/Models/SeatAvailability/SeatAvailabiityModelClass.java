@@ -16,4 +16,11 @@ public class SeatAvailabiityModelClass {
     @Expose
     private String seatStatus;
 
+    public String getTraindate() {
+        return traindate;
+    }
+
+    public String getSeatStatus() {
+        return seatStatus;
+    }
 }

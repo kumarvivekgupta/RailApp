@@ -31,5 +31,23 @@ public class TrainSeatBaseModel {
     private SeatAvailabiityModelClass[] trainSeatAvailability;
 
 
+    public StationModel getFromStation() {
+        return fromStation;
+    }
 
+    public StationModel getToStation() {
+        return toStation;
+    }
+
+    public JourneyClassModel getJourneyClass() {
+        return journeyClass;
+    }
+
+    public QuotaModel getTrainQuota() {
+        return trainQuota;
+    }
+
+    public SeatAvailabiityModelClass[] getTrainSeatAvailability() {
+        return trainSeatAvailability;
+    }
 }

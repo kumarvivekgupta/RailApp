@@ -17,4 +17,11 @@ public class JourneyClassModel {
     @Expose
     private String journeyCode;
 
+    public String getJourneyClassName() {
+        return journeyClassName;
+    }
+
+    public String getJourneyCode() {
+        return journeyCode;
+    }
 }
