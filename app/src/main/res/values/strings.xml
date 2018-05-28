@@ -57,4 +57,5 @@
     <string name="bug_reported_successfully">Bug Reported Successfully</string>
     <string name="empty_bug_message">Bug Message Empty</string>
     <string name="enter_pnr">Enter PNR</string>
+    <string name="submit">Submit</string>
 </resources>
