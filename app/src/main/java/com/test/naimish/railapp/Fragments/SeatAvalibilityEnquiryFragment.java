@@ -9,15 +9,20 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.test.naimish.railapp.Models.PnrModel.BaseModel;
 import com.test.naimish.railapp.Models.SeatAvailability.TrainSeatBaseModel;
+import com.test.naimish.railapp.Models.StationAutoCompleteBaseModel;
 import com.test.naimish.railapp.Network.SeatAvalibilityNetwork.SeatAvalibilityApiClient;
 import com.test.naimish.railapp.Network.SeatAvalibilityNetwork.SeatAvalibilityApiInterface;
+import com.test.naimish.railapp.Network.StationAutoCompleteNetwork.StationAutoCompleteApiClient;
 import com.test.naimish.railapp.R;
 import com.test.naimish.railapp.Utils.ResponseListener;
 import com.test.naimish.railapp.Utils.SeatClassAndQuotaContants;
+import com.test.naimish.railapp.Utils.StationAutoCompleteDetails;
 import com.test.naimish.railapp.Utils.Validations;
 import com.test.naimish.railapp.Views.ProgressLoader;
 
@@ -34,7 +39,7 @@ import butterknife.OnClick;
  * Created by Vivek on 5/29/2018.
  */
 
-public class SeatAvalibilityEnquiryFragment extends RailAppFragment implements ResponseListener<TrainSeatBaseModel> {
+public class SeatAvalibilityEnquiryFragment extends RailAppFragment implements ResponseListener<TrainSeatBaseModel>, StationAutoCompleteApiClient.stationAutoCompleteResponse {
     private String mSourceCode;
     private String mDestinationCode;
     private String mDate;
@@ -43,14 +48,19 @@ public class SeatAvalibilityEnquiryFragment extends RailAppFragment implements R
     private String mTrainQuota;
     private ArrayList<String> mClassCode;
     private ArrayList<String> mQuota;
+    private ArrayList<String> mStationName;
+    private ArrayList<String> mStationCode;
+
+
     private SeatAvalibilityApiClient mSeatAvalibilityApiClient;
+    // private StationAutoCompleteApiClient mStationAutoCompleteApiClient;
     private ProgressLoader mLoader;
 
     @BindView(R.id.source_code)
-    EditText trainSourceCode;
+    AutoCompleteTextView trainSourceCode;
 
     @BindView(R.id.destination_code)
-    EditText trainDestinationCode;
+    AutoCompleteTextView trainDestinationCode;
 
     @BindView(R.id.enter_train)
     EditText trainNo;
@@ -63,12 +73,12 @@ public class SeatAvalibilityEnquiryFragment extends RailAppFragment implements R
 
     @BindView(R.id.quota_code)
     Spinner trainQuota;
-
-    @BindView(R.id.source_code_spinner)
-    Spinner trainSourceCodeSpinner;
-
-    @BindView(R.id.destination_code_spinner)
-    Spinner trainDestinationCodeSpinner;
+//
+//    @BindView(R.id.source_code_spinner)
+//    Spinner trainSourceCodeSpinner;
+//
+//    @BindView(R.id.destination_code_spinner)
+//    Spinner trainDestinationCodeSpinner;
 
     @Override
     protected int getResourceId() {
@@ -100,33 +110,6 @@ public class SeatAvalibilityEnquiryFragment extends RailAppFragment implements R
         trainSourceCode.setError(null);
         trainDestinationCode.setError(null);
 
-        trainSourceCode.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-              if(s.length()>=3){
-                  long startTime = System.currentTimeMillis();
-                  long elapsedTime = 0L;
-                  elapsedTime = (new Date()).getTime() - startTime;
-                  while (elapsedTime > 2*60*1000) {
-
-
-
-                  }
-
-              }
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-
-            }
-        });
 
         View focusView = null;
         Boolean killSwitch = false;
@@ -157,6 +140,13 @@ public class SeatAvalibilityEnquiryFragment extends RailAppFragment implements R
             trainNo.setError("Invalid train no");
             focusView = trainNo;
             killSwitch = true;
+        }
+        if (killSwitch) {
+            if (focusView != null)
+                focusView.requestFocus();
+//            if (focusViewEmail != null)
+//                focusViewEmail.requestFocus();
+
         }
 
     }
@@ -209,11 +199,97 @@ public class SeatAvalibilityEnquiryFragment extends RailAppFragment implements R
 
     }
 
+    public void createSourceCodeSpinnerDropdown(StationAutoCompleteBaseModel stationAutoCompleteBaseModel) {
+        //  = new ArrayList<>();
+        //   mQuota.addAll(SeatClassAndQuotaContants.addQuotaCode());
+        //  trainSourceCodeSpinner.setVisibility(View.VISIBLE);
+
+        StationAutoCompleteDetails stationAutoCompleteDetails = new StationAutoCompleteDetails();
+        mStationName = stationAutoCompleteDetails.deatils(stationAutoCompleteBaseModel);
+        //  mStationCode=stationAutoCompleteDetails.stationCode(stationAutoCompleteBaseModel);
+        ArrayAdapter<String> sourceCodeAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, mStationName);
+        sourceCodeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        trainSourceCode.setAdapter(sourceCodeAdapter);
+        trainSourceCode.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+                trainSourceCode.setText(mStationName.get(i).substring((mStationName.indexOf('-') + 1), mStationName.get(i).length()));
+                // trainSourceCodeSpinner.setVisibility(View.GONE);
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+    }
+
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mLoader = new ProgressLoader(getActivity());
-        mSeatAvalibilityApiClient=new SeatAvalibilityApiClient(this);
+        mSeatAvalibilityApiClient = new SeatAvalibilityApiClient(this);
+        trainSourceCode.setThreshold(2);
+        trainDestinationCode.setThreshold(2);
+        trainSourceCode.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.length() >= 3) {
+//                    long startTime = System.currentTimeMillis();
+//                    long elapsedTime = 0L;
+//                    elapsedTime = (new Date()).getTime() - startTime;
+//                    while (elapsedTime > 2 * 60 * 1000) {
+                    StationAutoCompleteApiClient mStationAutoCompleteApiClient = new StationAutoCompleteApiClient(SeatAvalibilityEnquiryFragment.this);
+                    mStationAutoCompleteApiClient.stationAutoCompleteInfo(s.toString());
+                    //  createSourceCodeSpinnerDropdown();
+
+                    // }
+
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+
+            }
+        });
+        trainDestinationCode.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.length() >= 3) {
+//                    long startTime = System.currentTimeMillis();
+//                    long elapsedTime = 0L;
+//                    elapsedTime = (new Date()).getTime() - startTime;
+//                    while (elapsedTime > 2 * 60 * 1000) {
+                    StationAutoCompleteApiClient mStationAutoCompleteApiClient = new StationAutoCompleteApiClient(SeatAvalibilityEnquiryFragment.this);
+                    mStationAutoCompleteApiClient.stationAutoCompleteInfo(s.toString());
+
+                    // }
+
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
 
     }
 
@@ -237,5 +313,39 @@ public class SeatAvalibilityEnquiryFragment extends RailAppFragment implements R
         Snackbar.make(getView(), R.string.common_error + " " + R.string.try_again, Snackbar.LENGTH_SHORT).show();
 
 
+    }
+
+    @Override
+    public void onResponce(StationAutoCompleteBaseModel stationAutoCompleteBaseModel) {
+        createSourceCodeSpinnerDropdown(stationAutoCompleteBaseModel);
+        createDestinationSpinnerDropdown(stationAutoCompleteBaseModel);
+    }
+
+    public void createDestinationSpinnerDropdown(StationAutoCompleteBaseModel stationAutoCompleteBaseModel) {
+        //  = new ArrayList<>();
+        //   mQuota.addAll(SeatClassAndQuotaContants.addQuotaCode());
+        //  trainSourceCodeSpinner.setVisibility(View.VISIBLE);
+
+        StationAutoCompleteDetails stationAutoCompleteDetails = new StationAutoCompleteDetails();
+        mStationName = stationAutoCompleteDetails.deatils(stationAutoCompleteBaseModel);
+        //  mStationCode=stationAutoCompleteDetails.stationCode(stationAutoCompleteBaseModel);
+        ArrayAdapter<String> sourceCodeAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, mStationName);
+        sourceCodeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        trainDestinationCode.setAdapter(sourceCodeAdapter);
+        trainDestinationCode.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+                trainDestinationCode.setText(mStationName.get(i).substring((mStationName.indexOf('-') + 1), mStationName.get(i).length()));
+                // trainSourceCodeSpinner.setVisibility(View.GONE);
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+
+        });
     }
 }
