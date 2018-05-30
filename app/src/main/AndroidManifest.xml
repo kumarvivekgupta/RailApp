@@ -30,6 +30,7 @@
         <activity android:name=".Activities.SettingsActivity"/>
         <activity android:name=".Activities.ForgotPasswordActivity"/>
         <activity android:name=".Activities.BugReportActivity"></activity>
+        <activity android:name=".Activities.SeatAvalibilityEnquiryActivity"/>
     </application>
 
 </manifest>

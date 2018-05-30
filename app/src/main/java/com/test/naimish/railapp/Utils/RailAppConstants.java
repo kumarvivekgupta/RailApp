@@ -1,5 +1,7 @@
 package com.test.naimish.railapp.Utils;
 
+import java.util.ArrayList;
+
 /**
  * Created by naimish on 4/1/2018.
  */
@@ -31,4 +33,8 @@ public interface RailAppConstants {
     //Add mob constants
 
     String APP_ID="ca-app-pub-3940256099942544~3347511713";
+
+
+
+
 }
