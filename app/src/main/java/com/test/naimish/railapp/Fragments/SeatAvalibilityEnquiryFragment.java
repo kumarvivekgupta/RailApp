@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.test.naimish.railapp.Models.PnrModel.BaseModel;
 import com.test.naimish.railapp.Models.SeatAvailability.TrainSeatBaseModel;
@@ -39,7 +40,7 @@ import butterknife.OnClick;
  * Created by Vivek on 5/29/2018.
  */
 
-public class SeatAvalibilityEnquiryFragment extends RailAppFragment implements ResponseListener<TrainSeatBaseModel>, StationAutoCompleteApiClient.stationAutoCompleteResponse {
+public class SeatAvalibilityEnquiryFragment extends RailAppFragment implements ResponseListener<TrainSeatBaseModel>, StationAutoCompleteApiClient.stationAutoCompleteResponse, AdapterView.OnItemClickListener {
     private String mSourceCode;
     private String mDestinationCode;
     private String mDate;
@@ -49,11 +50,11 @@ public class SeatAvalibilityEnquiryFragment extends RailAppFragment implements R
     private ArrayList<String> mClassCode;
     private ArrayList<String> mQuota;
     private ArrayList<String> mStationName;
-    private ArrayList<String> mStationCode;
+
 
 
     private SeatAvalibilityApiClient mSeatAvalibilityApiClient;
-    // private StationAutoCompleteApiClient mStationAutoCompleteApiClient;
+
     private ProgressLoader mLoader;
 
     @BindView(R.id.source_code)
@@ -73,12 +74,7 @@ public class SeatAvalibilityEnquiryFragment extends RailAppFragment implements R
 
     @BindView(R.id.quota_code)
     Spinner trainQuota;
-//
-//    @BindView(R.id.source_code_spinner)
-//    Spinner trainSourceCodeSpinner;
-//
-//    @BindView(R.id.destination_code_spinner)
-//    Spinner trainDestinationCodeSpinner;
+
 
     @Override
     protected int getResourceId() {
@@ -210,21 +206,32 @@ public class SeatAvalibilityEnquiryFragment extends RailAppFragment implements R
         ArrayAdapter<String> sourceCodeAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, mStationName);
         sourceCodeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         trainSourceCode.setAdapter(sourceCodeAdapter);
-        trainSourceCode.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        trainDestinationCode.setOnItemClickListener(this);
 
-                trainSourceCode.setText(mStationName.get(i).substring((mStationName.indexOf('-') + 1), mStationName.get(i).length()));
-                // trainSourceCodeSpinner.setVisibility(View.GONE);
 
-            }
+//        trainSourceCode.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+//
+//                trainSourceCode.setText(mStationName.get(i).substring((mStationName.indexOf('-') + 1), mStationName.get(i).length()));
+//                // trainSourceCodeSpinner.setVisibility(View.GONE);
+//
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> adapterView) {
+//
+//            }
+//        });
 
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
+    }
 
-            }
-        });
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+        String item1 = mStationName.get(position);
+        Toast.makeText(getContext(), "Selected Item is: \t" + item1, Toast.LENGTH_LONG).show();
+        trainSourceCode.setText(item1.substring(item1.indexOf(("-") + 1), item1.length()));
     }
 
 
@@ -322,30 +329,24 @@ public class SeatAvalibilityEnquiryFragment extends RailAppFragment implements R
     }
 
     public void createDestinationSpinnerDropdown(StationAutoCompleteBaseModel stationAutoCompleteBaseModel) {
-        //  = new ArrayList<>();
-        //   mQuota.addAll(SeatClassAndQuotaContants.addQuotaCode());
-        //  trainSourceCodeSpinner.setVisibility(View.VISIBLE);
+
 
         StationAutoCompleteDetails stationAutoCompleteDetails = new StationAutoCompleteDetails();
         mStationName = stationAutoCompleteDetails.deatils(stationAutoCompleteBaseModel);
-        //  mStationCode=stationAutoCompleteDetails.stationCode(stationAutoCompleteBaseModel);
+
         ArrayAdapter<String> sourceCodeAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, mStationName);
         sourceCodeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         trainDestinationCode.setAdapter(sourceCodeAdapter);
-        trainDestinationCode.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        trainDestinationCode.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
-                trainDestinationCode.setText(mStationName.get(i).substring((mStationName.indexOf('-') + 1), mStationName.get(i).length()));
-                // trainSourceCodeSpinner.setVisibility(View.GONE);
-
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                trainDestinationCode.setText(mStationName.get(position).substring((mStationName.indexOf('-') + 1), mStationName.get(position).length()));
             }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-
         });
+
+
+//
     }
+
+
 }

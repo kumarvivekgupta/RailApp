@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class StationAutoCompleteDetails {
     private ArrayList<StationModel> mStations;
-    private ArrayList<String> mStationCode;
+
     private ArrayList<String> mStationName;
 
 
@@ -29,11 +29,5 @@ public class StationAutoCompleteDetails {
       return mStationName;
 
   }
-//  public ArrayList<String> stationCode(StationAutoCompleteBaseModel stationAutoCompleteBaseModel){
-//      for(int i=0;i<stationAutoCompleteBaseModel.getTrainStations().length;i++) {
-//          mStations = stationAutoCompleteBaseModel.getTrainStations()[i];
-//          mStationCode.add(mStations.getStationCode());
-//      }
-//      return mStationCode;
-//  }
+
 }
