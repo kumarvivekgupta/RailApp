@@ -59,4 +59,10 @@
     <string name="bug_message">Report bug</string>
     <string name="enter_bug">Please type your message here..</string>
     <string name="train_no_error">Please enter a valid train no.</string>
+    <string name="enter_pnr">Enter PNR</string>
+    <string name="submit">Submit</string>
+    <string name="invalid_trainno">Invalid Train No.</string>
+    <string name="invalid_date">Invalid Date</string>
+    <string name="invalid_code">Invalid Code</string>
+
 </resources>

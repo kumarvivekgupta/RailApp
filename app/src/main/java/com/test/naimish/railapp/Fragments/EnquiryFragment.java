@@ -21,6 +21,7 @@ import com.google.android.gms.ads.AdView;
 import com.test.naimish.railapp.Activities.EnquiryActivity;
 import com.test.naimish.railapp.Activities.LiveTrainSearchActivity;
 import com.test.naimish.railapp.Activities.PnrEnquiryActivity;
+import com.test.naimish.railapp.Activities.SeatAvalibilityEnquiryActivity;
 import com.test.naimish.railapp.Models.RecyclerModel;
 import com.test.naimish.railapp.R;
 import com.test.naimish.railapp.Utils.AddService;
@@ -118,6 +119,7 @@ public class EnquiryFragment extends RailAppFragment implements EnquiryAdapter.C
         ArrayList<RecyclerModel> data = new ArrayList<>();
         data.add(new RecyclerModel("Check PNR Status", R.drawable.pnr_icon));
         data.add(new RecyclerModel("Check Live Train Status", R.drawable.live_status_icon));
+        data.add(new RecyclerModel("Seat Avalibility",R.drawable.facebook_icon));
         return data;
     }
 
@@ -126,8 +128,12 @@ public class EnquiryFragment extends RailAppFragment implements EnquiryAdapter.C
         if (position == 0) {
             Intent intent = new Intent(getActivity(), PnrEnquiryActivity.class);
             startActivity(intent);
-        } else {
+        } else if(position==1) {
             Intent intent = new Intent(getActivity(), LiveTrainSearchActivity.class);
+            startActivity(intent);
+        }
+        else {
+            Intent intent=new Intent(getActivity(), SeatAvalibilityEnquiryActivity.class);
             startActivity(intent);
         }
 
