@@ -58,4 +58,7 @@
     <string name="empty_bug_message">Bug Message Empty</string>
     <string name="enter_pnr">Enter PNR</string>
     <string name="submit">Submit</string>
+    <string name="invalid_trainno">Invalid Train No.</string>
+    <string name="invalid_date">Invalid Date</string>
+    <string name="invalid_code">Invalid Code</string>
 </resources>

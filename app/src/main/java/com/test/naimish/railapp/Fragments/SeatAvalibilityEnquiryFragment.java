@@ -40,7 +40,11 @@ import butterknife.OnClick;
  * Created by Vivek on 5/29/2018.
  */
 
-public class SeatAvalibilityEnquiryFragment extends RailAppFragment implements ResponseListener<TrainSeatBaseModel>, StationAutoCompleteApiClient.stationAutoCompleteResponse, AdapterView.OnItemClickListener {
+public class SeatAvalibilityEnquiryFragment
+        extends RailAppFragment
+        implements ResponseListener<TrainSeatBaseModel>,
+        StationAutoCompleteApiClient.stationAutoCompleteResponse,
+        AdapterView.OnItemClickListener {
     private String mSourceCode;
     private String mDestinationCode;
     private String mDate;
@@ -50,7 +54,6 @@ public class SeatAvalibilityEnquiryFragment extends RailAppFragment implements R
     private ArrayList<String> mClassCode;
     private ArrayList<String> mQuota;
     private ArrayList<String> mStationName;
-
 
 
     private SeatAvalibilityApiClient mSeatAvalibilityApiClient;
@@ -116,24 +119,24 @@ public class SeatAvalibilityEnquiryFragment extends RailAppFragment implements R
                         mSeatAvalibilityApiClient.seatAvalibilityStatus(mTrainNo, mSourceCode, mDestinationCode, mDate, mTrainClassCode, mTrainQuota);
                         mLoader.showLoader();
                     } else {
-                        trainDestinationCode.setError("Enter Correct Code");
+                        trainDestinationCode.setError(getString(R.string.invalid_code));
                         focusView = trainDestinationCode;
                         killSwitch = true;
                     }
                 } else {
-                    trainSourceCode.setError("Enter Correct Code");
+                    trainSourceCode.setError(getString(R.string.invalid_code));
                     focusView = trainSourceCode;
                     killSwitch = true;
                 }
 
             } else {
-                trainDate.setError("Enter Date Correctly");
+                trainDate.setError(getString(R.string.invalid_date));
                 focusView = trainDate;
                 killSwitch = true;
 
             }
         } else {
-            trainNo.setError("Invalid train no");
+            trainNo.setError(getString(R.string.invalid_trainno));
             focusView = trainNo;
             killSwitch = true;
         }

@@ -10,7 +10,8 @@ import com.test.naimish.railapp.R;
  */
 
 public class SeatAvalibilityEnquiryActivity extends SingleFragmentActivity {
-    private final String TITLE="Seat Enquiry";
+    private final String TITLE = "Seat Enquiry";
+
     @Override
     protected boolean showToolbar() {
         return true;
