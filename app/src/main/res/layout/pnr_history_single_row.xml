@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="35dp"
+    android:layout_marginLeft="3dp"
+    android:layout_marginRight="3dp"
+    android:layout_marginTop="7dp"
+    android:background="@drawable/ripple"
+    android:clickable="true"
+    android:divider="@android:color/transparent"
+    android:elevation="10dp"
+    android:textAlignment="center"
+
+    app:cardCornerRadius="5dp"
+    card_view:cardElevation="10dp"
+    card_view:cardPreventCornerOverlap="false">
+
+    <com.test.naimish.railapp.Views.LightTextView
+        android:id="@+id/display_pnr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_marginRight="15dp"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="1234567890"
+        android:textColor="@color/black"
+        android:textSize="19dp" />
+
+    <ImageView
+        android:id="@+id/delete_pnr"
+        android:layout_width="20sp"
+        android:layout_height="35sp"
+        android:layout_gravity="end"
+        android:layout_marginEnd="20dp"
+        android:padding="1dp"
+        android:src="@drawable/delete" />
+
+</android.support.v7.widget.CardView>

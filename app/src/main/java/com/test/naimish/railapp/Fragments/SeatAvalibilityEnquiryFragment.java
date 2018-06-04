@@ -1,5 +1,6 @@
 package com.test.naimish.railapp.Fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
@@ -14,7 +15,10 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.test.naimish.railapp.Activities.SeatAvalibilityStatusActivity;
+import com.test.naimish.railapp.Models.DateSeatModel;
 import com.test.naimish.railapp.Models.PnrModel.BaseModel;
+import com.test.naimish.railapp.Models.SeatAvailability.SeatAvailabiityModelClass;
 import com.test.naimish.railapp.Models.SeatAvailability.TrainSeatBaseModel;
 import com.test.naimish.railapp.Models.StationAutoCompleteBaseModel;
 import com.test.naimish.railapp.Network.SeatAvalibilityNetwork.SeatAvalibilityApiClient;
@@ -22,6 +26,7 @@ import com.test.naimish.railapp.Network.SeatAvalibilityNetwork.SeatAvalibilityAp
 import com.test.naimish.railapp.Network.StationAutoCompleteNetwork.StationAutoCompleteApiClient;
 import com.test.naimish.railapp.R;
 import com.test.naimish.railapp.Utils.ResponseListener;
+import com.test.naimish.railapp.Utils.SeatAvalibilityController;
 import com.test.naimish.railapp.Utils.SeatClassAndQuotaContants;
 import com.test.naimish.railapp.Utils.StationAutoCompleteDetails;
 import com.test.naimish.railapp.Utils.Validations;
@@ -54,6 +59,7 @@ public class SeatAvalibilityEnquiryFragment
     private ArrayList<String> mClassCode;
     private ArrayList<String> mQuota;
     private ArrayList<String> mStationName;
+    private ArrayList<String> seatStatus;
 
 
     private SeatAvalibilityApiClient mSeatAvalibilityApiClient;
@@ -115,7 +121,10 @@ public class SeatAvalibilityEnquiryFragment
         if (!Validations.isEmpty(mTrainNo) && Validations.checkTrainNo(mTrainNo)) {
             if (!Validations.isEmpty(mDate)) {
                 if (!Validations.isEmpty(mSourceCode)) {
+                    mSourceCode = trainSourceCode.getText().toString().substring(trainSourceCode.getText().toString().indexOf('-') + 1, trainSourceCode.getText().toString().length());
+                    Toast.makeText(getContext(), mSourceCode, Toast.LENGTH_LONG).show();
                     if (!Validations.isEmpty(mDestinationCode)) {
+                        mDestinationCode = trainDestinationCode.getText().toString().substring(trainDestinationCode.getText().toString().indexOf('-') + 1, trainDestinationCode.getText().toString().length());
                         mSeatAvalibilityApiClient.seatAvalibilityStatus(mTrainNo, mSourceCode, mDestinationCode, mDate, mTrainClassCode, mTrainQuota);
                         mLoader.showLoader();
                     } else {
@@ -306,6 +315,15 @@ public class SeatAvalibilityEnquiryFragment
     @Override
     public void onSuccess(TrainSeatBaseModel response) {
         mLoader.dismissLoader();
+        // seatAvailabiityModelClass = new ArrayList<>();
+        SeatAvalibilityController seatAvalibilityController = new SeatAvalibilityController();
+        String responseInfo = seatAvalibilityController.getSeatAvalibilityInfo(response);
+        seatStatus = seatAvalibilityController.getSeatStatus(response);
+        Intent intent = new Intent(getActivity(), SeatAvalibilityStatusActivity.class);
+        intent.putExtra("SeatInfo", responseInfo);
+        intent.putExtra("SeatStatus", seatStatus);
+
+        startActivity(intent);
 
 
     }

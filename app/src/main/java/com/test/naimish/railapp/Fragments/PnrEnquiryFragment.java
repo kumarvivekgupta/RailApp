@@ -11,15 +11,20 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.test.naimish.railapp.Models.PassengerRecyclerModel;
 import com.test.naimish.railapp.Models.PnrModel.BaseModel;
+import com.test.naimish.railapp.Models.UserPnrs.SavedPnrs;
 import com.test.naimish.railapp.Network.PnrNetwork.PnrApiClient;
+import com.test.naimish.railapp.Network.UserPnrsNetwork.SavePnrNetwork.SavedPnrApiClient;
 import com.test.naimish.railapp.R;
 import com.test.naimish.railapp.Utils.PassengerAdapter;
 import com.test.naimish.railapp.Utils.PassengerDetails;
+import com.test.naimish.railapp.Utils.RailAppConstants;
 import com.test.naimish.railapp.Utils.ResponseListener;
+import com.test.naimish.railapp.Utils.SharedPreference;
 import com.test.naimish.railapp.Utils.Validations;
 import com.test.naimish.railapp.Views.LightTextView;
 import com.test.naimish.railapp.Views.ProgressLoader;
@@ -29,13 +34,14 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import okio.Timeout;
 
 
 /**
  * Created by Vivek on 2/19/2018.
  */
 
-public class PnrEnquiryFragment extends RailAppFragment implements ResponseListener<BaseModel> {
+public class PnrEnquiryFragment extends RailAppFragment implements ResponseListener<BaseModel>,SavedPnrApiClient.SavePnrResponse {
     private BaseModel mBaseModel;
     private ProgressLoader loader;
     private PassengerAdapter madapter;
@@ -46,6 +52,12 @@ public class PnrEnquiryFragment extends RailAppFragment implements ResponseListe
         return R.layout.fragment_pnr_status;
     }
 
+    @BindView(R.id.save_pnr_message)
+    TextView savePnr;
+
+    @BindView(R.id.pnr_progress_bar)
+    ProgressBar progressBar;
+
     @BindView(R.id.enter_pnr)
     EditText pnrText;
 
@@ -54,7 +66,6 @@ public class PnrEnquiryFragment extends RailAppFragment implements ResponseListe
 
     @BindView(R.id.pnr_status_card_layout)
     CardView pnrStatusCardLayout;
-
 
     @BindView(R.id.train_name)
     TextView trainName;
@@ -124,6 +135,7 @@ public class PnrEnquiryFragment extends RailAppFragment implements ResponseListe
             madapter = new PassengerAdapter(getContext(), getdata1());
             passengerListRecycler.setAdapter(madapter);
             passengerListRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+            savePnr.setVisibility(View.VISIBLE);
         } else
             Snackbar.make(getView(), R.string.common_error, Snackbar.LENGTH_SHORT).show();
 
@@ -139,5 +151,29 @@ public class PnrEnquiryFragment extends RailAppFragment implements ResponseListe
     public void onNullResponse() {
         loader.dismissLoader();
         Snackbar.make(getView(), R.string.common_error, Snackbar.LENGTH_SHORT).show();
+    }
+
+    @OnClick(R.id.save_pnr_message)
+    public void savePnr(){
+        savePnr.setVisibility(View.GONE);
+        progressBar.setVisibility(View.VISIBLE);
+        String userId= SharedPreference.getPreference(getContext(), RailAppConstants.USERID_CONSTANT);
+        SavedPnrApiClient apiClient=new SavedPnrApiClient(this);
+        apiClient.savePnr(userId,pnrText.getText().toString());
+    }
+
+    @Override
+    public void onSuccess(SavedPnrs savedPnrs) {
+        if(savedPnrs.getResponseStatus()){
+            progressBar.setVisibility(View.GONE);
+            savePnr.setText(R.string.success_pnr_saved);
+            savePnr.setClickable(false);
+        }
+    }
+
+    @Override
+    public void onFailure() {
+        progressBar.setVisibility(View.GONE);
+        savePnr.setText(R.string.try_again);
     }
 }

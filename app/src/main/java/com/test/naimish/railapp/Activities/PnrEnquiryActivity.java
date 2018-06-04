@@ -2,6 +2,8 @@ package com.test.naimish.railapp.Activities;
 
 import android.content.Intent;
 import android.support.v4.app.Fragment;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.test.naimish.railapp.Fragments.PnrEnquiryFragment;
@@ -39,4 +41,22 @@ public class PnrEnquiryActivity extends SingleFragmentActivity {
         return PnrEnquiryFragment.newInstance();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.pnr_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.saved_pnrs:
+                startActivity(new Intent(this, PnrHistory.class));
+                break;
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

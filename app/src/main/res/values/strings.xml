@@ -65,4 +65,9 @@
     <string name="invalid_date">Invalid Date</string>
     <string name="invalid_code">Invalid Code</string>
 
+    <string name="save_pnr"><u>Save this pnr</u></string>
+    <string name="success_pnr_saved"><u>Pnr saved successfully</u></string>
+    <string name="saved_pnrs">Saved PNR</string>
+    <string name="saved_pnrs_message">Click on the PNR no to know the status</string>
+
 </resources>

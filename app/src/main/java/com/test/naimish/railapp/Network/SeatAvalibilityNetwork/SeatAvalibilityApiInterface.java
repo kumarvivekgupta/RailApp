@@ -14,14 +14,14 @@ import retrofit2.http.Path;
 
 public interface SeatAvalibilityApiInterface {
 
-    @GET("/v2/check-seat/train/<train number>/source/<stn code>/dest/<dest code>/" +
-            "date/<dd-mm-yyyy>/pref/<class code>/quota/<quota code>/apikey/wt1hggajop/")
-    Call<TrainSeatBaseModel> seatAvalibilityStatus(@Path("train number") String trainNo,
-                                                   @Path("stn code") String stationCode,
-                                                   @Path("dest code") String destCode,
-                                                   @Path("dd-mm-yyyy") String date,
-                                                   @Path("class code") String classCode,
-                                                   @Path("quota code") String quota);
+    @GET("/v2/check-seat/train/{train_number}/source/{stn_code}/dest/{dest_code}/" +
+            "date/{date}/pref/{class_code}/quota/{quota_code}/apikey/wt1hggajop/")
+    Call<TrainSeatBaseModel> seatAvalibilityStatus(@Path("train_number") String trainNo,
+                                                   @Path("stn_code") String stationCode,
+                                                   @Path("dest_code") String destCode,
+                                                   @Path("date") String date,
+                                                   @Path("class_code") String classCode,
+                                                   @Path("quota_code") String quota);
 
 
 }

@@ -29,8 +29,11 @@
         <activity android:name=".Activities.LiveTrainSearchActivity"/>
         <activity android:name=".Activities.SettingsActivity"/>
         <activity android:name=".Activities.ForgotPasswordActivity"/>
-        <activity android:name=".Activities.BugReportActivity"></activity>
         <activity android:name=".Activities.SeatAvalibilityEnquiryActivity"/>
+        <activity android:name=".Activities.SeatAvalibilityStatusActivity"/>
+        <activity android:name=".Activities.BugReportActivity"/>
+        <activity android:name=".Activities.PnrHistory"/>
+
     </application>
 
 </manifest>

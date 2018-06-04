@@ -3,12 +3,18 @@ package com.test.naimish.railapp.Models.SeatAvailability;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.test.naimish.railapp.Models.PnrModel.StationModel;
+import com.test.naimish.railapp.Models.PnrModel.TrainModel;
 
 /**
  * Created by Vivek on 5/27/2018.
  */
 
 public class TrainSeatBaseModel {
+
+
+    @SerializedName("train")
+    @Expose
+    private TrainModel trainModel;
 
     @SerializedName("from_station")
     @Expose
@@ -50,4 +56,9 @@ public class TrainSeatBaseModel {
     public SeatAvailabiityModelClass[] getTrainSeatAvailability() {
         return trainSeatAvailability;
     }
+
+    public TrainModel getTrainModel() {
+        return trainModel;
+    }
+
 }
