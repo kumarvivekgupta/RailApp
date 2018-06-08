@@ -1,4 +1,4 @@
-package com.test.naimish.railapp.Utils;
+package com.test.naimish.railapp.Views.Adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

@@ -1,4 +1,4 @@
-package com.test.naimish.railapp.Utils;
+package com.test.naimish.railapp.Views.Adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -6,11 +6,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.test.naimish.railapp.Models.PassengerRecyclerModel;
-import com.test.naimish.railapp.Models.RecyclerModel;
 import com.test.naimish.railapp.R;
 import com.test.naimish.railapp.Views.LightTextView;
 

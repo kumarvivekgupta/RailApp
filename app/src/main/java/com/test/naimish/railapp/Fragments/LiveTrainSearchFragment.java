@@ -20,7 +20,7 @@ import com.test.naimish.railapp.Network.LiveTrainNetwork.LiveTrainApiClient;
 import com.test.naimish.railapp.R;
 import com.test.naimish.railapp.Utils.RailAppConstants;
 import com.test.naimish.railapp.Utils.ResponseListener;
-import com.test.naimish.railapp.Utils.StationAdapter;
+import com.test.naimish.railapp.Views.Adapters.StationAdapter;
 import com.test.naimish.railapp.Utils.TrainController;
 import com.test.naimish.railapp.Utils.Validations;
 import com.test.naimish.railapp.Views.LightTextView;

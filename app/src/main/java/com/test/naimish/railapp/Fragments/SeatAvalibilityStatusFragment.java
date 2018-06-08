@@ -5,17 +5,13 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.google.gson.Gson;
 import com.test.naimish.railapp.Models.DateSeatModel;
-import com.test.naimish.railapp.Models.SeatAvailability.SeatAvailabiityModelClass;
 import com.test.naimish.railapp.Models.SeatStatusDisplayModel;
 import com.test.naimish.railapp.R;
-import com.test.naimish.railapp.Utils.RailAppConstants;
-import com.test.naimish.railapp.Utils.SeatAdapter;
+import com.test.naimish.railapp.Views.Adapters.SeatAdapter;
 import com.test.naimish.railapp.Views.LightTextView;
 
 import java.util.ArrayList;

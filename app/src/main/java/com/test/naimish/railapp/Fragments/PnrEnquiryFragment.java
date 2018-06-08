@@ -8,6 +8,7 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
@@ -20,7 +21,7 @@ import com.test.naimish.railapp.Models.UserPnrs.SavedPnrs;
 import com.test.naimish.railapp.Network.PnrNetwork.PnrApiClient;
 import com.test.naimish.railapp.Network.UserPnrsNetwork.SavePnrNetwork.SavedPnrApiClient;
 import com.test.naimish.railapp.R;
-import com.test.naimish.railapp.Utils.PassengerAdapter;
+import com.test.naimish.railapp.Views.Adapters.PassengerAdapter;
 import com.test.naimish.railapp.Utils.PassengerDetails;
 import com.test.naimish.railapp.Utils.RailAppConstants;
 import com.test.naimish.railapp.Utils.ResponseListener;
@@ -34,14 +35,13 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import okio.Timeout;
 
 
 /**
  * Created by Vivek on 2/19/2018.
  */
 
-public class PnrEnquiryFragment extends RailAppFragment implements ResponseListener<BaseModel>,SavedPnrApiClient.SavePnrResponse {
+public class PnrEnquiryFragment extends RailAppFragment implements ResponseListener<BaseModel>, SavedPnrApiClient.SavePnrResponse {
     private BaseModel mBaseModel;
     private ProgressLoader loader;
     private PassengerAdapter madapter;
@@ -80,17 +80,18 @@ public class PnrEnquiryFragment extends RailAppFragment implements ResponseListe
     RecyclerView passengerListRecycler;
 
     @BindView(R.id.chartStatus)
-    LightTextView mChartStatus;
+    LightTextView chartStatus;
 
     @BindView(R.id.dateTravel)
-    LightTextView mDateTravel;
+    LightTextView dateTravel;
+
+    @BindView(R.id.search_pnr_status)
+    Button searchPnr;
 
     @OnClick(R.id.search_pnr_status)
     public void getPnrStatus() {
         if (Validations.checkPNR(pnrText.getText().toString())) {
-            loader.showLoader();
-            PnrApiClient apiClient = new PnrApiClient(this);
-            apiClient.getPnrStatus(pnrText.getText().toString());
+            callSearchApi();
         } else
             Snackbar.make(getView(), R.string.invalid_pnr, Snackbar.LENGTH_SHORT).show();
     }
@@ -115,6 +116,10 @@ public class PnrEnquiryFragment extends RailAppFragment implements ResponseListe
         super.onActivityCreated(savedInstanceState);
         pnrStatusCardLayout.setVisibility(View.INVISIBLE);
         loader = new ProgressLoader(getActivity());
+        if (getActivity().getIntent().hasExtra(RailAppConstants.PNR_NO)) {
+            String pnrNo = getActivity().getIntent().getExtras().getString(RailAppConstants.PNR_NO);
+            displayPnr(pnrNo);
+        }
     }
 
     @Override
@@ -125,12 +130,12 @@ public class PnrEnquiryFragment extends RailAppFragment implements ResponseListe
             pnrStatusCardLayout.setVisibility(View.VISIBLE);
             fromStation.setText(mBaseModel.getFromStation().getStationCode());
             toStation.setText(mBaseModel.getToStation().getStationCode());
-            mDateTravel.setText(mBaseModel.getDateOfTravel());
+            dateTravel.setText(mBaseModel.getDateOfTravel());
             trainName.setText(mBaseModel.getTrainNumber().getTrainName());
             if (mBaseModel.getChartPrepared() == true) {
-                mChartStatus.setText(R.string.chart_prepared);
+                chartStatus.setText(R.string.chart_prepared);
             } else {
-                mChartStatus.setText(R.string.chart_not_prepared);
+                chartStatus.setText(R.string.chart_not_prepared);
             }
             madapter = new PassengerAdapter(getContext(), getdata1());
             passengerListRecycler.setAdapter(madapter);
@@ -154,17 +159,17 @@ public class PnrEnquiryFragment extends RailAppFragment implements ResponseListe
     }
 
     @OnClick(R.id.save_pnr_message)
-    public void savePnr(){
+    public void savePnr() {
         savePnr.setVisibility(View.GONE);
         progressBar.setVisibility(View.VISIBLE);
-        String userId= SharedPreference.getPreference(getContext(), RailAppConstants.USERID_CONSTANT);
-        SavedPnrApiClient apiClient=new SavedPnrApiClient(this);
-        apiClient.savePnr(userId,pnrText.getText().toString());
+        String userId = SharedPreference.getPreference(getContext(), RailAppConstants.USERID_CONSTANT);
+        SavedPnrApiClient apiClient = new SavedPnrApiClient(this);
+        apiClient.savePnr(userId, pnrText.getText().toString());
     }
 
     @Override
     public void onSuccess(SavedPnrs savedPnrs) {
-        if(savedPnrs.getResponseStatus()){
+        if (savedPnrs.getResponseStatus()) {
             progressBar.setVisibility(View.GONE);
             savePnr.setText(R.string.success_pnr_saved);
             savePnr.setClickable(false);
@@ -175,5 +180,17 @@ public class PnrEnquiryFragment extends RailAppFragment implements ResponseListe
     public void onFailure() {
         progressBar.setVisibility(View.GONE);
         savePnr.setText(R.string.try_again);
+    }
+
+    private void displayPnr(String pnrNo) {
+        pnrText.setText(pnrNo);
+        searchPnr.setEnabled(false);
+        callSearchApi();
+    }
+
+    private void callSearchApi() {
+        loader.showLoader();
+        PnrApiClient apiClient = new PnrApiClient(this);
+        apiClient.getPnrStatus(pnrText.getText().toString());
     }
 }

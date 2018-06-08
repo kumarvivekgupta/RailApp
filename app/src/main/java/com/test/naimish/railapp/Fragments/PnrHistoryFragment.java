@@ -13,15 +13,15 @@ import com.test.naimish.railapp.Network.UserPnrsNetwork.GetPnrNetwork.GetPnrApiC
 import com.test.naimish.railapp.R;
 import com.test.naimish.railapp.Utils.RailAppConstants;
 import com.test.naimish.railapp.Utils.ResponseListener;
-import com.test.naimish.railapp.Utils.SavedPnrHistoryAdapter;
+import com.test.naimish.railapp.Views.Adapters.SavedPnrHistoryAdapter;
 import com.test.naimish.railapp.Utils.SharedPreference;
 import com.test.naimish.railapp.Views.ProgressLoader;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class PnrHistoryFragment extends RailAppFragment implements ResponseListener<GetPnrs>,SwipeRefreshLayout.OnRefreshListener {
-    private int mCounter=0;
+public class PnrHistoryFragment extends RailAppFragment implements ResponseListener<GetPnrs>, SwipeRefreshLayout.OnRefreshListener {
+    private int mCounter = 0;
     private ProgressLoader mProgressLoader;
     private GetPnrApiClient mApiClient;
 
@@ -67,8 +67,8 @@ public class PnrHistoryFragment extends RailAppFragment implements ResponseListe
             SavedPnrHistoryAdapter adapter = new SavedPnrHistoryAdapter(getActivity(), response.getSavedPnrs());
             recyclerView.setAdapter(adapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-            if(mCounter==0){
-                Snackbar.make(getView(),R.string.saved_pnrs_message,Snackbar.LENGTH_SHORT).show();
+            if (mCounter == 0) {
+                Snackbar.make(getView(), R.string.saved_pnrs_message, Snackbar.LENGTH_SHORT).show();
                 mCounter++;
             }
         }

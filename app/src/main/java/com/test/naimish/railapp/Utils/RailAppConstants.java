@@ -29,6 +29,7 @@ public interface RailAppConstants {
     //Intent Constants
 
     String SINGLE_STATION_DETAILS="single station details";
+    String PNR_NO="pnr number";
 
     //Add mob constants
 
