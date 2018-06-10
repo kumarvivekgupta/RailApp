@@ -85,8 +85,6 @@ public class PnrEnquiryFragment extends RailAppFragment implements ResponseListe
     @BindView(R.id.dateTravel)
     LightTextView dateTravel;
 
-    @BindView(R.id.search_pnr_status)
-    Button searchPnr;
 
     @OnClick(R.id.search_pnr_status)
     public void getPnrStatus() {
@@ -184,7 +182,7 @@ public class PnrEnquiryFragment extends RailAppFragment implements ResponseListe
 
     private void displayPnr(String pnrNo) {
         pnrText.setText(pnrNo);
-        searchPnr.setEnabled(false);
+        submitPnr.setEnabled(false);
         callSearchApi();
     }
 
