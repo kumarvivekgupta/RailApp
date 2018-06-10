@@ -182,7 +182,6 @@ public class PnrEnquiryFragment extends RailAppFragment implements ResponseListe
 
     private void displayPnr(String pnrNo) {
         pnrText.setText(pnrNo);
-        submitPnr.setEnabled(false);
         callSearchApi();
     }
 

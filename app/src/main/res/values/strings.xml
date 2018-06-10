@@ -68,6 +68,8 @@
     <string name="save_pnr"><u>Save this pnr</u></string>
     <string name="success_pnr_saved"><u>Pnr saved successfully</u></string>
     <string name="saved_pnrs">Saved PNR</string>
+    <string name="delete_pnrs">Delete PNR\'s</string>
     <string name="saved_pnrs_message">Click on the PNR no to know the status</string>
+    <string name="no_saved_pnrs_message">You don\'t have any saved pnr.</string>
 
 </resources>
