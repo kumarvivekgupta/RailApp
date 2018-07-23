@@ -6,42 +6,27 @@ package com.test.naimish.railapp.Utils;
 
 public class Validations {
     public static boolean checkEmail(String email) {
-        if (email.contains("@") && email.contains("."))
-            return true;
-        return false;
+        return email.contains("@") && email.contains(".");
     }
 
     public static boolean isEmpty(String string) {
-        if (string.length() == 0)
-            return true;
-        else
-            return false;
+        return string.length() == 0;
     }
 
     public static boolean checkPassword(String password) {
-        if (password.length() > 5)
-            return true;
-        else
-            return false;
+        return password.length() > 5;
     }
 
     public static boolean checkPassword(String password, String confirmPassword) {
-        if (password.length() > 5 && password.equals(confirmPassword))
-            return true;
-        else return false;
+        return password.length() > 5 && password.equals(confirmPassword);
     }
 
     public static boolean checkTrainNo(String trainNo) {
-        if (trainNo.length() == 5)
-            return true;
-        else return false;
+        return trainNo.length() == 5;
     }
 
     public static boolean checkPNR(String pnr) {
-        if (pnr.length() == 10)
-            return true;
-        else
-            return false;
+        return pnr.length() == 10;
     }
 
 }
