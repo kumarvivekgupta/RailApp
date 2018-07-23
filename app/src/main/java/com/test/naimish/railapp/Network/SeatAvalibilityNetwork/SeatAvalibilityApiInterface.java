@@ -15,7 +15,7 @@ import retrofit2.http.Path;
 public interface SeatAvalibilityApiInterface {
 
     @GET("/v2/check-seat/train/{train_number}/source/{stn_code}/dest/{dest_code}/" +
-            "date/{date}/pref/{class_code}/quota/{quota_code}/apikey/wt1hggajop/")
+            "date/{date}/pref/{class_code}/quota/{quota_code}/apikey/tz807ec2yk/")
     Call<TrainSeatBaseModel> seatAvalibilityStatus(@Path("train_number") String trainNo,
                                                    @Path("stn_code") String stationCode,
                                                    @Path("dest_code") String destCode,

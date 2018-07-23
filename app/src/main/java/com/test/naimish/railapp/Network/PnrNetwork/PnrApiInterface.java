@@ -13,7 +13,7 @@ import retrofit2.http.Path;
  */
 
 public interface PnrApiInterface {
-    @GET("/v2/pnr-status/pnr/{pnr_no}/apikey/wt1hggajop/")
+    @GET("/v2/pnr-status/pnr/{pnr_no}/apikey/tz807ec2yk/")
     Call<BaseModel> pnrInfo(@Path("pnr_no") String pnrNo);
 
 }

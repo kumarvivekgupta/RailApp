@@ -12,7 +12,7 @@ import retrofit2.http.Path;
 
 public interface LiveTrainApiInterface {
 
-    @GET("/v2/live/train/{train_no}/date/{date}/apikey/wt1hggajop/")
+    @GET("/v2/live/train/{train_no}/date/{date}/apikey/tz807ec2yk/")
     Call<LiveStatusBaseModel> liveTrainInfo(@Path("train_no") String trainNo, @Path("date") String date);
 
 }
