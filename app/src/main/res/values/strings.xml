@@ -71,5 +71,6 @@
     <string name="delete_pnrs">Delete PNR\'s</string>
     <string name="saved_pnrs_message">Click on the PNR no to know the status</string>
     <string name="no_saved_pnrs_message">You don\'t have any saved pnr.</string>
+    <string name="pnr_delete_success_message">Pnr\'s deleted successfully!!</string>
 
 </resources>

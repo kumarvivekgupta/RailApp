@@ -1,5 +1,6 @@
 package com.test.naimish.railapp.Fragments;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -64,6 +65,7 @@ public class PnrHistoryFragment extends
         mApiClient = new GetPnrApiClient(this);
         getUserPnr();
         refreshLayout.setOnRefreshListener(this);
+        setHasOptionsMenu(true);
     }
 
 
@@ -79,9 +81,13 @@ public class PnrHistoryFragment extends
         mApiClient.getUserPnr(userId);
     }
 
-    public void deletePnrs() {
+    public void deletePnrs(Context context) {
+        if (context == null) {
+            return;
+        }
+        mProgressLoader.showLoader();
         DeletePnrApiClient apiClient = new DeletePnrApiClient(this);
-        apiClient.deleteUserPnr("5b0714bee3a8fe0014593b08");
+        apiClient.deleteUserPnr(SharedPreference.getPreference(context, RailAppConstants.USERID_CONSTANT));
     }
 
     @Override
@@ -89,6 +95,8 @@ public class PnrHistoryFragment extends
         mProgressLoader.dismissLoader();
         if (response.getStatus()) {
             if (response.getSavedPnrs().length > 0) {
+                noPnrMessage.setVisibility(View.INVISIBLE);
+                recyclerView.setVisibility(View.VISIBLE);
                 SavedPnrHistoryAdapter adapter = new SavedPnrHistoryAdapter(getActivity(), response.getSavedPnrs());
                 adapter.setInstance(this);
                 recyclerView.setAdapter(adapter);
@@ -99,6 +107,7 @@ public class PnrHistoryFragment extends
                 }
             } else {
                 noPnrMessage.setVisibility(View.VISIBLE);
+                recyclerView.setVisibility(View.GONE);
             }
         }
 
@@ -133,6 +142,7 @@ public class PnrHistoryFragment extends
 
     @Override
     public void success(DeletePnrs deletePnrs) {
+        mProgressLoader.dismissLoader();
         if (deletePnrs.getSuccess()) {
             getUserPnr();
         } else {
@@ -142,6 +152,7 @@ public class PnrHistoryFragment extends
 
     @Override
     public void failure() {
+        mProgressLoader.dismissLoader();
         Snackbar.make(getView(), getString(R.string.common_error), Snackbar.LENGTH_SHORT).show();
     }
 }

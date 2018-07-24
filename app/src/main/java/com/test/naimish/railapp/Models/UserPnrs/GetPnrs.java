@@ -4,7 +4,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class GetPnrs {
-    @SerializedName("status")
+    @SerializedName("success")
     @Expose
     private Boolean message;
     @SerializedName("pnrSearched")

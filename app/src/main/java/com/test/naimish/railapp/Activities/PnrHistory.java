@@ -16,6 +16,7 @@ import com.test.naimish.railapp.Utils.SharedPreference;
 
 public class PnrHistory extends SingleFragmentActivity {
     private static String TOOLBAR_TITLE = "History";
+    private static final PnrHistoryFragment pnrHistoryInstance=PnrHistoryFragment.newInstance();
 
     @Override
     protected boolean showToolbar() {
@@ -39,24 +40,23 @@ public class PnrHistory extends SingleFragmentActivity {
 
     @Override
     protected Fragment getFragmentInstance() {
-        return PnrHistoryFragment.newInstance();
+        return pnrHistoryInstance;
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        MenuInflater inflater = getMenuInflater();
-//        inflater.inflate(R.menu.delete_pnr_menu, menu);
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        switch (item.getItemId()) {
-//            case R.id.delete_all_pnrs:
-//                PnrHistoryFragment fragment = PnrHistoryFragment.newInstance();
-//                fragment.deletePnrs();
-//                break;
-//        }
-//        return super.onOptionsItemSelected(item);
-//    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.delete_pnr_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.delete_all_pnrs:
+                pnrHistoryInstance.deletePnrs(this);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }
