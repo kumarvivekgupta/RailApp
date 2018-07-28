@@ -12,11 +12,10 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.google.gson.Gson;
 import com.test.naimish.railapp.Utils.RailAppConstants;
 import com.test.naimish.railapp.Utils.SharedPreference;
 
-public class ProfilePicUploadNetwork {
+public class ProfilePicUploadNetwork implements OnCompleteListener<Uri> {
     private FirebaseStorage mStorage;
     private StorageReference mStorageReference;
     private StorageReference mUserRef;
@@ -42,17 +41,7 @@ public class ProfilePicUploadNetwork {
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-
-                        mUserRef.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Uri> task) {
-                                if (task.isSuccessful()) {
-                                    Log.i("Naimish snapshot url",task.getResult()+"");
-                                    mResponse.onSuccess(task.getResult().toString());
-                                }
-                            }
-                        });
-
+                        mUserRef.getDownloadUrl().addOnCompleteListener(ProfilePicUploadNetwork.this);
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -61,6 +50,13 @@ public class ProfilePicUploadNetwork {
                         mResponse.onFailure();
                     }
                 });
+    }
+
+    @Override
+    public void onComplete(@NonNull Task<Uri> task) {
+        if (task.isSuccessful()) {
+            mResponse.onSuccess(task.getResult().toString());
+        }
     }
 
     public interface UploadPicResponse {
