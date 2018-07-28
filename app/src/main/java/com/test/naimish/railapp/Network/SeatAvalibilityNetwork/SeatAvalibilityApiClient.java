@@ -43,7 +43,7 @@ public class SeatAvalibilityApiClient {
         call.enqueue(new Callback<TrainSeatBaseModel>() {
             @Override
             public void onResponse(Call<TrainSeatBaseModel> call, Response<TrainSeatBaseModel> response) {
-                if (response.body() != null) {
+                if (response.body() != null && response.body().getFromStation().getStationCode()!=null) {
                     responseListener.onSuccess(response.body());
                 } else {
                     responseListener.onNullResponse();

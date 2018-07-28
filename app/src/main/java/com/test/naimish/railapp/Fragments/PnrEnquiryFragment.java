@@ -87,6 +87,7 @@ public class PnrEnquiryFragment extends RailAppFragment implements ResponseListe
 
 
     @OnClick(R.id.search_pnr_status)
+
     public void getPnrStatus() {
         if (Validations.checkPNR(pnrText.getText().toString())) {
             callSearchApi();
@@ -182,6 +183,7 @@ public class PnrEnquiryFragment extends RailAppFragment implements ResponseListe
 
     private void displayPnr(String pnrNo) {
         pnrText.setText(pnrNo);
+        submitPnr.setEnabled(false);
         callSearchApi();
     }
 
