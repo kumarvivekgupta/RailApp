@@ -25,6 +25,7 @@ import butterknife.OnClick;
 
 import static com.test.naimish.railapp.Utils.RailAppConstants.EMAIL_CONSTANT;
 import static com.test.naimish.railapp.Utils.RailAppConstants.NAME_CONSTANT;
+import static com.test.naimish.railapp.Utils.RailAppConstants.PROFILE_PIC_CONSTANT;
 import static com.test.naimish.railapp.Utils.RailAppConstants.TOKEN_CONSTANT;
 import static com.test.naimish.railapp.Utils.RailAppConstants.USERID_CONSTANT;
 
@@ -113,6 +114,7 @@ public class LoginFragment extends RailAppFragment implements ResponseListener<L
             SharedPreference.setPreference(getContext(), USERID_CONSTANT, response.getmResponse().getmId());
             SharedPreference.setPreference(getContext(), NAME_CONSTANT, response.getmResponse().getmName());
             SharedPreference.setPreference(getContext(), EMAIL_CONSTANT, response.getmResponse().getmEmail());
+            SharedPreference.setPreference(getContext(), PROFILE_PIC_CONSTANT, response.getmResponse().getmProfileUrl());
             getActivity().finish();
             startActivity(new Intent(getActivity(), EnquiryActivity.class));
         } else {

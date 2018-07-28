@@ -21,6 +21,10 @@ public class Response {
     @Expose
     private String mEmail;
 
+    @SerializedName("profile_url")
+    @Expose
+    private String mProfileUrl;
+
     public String getmId() {
         return mId;
     }
@@ -31,5 +35,9 @@ public class Response {
 
     public String getmEmail() {
         return mEmail;
+    }
+
+    public String getmProfileUrl() {
+        return mProfileUrl;
     }
 }

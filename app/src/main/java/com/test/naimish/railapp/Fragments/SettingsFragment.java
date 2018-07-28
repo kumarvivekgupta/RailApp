@@ -3,6 +3,7 @@ package com.test.naimish.railapp.Fragments;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
@@ -11,7 +12,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.test.naimish.railapp.Models.UpdateProfile;
+import com.test.naimish.railapp.Network.ProfilePicUploadNetwork;
 import com.test.naimish.railapp.Network.UpdateProfileNetwork.UpdateProfileApiClient;
 import com.test.naimish.railapp.R;
 import com.test.naimish.railapp.Utils.ResponseListener;
@@ -35,7 +42,7 @@ import static com.test.naimish.railapp.Utils.RailAppConstants.USERID_CONSTANT;
  * Created by naimish on 4/6/2018.
  */
 
-public class SettingsFragment extends RailAppFragment implements ResponseListener<UpdateProfile> {
+public class SettingsFragment extends RailAppFragment implements ResponseListener<UpdateProfile>, ProfilePicUploadNetwork.UploadPicResponse{
 
     private String mOldName;
     private String mOldEmail;
@@ -45,6 +52,8 @@ public class SettingsFragment extends RailAppFragment implements ResponseListene
     private ProgressLoader loader;
     private IImageLoader imageLoader;
     private Uri mProfileUri;
+    private Boolean isProfileChanged=false;
+
 
     @BindView(R.id.edit_text_name)
     EditText mUserName;
@@ -57,15 +66,14 @@ public class SettingsFragment extends RailAppFragment implements ResponseListene
 
     @OnClick(R.id.change_password)
     public void changePassword() {
-        FragmentManager manager=getActivity().getSupportFragmentManager();
-        ChangePasswordFragment changePasswordFragment=new ChangePasswordFragment();
-        changePasswordFragment.show(manager,"Settings Dialog");
+        FragmentManager manager = getActivity().getSupportFragmentManager();
+        ChangePasswordFragment changePasswordFragment = new ChangePasswordFragment();
+        changePasswordFragment.show(manager, "Settings Dialog");
 
     }
 
     @OnClick(R.id.change_profile_picture)
     public void changeProfilePicture() {
-        // Snackbar.make(getView(), "Feature comming soon...", Snackbar.LENGTH_SHORT).show();
         selectProfilePicture();
     }
 
@@ -79,10 +87,16 @@ public class SettingsFragment extends RailAppFragment implements ResponseListene
 
     }
 
+    private void enableSaveBtn(){
+        mUserName.setEnabled(true);
+        mSaveSettings.setBackgroundColor(getActivity().getResources().getColor(R.color.fbutton_color_pomegranate));
+        mSaveSettings.setTextColor(getActivity().getResources().getColor(R.color.white));
+        mSaveSettings.setEnabled(true);
+    }
     @OnClick(R.id.save_settings)
     public void saveSettings() {
         mNewName = mUserName.getText().toString();
-        if (mNewName.equalsIgnoreCase(mOldName)) {
+        if (mNewName.equalsIgnoreCase(mOldName)&&!isProfileChanged) {
             Snackbar.make(getView(), R.string.settings_unchanged_message, Snackbar.LENGTH_SHORT).show();
         } else {
             changeSettings();
@@ -111,11 +125,12 @@ public class SettingsFragment extends RailAppFragment implements ResponseListene
         apiClient = new UpdateProfileApiClient(this);
         mOldName = SharedPreference.getPreference(getContext(), NAME_CONSTANT);
         mOldEmail = SharedPreference.getPreference(getContext(), EMAIL_CONSTANT);
+        mprofileUrl = SharedPreference.getPreference(getContext(), PROFILE_PIC_CONSTANT);
         mUserName.setText(mOldName);
         mUserEmail.setText(mOldEmail);
-        loader=new ProgressLoader(getActivity());
-        imageLoader=new PicassoLoader();
-        imageLoader.loadImage(mProfilePic,"random url",SharedPreference.getPreference(getContext(), NAME_CONSTANT));
+        loader = new ProgressLoader(getActivity());
+        imageLoader = new PicassoLoader();
+        imageLoader.loadImage(mProfilePic, mprofileUrl, SharedPreference.getPreference(getContext(), NAME_CONSTANT));
 
     }
 
@@ -137,8 +152,7 @@ public class SettingsFragment extends RailAppFragment implements ResponseListene
             mSaveSettings.setBackgroundColor(getActivity().getResources().getColor(R.color.white));
             mSaveSettings.setTextColor(getActivity().getResources().getColor(R.color.fbutton_color_pomegranate));
             mSaveSettings.setEnabled(false);
-        }
-        else{
+        } else {
             Snackbar.make(getView(), R.string.common_error, Snackbar.LENGTH_SHORT).show();
         }
     }
@@ -146,7 +160,7 @@ public class SettingsFragment extends RailAppFragment implements ResponseListene
     @Override
     public void onFailure(Throwable throwable) {
         loader.dismissLoader();
-        Snackbar.make(getView(), throwable.getMessage().toString() +" "+ R.string.try_again, Snackbar.LENGTH_SHORT).show();
+        Snackbar.make(getView(), throwable.getMessage().toString() + " " + R.string.try_again, Snackbar.LENGTH_SHORT).show();
     }
 
     @Override
@@ -155,7 +169,7 @@ public class SettingsFragment extends RailAppFragment implements ResponseListene
         Snackbar.make(getView(), R.string.common_error, Snackbar.LENGTH_SHORT).show();
     }
 
-    private void selectProfilePicture(){
+    private void selectProfilePicture() {
         Intent galleryIntent = new Intent(Intent.ACTION_PICK);
         galleryIntent.setType("image/*");
         startActivityForResult(galleryIntent, REQUEST_GALLERY_CODE);
@@ -164,12 +178,38 @@ public class SettingsFragment extends RailAppFragment implements ResponseListene
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==REQUEST_GALLERY_CODE){
-            if(data!=null){
-                mProfileUri=data.getData();
-                Log.i("Profile uri",mProfileUri+"");
+        if (requestCode == REQUEST_GALLERY_CODE) {
+            if (data != null) {
+                mProfileUri = data.getData();
+                this.uploadPic();
+                this.enableSaveBtn();
+                this.isProfileChanged=true;
+                Log.i("Profile uri", mProfileUri + "");
             }
 
         }
+    }
+
+    private void uploadPic(){
+        this.loader.showLoader();
+        ProfilePicUploadNetwork profilePicUploadNetwork=new ProfilePicUploadNetwork(getContext());
+        profilePicUploadNetwork.setInstance(this);
+        profilePicUploadNetwork.uploadPic(mProfileUri);
+    }
+
+    @Override
+    public void onSuccess(String url) {
+        this.loader.dismissLoader();
+        if(url!=null){
+            this.mprofileUrl=url;
+            imageLoader.loadImage(mProfilePic, this.mprofileUrl, SharedPreference.getPreference(getContext(), NAME_CONSTANT));
+        }
+
+    }
+
+    @Override
+    public void onFailure() {
+        this.loader.dismissLoader();
+        Snackbar.make(getView(), R.string.common_error, Snackbar.LENGTH_SHORT).show();
     }
 }

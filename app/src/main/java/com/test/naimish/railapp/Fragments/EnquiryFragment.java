@@ -39,6 +39,7 @@ import butterknife.ButterKnife;
 import static com.test.naimish.railapp.Utils.RailAppConstants.EMAIL_CONSTANT;
 import static com.test.naimish.railapp.Utils.RailAppConstants.NAME_CONSTANT;
 import static com.test.naimish.railapp.Utils.RailAppConstants.PERMISSION_REQUEST_CODE;
+import static com.test.naimish.railapp.Utils.RailAppConstants.PROFILE_PIC_CONSTANT;
 
 
 /**
@@ -47,8 +48,9 @@ import static com.test.naimish.railapp.Utils.RailAppConstants.PERMISSION_REQUEST
 
 public class EnquiryFragment extends RailAppFragment implements EnquiryAdapter.Clicklistener {
 
-    private EnquiryAdapter adapter;
-    private IImageLoader loader;
+    private EnquiryAdapter mAdapter;
+    private IImageLoader mLoader;
+    private String mProfileUrl;
 
     @BindView(R.id.user_pic)
     AvatarView userPic;
@@ -99,15 +101,16 @@ public class EnquiryFragment extends RailAppFragment implements EnquiryAdapter.C
 
         checkPermission();
         EnquiryAdapter.getLayoutResourseId(R.layout.recycler_single_row);
-        adapter = new EnquiryAdapter(getContext(), getdata());
-        adapter.setClicklistener(this);
-        recycler.setAdapter(adapter);
+        mAdapter = new EnquiryAdapter(getContext(), getdata());
+        mAdapter.setClicklistener(this);
+        recycler.setAdapter(mAdapter);
         recycler.setLayoutManager(new LinearLayoutManager(getContext()));
         mUserName.setText(SharedPreference.getPreference(getContext(), NAME_CONSTANT));
         mUserEmail.setText(SharedPreference.getPreference(getContext(), EMAIL_CONSTANT));
+        mProfileUrl=SharedPreference.getPreference(getContext(),PROFILE_PIC_CONSTANT);
         adView.loadAd(AddService.getAdRequest(getActivity()));
-        loader = new PicassoLoader();
-        loader.loadImage(userPic, "random url", SharedPreference.getPreference(getContext(), NAME_CONSTANT));
+        mLoader = new PicassoLoader();
+        mLoader.loadImage(userPic, mProfileUrl, SharedPreference.getPreference(getContext(), NAME_CONSTANT));
 
 
     }
@@ -136,13 +139,6 @@ public class EnquiryFragment extends RailAppFragment implements EnquiryAdapter.C
 
     }
 
-//    @OnClick(R.id.user_pic)
-//    public void userImage() {
-//        FragmentManager manager = getActivity().getSupportFragmentManager();
-//        CameraDialogFragment cameraDialogFragment = CameraDialogFragment.newInsatance();
-//        cameraDialogFragment.show(manager, "Camera Dialog");
-//    }
-
     private void checkPermission() {
         if (Build.VERSION.SDK_INT >= 23) {
             if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
@@ -166,6 +162,7 @@ public class EnquiryFragment extends RailAppFragment implements EnquiryAdapter.C
     public void myUpdateOperation() {
         mSwipeRefreshLayout.setRefreshing(false);
         mUserName.setText(SharedPreference.getPreference(getContext(), NAME_CONSTANT));
-        loader.loadImage(userPic, "random url", SharedPreference.getPreference(getContext(), NAME_CONSTANT));
+        mProfileUrl=SharedPreference.getPreference(getContext(),PROFILE_PIC_CONSTANT);
+        mLoader.loadImage(userPic, mProfileUrl, SharedPreference.getPreference(getContext(), NAME_CONSTANT));
     }
 }
