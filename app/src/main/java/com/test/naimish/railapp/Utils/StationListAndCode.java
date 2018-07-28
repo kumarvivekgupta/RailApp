@@ -1,4 +1,4 @@
-"+package com.test.naimish.railapp.Utils;
+package com.test.naimish.railapp.Utils;
 
 /**
  * Created by Vivek on 6/14/2018.
@@ -6,11 +6,11 @@
 
 public class StationListAndCode {
     public String[] getStationCode() {
-
+        return null;
     }
 
     public String[] getStationName() {
-
+        return null;
     }
 
     private static String getStationListJson() {
