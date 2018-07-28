@@ -1,9 +1,12 @@
 package com.test.naimish.railapp.Fragments;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,6 +28,7 @@ import butterknife.OnClick;
 import static com.test.naimish.railapp.Utils.RailAppConstants.EMAIL_CONSTANT;
 import static com.test.naimish.railapp.Utils.RailAppConstants.NAME_CONSTANT;
 import static com.test.naimish.railapp.Utils.RailAppConstants.PROFILE_PIC_CONSTANT;
+import static com.test.naimish.railapp.Utils.RailAppConstants.REQUEST_GALLERY_CODE;
 import static com.test.naimish.railapp.Utils.RailAppConstants.USERID_CONSTANT;
 
 /**
@@ -40,6 +44,7 @@ public class SettingsFragment extends RailAppFragment implements ResponseListene
     private UpdateProfileApiClient apiClient;
     private ProgressLoader loader;
     private IImageLoader imageLoader;
+    private Uri mProfileUri;
 
     @BindView(R.id.edit_text_name)
     EditText mUserName;
@@ -60,7 +65,8 @@ public class SettingsFragment extends RailAppFragment implements ResponseListene
 
     @OnClick(R.id.change_profile_picture)
     public void changeProfilePicture() {
-        Snackbar.make(getView(), "Feature comming soon...", Snackbar.LENGTH_SHORT).show();
+        // Snackbar.make(getView(), "Feature comming soon...", Snackbar.LENGTH_SHORT).show();
+        selectProfilePicture();
     }
 
 
@@ -149,4 +155,21 @@ public class SettingsFragment extends RailAppFragment implements ResponseListene
         Snackbar.make(getView(), R.string.common_error, Snackbar.LENGTH_SHORT).show();
     }
 
+    private void selectProfilePicture(){
+        Intent galleryIntent = new Intent(Intent.ACTION_PICK);
+        galleryIntent.setType("image/*");
+        startActivityForResult(galleryIntent, REQUEST_GALLERY_CODE);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==REQUEST_GALLERY_CODE){
+            if(data!=null){
+                mProfileUri=data.getData();
+                Log.i("Profile uri",mProfileUri+"");
+            }
+
+        }
+    }
 }
