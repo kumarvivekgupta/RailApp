@@ -110,7 +110,7 @@ public class EnquiryFragment extends RailAppFragment implements EnquiryAdapter.C
         mProfileUrl=SharedPreference.getPreference(getContext(),PROFILE_PIC_CONSTANT);
         adView.loadAd(AddService.getAdRequest(getActivity()));
         mLoader = new PicassoLoader();
-        mLoader.loadImage(userPic, mProfileUrl, SharedPreference.getPreference(getContext(), NAME_CONSTANT));
+        // mLoader.loadImage(userPic, mProfileUrl, SharedPreference.getPreference(getContext(), NAME_CONSTANT));
 
 
     }
@@ -119,7 +119,7 @@ public class EnquiryFragment extends RailAppFragment implements EnquiryAdapter.C
         ArrayList<RecyclerModel> data = new ArrayList<>();
         data.add(new RecyclerModel("Check PNR Status", R.drawable.pnr_icon));
         data.add(new RecyclerModel("Check Live Train Status", R.drawable.live_status_icon));
-        data.add(new RecyclerModel("Seat Avalibility",R.drawable.facebook_icon));
+      //  data.add(new RecyclerModel("Seat Avalibility",R.drawable.facebook_icon));
         return data;
     }
 

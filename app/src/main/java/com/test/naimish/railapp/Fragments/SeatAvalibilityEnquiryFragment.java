@@ -29,6 +29,7 @@ import com.test.naimish.railapp.Utils.ResponseListener;
 import com.test.naimish.railapp.Utils.SeatAvalibilityController;
 import com.test.naimish.railapp.Utils.SeatClassAndQuotaContants;
 import com.test.naimish.railapp.Utils.StationAutoCompleteDetails;
+import com.test.naimish.railapp.Utils.StationListAndCode;
 import com.test.naimish.railapp.Utils.Validations;
 import com.test.naimish.railapp.Views.ProgressLoader;
 
@@ -60,6 +61,7 @@ public class SeatAvalibilityEnquiryFragment
     private ArrayList<String> mQuota;
     private ArrayList<String> mStationName;
     private ArrayList<String> seatStatus;
+    private ArrayList<String> suggestedStation;
 
 
     private SeatAvalibilityApiClient mSeatAvalibilityApiClient;
@@ -207,34 +209,34 @@ public class SeatAvalibilityEnquiryFragment
 
     }
 
-    public void createSourceCodeSpinnerDropdown(StationAutoCompleteBaseModel stationAutoCompleteBaseModel) {
+    public void createSourceCodeSpinnerDropdown() {
         //  = new ArrayList<>();
         //   mQuota.addAll(SeatClassAndQuotaContants.addQuotaCode());
         //  trainSourceCodeSpinner.setVisibility(View.VISIBLE);
 
-        StationAutoCompleteDetails stationAutoCompleteDetails = new StationAutoCompleteDetails();
-        mStationName = stationAutoCompleteDetails.deatils(stationAutoCompleteBaseModel);
+//        StationAutoCompleteDetails stationAutoCompleteDetails = new StationAutoCompleteDetails();
+//        mStationName = stationAutoCompleteDetails.deatils(stationAutoCompleteBaseModel);
         //  mStationCode=stationAutoCompleteDetails.stationCode(stationAutoCompleteBaseModel);
-        ArrayAdapter<String> sourceCodeAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, mStationName);
+        ArrayAdapter<String> sourceCodeAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, suggestedStation);
         sourceCodeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         trainSourceCode.setAdapter(sourceCodeAdapter);
         trainDestinationCode.setOnItemClickListener(this);
 
 
-//        trainSourceCode.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-//
-//                trainSourceCode.setText(mStationName.get(i).substring((mStationName.indexOf('-') + 1), mStationName.get(i).length()));
-//                // trainSourceCodeSpinner.setVisibility(View.GONE);
-//
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> adapterView) {
-//
-//            }
-//        });
+        trainSourceCode.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+              //  trainSourceCode.setText(mStationName.get(i).substring((mStationName.indexOf('-') + 1), mStationName.get(i).length()));
+                // trainSourceCodeSpinner.setVisibility(View.GONE);
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
     }
 
@@ -262,18 +264,20 @@ public class SeatAvalibilityEnquiryFragment
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s.length() >= 3) {
+             //  String[] listStation;
 //                    long startTime = System.currentTimeMillis();
 //                    long elapsedTime = 0L;
 //                    elapsedTime = (new Date()).getTime() - startTime;
 //                    while (elapsedTime > 2 * 60 * 1000) {
-                    StationAutoCompleteApiClient mStationAutoCompleteApiClient = new StationAutoCompleteApiClient(SeatAvalibilityEnquiryFragment.this);
-                    mStationAutoCompleteApiClient.stationAutoCompleteInfo(s.toString());
-                    //  createSourceCodeSpinnerDropdown();
 
+                   // StationAutoCompleteApiClient mStationAutoCompleteApiClient = new StationAutoCompleteApiClient(SeatAvalibilityEnquiryFragment.this);
+                   // mStationAutoCompleteApiClient.stationAutoCompleteInfo(s.toString());
+                    //  createSourceCodeSpinnerDropdown();
+                listOfStationsSuggested(s.toString());
+                createSourceCodeSpinnerDropdown();
                     // }
 
-                }
+
             }
 
             @Override
@@ -290,17 +294,18 @@ public class SeatAvalibilityEnquiryFragment
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s.length() >= 3) {
+//                if (s.length() >= 3) {
 //                    long startTime = System.currentTimeMillis();
 //                    long elapsedTime = 0L;
 //                    elapsedTime = (new Date()).getTime() - startTime;
 //                    while (elapsedTime > 2 * 60 * 1000) {
-                    StationAutoCompleteApiClient mStationAutoCompleteApiClient = new StationAutoCompleteApiClient(SeatAvalibilityEnquiryFragment.this);
-                    mStationAutoCompleteApiClient.stationAutoCompleteInfo(s.toString());
+//                    StationAutoCompleteApiClient mStationAutoCompleteApiClient = new StationAutoCompleteApiClient(SeatAvalibilityEnquiryFragment.this);
+//                    mStationAutoCompleteApiClient.stationAutoCompleteInfo(s.toString());
 
                     // }
 
-                }
+                listOfStationsSuggested(s.toString());
+                createDestinationSpinnerDropdown();
 
             }
 
@@ -311,6 +316,7 @@ public class SeatAvalibilityEnquiryFragment
         });
 
     }
+
 
     @Override
     public void onSuccess(TrainSeatBaseModel response) {
@@ -345,17 +351,17 @@ public class SeatAvalibilityEnquiryFragment
 
     @Override
     public void onResponce(StationAutoCompleteBaseModel stationAutoCompleteBaseModel) {
-        createSourceCodeSpinnerDropdown(stationAutoCompleteBaseModel);
-        createDestinationSpinnerDropdown(stationAutoCompleteBaseModel);
+//        createSourceCodeSpinnerDropdown(stationAutoCompleteBaseModel);
+//        createDestinationSpinnerDropdown(stationAutoCompleteBaseModel);
     }
 
-    public void createDestinationSpinnerDropdown(StationAutoCompleteBaseModel stationAutoCompleteBaseModel) {
+    public void createDestinationSpinnerDropdown() {
 
 
-        StationAutoCompleteDetails stationAutoCompleteDetails = new StationAutoCompleteDetails();
-        mStationName = stationAutoCompleteDetails.deatils(stationAutoCompleteBaseModel);
+//        StationAutoCompleteDetails stationAutoCompleteDetails = new StationAutoCompleteDetails();
+//        mStationName = stationAutoCompleteDetails.deatils(stationAutoCompleteBaseModel);
 
-        ArrayAdapter<String> sourceCodeAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, mStationName);
+        ArrayAdapter<String> sourceCodeAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, suggestedStation);
         sourceCodeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         trainDestinationCode.setAdapter(sourceCodeAdapter);
         trainDestinationCode.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -365,8 +371,19 @@ public class SeatAvalibilityEnquiryFragment
             }
         });
 
+    }
+    private void listOfStationsSuggested(String suggested){
+        String[] listStation;
+        int j=0;
+       suggestedStation=new ArrayList<>();
+        StationListAndCode stationListAndCode=new StationListAndCode(getContext());
+        listStation= stationListAndCode.getStationName();
+        for(int i=0;i<listStation.length;i++){
+            if(suggested.startsWith(listStation[i].toLowerCase())){
+                suggestedStation.add(listStation[i]);
+            }
+        }
 
-//
     }
 
 
