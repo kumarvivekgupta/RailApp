@@ -36,23 +36,24 @@ import static com.test.naimish.railapp.Utils.RailAppConstants.EMAIL_CONSTANT;
 import static com.test.naimish.railapp.Utils.RailAppConstants.NAME_CONSTANT;
 import static com.test.naimish.railapp.Utils.RailAppConstants.PROFILE_PIC_CONSTANT;
 import static com.test.naimish.railapp.Utils.RailAppConstants.REQUEST_GALLERY_CODE;
+import static com.test.naimish.railapp.Utils.RailAppConstants.SOME_RANDOM_STRING;
 import static com.test.naimish.railapp.Utils.RailAppConstants.USERID_CONSTANT;
 
 /**
  * Created by naimish on 4/6/2018.
  */
 
-public class SettingsFragment extends RailAppFragment implements ResponseListener<UpdateProfile>, ProfilePicUploadNetwork.UploadPicResponse{
+public class SettingsFragment extends RailAppFragment implements ResponseListener<UpdateProfile>, ProfilePicUploadNetwork.UploadPicResponse {
 
     private String mOldName;
     private String mOldEmail;
     private String mNewName;
-    private String mprofileUrl;
+    private String mProfileUrl;
     private UpdateProfileApiClient apiClient;
     private ProgressLoader loader;
     private IImageLoader imageLoader;
     private Uri mProfileUri;
-    private Boolean isProfileChanged=false;
+    private Boolean isProfileChanged = false;
 
 
     @BindView(R.id.edit_text_name)
@@ -87,16 +88,17 @@ public class SettingsFragment extends RailAppFragment implements ResponseListene
 
     }
 
-    private void enableSaveBtn(){
+    private void enableSaveBtn() {
         mUserName.setEnabled(true);
         mSaveSettings.setBackgroundColor(getActivity().getResources().getColor(R.color.fbutton_color_pomegranate));
         mSaveSettings.setTextColor(getActivity().getResources().getColor(R.color.white));
         mSaveSettings.setEnabled(true);
     }
+
     @OnClick(R.id.save_settings)
     public void saveSettings() {
         mNewName = mUserName.getText().toString();
-        if (mNewName.equalsIgnoreCase(mOldName)&&!isProfileChanged) {
+        if (mNewName.equalsIgnoreCase(mOldName) && !isProfileChanged) {
             Snackbar.make(getView(), R.string.settings_unchanged_message, Snackbar.LENGTH_SHORT).show();
         } else {
             changeSettings();
@@ -125,19 +127,22 @@ public class SettingsFragment extends RailAppFragment implements ResponseListene
         apiClient = new UpdateProfileApiClient(this);
         mOldName = SharedPreference.getPreference(getContext(), NAME_CONSTANT);
         mOldEmail = SharedPreference.getPreference(getContext(), EMAIL_CONSTANT);
-        mprofileUrl = SharedPreference.getPreference(getContext(), PROFILE_PIC_CONSTANT);
+        mProfileUrl = SharedPreference.getPreference(getContext(), PROFILE_PIC_CONSTANT);
         mUserName.setText(mOldName);
         mUserEmail.setText(mOldEmail);
         loader = new ProgressLoader(getActivity());
         imageLoader = new PicassoLoader();
-        imageLoader.loadImage(mProfilePic, mprofileUrl, SharedPreference.getPreference(getContext(), NAME_CONSTANT));
+        if (mProfileUrl.equals("")) {
+            mProfileUrl = SOME_RANDOM_STRING;
+        } // since profile url cannot be empty
+        imageLoader.loadImage(mProfilePic, mProfileUrl, SharedPreference.getPreference(getContext(), NAME_CONSTANT));
 
     }
 
     private void changeSettings() {
         loader.showLoader();
         String userId = SharedPreference.getPreference(getContext(), USERID_CONSTANT);
-        apiClient.updateProfile(userId, mNewName, mprofileUrl);
+        apiClient.updateProfile(userId, mNewName, mProfileUrl);
     }
 
 
@@ -146,7 +151,7 @@ public class SettingsFragment extends RailAppFragment implements ResponseListene
         loader.dismissLoader();
         if (response.getSuccess()) {
             SharedPreference.setPreference(getContext(), NAME_CONSTANT, mNewName);
-            SharedPreference.setPreference(getContext(), PROFILE_PIC_CONSTANT, mprofileUrl);
+            SharedPreference.setPreference(getContext(), PROFILE_PIC_CONSTANT, mProfileUrl);
             Snackbar.make(getView(), R.string.settings_success_message, Snackbar.LENGTH_SHORT).show();
             mUserName.setEnabled(false);
             mSaveSettings.setBackgroundColor(getActivity().getResources().getColor(R.color.white));
@@ -183,16 +188,16 @@ public class SettingsFragment extends RailAppFragment implements ResponseListene
                 mProfileUri = data.getData();
                 this.uploadPic();
                 this.enableSaveBtn();
-                this.isProfileChanged=true;
+                this.isProfileChanged = true;
                 Log.i("Profile uri", mProfileUri + "");
             }
 
         }
     }
 
-    private void uploadPic(){
+    private void uploadPic() {
         this.loader.showLoader();
-        ProfilePicUploadNetwork profilePicUploadNetwork=new ProfilePicUploadNetwork(getContext());
+        ProfilePicUploadNetwork profilePicUploadNetwork = new ProfilePicUploadNetwork(getContext());
         profilePicUploadNetwork.setInstance(this);
         profilePicUploadNetwork.uploadPic(mProfileUri);
     }
@@ -200,9 +205,12 @@ public class SettingsFragment extends RailAppFragment implements ResponseListene
     @Override
     public void onSuccess(String url) {
         this.loader.dismissLoader();
-        if(url!=null){
-            this.mprofileUrl=url;
-            imageLoader.loadImage(mProfilePic, this.mprofileUrl, SharedPreference.getPreference(getContext(), NAME_CONSTANT));
+        if (url != null) {
+            this.mProfileUrl = url;
+            if (mProfileUrl.equals("")) {
+                mProfileUrl = SOME_RANDOM_STRING;
+            } // since profile url cannot be empty
+            imageLoader.loadImage(mProfilePic, this.mProfileUrl, SharedPreference.getPreference(getContext(), NAME_CONSTANT));
         }
 
     }
