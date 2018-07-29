@@ -14,6 +14,7 @@ public interface RailAppConstants {
     String NAME_CONSTANT = "user name";
     String EMAIL_CONSTANT = "user email";
     String PROFILE_PIC_CONSTANT = "Profile picture uri";
+    String SOME_RANDOM_STRING="some randomm string";
 
     //Request code constants
 
