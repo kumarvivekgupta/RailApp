@@ -40,6 +40,7 @@ import static com.test.naimish.railapp.Utils.RailAppConstants.EMAIL_CONSTANT;
 import static com.test.naimish.railapp.Utils.RailAppConstants.NAME_CONSTANT;
 import static com.test.naimish.railapp.Utils.RailAppConstants.PERMISSION_REQUEST_CODE;
 import static com.test.naimish.railapp.Utils.RailAppConstants.PROFILE_PIC_CONSTANT;
+import static com.test.naimish.railapp.Utils.RailAppConstants.SOME_RANDOM_STRING;
 
 
 /**
@@ -107,9 +108,13 @@ public class EnquiryFragment extends RailAppFragment implements EnquiryAdapter.C
         recycler.setLayoutManager(new LinearLayoutManager(getContext()));
         mUserName.setText(SharedPreference.getPreference(getContext(), NAME_CONSTANT));
         mUserEmail.setText(SharedPreference.getPreference(getContext(), EMAIL_CONSTANT));
-        mProfileUrl=SharedPreference.getPreference(getContext(),PROFILE_PIC_CONSTANT);
+        mProfileUrl = SharedPreference.getPreference(getContext(), PROFILE_PIC_CONSTANT);
         adView.loadAd(AddService.getAdRequest(getActivity()));
         mLoader = new PicassoLoader();
+        if (mProfileUrl.equals("")) {
+            mProfileUrl = SOME_RANDOM_STRING;
+        } // since profile url cannot be empty
+
         mLoader.loadImage(userPic, mProfileUrl, SharedPreference.getPreference(getContext(), NAME_CONSTANT));
 
 
@@ -119,7 +124,7 @@ public class EnquiryFragment extends RailAppFragment implements EnquiryAdapter.C
         ArrayList<RecyclerModel> data = new ArrayList<>();
         data.add(new RecyclerModel("Check PNR Status", R.drawable.pnr_icon));
         data.add(new RecyclerModel("Check Live Train Status", R.drawable.live_status_icon));
-        data.add(new RecyclerModel("Seat Avalibility",R.drawable.facebook_icon));
+        data.add(new RecyclerModel("Seat Avalibility", R.drawable.facebook_icon));
         return data;
     }
 
@@ -128,12 +133,11 @@ public class EnquiryFragment extends RailAppFragment implements EnquiryAdapter.C
         if (position == 0) {
             Intent intent = new Intent(getActivity(), PnrEnquiryActivity.class);
             startActivity(intent);
-        } else if(position==1) {
+        } else if (position == 1) {
             Intent intent = new Intent(getActivity(), LiveTrainSearchActivity.class);
             startActivity(intent);
-        }
-        else {
-            Intent intent=new Intent(getActivity(), SeatAvalibilityEnquiryActivity.class);
+        } else {
+            Intent intent = new Intent(getActivity(), SeatAvalibilityEnquiryActivity.class);
             startActivity(intent);
         }
 
@@ -162,7 +166,10 @@ public class EnquiryFragment extends RailAppFragment implements EnquiryAdapter.C
     public void myUpdateOperation() {
         mSwipeRefreshLayout.setRefreshing(false);
         mUserName.setText(SharedPreference.getPreference(getContext(), NAME_CONSTANT));
-        mProfileUrl=SharedPreference.getPreference(getContext(),PROFILE_PIC_CONSTANT);
+        mProfileUrl = SharedPreference.getPreference(getContext(), PROFILE_PIC_CONSTANT);
+        if (mProfileUrl.equals("")) {
+            mProfileUrl = SOME_RANDOM_STRING;
+        } // since profile url cannot be empty
         mLoader.loadImage(userPic, mProfileUrl, SharedPreference.getPreference(getContext(), NAME_CONSTANT));
     }
 }
