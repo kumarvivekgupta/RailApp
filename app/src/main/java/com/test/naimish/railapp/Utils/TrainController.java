@@ -13,9 +13,9 @@ import java.util.ArrayList;
 public class TrainController {
 
     public static ArrayList<String> getStationList(TrainRouteModel[] trainRoute) {
-        ArrayList stationList = new ArrayList();
-        for (int i = 0; i < trainRoute.length; i++) {
-            stationList.add(trainRoute[i].getStation().getStationName());
+        ArrayList<String> stationList = new ArrayList<>();
+        for (TrainRouteModel aTrainRoute : trainRoute) {
+            stationList.add(aTrainRoute.getStation().getStationName());
         }
         return stationList;
     }
@@ -36,14 +36,12 @@ public class TrainController {
 
         int hour;
         int min;
-        int i, j;
         String pos;
-        String time = "";
 
         TrainRouteModel currentRoute = statusBaseModel.getRoute()[position];
 
-        hour = TimeConversion.hours(currentRoute.getLateMin().toString());
-        min = TimeConversion.min(currentRoute.getLateMin().toString());
+        hour = TimeConversion.hours(currentRoute.getLateMin());
+        min = TimeConversion.min(currentRoute.getLateMin());
         pos = statusBaseModel.getPosition();
         stationName = currentRoute.getStation().getStationName();
         fromStationCode = statusBaseModel.getRoute()[0].getStation().getCode();
@@ -72,7 +70,6 @@ public class TrainController {
                 fromStationCode,
                 toStationCode);
         Gson gson = new Gson();
-        String response = gson.toJson(model);
-        return response;
+        return gson.toJson(model);
     }
 }

@@ -124,24 +124,23 @@ public class EnquiryFragment extends RailAppFragment implements EnquiryAdapter.C
         ArrayList<RecyclerModel> data = new ArrayList<>();
         data.add(new RecyclerModel("Check PNR Status", R.drawable.pnr_icon));
         data.add(new RecyclerModel("Check Live Train Status", R.drawable.live_status_icon));
+        //  data.add(new RecyclerModel("Seat Avalibility",R.drawable.facebook_icon));
 
-      //  data.add(new RecyclerModel("Seat Avalibility",R.drawable.facebook_icon));
         return data;
     }
 
     @Override
     public void itemclicked(int position) {
-        if (position == 0) {
-            Intent intent = new Intent(getActivity(), PnrEnquiryActivity.class);
-            startActivity(intent);
-        } else if (position == 1) {
-            Intent intent = new Intent(getActivity(), LiveTrainSearchActivity.class);
-            startActivity(intent);
-        } else {
-            Intent intent = new Intent(getActivity(), SeatAvalibilityEnquiryActivity.class);
-            startActivity(intent);
-        }
+        Intent intent;
 
+        if (position == 0) {
+            intent = new Intent(getActivity(), PnrEnquiryActivity.class);
+        } else if (position == 1) {
+            intent = new Intent(getActivity(), LiveTrainSearchActivity.class);
+        } else {
+            intent = new Intent(getActivity(), SeatAvalibilityEnquiryActivity.class);
+        }
+        startActivity(intent);
     }
 
     private void checkPermission() {
@@ -171,6 +170,7 @@ public class EnquiryFragment extends RailAppFragment implements EnquiryAdapter.C
         if (mProfileUrl.equals("")) {
             mProfileUrl = SOME_RANDOM_STRING;
         } // since profile url cannot be empty
+
         mLoader.loadImage(userPic, mProfileUrl, SharedPreference.getPreference(getContext(), NAME_CONSTANT));
     }
 }
