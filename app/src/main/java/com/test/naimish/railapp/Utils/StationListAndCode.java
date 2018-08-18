@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 package com.test.naimish.railapp.Utils;
 
 import android.content.Context;
@@ -36,8 +36,8 @@ public class StationListAndCode {
 
     private static String getStationListJson(Context context) {
         String s1="";
-        s1= context.getResources().getString(R.string.station_list);
-        Log.i("StringStation",s1);
+//        s1= context.getResources().getString(R.string.station_list);
+//        Log.i("StringStation",s1);
         return s1;
     }
 
@@ -47,7 +47,6 @@ public class StationListAndCode {
         }.getType());
     }
 }
-=======
 //package com.test.naimish.railapp.Utils;
 //
 ///**
@@ -13283,4 +13282,3 @@ public class StationListAndCode {
 //                "}";
 //    }
 //}
->>>>>>> ebb8939c6d05e600e0a7012ee7d9e9ccd83c51b1
