@@ -3,16 +3,20 @@ package com.test.naimish.railapp.Fragments;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
 import com.test.naimish.railapp.Activities.EnquiryActivity;
 import com.test.naimish.railapp.Activities.ForgotPasswordActivity;
 import com.test.naimish.railapp.Models.LoginModel.LoginUser;
+import com.test.naimish.railapp.Network.ApiLayer;
 import com.test.naimish.railapp.Network.LoginNetwork.LoginApiClient;
+import com.test.naimish.railapp.Network.RetrofitCallBack;
 import com.test.naimish.railapp.R;
 import com.test.naimish.railapp.Utils.ResponseListener;
 import com.test.naimish.railapp.Utils.SharedPreference;
@@ -80,8 +84,8 @@ public class LoginFragment extends RailAppFragment implements ResponseListener<L
 
     private void loginUser() {
         loader.showLoader();
-        LoginApiClient client = new LoginApiClient(this);
-        client.loginUser(mEmail, mPassword);
+        RetrofitCallBack<LoginUser> callBack=new RetrofitCallBack<>(this);
+        ApiLayer.getInterface().login(new LoginUser(mEmail,mPassword)).enqueue(callBack);
     }
 
 
@@ -126,7 +130,7 @@ public class LoginFragment extends RailAppFragment implements ResponseListener<L
     @Override
     public void onFailure(Throwable throwable) {
         loader.dismissLoader();
-        Snackbar.make(getView(), throwable.getMessage().toString() + " " + R.string.try_again, Snackbar.LENGTH_SHORT).show();
+        Snackbar.make(getView(), throwable.getMessage() + " " + R.string.try_again, Snackbar.LENGTH_SHORT).show();
     }
 
     @Override
