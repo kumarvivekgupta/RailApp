@@ -12,7 +12,8 @@ import android.widget.EditText;
 
 import com.test.naimish.railapp.Activities.LoginActivity;
 import com.test.naimish.railapp.Models.ForgotPasswordModel;
-import com.test.naimish.railapp.Network.ForgotPasswordNetwork.ForgotPasswordApiClient;
+import com.test.naimish.railapp.Network.ApiLayer;
+import com.test.naimish.railapp.Network.RetrofitCallBack;
 import com.test.naimish.railapp.R;
 import com.test.naimish.railapp.Utils.ResponseListener;
 import com.test.naimish.railapp.Utils.Validations;
@@ -63,8 +64,8 @@ public class ForgotPasswordFragment extends RailAppFragment implements ResponseL
 
     private void sendNewPassword(){
         loader.showLoader();
-        ForgotPasswordApiClient apiClient=new ForgotPasswordApiClient(this);
-        apiClient.createNewUser(mEmail);
+        RetrofitCallBack<ForgotPasswordModel> callBack=new RetrofitCallBack<>(this);
+        ApiLayer.getInterface().sendNewPassword(new ForgotPasswordModel(mEmail)).enqueue(callBack);
     }
 
     @Override

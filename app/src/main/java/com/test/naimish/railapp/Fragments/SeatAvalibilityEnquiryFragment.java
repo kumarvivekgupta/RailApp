@@ -16,28 +16,15 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.test.naimish.railapp.Activities.SeatAvalibilityStatusActivity;
-import com.test.naimish.railapp.Models.DateSeatModel;
-import com.test.naimish.railapp.Models.PnrModel.BaseModel;
-import com.test.naimish.railapp.Models.SeatAvailability.SeatAvailabiityModelClass;
 import com.test.naimish.railapp.Models.SeatAvailability.TrainSeatBaseModel;
-import com.test.naimish.railapp.Models.StationAutoCompleteBaseModel;
-import com.test.naimish.railapp.Network.SeatAvalibilityNetwork.SeatAvalibilityApiClient;
-import com.test.naimish.railapp.Network.SeatAvalibilityNetwork.SeatAvalibilityApiInterface;
-import com.test.naimish.railapp.Network.StationAutoCompleteNetwork.StationAutoCompleteApiClient;
 import com.test.naimish.railapp.R;
 import com.test.naimish.railapp.Utils.ResponseListener;
 import com.test.naimish.railapp.Utils.SeatAvalibilityController;
 import com.test.naimish.railapp.Utils.SeatClassAndQuotaContants;
-import com.test.naimish.railapp.Utils.StationAutoCompleteDetails;
 import com.test.naimish.railapp.Utils.StationListAndCode;
 import com.test.naimish.railapp.Utils.Validations;
 import com.test.naimish.railapp.Views.ProgressLoader;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -49,7 +36,6 @@ import butterknife.OnClick;
 public class SeatAvalibilityEnquiryFragment
         extends RailAppFragment
         implements ResponseListener<TrainSeatBaseModel>,
-        StationAutoCompleteApiClient.stationAutoCompleteResponse,
         AdapterView.OnItemClickListener {
     private String mSourceCode;
     private String mDestinationCode;
@@ -64,7 +50,7 @@ public class SeatAvalibilityEnquiryFragment
     private ArrayList<String> suggestedStation;
 
 
-    private SeatAvalibilityApiClient mSeatAvalibilityApiClient;
+//    private SeatAvalibilityApiClient mSeatAvalibilityApiClient;
 
     private ProgressLoader mLoader;
 
@@ -127,7 +113,7 @@ public class SeatAvalibilityEnquiryFragment
                     Toast.makeText(getContext(), mSourceCode, Toast.LENGTH_LONG).show();
                     if (!Validations.isEmpty(mDestinationCode)) {
                         mDestinationCode = trainDestinationCode.getText().toString().substring(trainDestinationCode.getText().toString().indexOf('-') + 1, trainDestinationCode.getText().toString().length());
-                        mSeatAvalibilityApiClient.seatAvalibilityStatus(mTrainNo, mSourceCode, mDestinationCode, mDate, mTrainClassCode, mTrainQuota);
+//                        mSeatAvalibilityApiClient.seatAvalibilityStatus(mTrainNo, mSourceCode, mDestinationCode, mDate, mTrainClassCode, mTrainQuota);
                         mLoader.showLoader();
                     } else {
                         trainDestinationCode.setError(getString(R.string.invalid_code));
@@ -253,7 +239,7 @@ public class SeatAvalibilityEnquiryFragment
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mLoader = new ProgressLoader(getActivity());
-        mSeatAvalibilityApiClient = new SeatAvalibilityApiClient(this);
+//        mSeatAvalibilityApiClient = new SeatAvalibilityApiClient(this);
         trainSourceCode.setThreshold(2);
         trainDestinationCode.setThreshold(2);
         trainSourceCode.addTextChangedListener(new TextWatcher() {
@@ -349,11 +335,11 @@ public class SeatAvalibilityEnquiryFragment
 
     }
 
-    @Override
-    public void onResponce(StationAutoCompleteBaseModel stationAutoCompleteBaseModel) {
-//        createSourceCodeSpinnerDropdown(stationAutoCompleteBaseModel);
-//        createDestinationSpinnerDropdown(stationAutoCompleteBaseModel);
-    }
+//    @Override
+//    public void onResponce(StationAutoCompleteBaseModel stationAutoCompleteBaseModel) {
+////        createSourceCodeSpinnerDropdown(stationAutoCompleteBaseModel);
+////        createDestinationSpinnerDropdown(stationAutoCompleteBaseModel);
+//    }
 
     public void createDestinationSpinnerDropdown() {
 

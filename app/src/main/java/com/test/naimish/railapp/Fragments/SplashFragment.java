@@ -13,7 +13,8 @@ import android.widget.TextView;
 import com.test.naimish.railapp.Activities.EnquiryActivity;
 import com.test.naimish.railapp.Activities.LandingActivity;
 import com.test.naimish.railapp.Models.AuthorizationResponse;
-import com.test.naimish.railapp.Network.TokenValidation.TokenApiClient;
+import com.test.naimish.railapp.Network.ApiLayer;
+import com.test.naimish.railapp.Network.RetrofitCallBack;
 import com.test.naimish.railapp.R;
 import com.test.naimish.railapp.Utils.RailAppConstants;
 import com.test.naimish.railapp.Utils.ResponseListener;
@@ -64,7 +65,7 @@ public class SplashFragment extends RailAppFragment implements ResponseListener<
         super.onActivityCreated(savedInstanceState);
         if (isOnline()) {
             mToken = SharedPreference.getPreference(getContext(), RailAppConstants.TOKEN_CONSTANT);
-            if (mToken != "")
+            if (!mToken.equals(""))
                 validateUser();
             else {
                 startActivity(new Intent(getActivity(), LandingActivity.class));
@@ -80,8 +81,8 @@ public class SplashFragment extends RailAppFragment implements ResponseListener<
 
     private void validateUser() {
         progressBar.setVisibility(View.VISIBLE);
-        TokenApiClient apiClient = new TokenApiClient(this);
-        apiClient.validateUser(mToken);
+        RetrofitCallBack<AuthorizationResponse> callBack=new RetrofitCallBack<>(this);
+        ApiLayer.getInterface().getAutherization(mToken).enqueue(callBack);
     }
 
     @Override

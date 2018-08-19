@@ -8,7 +8,6 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
@@ -18,7 +17,8 @@ import android.widget.TextView;
 import com.test.naimish.railapp.Models.PassengerRecyclerModel;
 import com.test.naimish.railapp.Models.PnrModel.BaseModel;
 import com.test.naimish.railapp.Models.UserPnrs.SavedPnrs;
-import com.test.naimish.railapp.Network.PnrNetwork.PnrApiClient;
+import com.test.naimish.railapp.Network.ApiLayer;
+import com.test.naimish.railapp.Network.RetrofitCallBack;
 import com.test.naimish.railapp.Network.UserPnrsNetwork.SavePnrNetwork.SavedPnrApiClient;
 import com.test.naimish.railapp.R;
 import com.test.naimish.railapp.Views.Adapters.PassengerAdapter;
@@ -131,7 +131,7 @@ public class PnrEnquiryFragment extends RailAppFragment implements ResponseListe
             toStation.setText(mBaseModel.getToStation().getStationCode());
             dateTravel.setText(mBaseModel.getDateOfTravel());
             trainName.setText(mBaseModel.getTrainNumber().getTrainName());
-            if (mBaseModel.getChartPrepared() == true) {
+            if (mBaseModel.getChartPrepared()) {
                 chartStatus.setText(R.string.chart_prepared);
             } else {
                 chartStatus.setText(R.string.chart_not_prepared);
@@ -189,7 +189,7 @@ public class PnrEnquiryFragment extends RailAppFragment implements ResponseListe
 
     private void callSearchApi() {
         loader.showLoader();
-        PnrApiClient apiClient = new PnrApiClient(this);
-        apiClient.getPnrStatus(pnrText.getText().toString());
+        RetrofitCallBack<BaseModel> callBack=new RetrofitCallBack<>(this);
+        ApiLayer.getInterface().pnrInfo(pnrText.getText().toString()).enqueue(callBack);
     }
 }

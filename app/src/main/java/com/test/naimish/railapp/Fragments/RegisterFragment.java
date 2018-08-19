@@ -8,10 +8,10 @@ import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.EditText;
 
-import com.test.naimish.railapp.Activities.EnquiryActivity;
 import com.test.naimish.railapp.Activities.LoginActivity;
 import com.test.naimish.railapp.Models.RegisterUser;
-import com.test.naimish.railapp.Network.RegisterNetwork.RegisterApiClient;
+import com.test.naimish.railapp.Network.ApiLayer;
+import com.test.naimish.railapp.Network.RetrofitCallBack;
 import com.test.naimish.railapp.R;
 import com.test.naimish.railapp.Utils.ResponseListener;
 import com.test.naimish.railapp.Utils.Validations;
@@ -100,8 +100,8 @@ public class RegisterFragment extends RailAppFragment implements ResponseListene
 
     private void signUpUser() {
         loader.showLoader();
-        RegisterApiClient client = new RegisterApiClient(this);
-        client.createNewUser(mName, mEmail, mPassword);
+        RetrofitCallBack<RegisterUser> callBack=new RetrofitCallBack<>(this);
+        ApiLayer.getInterface().createUser(new RegisterUser(mName,mEmail,mPassword)).enqueue(callBack);
     }
 
     @Override

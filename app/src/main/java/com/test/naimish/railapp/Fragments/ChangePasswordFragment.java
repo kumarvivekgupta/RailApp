@@ -1,19 +1,17 @@
 package com.test.naimish.railapp.Fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.DialogFragment;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
-import com.test.naimish.railapp.Activities.SettingsActivity;
 import com.test.naimish.railapp.Models.ChangePassword;
-import com.test.naimish.railapp.Network.ChangePasswordNetwork.ChangePasswordApiClient;
+import com.test.naimish.railapp.Network.ApiLayer;
+import com.test.naimish.railapp.Network.RetrofitCallBack;
 import com.test.naimish.railapp.R;
 import com.test.naimish.railapp.Utils.RailAppConstants;
 import com.test.naimish.railapp.Utils.ResponseListener;
@@ -92,8 +90,8 @@ public class ChangePasswordFragment extends DialogFragment implements ResponseLi
         else {
             loader.showLoader();
             String userid = SharedPreference.getPreference(getContext(), RailAppConstants.USERID_CONSTANT);
-            ChangePasswordApiClient apiClient = new ChangePasswordApiClient(this);
-            apiClient.changePassword(userid, mOldPassword, mNewPassword);
+            RetrofitCallBack<ChangePassword> callBack=new RetrofitCallBack<>(this);
+            ApiLayer.getInterface().changePasssword(new ChangePassword(userid, mOldPassword, mNewPassword)).enqueue(callBack);
         }
     }
 

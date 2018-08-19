@@ -16,7 +16,8 @@ import android.widget.Spinner;
 
 import com.test.naimish.railapp.Activities.LiveTrainStatusActivity;
 import com.test.naimish.railapp.Models.LiveTrainStatusModel.LiveStatusBaseModel;
-import com.test.naimish.railapp.Network.LiveTrainNetwork.LiveTrainApiClient;
+import com.test.naimish.railapp.Network.ApiLayer;
+import com.test.naimish.railapp.Network.RetrofitCallBack;
 import com.test.naimish.railapp.R;
 import com.test.naimish.railapp.Utils.RailAppConstants;
 import com.test.naimish.railapp.Utils.ResponseListener;
@@ -41,7 +42,7 @@ import butterknife.OnClick;
 
 public class LiveTrainSearchFragment extends RailAppFragment implements ResponseListener<LiveStatusBaseModel>, StationAdapter.StationNameClicklistener {
     private ArrayList<String> mDates;
-    private LiveTrainApiClient mApiClient;
+    private RetrofitCallBack<LiveStatusBaseModel> callBack;
     private String mTrainNo;
     private String mSelectedDate;
     private LiveStatusBaseModel statusBaseModel;
@@ -67,7 +68,7 @@ public class LiveTrainSearchFragment extends RailAppFragment implements Response
         mTrainNo = trainNo.getText().toString();
         if(!Validations.isEmpty(mTrainNo)&&Validations.checkTrainNo(mTrainNo)) {
             loader.showLoader();
-            mApiClient.liveTrainStatus(mTrainNo, mSelectedDate);
+            ApiLayer.getInterface().liveTrainInfo(mTrainNo,mSelectedDate).enqueue(callBack);
         }
         else{
             Snackbar.make(getView(), R.string.train_no_error, Snackbar.LENGTH_SHORT).show();
@@ -122,7 +123,7 @@ public class LiveTrainSearchFragment extends RailAppFragment implements Response
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mApiClient = new LiveTrainApiClient(this);
+        callBack=new RetrofitCallBack<>(this);
         loader=new ProgressLoader(getActivity());
     }
 

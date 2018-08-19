@@ -3,7 +3,6 @@ package com.test.naimish.railapp.Fragments;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
@@ -11,15 +10,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 import com.test.naimish.railapp.Models.UpdateProfile;
+import com.test.naimish.railapp.Network.ApiLayer;
 import com.test.naimish.railapp.Network.ProfilePicUploadNetwork;
-import com.test.naimish.railapp.Network.UpdateProfileNetwork.UpdateProfileApiClient;
+import com.test.naimish.railapp.Network.RetrofitCallBack;
 import com.test.naimish.railapp.R;
 import com.test.naimish.railapp.Utils.ResponseListener;
 import com.test.naimish.railapp.Utils.SharedPreference;
@@ -49,7 +43,7 @@ public class SettingsFragment extends RailAppFragment implements ResponseListene
     private String mOldEmail;
     private String mNewName;
     private String mProfileUrl;
-    private UpdateProfileApiClient apiClient;
+    private RetrofitCallBack<UpdateProfile> callBack;
     private ProgressLoader loader;
     private IImageLoader imageLoader;
     private Uri mProfileUri;
@@ -124,7 +118,7 @@ public class SettingsFragment extends RailAppFragment implements ResponseListene
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        apiClient = new UpdateProfileApiClient(this);
+        callBack=new RetrofitCallBack<>(this);
         mOldName = SharedPreference.getPreference(getContext(), NAME_CONSTANT);
         mOldEmail = SharedPreference.getPreference(getContext(), EMAIL_CONSTANT);
         mProfileUrl = SharedPreference.getPreference(getContext(), PROFILE_PIC_CONSTANT);
@@ -142,7 +136,7 @@ public class SettingsFragment extends RailAppFragment implements ResponseListene
     private void changeSettings() {
         loader.showLoader();
         String userId = SharedPreference.getPreference(getContext(), USERID_CONSTANT);
-        apiClient.updateProfile(userId, mNewName, mProfileUrl);
+        ApiLayer.getInterface().updateProfile(new UpdateProfile(userId, mNewName, mProfileUrl)).enqueue(callBack);
     }
 
 

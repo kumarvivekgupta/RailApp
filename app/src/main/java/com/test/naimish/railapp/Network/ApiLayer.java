@@ -1,14 +1,11 @@
 package com.test.naimish.railapp.Network;
 
 import com.test.naimish.railapp.BuildConfig;
-import com.test.naimish.railapp.Utils.ResponseListener;
 
 import static com.test.naimish.railapp.Utils.RailAppConstants.BASE_URL;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
-import retrofit2.Call;
-import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 

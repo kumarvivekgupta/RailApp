@@ -3,12 +3,12 @@ package com.test.naimish.railapp.Fragments;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.EditText;
 
 import com.test.naimish.railapp.Models.ReportBug;
-import com.test.naimish.railapp.Network.ReportBugNetwork.BugApiClient;
+import com.test.naimish.railapp.Network.ApiLayer;
+import com.test.naimish.railapp.Network.RetrofitCallBack;
 import com.test.naimish.railapp.R;
 import com.test.naimish.railapp.Utils.ResponseListener;
 import com.test.naimish.railapp.Utils.SharedPreference;
@@ -58,8 +58,10 @@ public class BugReportFragment extends RailAppFragment implements  ResponseListe
         messageBugReport=mBugReport.getText().toString();
         if(!Validations.isEmpty(messageBugReport)) {
             loader.showLoader();
-            BugApiClient bugApiClient = new BugApiClient(this);
-            bugApiClient.reportBug( SharedPreference.getPreference(getContext(), EMAIL_CONSTANT).toString(),messageBugReport);
+            RetrofitCallBack<ReportBug> callBack=new RetrofitCallBack<>(this);
+            ApiLayer.getInterface()
+                    .reportedBug(new ReportBug(SharedPreference.getPreference(getContext(), EMAIL_CONSTANT).toString(),messageBugReport))
+                    .enqueue(callBack);
         }
         else
            Snackbar.make(getView(),R.string.empty_bug_message, Snackbar.LENGTH_SHORT).show();
