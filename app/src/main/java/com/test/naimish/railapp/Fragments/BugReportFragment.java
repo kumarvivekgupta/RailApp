@@ -25,7 +25,7 @@ import static com.test.naimish.railapp.Utils.RailAppConstants.EMAIL_CONSTANT;
  * Created by Vivek on 5/10/2018.
  */
 
-public class BugReportFragment extends RailAppFragment implements  ResponseListener<ReportBug>{
+public class BugReportFragment extends RailAppFragment implements ResponseListener<ReportBug> {
     private String messageBugReport;
     private ProgressLoader loader;
 
@@ -50,21 +50,20 @@ public class BugReportFragment extends RailAppFragment implements  ResponseListe
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        loader=new ProgressLoader(getContext());
+        loader = new ProgressLoader(getContext());
     }
 
     @OnClick(R.id.send_bug_report)
-    public void sendMessage(){
-        messageBugReport=mBugReport.getText().toString();
-        if(!Validations.isEmpty(messageBugReport)) {
+    public void sendMessage() {
+        messageBugReport = mBugReport.getText().toString();
+        if (!Validations.isEmpty(messageBugReport)) {
             loader.showLoader();
-            RetrofitCallBack<ReportBug> callBack=new RetrofitCallBack<>(this);
+            RetrofitCallBack<ReportBug> callBack = new RetrofitCallBack<>(this);
             ApiLayer.getInterface()
-                    .reportedBug(new ReportBug(SharedPreference.getPreference(getContext(), EMAIL_CONSTANT).toString(),messageBugReport))
+                    .reportedBug(new ReportBug(SharedPreference.getPreference(getContext(), EMAIL_CONSTANT).toString(), messageBugReport))
                     .enqueue(callBack);
-        }
-        else
-           Snackbar.make(getView(),R.string.empty_bug_message, Snackbar.LENGTH_SHORT).show();
+        } else
+            Snackbar.make(getView(), R.string.empty_bug_message, Snackbar.LENGTH_SHORT).show();
 
 
     }
@@ -72,17 +71,17 @@ public class BugReportFragment extends RailAppFragment implements  ResponseListe
     @Override
     public void onSuccess(ReportBug response) {
         loader.dismissLoader();
-        if(response.isBugSuccess())
-        Snackbar.make(getView(), R.string.bug_reported_successfully, Snackbar.LENGTH_SHORT).show();
+        if (response.isBugSuccess())
+            Snackbar.make(getView(), R.string.bug_reported_successfully, Snackbar.LENGTH_SHORT).show();
         else
-            Snackbar.make(getView(), R.string.common_error,Snackbar.LENGTH_SHORT).show();
+            Snackbar.make(getView(), R.string.common_error, Snackbar.LENGTH_SHORT).show();
 
     }
 
     @Override
     public void onFailure(Throwable throwable) {
         loader.dismissLoader();
-        Snackbar.make(getView(), throwable.getMessage().toString() +" "+ R.string.try_again, Snackbar.LENGTH_SHORT).show();
+        Snackbar.make(getView(), throwable.getMessage().toString() + " " + R.string.try_again, Snackbar.LENGTH_SHORT).show();
 
     }
 

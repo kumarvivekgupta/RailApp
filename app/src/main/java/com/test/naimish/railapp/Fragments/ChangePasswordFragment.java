@@ -56,7 +56,7 @@ public class ChangePasswordFragment extends DialogFragment implements ResponseLi
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        loader=new ProgressLoader(getActivity());
+        loader = new ProgressLoader(getActivity());
     }
 
     @OnClick(R.id.comfirm_new_password_button)
@@ -90,7 +90,7 @@ public class ChangePasswordFragment extends DialogFragment implements ResponseLi
         else {
             loader.showLoader();
             String userid = SharedPreference.getPreference(getContext(), RailAppConstants.USERID_CONSTANT);
-            RetrofitCallBack<ChangePassword> callBack=new RetrofitCallBack<>(this);
+            RetrofitCallBack<ChangePassword> callBack = new RetrofitCallBack<>(this);
             ApiLayer.getInterface().changePasssword(new ChangePassword(userid, mOldPassword, mNewPassword)).enqueue(callBack);
         }
     }

@@ -23,7 +23,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class ForgotPasswordFragment extends RailAppFragment implements ResponseListener<ForgotPasswordModel>{
+public class ForgotPasswordFragment extends RailAppFragment implements ResponseListener<ForgotPasswordModel> {
     private String mEmail;
     private ProgressLoader loader;
 
@@ -58,25 +58,24 @@ public class ForgotPasswordFragment extends RailAppFragment implements ResponseL
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        loader=new ProgressLoader(getActivity());
+        loader = new ProgressLoader(getActivity());
 
     }
 
-    private void sendNewPassword(){
+    private void sendNewPassword() {
         loader.showLoader();
-        RetrofitCallBack<ForgotPasswordModel> callBack=new RetrofitCallBack<>(this);
+        RetrofitCallBack<ForgotPasswordModel> callBack = new RetrofitCallBack<>(this);
         ApiLayer.getInterface().sendNewPassword(new ForgotPasswordModel(mEmail)).enqueue(callBack);
     }
 
     @Override
     public void onSuccess(ForgotPasswordModel response) {
         loader.dismissLoader();
-        if(response.getResponse()){
+        if (response.getResponse()) {
             startActivity(new Intent(getActivity(), LoginActivity.class));
             getActivity().finish();
-        }
-        else{
-            Snackbar.make(getView(),response.getMessage(),Snackbar.LENGTH_SHORT).show();
+        } else {
+            Snackbar.make(getView(), response.getMessage(), Snackbar.LENGTH_SHORT).show();
         }
 
     }
@@ -84,7 +83,7 @@ public class ForgotPasswordFragment extends RailAppFragment implements ResponseL
     @Override
     public void onFailure(Throwable throwable) {
         loader.dismissLoader();
-        Snackbar.make(getView(), throwable.getMessage().toString() +" "+ R.string.try_again, Snackbar.LENGTH_SHORT).show();
+        Snackbar.make(getView(), throwable.getMessage().toString() + " " + R.string.try_again, Snackbar.LENGTH_SHORT).show();
     }
 
     @Override

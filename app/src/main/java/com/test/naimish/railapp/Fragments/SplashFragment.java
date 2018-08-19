@@ -81,7 +81,7 @@ public class SplashFragment extends RailAppFragment implements ResponseListener<
 
     private void validateUser() {
         progressBar.setVisibility(View.VISIBLE);
-        RetrofitCallBack<AuthorizationResponse> callBack=new RetrofitCallBack<>(this);
+        RetrofitCallBack<AuthorizationResponse> callBack = new RetrofitCallBack<>(this);
         ApiLayer.getInterface().getAutherization(mToken).enqueue(callBack);
     }
 
@@ -106,7 +106,7 @@ public class SplashFragment extends RailAppFragment implements ResponseListener<
         reload.setVisibility(View.VISIBLE);
     }
 
-   private boolean isOnline() {
+    private boolean isOnline() {
         ConnectivityManager cm = (ConnectivityManager) getActivity().getSystemService(getContext().CONNECTIVITY_SERVICE);
         return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnectedOrConnecting();
     }

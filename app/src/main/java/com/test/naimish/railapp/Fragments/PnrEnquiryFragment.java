@@ -19,7 +19,7 @@ import com.test.naimish.railapp.Models.PnrModel.BaseModel;
 import com.test.naimish.railapp.Models.UserPnrs.SavedPnrs;
 import com.test.naimish.railapp.Network.ApiLayer;
 import com.test.naimish.railapp.Network.RetrofitCallBack;
-import com.test.naimish.railapp.Network.UserPnrsNetwork.SavePnrNetwork.SavedPnrApiClient;
+import com.test.naimish.railapp.Network.SavedPnrApiClient;
 import com.test.naimish.railapp.R;
 import com.test.naimish.railapp.Views.Adapters.PassengerAdapter;
 import com.test.naimish.railapp.Utils.PassengerDetails;
@@ -189,7 +189,7 @@ public class PnrEnquiryFragment extends RailAppFragment implements ResponseListe
 
     private void callSearchApi() {
         loader.showLoader();
-        RetrofitCallBack<BaseModel> callBack=new RetrofitCallBack<>(this);
+        RetrofitCallBack<BaseModel> callBack = new RetrofitCallBack<>(this);
         ApiLayer.getInterface().pnrInfo(pnrText.getText().toString()).enqueue(callBack);
     }
 }

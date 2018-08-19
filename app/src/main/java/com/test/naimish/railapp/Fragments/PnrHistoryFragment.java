@@ -8,19 +8,15 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
 import com.test.naimish.railapp.Activities.PnrEnquiryActivity;
 import com.test.naimish.railapp.Models.UserPnrs.DeletePnrs;
 import com.test.naimish.railapp.Models.UserPnrs.GetPnrs;
-import com.test.naimish.railapp.Models.UserPnrs.SavedPnrs;
-import com.test.naimish.railapp.Network.UserPnrsNetwork.DeletePnrNetwork.DeletePnrApiClient;
-import com.test.naimish.railapp.Network.UserPnrsNetwork.GetPnrNetwork.GetPnrApiClient;
-import com.test.naimish.railapp.Network.UserPnrsNetwork.SavePnrNetwork.SavedPnrApiClient;
+import com.test.naimish.railapp.Network.ApiLayer;
+import com.test.naimish.railapp.Network.RetrofitCallBack;
+import com.test.naimish.railapp.Network.DeletePnrApiClient;
 import com.test.naimish.railapp.R;
 import com.test.naimish.railapp.Utils.RailAppConstants;
 import com.test.naimish.railapp.Utils.ResponseListener;
@@ -40,7 +36,7 @@ public class PnrHistoryFragment extends
 
     private int mCounter = 0;
     private ProgressLoader mProgressLoader;
-    private GetPnrApiClient mApiClient;
+    private RetrofitCallBack<GetPnrs> callBack;
 
     @BindView(R.id.saved_pnrs_recycler_view)
     RecyclerView recyclerView;
@@ -62,7 +58,7 @@ public class PnrHistoryFragment extends
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mProgressLoader = new ProgressLoader(getContext());
-        mApiClient = new GetPnrApiClient(this);
+        callBack = new RetrofitCallBack<>(this);
         getUserPnr();
         refreshLayout.setOnRefreshListener(this);
         setHasOptionsMenu(true);
@@ -78,7 +74,7 @@ public class PnrHistoryFragment extends
     private void getUserPnr() {
         mProgressLoader.showLoader();
         String userId = SharedPreference.getPreference(getContext(), RailAppConstants.USERID_CONSTANT);
-        mApiClient.getUserPnr(userId);
+        ApiLayer.getInterface().getUserSavedPnrs(userId).enqueue(callBack);
     }
 
     public void deletePnrs(Context context) {

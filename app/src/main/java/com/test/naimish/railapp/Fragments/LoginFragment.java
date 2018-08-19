@@ -80,8 +80,8 @@ public class LoginFragment extends RailAppFragment implements ResponseListener<L
 
     private void loginUser() {
         loader.showLoader();
-        RetrofitCallBack<LoginUser> callBack=new RetrofitCallBack<>(this);
-        ApiLayer.getInterface().login(new LoginUser(mEmail,mPassword)).enqueue(callBack);
+        RetrofitCallBack<LoginUser> callBack = new RetrofitCallBack<>(this);
+        ApiLayer.getInterface().login(new LoginUser(mEmail, mPassword)).enqueue(callBack);
     }
 
 

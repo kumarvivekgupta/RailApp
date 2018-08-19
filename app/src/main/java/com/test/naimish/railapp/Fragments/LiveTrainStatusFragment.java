@@ -66,7 +66,6 @@ public class LiveTrainStatusFragment extends RailAppFragment {
     AdView adView;
 
 
-
     @Override
     protected int getResourceId() {
         return R.layout.fragment_live_train_status;

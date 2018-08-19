@@ -31,6 +31,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -66,11 +67,10 @@ public class LiveTrainSearchFragment extends RailAppFragment implements Response
     @OnClick(R.id.search_live_train)
     public void searchLiveTrain() {
         mTrainNo = trainNo.getText().toString();
-        if(!Validations.isEmpty(mTrainNo)&&Validations.checkTrainNo(mTrainNo)) {
+        if (!Validations.isEmpty(mTrainNo) && Validations.checkTrainNo(mTrainNo)) {
             loader.showLoader();
-            ApiLayer.getInterface().liveTrainInfo(mTrainNo,mSelectedDate).enqueue(callBack);
-        }
-        else{
+            ApiLayer.getInterface().liveTrainInfo(mTrainNo, mSelectedDate).enqueue(callBack);
+        } else {
             Snackbar.make(getView(), R.string.train_no_error, Snackbar.LENGTH_SHORT).show();
         }
     }
@@ -123,15 +123,15 @@ public class LiveTrainSearchFragment extends RailAppFragment implements Response
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        callBack=new RetrofitCallBack<>(this);
-        loader=new ProgressLoader(getActivity());
+        callBack = new RetrofitCallBack<>(this);
+        loader = new ProgressLoader(getActivity());
     }
 
 
     @Override
     public void onSuccess(LiveStatusBaseModel response) {
         loader.dismissLoader();
-        if(response.getTrainInfo().getTrainName()!=null) {
+        if (response.getTrainInfo().getTrainName() != null) {
             cardView.setVisibility(View.VISIBLE);
             trainName.setText(response.getTrainInfo().getTrainName());
             this.statusBaseModel = response;
@@ -139,8 +139,7 @@ public class LiveTrainSearchFragment extends RailAppFragment implements Response
             stationsRecyclerView.setAdapter(adapter);
             adapter.setClicklistenerInstance(this);
             stationsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        }
-        else{
+        } else {
             Snackbar.make(getView(), R.string.common_error, Snackbar.LENGTH_SHORT).show();
         }
     }
@@ -160,9 +159,9 @@ public class LiveTrainSearchFragment extends RailAppFragment implements Response
 
     @Override
     public void itemclicked(int position) {
-        String response=TrainController.getDisplayInformation(statusBaseModel,position);
-        Intent intent=new Intent(getActivity(),LiveTrainStatusActivity.class);
-        intent.putExtra(RailAppConstants.SINGLE_STATION_DETAILS,response);
+        String response = TrainController.getDisplayInformation(statusBaseModel, position);
+        Intent intent = new Intent(getActivity(), LiveTrainStatusActivity.class);
+        intent.putExtra(RailAppConstants.SINGLE_STATION_DETAILS, response);
         startActivity(intent);
     }
 

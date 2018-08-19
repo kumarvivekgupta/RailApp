@@ -1,18 +1,12 @@
 package com.test.naimish.railapp.Activities;
 
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.test.naimish.railapp.Fragments.PnrHistoryFragment;
-import com.test.naimish.railapp.Models.UserPnrs.DeletePnrs;
-import com.test.naimish.railapp.Network.UserPnrsNetwork.DeletePnrNetwork.DeletePnrApiClient;
 import com.test.naimish.railapp.R;
-import com.test.naimish.railapp.Utils.RailAppConstants;
-import com.test.naimish.railapp.Utils.ResponseListener;
-import com.test.naimish.railapp.Utils.SharedPreference;
 
 public class PnrHistory extends SingleFragmentActivity {
     private static String TOOLBAR_TITLE = "History";

@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
 import com.test.naimish.railapp.Models.UpdateProfile;
 import com.test.naimish.railapp.Network.ApiLayer;
 import com.test.naimish.railapp.Network.ProfilePicUploadNetwork;
@@ -118,7 +119,7 @@ public class SettingsFragment extends RailAppFragment implements ResponseListene
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        callBack=new RetrofitCallBack<>(this);
+        callBack = new RetrofitCallBack<>(this);
         mOldName = SharedPreference.getPreference(getContext(), NAME_CONSTANT);
         mOldEmail = SharedPreference.getPreference(getContext(), EMAIL_CONSTANT);
         mProfileUrl = SharedPreference.getPreference(getContext(), PROFILE_PIC_CONSTANT);

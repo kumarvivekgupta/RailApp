@@ -60,7 +60,7 @@ public class RegisterFragment extends RailAppFragment implements ResponseListene
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        loader=new ProgressLoader(getActivity());
+        loader = new ProgressLoader(getActivity());
     }
 
     @OnClick(R.id.register)
@@ -100,8 +100,8 @@ public class RegisterFragment extends RailAppFragment implements ResponseListene
 
     private void signUpUser() {
         loader.showLoader();
-        RetrofitCallBack<RegisterUser> callBack=new RetrofitCallBack<>(this);
-        ApiLayer.getInterface().createUser(new RegisterUser(mName,mEmail,mPassword)).enqueue(callBack);
+        RetrofitCallBack<RegisterUser> callBack = new RetrofitCallBack<>(this);
+        ApiLayer.getInterface().createUser(new RegisterUser(mName, mEmail, mPassword)).enqueue(callBack);
     }
 
     @Override
@@ -115,10 +115,11 @@ public class RegisterFragment extends RailAppFragment implements ResponseListene
         }
 
     }
+
     @Override
     public void onFailure(Throwable throwable) {
         loader.dismissLoader();
-        Snackbar.make(getView(), throwable.getMessage().toString() +" "+ R.string.try_again, Snackbar.LENGTH_SHORT).show();
+        Snackbar.make(getView(), throwable.getMessage().toString() + " " + R.string.try_again, Snackbar.LENGTH_SHORT).show();
     }
 
     @Override

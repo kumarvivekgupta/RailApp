@@ -24,7 +24,9 @@ import com.test.naimish.railapp.Utils.SeatClassAndQuotaContants;
 import com.test.naimish.railapp.Utils.StationListAndCode;
 import com.test.naimish.railapp.Utils.Validations;
 import com.test.naimish.railapp.Views.ProgressLoader;
+
 import java.util.ArrayList;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -48,7 +50,6 @@ public class SeatAvalibilityEnquiryFragment
     private ArrayList<String> mStationName;
     private ArrayList<String> seatStatus;
     private ArrayList<String> suggestedStation;
-
 
 //    private SeatAvalibilityApiClient mSeatAvalibilityApiClient;
 
@@ -102,7 +103,6 @@ public class SeatAvalibilityEnquiryFragment
         trainDate.setError(null);
         trainSourceCode.setError(null);
         trainDestinationCode.setError(null);
-
 
         View focusView = null;
         Boolean killSwitch = false;
@@ -158,7 +158,6 @@ public class SeatAvalibilityEnquiryFragment
 //        mClassCode.add("SL");
 //        mClassCode.add("2S");
 
-
         ArrayAdapter<String> classCodeAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, mClassCode);
         classCodeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         trainClassCode.setAdapter(classCodeAdapter);
@@ -208,12 +207,11 @@ public class SeatAvalibilityEnquiryFragment
         trainSourceCode.setAdapter(sourceCodeAdapter);
         trainDestinationCode.setOnItemClickListener(this);
 
-
         trainSourceCode.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
-              //  trainSourceCode.setText(mStationName.get(i).substring((mStationName.indexOf('-') + 1), mStationName.get(i).length()));
+                //  trainSourceCode.setText(mStationName.get(i).substring((mStationName.indexOf('-') + 1), mStationName.get(i).length()));
                 // trainSourceCodeSpinner.setVisibility(View.GONE);
 
             }
@@ -250,25 +248,23 @@ public class SeatAvalibilityEnquiryFragment
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-             //  String[] listStation;
+                //  String[] listStation;
 //                    long startTime = System.currentTimeMillis();
 //                    long elapsedTime = 0L;
 //                    elapsedTime = (new Date()).getTime() - startTime;
 //                    while (elapsedTime > 2 * 60 * 1000) {
 
-                   // StationAutoCompleteApiClient mStationAutoCompleteApiClient = new StationAutoCompleteApiClient(SeatAvalibilityEnquiryFragment.this);
-                   // mStationAutoCompleteApiClient.stationAutoCompleteInfo(s.toString());
-                    //  createSourceCodeSpinnerDropdown();
+                // StationAutoCompleteApiClient mStationAutoCompleteApiClient = new StationAutoCompleteApiClient(SeatAvalibilityEnquiryFragment.this);
+                // mStationAutoCompleteApiClient.stationAutoCompleteInfo(s.toString());
+                //  createSourceCodeSpinnerDropdown();
                 listOfStationsSuggested(s.toString());
                 createSourceCodeSpinnerDropdown();
-                    // }
-
+                // }
 
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-
 
             }
         });
@@ -288,7 +284,7 @@ public class SeatAvalibilityEnquiryFragment
 //                    StationAutoCompleteApiClient mStationAutoCompleteApiClient = new StationAutoCompleteApiClient(SeatAvalibilityEnquiryFragment.this);
 //                    mStationAutoCompleteApiClient.stationAutoCompleteInfo(s.toString());
 
-                    // }
+                // }
 
                 listOfStationsSuggested(s.toString());
                 createDestinationSpinnerDropdown();
@@ -343,7 +339,6 @@ public class SeatAvalibilityEnquiryFragment
 
     public void createDestinationSpinnerDropdown() {
 
-
 //        StationAutoCompleteDetails stationAutoCompleteDetails = new StationAutoCompleteDetails();
 //        mStationName = stationAutoCompleteDetails.deatils(stationAutoCompleteBaseModel);
 
@@ -358,14 +353,15 @@ public class SeatAvalibilityEnquiryFragment
         });
 
     }
-    private void listOfStationsSuggested(String suggested){
+
+    private void listOfStationsSuggested(String suggested) {
         String[] listStation;
-        int j=0;
-       suggestedStation=new ArrayList<>();
-        StationListAndCode stationListAndCode=new StationListAndCode(getContext());
-        listStation= stationListAndCode.getStationName();
-        for(int i=0;i<listStation.length;i++){
-            if(suggested.startsWith(listStation[i].toLowerCase())){
+        int j = 0;
+        suggestedStation = new ArrayList<>();
+        StationListAndCode stationListAndCode = new StationListAndCode(getContext());
+        listStation = stationListAndCode.getStationName();
+        for (int i = 0; i < listStation.length; i++) {
+            if (suggested.startsWith(listStation[i].toLowerCase())) {
                 suggestedStation.add(listStation[i]);
             }
         }
