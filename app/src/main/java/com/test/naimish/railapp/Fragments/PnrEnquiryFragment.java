@@ -45,6 +45,7 @@ public class PnrEnquiryFragment extends RailAppFragment implements ResponseListe
     private BaseModel mBaseModel;
     private ProgressLoader loader;
     private PassengerAdapter madapter;
+    private Boolean hasIntent = false;
 
 
     @Override
@@ -116,6 +117,7 @@ public class PnrEnquiryFragment extends RailAppFragment implements ResponseListe
         pnrStatusCardLayout.setVisibility(View.INVISIBLE);
         loader = new ProgressLoader(getActivity());
         if (getActivity().getIntent().hasExtra(RailAppConstants.PNR_NO)) {
+            hasIntent=true;
             String pnrNo = getActivity().getIntent().getExtras().getString(RailAppConstants.PNR_NO);
             displayPnr(pnrNo);
         }
@@ -139,7 +141,10 @@ public class PnrEnquiryFragment extends RailAppFragment implements ResponseListe
             madapter = new PassengerAdapter(getContext(), getdata1());
             passengerListRecycler.setAdapter(madapter);
             passengerListRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
-            savePnr.setVisibility(View.VISIBLE);
+            if(!hasIntent){
+                savePnr.setVisibility(View.VISIBLE);
+            }
+
         } else
             Snackbar.make(getView(), R.string.common_error, Snackbar.LENGTH_SHORT).show();
 

@@ -8,6 +8,7 @@ import android.view.MenuItem;
 
 import com.test.naimish.railapp.Fragments.PnrEnquiryFragment;
 import com.test.naimish.railapp.R;
+import com.test.naimish.railapp.Utils.RailAppConstants;
 
 /**
  * Created by Vivek on 2/19/2018.
@@ -43,9 +44,12 @@ public class PnrEnquiryActivity extends SingleFragmentActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.pnr_menu, menu);
-        return true;
+        if (getIntent().hasExtra(RailAppConstants.PNR_NO)) {
+            MenuInflater inflater = getMenuInflater();
+            inflater.inflate(R.menu.pnr_menu, menu);
+            return true;
+        }
+        return false;
     }
 
     @Override
