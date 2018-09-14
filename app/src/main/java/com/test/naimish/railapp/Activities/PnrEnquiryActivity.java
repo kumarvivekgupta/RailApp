@@ -44,7 +44,7 @@ public class PnrEnquiryActivity extends SingleFragmentActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        if (getIntent().hasExtra(RailAppConstants.PNR_NO)) {
+        if (!getIntent().hasExtra(RailAppConstants.PNR_NO)) {
             MenuInflater inflater = getMenuInflater();
             inflater.inflate(R.menu.pnr_menu, menu);
             return true;
