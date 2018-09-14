@@ -17,6 +17,7 @@ import android.widget.Spinner;
 import com.test.naimish.railapp.Activities.LiveTrainStatusActivity;
 import com.test.naimish.railapp.Models.LiveTrainStatusModel.LiveStatusBaseModel;
 import com.test.naimish.railapp.Network.ApiLayer;
+import com.test.naimish.railapp.Network.RailApiLayer;
 import com.test.naimish.railapp.Network.RetrofitCallBack;
 import com.test.naimish.railapp.R;
 import com.test.naimish.railapp.Utils.RailAppConstants;
@@ -69,7 +70,7 @@ public class LiveTrainSearchFragment extends RailAppFragment implements Response
         mTrainNo = trainNo.getText().toString();
         if (!Validations.isEmpty(mTrainNo) && Validations.checkTrainNo(mTrainNo)) {
             loader.showLoader();
-            ApiLayer.getInterface().liveTrainInfo(mTrainNo, mSelectedDate).enqueue(callBack);
+            RailApiLayer.getInterface().liveTrainInfo(mTrainNo, mSelectedDate).enqueue(callBack);
         } else {
             Snackbar.make(getView(), R.string.train_no_error, Snackbar.LENGTH_SHORT).show();
         }

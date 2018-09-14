@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -18,6 +19,7 @@ import com.test.naimish.railapp.Models.PassengerRecyclerModel;
 import com.test.naimish.railapp.Models.PnrModel.BaseModel;
 import com.test.naimish.railapp.Models.UserPnrs.SavedPnrs;
 import com.test.naimish.railapp.Network.ApiLayer;
+import com.test.naimish.railapp.Network.RailApiLayer;
 import com.test.naimish.railapp.Network.RetrofitCallBack;
 import com.test.naimish.railapp.Network.SavedPnrApiClient;
 import com.test.naimish.railapp.R;
@@ -123,6 +125,7 @@ public class PnrEnquiryFragment extends RailAppFragment implements ResponseListe
 
     @Override
     public void onSuccess(BaseModel response) {
+//        Log.i("naimish",response.getPnr());
         loader.dismissLoader();
         if (response.getPnr() != null) {
             mBaseModel = response;
@@ -147,12 +150,14 @@ public class PnrEnquiryFragment extends RailAppFragment implements ResponseListe
 
     @Override
     public void onFailure(Throwable throwable) {
+        Log.i("naimish","f");
         loader.dismissLoader();
         Snackbar.make(getView(), throwable.getMessage().toString() + " " + R.string.try_again, Snackbar.LENGTH_SHORT).show();
     }
 
     @Override
     public void onNullResponse() {
+        Log.i("naimish","n");
         loader.dismissLoader();
         Snackbar.make(getView(), R.string.common_error, Snackbar.LENGTH_SHORT).show();
     }
@@ -190,6 +195,6 @@ public class PnrEnquiryFragment extends RailAppFragment implements ResponseListe
     private void callSearchApi() {
         loader.showLoader();
         RetrofitCallBack<BaseModel> callBack = new RetrofitCallBack<>(this);
-        ApiLayer.getInterface().pnrInfo(pnrText.getText().toString()).enqueue(callBack);
+        RailApiLayer.getInterface().pnrInfo(pnrText.getText().toString()).enqueue(callBack);
     }
 }
